@@ -1,5 +1,6 @@
 .vscode/
 .cache_dir/
+install-devkitpro-pacman
 
 *.gba
 *.sym
