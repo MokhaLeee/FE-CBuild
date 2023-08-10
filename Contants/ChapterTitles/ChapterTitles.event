@@ -1,0 +1,7 @@
+#define ChapterTitleGfxTable $A01208
+#define InjectChapterTitleGfx(chapter, pGfx) "PUSH; ORG ChapterTitleGfxTable + 12 * chapter; POIN pGfx; WORD 0 0;POP; "
+
+InjectChapterTitleGfx(0, Ch0Title)
+
+Ch0Title:
+	#incbin "Source/Ch0Title.4bpp.lz"

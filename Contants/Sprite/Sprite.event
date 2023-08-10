@@ -1,0 +1,4 @@
+#include "Repoint/RepointSpiritsTable.event"
+
+#include "MapSpriteDefs.event"
+#include "InstallSprites.event"

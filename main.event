@@ -1,0 +1,16 @@
+#include "EAstdlib.event"
+#include "Extensions/Hack Installation.txt"
+#include "Extensions/ProcDefinitions.txt"
+
+#ifndef FreeSpace
+#define FreeSpace $B2A610
+ORG FreeSpace
+#endif
+
+#include "Wizardry/Wizardry.event"
+
+#include "GameData/GameData.event"
+#include "Contants/Banim/Banim.event"
+#include "Contants/Portrait/Portraits.event"
+#include "Contants/Sprite/Sprite.event"
+#include "Contants/ChapterTitles/ChapterTitles.event"

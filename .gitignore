@@ -1,0 +1,32 @@
+.vscode/
+.cache_dir/
+
+*.gba
+*.sym
+
+# Tools
+Tools/EventAssembler/
+Tools/FE-PyTools/
+Tools/FE-CLib-Mokha/
+
+# Wizardry
+*.o
+*.dmp
+*.lyn.event
+
+# Spritans
+*.4bpp
+*.gbapal
+*.lz
+*.img.bin
+*.map.bin
+*.pal.bin
+
+# Banims
+Contants/Banim/Source/*/*Installer.event
+
+# Portrait
+Contants/Portrait/Portraits.event
+Contants/Portrait/Source/*_mug.dmp
+Contants/Portrait/Source/*_frames.dmp
+Contants/Portrait/Source/*_minimug.dmp

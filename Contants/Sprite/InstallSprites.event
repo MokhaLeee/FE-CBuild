@@ -1,0 +1,11 @@
+StandingMapSprite(JourneymanStandingMapSpriteID, MapSprite16x32, Alm_std)
+MovingMapSprite(Journeyman_1, 0x81E173C, Alm_mov)
+
+// Alm
+ALIGN 4
+Alm_std:
+	#incbin "Source/Alm_std.4bpp.lz"
+
+ALIGN 4
+Alm_mov:
+	#incbin "Source/Alm_mov.4bpp.lz"

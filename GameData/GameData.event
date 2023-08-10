@@ -1,0 +1,11 @@
+#ifndef GAME_DATA
+#define GAME_DATA
+
+#include "EAstdlib.event"
+#include "Vanilla/Constants.event"
+#include "Vanilla/Indices.event"
+
+#include "Vanilla/ChracterData/CharacterTable.event"
+#include "Vanilla/ClassData/ClassTable.event"
+
+#endif
