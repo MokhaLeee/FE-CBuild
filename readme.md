@@ -1,5 +1,7 @@
 # FE-CBuild
 
+A project goals to insert everything through EA by makefile & Linux. (W.I.P)
+
 ## Custom build
 
 1. Install sub-modules
