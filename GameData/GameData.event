@@ -5,7 +5,7 @@
 #include "Vanilla/Constants.event"
 #include "Vanilla/Indices.event"
 
-#include "Vanilla/ChracterData/CharacterTable.event"
-#include "Vanilla/ClassData/ClassTable.event"
+#include "Vanilla/ChracterData/CharacterTable.csv.event"
+#include "Vanilla/ClassData/ClassTable.csv.event"
 
 #endif

@@ -1,5 +1,6 @@
 .vscode/
 .cache_dir/
+*__pycache__
 install-devkitpro-pacman
 
 *.gba
@@ -31,3 +32,6 @@ Contants/Portrait/Portraits.event
 Contants/Portrait/Source/*_mug.dmp
 Contants/Portrait/Source/*_frames.dmp
 Contants/Portrait/Source/*_minimug.dmp
+
+# Tables
+*.csv.event

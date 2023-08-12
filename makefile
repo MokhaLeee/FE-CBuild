@@ -196,12 +196,12 @@ CLEAN_FILES += $(PORTRAIT_DEPS) $(PORTRAIT_INSTALLER)
 # = Tables =
 # ==========
 
-%.event: %.csv %.nmm
+%.csv.event: %.csv %.nmm
 	@echo "[GEN]	$@"
-	@echo | $(C2EA) -csv $*.csv -nmm $*.nmm -out $*.event $(ROM_SOURCE) > /dev/null
+	@echo | $(C2EA) -csv $*.csv -nmm $*.nmm -out $@ $(ROM_SOURCE) > /dev/null
 
 CSV_SOURCES := $(shell find $(GAMEDATA_DIR) -type f -name '*.csv')
-CLEAN_FILES += $(CSV_SOURCES:.csv=.event)
+CLEAN_FILES += $(CSV_SOURCES:.csv=.csv.event)
 
 # ==============
 # = MAKE CLEAN =
