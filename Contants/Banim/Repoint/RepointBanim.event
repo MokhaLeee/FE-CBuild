@@ -13,7 +13,7 @@ FILL ((BANIMS_AMT_RE + 1) * 32)
 
 PUSH
 ORG ClassAnimTable
-#incbin "VanillaAnimTable.dmp"
+#incbin "VanillaAnimTable.gba"
 
 ORG 0x59BD8
 POIN ClassAnimTable

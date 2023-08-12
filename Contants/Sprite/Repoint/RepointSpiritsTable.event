@@ -49,7 +49,7 @@ FILL (256*8)
 
 PUSH
 ORG StandingMapSpriteTable
-#incbin "VanillaStandingMapSpriteTable.dmp"
+#incbin "VanillaStandingMapSpriteTable.bin"
 ORG MovingMapSpriteTable
-#incbin "VanillaMovingMapSpriteTable.dmp"
+#incbin "VanillaMovingMapSpriteTable.bin"
 POP
