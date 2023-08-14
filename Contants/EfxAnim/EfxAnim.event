@@ -1,2 +1,2 @@
 EfxDrsmmoya:
-    #include "EfxDrsmmoya/EfxDrsmmoya.efx.event"
+    #include "Source/EfxDrsmmoya/EfxDrsmmoya.efx.event"

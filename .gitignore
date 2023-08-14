@@ -28,6 +28,9 @@ Tools/FE-CLib-Mokha/
 # Banims
 Contants/Banim/Source/*/*Installer.event
 
+# EfxAnims
+Contants/EfxAnim/Source/*/*.efx.event
+
 # Portrait
 Contants/Portrait/Portraits.event
 Contants/Portrait/Source/*_mug.dmp
