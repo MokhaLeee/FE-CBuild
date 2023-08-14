@@ -14,3 +14,4 @@ ORG FreeSpace
 #include "Contants/Portrait/Portraits.event"
 #include "Contants/Sprite/Sprite.event"
 #include "Contants/ChapterTitles/ChapterTitles.event"
+#include "Contants/EfxAnim/EfxAnim.event"

@@ -13,6 +13,7 @@ Tools/FE-CLib-Mokha/
 
 # Wizardry
 *.o
+*.d
 *.dmp
 *.lyn.event
 

@@ -16,6 +16,7 @@ FE8_CHX := fe8-chax.gba
 
 CLEAN_FILES :=
 CLEAN_DIRS  := $(CACHE_DIR) $(shell find -name __pycache__)
+CLEAN_BUILD :=
 
 WIZARDRY_DIR := Wizardry
 CONTANTS_DIR := Contants
@@ -61,7 +62,6 @@ PORTRAIT_PROCESS  := $(PYTHON3) $(TOOL_DIR)/FE-PyTools/portrait-process.py
 TEXT_PROCESS      := $(PYTHON3) $(TOOL_DIR)/FE-PyTools/text-process-classic.py
 C2EA              := $(PYTHON3) $(TOOL_DIR)/FE-PyTools/NMM2CSV/c2ea.py
 TMX2EA            := $(PYTHON3) $(TOOL_DIR)/FE-PyTools/TMX2EA/tmx2ea.py
-
 GRIT              := $(DEVKITPRO)/tools/bin/grit$(EXE)
 
 # ========
@@ -159,18 +159,27 @@ CLEAN_FILES += $(PNG_FILES:.png=.gbapal) $(PNG_FILES:.png=.4bpp) $(PNG_FILES:.pn
 
 CLEAN_FILES += $(PNG_FILES:.png=.img.bin) $(PNG_FILES:.png=.map.bin) $(PNG_FILES:.png=.pal.bin)
 
+# ============
+# = EfxAnims =
+# ============
+
+EFX_ANIM_DIR := Contants/EfxAnim
+
+%.efx.event: %.efx.txt
+	@$(MAKE) -f $(EFX_ANIM_DIR)/makefile $@
+
+CLEAN_BUILD += $(EFX_ANIM_DIR)
+
 # ==========
 # = Banims =
 # ==========
 
 BANIM_DIR     := Contants/Banim
-BANIM_SRC_DIR := $(BANIM_DIR)/Source
-BANIM_SOURCES := $(shell find $(BANIM_SRC_DIR) -type f -name '*.txt')
 
 %Installer.event: %.txt
 	@$(MAKE) -f $(BANIM_DIR)/makefile $@
 
-CLEAN_FILES += $(BANIM_SOURCES:.txt=Installer.event)
+CLEAN_BUILD += $(BANIM_DIR)
 
 # ============
 # = Portrait =
@@ -207,6 +216,7 @@ CLEAN_FILES += $(CSV_SOURCES:.csv=.csv.event)
 # = MAKE CLEAN =
 # ==============
 clean:
-	@rm -f $(CLEAN_FILES)
-	@rm -rf $(CLEAN_DIRS)
-	@echo "cleaned .."
+	@for i in $(CLEAN_BUILD); do if test -e $$i/makefile ; then $(MAKE) -f $$i/makefile clean || { exit 1;} fi; done;
+	rm -f $(CLEAN_FILES)
+	rm -rf $(CLEAN_DIRS)
+	@echo "All cleaned .."
