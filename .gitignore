@@ -27,3 +27,6 @@ Tools/FE-CLib-Mokha/
 
 # Tables
 *.csv.event
+
+# Fonts
+*.fefont

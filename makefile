@@ -72,9 +72,10 @@ GRIT              := $(DEVKITPRO)/tools/bin/grit$(EXE)
 # ========
 
 all:
-	@$(MAKE) writans
+	@$(MAKE) pre_build
 	@$(MAKE) chax
 
+pre_build: text
 chax: $(FE8_CHX)
 
 $(FE8_CHX): $(MAIN) $(FE8_GBA) $(FE8_SYM) $(shell $(EA_DEP) $(MAIN) -I $(EA_DIR) --add-missings)
@@ -84,20 +85,6 @@ $(FE8_CHX): $(MAIN) $(FE8_GBA) $(FE8_SYM) $(shell $(EA_DEP) $(MAIN) -I $(EA_DIR)
 	@cat $(FE8_SYM) >> $(FE8_CHX:.gba=.sym)
 
 CLEAN_FILES += $(FE8_CHX)  $(FE8_CHX:.gba=.sym)
-
-# =========
-# = Texts =
-# =========
-
-TEXT_DIR := Contants/Text
-
-writans:
-	@$(MAKE) -C $(TEXT_DIR)
-
-%.fetxt.dmp: %.fetxt
-	@$(MAKE) -f $(TEXT_DIR)/makefile $@
-
-CLEAN_BUILD += $(TEXT_DIR)
 
 # ============
 # = Wizardry =
@@ -152,6 +139,32 @@ CLEAN_FILES += $(CFILES:.c=.o) $(CFILES:.c=.asm) $(CFILES:.c=.dmp) $(CFILES:.c=.
 
 SFILES := $(shell find $(HACK_DIRS) -type f -name '*.s')
 CLEAN_FILES += $(SFILES:.s=.o) $(SFILES:.s=.dmp) $(SFILES:.s=.lyn.event)
+
+# =========
+# = Texts =
+# =========
+
+TEXT_DIR := Contants/Text
+
+text:
+	@$(MAKE) -C $(TEXT_DIR)
+
+%.fetxt.dmp: %.fetxt
+	@$(MAKE) -f $(TEXT_DIR)/makefile $@
+
+CLEAN_BUILD += $(TEXT_DIR)
+
+# =========
+# = Glyph =
+# =========
+
+FONT_DIR := Contants/Font
+INSTALL_GLYPH := $(FONT_DIR)/InstallGlyph.event
+
+$(INSTALL_GLYPH):
+	@$(MAKE) -C $(FONT_DIR)
+
+CLEAN_BUILD += $(FONT_DIR)
 
 # ============
 # = Spritans =

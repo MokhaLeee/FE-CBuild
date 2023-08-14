@@ -2,6 +2,15 @@
 #define FONT_INSTALLED
 
 ALIGN 4
-#include "Patch/Utf8Decode.lyn.event"
+#include "Utf8/Utf8Decode.lyn.event"
+
+/* Fack FEB draw-utf8 patch */
+PUSH
+ORG 0x44D2
+BYTE 0x00 0x00 0x00 0x4B 0x18 0x47
+POP
+
+/* Auto generated */
+#include "InstallGlyph.event"
 
 #endif

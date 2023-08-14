@@ -1,17 +1,17 @@
 ifeq ($(OS),Windows_NT)
-  EXE := .exe
+	EXE := .exe
 else
-  EXE :=
+	EXE :=
 endif
 
 ifeq ($(shell python3 -c 'import sys; print(int(sys.version_info[0] > 2))'),1)
-  PYTHON3 := python3
+	PYTHON3 := python3
 else
-  PYTHON3 := python
+	PYTHON3 := python
 endif
 
 ifeq ($(strip $(DEVKITPRO)),)
-  $(error "Please set DEVKITPRO in your environment. export DEVKITPRO=<path to>devkitpro)
+	$(error "Please set DEVKITPRO in your environment. export DEVKITPRO=<path to>devkitpro)
 endif
 
 GRIT := $(DEVKITPRO)/tools/bin/grit$(EXE)
