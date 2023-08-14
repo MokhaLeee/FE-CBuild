@@ -42,33 +42,23 @@ def efx_anim_dep(file):
     print(fpath_abs, end = ' ')
 
     for line in file:
-        duration, name = line.split()
+        frame, duration, name = line.split()
 
         if ".png" in name:
             fpath = os.path.join(os.path.dirname(fpath_abs), name)
             print(fpath, end = ' ')
 
-class FrameEntry:
-    def __init__(self, line):
-        self.frame = 0
-        self.duration = 0
-
-        tokens = gen_tokens(line)
-
-        try:
-            self.frame = next(tokens)
-            self.duration = next(tokens)
-
-        except StopIteration:
-            sys.exit("Not enough components in line `{0}`.".format(line))
-
 class GfxEntry:
     def __init__(self, line):
+        self.frameIndex = 0
+        self.duration = 0
         self.fPath = ''
 
         tokens = gen_tokens(line)
 
         try:
+            self.frameIndex = next(tokens)
+            self.duration = next(tokens)
             self.fPath = next(tokens)
 
         except StopIteration:
@@ -90,13 +80,24 @@ class GfxEntry:
 
         incBase = os.path.splitext(self.fPath)[0]
 
-        yield 'IMG_{0}:\n#incbin {1}\n\n'.format(incBase, incBase + '.img.bin')
-        yield 'TSA_{0}:\n#incbin {1}\n\n'.format(incBase, incBase + '.map.bin')
-        yield 'PAL_{0}:\n#incbin {1}\n\n'.format(incBase, incBase + '.pal.bin')
+        yield '#ifndef IMG_{0}_INSTALLED\n'.format(incBase)
+        yield '#define IMG_{0}_INSTALLED\n'.format(incBase)
+        yield 'IMG_{0}:\n#incbin {1}\n'.format(incBase, incBase + '.img.bin')
+        yield '#endif\n\n'
+
+        yield '#ifndef TSA_{0}_INSTALLED\n'.format(incBase)
+        yield '#define TSA_{0}_INSTALLED\n'.format(incBase)
+        yield 'TSA_{0}:\n#incbin {1}\n'.format(incBase, incBase + '.map.bin')
+        yield '#endif\n\n'
+
+        yield '#ifndef PAL_{0}_INSTALLED\n'.format(incBase)
+        yield '#define PAL_{0}_INSTALLED\n'.format(incBase)
+        yield 'PAL_{0}:\n#incbin {1}\n'.format(incBase, incBase + '.pal.bin')
+        yield '#endif\n\n'
 
 def gen_header():
     yield '// File generated from by efx-anim-creator\n'
-    yield 'POIN IMGs TSAs PALs\n'
+    yield 'POIN FRAMEs IMGs TSAs PALs\n'
 
 def main(args):
     sys.excepthook = show_exception_and_exit
@@ -137,6 +138,11 @@ def main(args):
     else:
         sys.stdout.writelines('{\n')
         sys.stdout.writelines(gen_header())
+
+        # Generate frame lut
+        sys.stdout.writelines('\nFRAMEs:\n')
+        for img in imgs:
+            sys.stdout.writelines('SHORT {0} {1}\n'.format(img.frameIndex, img.duration))
 
         # Generate image lut
         sys.stdout.writelines('\nIMGs:\n')
