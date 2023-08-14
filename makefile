@@ -1,27 +1,26 @@
 MAKEFLAGS += --no-print-directory
 
-CACHE_DIR := .cache_dir
-$(shell mkdir -p $(CACHE_DIR) > /dev/null)
+MAIN    := main.event
+FE8_CHX := fe8-chax.gba
+FE8_GBA := fe8.gba
 
 TOOL_DIR := Tools
 LIB_DIR  := $(TOOL_DIR)/FE-CLib-Mokha
-
-FE8_GBA := fe8.gba
-FE8_REF := $(LIB_DIR)/reference/fireemblem8.ref.s
-FE8_SYM := $(LIB_DIR)/reference/fireemblem8.sym
-EXT_REF := usr-defined.ref.s
-
-MAIN    := main.event
-FE8_CHX := fe8-chax.gba
-
-CLEAN_FILES :=
-CLEAN_DIRS  := $(CACHE_DIR) $(shell find -name __pycache__)
-CLEAN_BUILD :=
+FE8_REF  := $(LIB_DIR)/reference/fireemblem8.ref.s
+FE8_SYM  := $(LIB_DIR)/reference/fireemblem8.sym
+EXT_REF  := usr-defined.ref.s
 
 WIZARDRY_DIR := Wizardry
 CONTANTS_DIR := Contants
 GAMEDATA_DIR := GameData
 HACK_DIRS    := $(WIZARDRY_DIR) $(CONTANTS_DIR) $(GAMEDATA_DIR)
+
+CACHE_DIR := .cache_dir
+$(shell mkdir -p $(CACHE_DIR) > /dev/null)
+
+CLEAN_FILES :=
+CLEAN_DIRS  := $(CACHE_DIR) $(shell find -name __pycache__)
+CLEAN_BUILD :=
 
 # =========
 # = Tools =
@@ -42,6 +41,10 @@ ifeq ($(shell python3 -c 'import sys; print(int(sys.version_info[0] > 2))'),1)
   PYTHON3 := python3
 else
   PYTHON3 := python
+endif
+
+ifeq ($(strip $(DEVKITPRO)),)
+  $(error "Please set DEVKITPRO in your environment. export DEVKITPRO=<path to>devkitpro)
 endif
 
 PREFIX  ?= arm-none-eabi-
@@ -152,7 +155,6 @@ PNG_FILES := $(shell find $(HACK_DIRS) -type f -name '*.png')
 
 CLEAN_FILES += $(PNG_FILES:.png=.gbapal) $(PNG_FILES:.png=.4bpp) $(PNG_FILES:.png=.4bpp.lz)
 
-# Grit related
 %.img.bin %.map.bin %.pal.bin: %.png
 	@echo "[GEN]	$@"
 	@$(GRIT) $< -gB 4 -gzl -m -mLf -mR4 -mzl -pn 16 -ftb -fh! -o $@
