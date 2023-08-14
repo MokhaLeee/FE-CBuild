@@ -1,0 +1,7 @@
+#ifndef FONT_INSTALLED
+#define FONT_INSTALLED
+
+ALIGN 4
+#include "Patch/Utf8Decode.lyn.event"
+
+#endif

@@ -16,3 +16,4 @@ ORG FreeSpace
 #include "Contants/ChapterTitles/ChapterTitles.event"
 #include "Contants/EfxAnim/EfxAnim.event"
 #include "Contants/Text/Text.event"
+#include "Contants/Font/Font.event"

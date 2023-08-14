@@ -18,7 +18,7 @@ PARSEFILE    := $(PYTHON3) $(mkfile_dir)Scripts/parsefile-utf8.py
 
 TEXT_DIR ?= $(mkfile_dir)
 
-TEXT_MAIN   := $(TEXT_DIR)TextMain.txt
+TEXT_MAIN   := $(TEXT_DIR)Source/TextMain.txt
 TEXT_SOURCE := $(shell find $(TEXT_DIR) -type f -name '*.txt')
 
 TEXT_EVENT  := $(TEXT_DIR)Text.event
@@ -35,4 +35,5 @@ $(TEXT_EVENT) $(TEXT_DEF) $(TEXT_HEADER): $(TEXT_MAIN) $(TEXT_SOURCE)
 	@$(PARSEFILE) -i $< -o $@ > /dev/null
 
 clean:
-	rm -rf $(mkfile_dir).TextEntries $(TEXT_EVENT) $(TEXT_DEF) $(TEXT_HEADER)
+	rm -rf $(mkfile_dir)Source/.TextEntries
+	rm -f $(TEXT_EVENT) $(TEXT_DEF) $(TEXT_HEADER)
