@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: UTF-8 -*-
 
-import os, sys, argparse, traceback
+import os, sys, argparse, traceback, hashlib
 
 def show_exception_and_exit(exc_type, exc_value, tb):
     import traceback
@@ -53,6 +53,7 @@ class GfxEntry:
         self.frameIndex = 0
         self.duration = 0
         self.fPath = ''
+        self.hash = 0
 
         tokens = gen_tokens(line)
 
@@ -64,6 +65,8 @@ class GfxEntry:
         except StopIteration:
             sys.exit("Not enough components in line `{0}`.".format(line))
 
+        self.hash = abs(hash(os.path.abspath(self.fPath)))
+
     def list_data_files(self, parentPath):
         realPath = os.path.join(os.path.dirname(parentPath), self.fPath)
         incBase = os.path.splitext(realPath)[0]
@@ -72,7 +75,7 @@ class GfxEntry:
         yield incBase + '.map.bin'
         yield incBase + '.pal.bin'
 
-    def gen_event_img_insert(self, parentPath):
+    def gen_event_gfx(self, parentPath):
         realPath = os.path.join(os.path.dirname(parentPath), self.fPath)
 
         if not os.path.exists(realPath):
@@ -80,23 +83,27 @@ class GfxEntry:
 
         incBase = os.path.splitext(self.fPath)[0]
 
-        yield '#ifndef IMG_{0}_INSTALLED\n'.format(incBase)
-        yield '#define IMG_{0}_INSTALLED\n'.format(incBase)
+        yield '#ifndef IMG_{0}_{1}_INSTALLED\n'.format(incBase, self.hash)
+        yield '#define IMG_{0}_{1}_INSTALLED\n'.format(incBase, self.hash)
+        yield 'ALIGN 4\n'
         yield 'IMG_{0}:\n#incbin {1}\n'.format(incBase, incBase + '.img.bin')
         yield '#endif\n\n'
 
-        yield '#ifndef TSA_{0}_INSTALLED\n'.format(incBase)
-        yield '#define TSA_{0}_INSTALLED\n'.format(incBase)
+        yield '#ifndef TSA_{0}_{1}_INSTALLED\n'.format(incBase, self.hash)
+        yield '#define TSA_{0}_{1}_INSTALLED\n'.format(incBase, self.hash)
+        yield 'ALIGN 4\n'
         yield 'TSA_{0}:\n#incbin {1}\n'.format(incBase, incBase + '.map.bin')
         yield '#endif\n\n'
 
-        yield '#ifndef PAL_{0}_INSTALLED\n'.format(incBase)
-        yield '#define PAL_{0}_INSTALLED\n'.format(incBase)
+        yield '#ifndef PAL_{0}_{1}_INSTALLED\n'.format(incBase, self.hash)
+        yield '#define PAL_{0}_{1}_INSTALLED\n'.format(incBase, self.hash)
+        yield 'ALIGN 4\n'
         yield 'PAL_{0}:\n#incbin {1}\n'.format(incBase, incBase + '.pal.bin')
         yield '#endif\n\n'
 
 def gen_header():
-    yield '// File generated from by efx-anim-creator\n'
+    yield '// File generated from by efx-anim-creator\n\n'
+    yield 'ALIGN 4\n'
     yield 'POIN FRAMEs IMGs TSAs PALs\n'
 
 def main(args):
@@ -143,6 +150,9 @@ def main(args):
         sys.stdout.writelines('\nFRAMEs:\n')
         for img in imgs:
             sys.stdout.writelines('SHORT {0} {1}\n'.format(img.frameIndex, img.duration))
+        sys.stdout.writelines('SHORT 0xFFFF\n') # Terminator of frame_lut
+
+        sys.stdout.writelines('\nALIGN 4')
 
         # Generate image lut
         sys.stdout.writelines('\nIMGs:\n')
@@ -163,7 +173,7 @@ def main(args):
         sys.stdout.writelines('\n')
 
         for img in imgs:
-            sys.stdout.writelines(img.gen_event_img_insert(arguments.input))
+            sys.stdout.writelines(img.gen_event_gfx(arguments.input))
 
         sys.stdout.writelines('}\n')
 

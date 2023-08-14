@@ -164,11 +164,23 @@ CLEAN_FILES += $(PNG_FILES:.png=.img.bin) $(PNG_FILES:.png=.map.bin) $(PNG_FILES
 # ============
 
 EFX_ANIM_DIR := Contants/EfxAnim
+EFX_ANIMTOR  := $(PYTHON3) $(EFX_ANIM_DIR)/Scripts/efx-anim-creator.py
+
+EFX_SCRIPTS  := $(shell find $(HACK_DIRS) -type f -name '*.efx.txt')
+EFX_SCR_DEPS := $(EFX_SCRIPTS:.efx.txt=.efx.txt.d)
+EFX_TARGET   := $(EFX_SCRIPTS:.efx.txt=.efx.event)
 
 %.efx.event: %.efx.txt
-	@$(MAKE) -f $(EFX_ANIM_DIR)/makefile $@
+	@echo "[GEN]	$@"
+	@$(EFX_ANIMTOR) $< > $@
 
-CLEAN_BUILD += $(EFX_ANIM_DIR)
+%.efx.txt.d: %.efx.txt
+	@echo -n "$(patsubst %.efx.txt, %.efx.event, $<): " > $@
+	@$(EFX_ANIMTOR) $< --list-files >> $@
+
+include $(EFX_SCR_DEPS)
+
+CLEAN_FILES += $(EFX_SCR_DEPS) $(EFX_TARGET)
 
 # ==========
 # = Banims =

@@ -10,6 +10,12 @@ else
   PYTHON3 := python
 endif
 
+ifeq ($(strip $(DEVKITPRO)),)
+  $(error "Please set DEVKITPRO in your environment. export DEVKITPRO=<path to>devkitpro)
+endif
+
+GRIT := $(DEVKITPRO)/tools/bin/grit$(EXE)
+
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 mkfile_dir := $(dir $(mkfile_path))
 
@@ -36,13 +42,11 @@ include $(EFX_SCR_DEPS)
 CLEAN_FILES += $(EFX_SCR_DEPS)
 
 # Grit related
-GRIT := $(DEVKITPRO)/tools/bin/grit$(EXE)
-
 %.img.bin %.map.bin %.pal.bin: %.png
 	@echo "[GEN]	$@"
 	@$(GRIT) $< -gB 4 -gzl -m -mLf -mR4 -mzl -pn 16 -ftb -fh! -o $@
 
-PNG_FILES := $(shell find $(HACK_DIRS) -type f -name '*.png')
+PNG_FILES := $(shell find ./ -type f -name '*.png')
 CLEAN_FILES += $(PNG_FILES:.png=.img.bin) $(PNG_FILES:.png=.map.bin) $(PNG_FILES:.png=.pal.bin)
 
 clean:
