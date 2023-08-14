@@ -13,7 +13,7 @@ endif
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 mkfile_dir := $(dir $(mkfile_path))
 
-EFX_ANIMTOR := $(PYTHON3) $(mkfile_dir)scripts/efx-anim-creator.py
+EFX_ANIMTOR := $(PYTHON3) $(mkfile_dir)Scripts/efx-anim-creator.py
 
 EFX_SCRIPTS := $(shell find ./ -type f -name '*.efx.txt')
 EFX_TARGET  := $(EFX_SCRIPTS:.efx.txt=.efx.event)

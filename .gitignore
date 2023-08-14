@@ -25,17 +25,5 @@ Tools/FE-CLib-Mokha/
 *.map.bin
 *.pal.bin
 
-# Banims
-Contants/Banim/Source/*/*Installer.event
-
-# EfxAnims
-Contants/EfxAnim/Source/*/*.efx.event
-
-# Portrait
-Contants/Portrait/Portraits.event
-Contants/Portrait/Source/*_mug.dmp
-Contants/Portrait/Source/*_frames.dmp
-Contants/Portrait/Source/*_minimug.dmp
-
 # Tables
 *.csv.event
