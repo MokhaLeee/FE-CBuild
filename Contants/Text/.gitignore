@@ -1,0 +1,6 @@
+.TextEntries
+__pycache__
+
+Text.event
+TextDefinitions.event
+TextDefs.h

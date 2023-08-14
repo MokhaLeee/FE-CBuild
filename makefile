@@ -28,23 +28,23 @@ CLEAN_BUILD :=
 
 TOOLCHAIN ?= $(DEVKITARM)
 ifneq (,$(TOOLCHAIN))
-  export PATH := $(TOOLCHAIN)/bin:$(PATH)
+	export PATH := $(TOOLCHAIN)/bin:$(PATH)
 endif
 
 ifeq ($(OS),Windows_NT)
-  EXE := .exe
+	EXE := .exe
 else
-  EXE :=
+	EXE :=
 endif
 
 ifeq ($(shell python3 -c 'import sys; print(int(sys.version_info[0] > 2))'),1)
-  PYTHON3 := python3
+	PYTHON3 := python3
 else
-  PYTHON3 := python
+	PYTHON3 := python
 endif
 
 ifeq ($(strip $(DEVKITPRO)),)
-  $(error "Please set DEVKITPRO in your environment. export DEVKITPRO=<path to>devkitpro)
+	$(error "Please set DEVKITPRO in your environment. export DEVKITPRO=<path to>devkitpro)
 endif
 
 PREFIX  ?= arm-none-eabi-
@@ -71,15 +71,33 @@ GRIT              := $(DEVKITPRO)/tools/bin/grit$(EXE)
 # = Main =
 # ========
 
-MAIN_DEPS := $(shell $(EA_DEP) $(MAIN) -I $(EA_DIR) --add-missings)
+all:
+	@$(MAKE) writans
+	@$(MAKE) chax
 
-$(FE8_CHX): $(MAIN) $(FE8_GBA) $(FE8_SYM) $(MAIN_DEPS)
+chax: $(FE8_CHX)
+
+$(FE8_CHX): $(MAIN) $(FE8_GBA) $(FE8_SYM) $(shell $(EA_DEP) $(MAIN) -I $(EA_DIR) --add-missings)
 	@echo "[GEN]	$@"
 	@cp -f $(FE8_GBA) $(FE8_CHX)
 	@$(EA) A FE8 -input:$(MAIN) -output:$(FE8_CHX) --nocash-sym || rm -f $(FE8_CHX)
 	@cat $(FE8_SYM) >> $(FE8_CHX:.gba=.sym)
 
 CLEAN_FILES += $(FE8_CHX)  $(FE8_CHX:.gba=.sym)
+
+# =========
+# = Texts =
+# =========
+
+TEXT_DIR := Contants/Text
+
+writans:
+	@$(MAKE) -C $(TEXT_DIR)
+
+%.fetxt.dmp: %.fetxt
+	@$(MAKE) -f $(TEXT_DIR)/makefile $@
+
+CLEAN_BUILD += $(TEXT_DIR)
 
 # ============
 # = Wizardry =
@@ -229,6 +247,7 @@ CLEAN_FILES += $(CSV_SOURCES:.csv=.csv.event)
 # ==============
 # = MAKE CLEAN =
 # ==============
+
 clean:
 	@for i in $(CLEAN_BUILD); do if test -e $$i/makefile ; then $(MAKE) -f $$i/makefile clean || { exit 1;} fi; done;
 	rm -f $(CLEAN_FILES)
