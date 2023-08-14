@@ -3,6 +3,7 @@
 
 ALIGN 4
 #include "Utf8/Utf8Decode.lyn.event"
+#include "Utf8/LynJump.event"
 
 /* Fack FEB draw-utf8 patch */
 PUSH

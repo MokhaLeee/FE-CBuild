@@ -89,6 +89,7 @@ static struct Glyph * GetCharGlyphUnicode(u32 unicode_ch, struct Font * font)
     return NULL;
 }
 
+/* LynJump! */
 const char * GetCharTextLen(const char * str, u32 * width)
 {
     struct Glyph * glyph;
@@ -107,6 +108,7 @@ const char * GetCharTextLen(const char * str, u32 * width)
     return str + decode_len;
 }
 
+/* LynJump! */
 int GetStringTextLen(const char * str)
 {
     u32 _wid;
@@ -119,6 +121,7 @@ int GetStringTextLen(const char * str)
     return width;
 }
 
+/* LynJump! */
 const char * Text_DrawCharacter(struct Text * text, const char * str)
 {
     struct Glyph * glyph;
@@ -140,6 +143,7 @@ goto_err:
     return Text_DrawCharacter(text, "?\0\0\0\0\0\0\0");
 }
 
+/* LynJump! */
 void Text_DrawString(struct Text * text, const char * str)
 {
     while (*str != 0 && *str != CHAR_NEWLINE)
