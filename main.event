@@ -3,7 +3,8 @@
 #include "Extensions/ProcDefinitions.txt"
 
 #ifndef FreeSpace
-#define FreeSpace $B2A610
+#define FreeSpace $B2A604
+#define FreeSpaceSize 0xD59FC
 ORG FreeSpace
 #endif
 
@@ -16,4 +17,18 @@ ORG FreeSpace
 #include "Contants/ChapterTitles/ChapterTitles.event"
 #include "Contants/EfxAnim/EfxAnim.event"
 #include "Contants/Text/Text.event"
-#include "Contants/Font/Font.event"
+
+MESSAGE Main end at CURRENTOFFSET
+ASSERT (FreeSpace + FreeSpaceSize - CURRENTOFFSET)
+
+/* Install Fonts */
+#ifndef FreeSpaceFont
+#define FreeSpaceFont 0xEFB2E0
+#define FreeSpaceFontSize 0xE4D20
+#endif
+
+ORG FreeSpaceFont
+#include "Fonts/Fonts.event"
+
+MESSAGE Fonts end at CURRENTOFFSET
+ASSERT (FreeSpaceFont + FreeSpaceFontSize - CURRENTOFFSET)

@@ -253,7 +253,7 @@ def main(args):
 	verbose			= True if arguments.verbose else False
 
 	timeThreshold = 0.0
-	
+
 	if not arguments.depends:
 		# Hacky thing to automatically depend on ParseDefinitions.txt if the parser is ParseFile
 
@@ -334,30 +334,32 @@ def main(args):
 
 			f.write("{\n")
 			f.write("// Anti-Huffman Patch, by Hextator and Nintenlord\n")
-			f.write("ORG 0x2BA4 //Pointer Tester\n")
-			f.write("BYTE 0x00 0xB5 0xC2 0x0F 0x02 0xD0\n")
-			f.write("BL(uncompHelper) /*0x07 0xF0 0x63 0xFB*/\n")
-			f.write("SHORT 0xE001\n")
-			f.write("BL(compressedHelper) /*0x07 0xF0 0x58 0xFB*/\n")
-			f.write("SHORT 0xBD00\n\n")
-			f.write("ORG 0xA24A\n")
-			f.write("BYTE 0x05 0xD0 0x04 0x49 0x28 0x1C 0x00 0xF0 0x16 0xF8 0x35 0x60 0x00 0xE0 0x01 0x48 0x70 0xBC 0x00 0xBD 0x00 0x00\n")
-			f.write("WORD 0x0202A6AC\n\n")
-			f.write("compressedHelper:\n")
-			f.write("SHORT 0xB500 0x4A02 0x6812\n")
-			f.write("BL(0xD18C8) //In-game unencoding routine, I assume\n")
-			f.write("SHORT 0xBD00\n")
-			f.write("WORD 0x03004150\n")
-			f.write("uncompHelper:\n")
-			f.write("jumpToHack(AntiHuffmanFreeSpace) //FEditor uses r2 instead of r3, but it shouldn't matter.\n")
-			f.write("ORG 0x464470\n")
-			f.write("AntiHuffmanFreeSpace: //Can be relocated as necessary.\n")
-			f.write("BYTE 0x80 0x23 0x1B 0x06 0xC0 0x1A 0x02 0x78 0x0A 0x70 0x01 0x31 0x01 0x30 0x00 0x2A 0xF9 0xD1 0x70 0x47\n")
+			f.write("PUSH\n")
+			f.write("\tORG 0x2BA4 //Pointer Tester\n")
+			f.write("\tBYTE 0x00 0xB5 0xC2 0x0F 0x02 0xD0\n")
+			f.write("\tBL(uncompHelper) /*0x07 0xF0 0x63 0xFB*/\n")
+			f.write("\tSHORT 0xE001\n")
+			f.write("\tBL(compressedHelper) /*0x07 0xF0 0x58 0xFB*/\n")
+			f.write("\tSHORT 0xBD00\n\n")
+			f.write("\tORG 0xA24A\n")
+			f.write("\tBYTE 0x05 0xD0 0x04 0x49 0x28 0x1C 0x00 0xF0 0x16 0xF8 0x35 0x60 0x00 0xE0 0x01 0x48 0x70 0xBC 0x00 0xBD 0x00 0x00\n")
+			f.write("\tWORD 0x0202A6AC\n\n")
+			f.write("\tcompressedHelper:\n")
+			f.write("\tSHORT 0xB500 0x4A02 0x6812\n")
+			f.write("\tBL(0xD18C8) //In-game unencoding routine, I assume\n")
+			f.write("\tSHORT 0xBD00\n")
+			f.write("\tWORD 0x03004150\n")
+			f.write("\tuncompHelper:\n")
+			f.write("\tjumpToHack(AntiHuffmanFreeSpace) //FEditor uses r2 instead of r3, but it shouldn't matter.\n")
+			f.write("\tORG 0x464470\n")
+			f.write("\tAntiHuffmanFreeSpace: //Can be relocated as necessary.\n")
+			f.write("\tBYTE 0x80 0x23 0x1B 0x06 0xC0 0x1A 0x02 0x78 0x0A 0x70 0x01 0x31 0x01 0x30 0x00 0x2A 0xF9 0xD1 0x70 0x47\n")
+			f.write("POP\n")
 			f.write("}\n\n")
 
-			f.write("#include \"{}\"\n\n".format(os.path.relpath(outputDefPath, os.path.dirname(outputPath))))
+			f.write("#include \"{}\"\n".format(os.path.relpath(outputDefPath, os.path.dirname(outputPath))))
 
-			f.write("{\n\n")
+			f.write("{\n")
 
 			for entry in entryList:
 				textFileName  = os.path.join(textFolder, "{}{}.fetxt".format(inputName, entry.get_unique_identifier()))
@@ -404,9 +406,9 @@ def main(args):
 
 				f.write("{}:\n".format(textDataLabel))
 
-				f.write('#incbin "{}"\n'.format(os.path.relpath(dataFileName, os.path.dirname(outputPath))))
+				f.write('\t#incbin "{}"\n'.format(os.path.relpath(dataFileName, os.path.dirname(outputPath))))
 
-				f.write("setText(${:X}, {})\n\n".format(entry.stringId, textDataLabel))
+				f.write("\tsetText(${:X}, {})\n\n".format(entry.stringId, textDataLabel))
 
 			f.write("}\n\n")
 

@@ -4,8 +4,6 @@
 import os, sys, argparse, traceback, hashlib
 
 def show_exception_and_exit(exc_type, exc_value, tb):
-    import traceback
-
     traceback.print_exception(exc_type, exc_value, tb)
     sys.exit(-1)
 
@@ -36,17 +34,6 @@ def gen_tokens(string):
             string = string[(pos+1):]
 
         string = string.strip()
-
-def efx_anim_dep(file):
-    fpath_abs = os.path.abspath(file.name)
-    print(fpath_abs, end = ' ')
-
-    for line in file:
-        frame, duration, name = line.split()
-
-        if ".png" in name:
-            fpath = os.path.join(os.path.dirname(fpath_abs), name)
-            print(fpath, end = ' ')
 
 class GfxEntry:
     def __init__(self, line):

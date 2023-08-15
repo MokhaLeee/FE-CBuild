@@ -79,7 +79,7 @@ all:
 	@$(MAKE) pre_build
 	@$(MAKE) chax
 
-pre_build: text
+pre_build: text font
 chax: $(FE8_CHX)
 
 $(FE8_CHX): $(MAIN) $(FE8_GBA) $(FE8_SYM) $(shell $(EA_DEP) $(MAIN) -I $(EA_DIR) --add-missings)
@@ -162,11 +162,14 @@ CLEAN_BUILD += $(TEXT_DIR)
 # = Glyph =
 # =========
 
-FONT_DIR := Contants/Font
-INSTALL_GLYPH := $(FONT_DIR)/InstallGlyph.event
+FONT_DIR := Fonts
 
-$(INSTALL_GLYPH):
+font:
 	@$(MAKE) -C $(FONT_DIR)
+
+%.font.s: %.font.png
+	@echo "[GEN]	$@"
+	@$(GRIT) $< -gB2 -p! -tw16 -th16 -fts -fh! -o $@
 
 CLEAN_BUILD += $(FONT_DIR)
 
