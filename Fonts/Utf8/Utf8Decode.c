@@ -24,7 +24,7 @@ static int GetChLenUtf8(const char * str)
         return 1;
 
 #ifdef LogPrintf
-    LogPrintf("%s: Failed on decoding at %p!", __func__, str);
+    LogPrintf("%s: Failed on decoding at %#X!", __func__, str);
 #endif
 
     return -1;
@@ -72,7 +72,7 @@ static int DecodeUtf8(const char * str, u32 * unicode_out, int * len)
     default:
 
 #ifdef LogPrintf
-        LogPrintf("%s: Failed on decoding at %p!", __func__, str);
+        LogPrintf("%s: Failed on decoding at %#X!", __func__, str);
 #endif
         *unicode_out = 0;
         *len = 0;
@@ -148,17 +148,17 @@ const char * Text_DrawCharacter(struct Text * text, const char * str)
 
     ret = DecodeUtf8(str, &unicod, &decode_len);
     if (ret)
-        goto goto_err;
+    {
+        unicod = '?';
+        decode_len = 1;
+    }
 
     glyph = GetCharGlyphUnicode(unicod, gActiveFont);
     if (glyph == NULL)
-        goto goto_err;
+        glyph = GetCharGlyphUnicode('?', gActiveFont);
 
     gActiveFont->drawGlyph(text, glyph);
     return str + decode_len;
-
-goto_err:
-    return Text_DrawCharacter(text, "?\0\0\0\0\0\0\0");
 }
 
 /* LynJump! */
