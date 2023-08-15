@@ -1,6 +1,8 @@
 #include "global.h"
 #include "fontgrp.h"
 
+#include "debug-kit.h"
+
 #define CHAR_NEWLINE 0x01
 extern struct Font * gActiveFont;
 
@@ -20,6 +22,10 @@ static int GetChLenUtf8(const char * str)
 
     if ((0b10000000 & cod) == 0x0)
         return 1;
+
+#ifdef LogPrintf
+    LogPrintf("%s: Failed on decoding at %p!", __func__, str);
+#endif
 
     return -1;
 }
@@ -64,6 +70,10 @@ static int DecodeUtf8(const char * str, u32 * unicode_out, int * len)
         return 0;
 
     default:
+
+#ifdef LogPrintf
+        LogPrintf("%s: Failed on decoding at %p!", __func__, str);
+#endif
         *unicode_out = 0;
         *len = 0;
         return -1;
@@ -78,7 +88,12 @@ static struct Glyph * GetCharGlyphUnicode(u32 unicode_ch, struct Font * font)
 
     /* For now, we can only support for group 1 of unicode (U_0000 ~ U_FFFF) */
     if (unicode_ch >= 0x10000)
+    {
+#ifdef LogPrintf
+        LogPrintf("%s: Unicode %#x overflow!", __func__, unicode_ch);
+#endif
         return NULL;
+    }
 
     for(glyph = font->glyphs[lo]; glyph != NULL; glyph = glyph->sjisNext)
     {
@@ -86,6 +101,9 @@ static struct Glyph * GetCharGlyphUnicode(u32 unicode_ch, struct Font * font)
             return glyph;
     }
 
+#ifdef LogPrintf
+    LogPrintf("%s: Failed to get glyph: %#x", __func__, unicode_ch);
+#endif
     return NULL;
 }
 

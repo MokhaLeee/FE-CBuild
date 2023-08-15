@@ -5,7 +5,7 @@ ALIGN 4
 #include "Utf8/Utf8Decode.lyn.event"
 #include "Utf8/LynJump.event"
 
-/* Fack FEB draw-utf8 patch */
+/* Fake FEB draw-utf8 patch */
 PUSH
 ORG 0x44D2
 BYTE 0x00 0x00 0x00 0x4B 0x18 0x47

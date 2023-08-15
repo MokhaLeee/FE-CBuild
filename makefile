@@ -26,6 +26,14 @@ CLEAN_BUILD :=
 # = Tools =
 # =========
 
+ifeq ($(strip $(DEVKITPRO)),)
+	$(error "Please set DEVKITPRO in your environment. export DEVKITPRO=<path to>devkitpro)
+endif
+
+ifeq ($(strip $(DEVKITARM)),)
+	$(error "Please set DEVKITARM in your environment. export DEVKITARM=<path to>devkitARM)
+endif
+
 TOOLCHAIN ?= $(DEVKITARM)
 ifneq (,$(TOOLCHAIN))
 	export PATH := $(TOOLCHAIN)/bin:$(PATH)
@@ -41,10 +49,6 @@ ifeq ($(shell python3 -c 'import sys; print(int(sys.version_info[0] > 2))'),1)
 	PYTHON3 := python3
 else
 	PYTHON3 := python
-endif
-
-ifeq ($(strip $(DEVKITPRO)),)
-	$(error "Please set DEVKITPRO in your environment. export DEVKITPRO=<path to>devkitpro)
 endif
 
 PREFIX  ?= arm-none-eabi-
@@ -219,7 +223,7 @@ CLEAN_FILES += $(EFX_SCR_DEPS) $(EFX_TARGET)
 # = Banims =
 # ==========
 
-BANIM_DIR     := Contants/Banim
+BANIM_DIR := Contants/Banim
 
 %Installer.event: %.txt
 	@$(MAKE) -f $(BANIM_DIR)/makefile $@
