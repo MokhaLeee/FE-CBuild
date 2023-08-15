@@ -33,7 +33,7 @@ def append_glyph(glyphs, fpath, type, out_dir):
                 character = match.group(1)
 
                 src = "{0}/Font{1}{2}.png".format(os.path.dirname(fpath), FontType[type].capitalize(), match.group(3))
-                dst = "{0}/Font{1}_{2}.font.png".format(out_dir, FontType[type].capitalize(), "{:04X}".format(ord(character)))
+                dst = "{0}/Font{1}_{2}_font.png".format(out_dir, FontType[type].capitalize(), "{:04X}".format(ord(character)))
 
                 if ord(character) > 0x10000:
                     print("{0}(U_{1}) is not supported for unicode group_1 (U_0000 ~ U10000)".format(character, "{:04X}".format(ord(character))))
@@ -70,7 +70,7 @@ def make_installer(glyphs, type, fpath):
 
             f.write("\tBYTE {0} {1} 0 0\n".format(hex(unicod_hi), hex(glyph["width"])))
             f.write("\t{\n")
-            f.write("\t#include \"Glyph{0}/{1}.lyn.event\"\n".format(type_str, os.path.splitext(os.path.basename(glyph["fpah"]))[0]))
+            f.write("\t#incbin \"Glyph{0}/{1}.img.bin\"\n".format(type_str, os.path.splitext(os.path.basename(glyph["fpah"]))[0]))
             f.write("\t}\n\n")
 
             g[unicod_lo] = character

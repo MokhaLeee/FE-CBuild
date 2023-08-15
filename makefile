@@ -167,9 +167,9 @@ FONT_DIR := Fonts
 font:
 	@$(MAKE) -C $(FONT_DIR)
 
-%.font.s: %.font.png
+%_font.img.bin: %_font.png
 	@echo "[GEN]	$@"
-	@$(GRIT) $< -gB2 -p! -tw16 -th16 -fts -fh! -o $@
+	@$(GRIT) $< -gB2 -p! -tw16 -th16 -ftb -fh! -o $@
 
 CLEAN_BUILD += $(FONT_DIR)
 

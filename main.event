@@ -18,7 +18,7 @@ ORG FreeSpace
 #include "Contants/EfxAnim/EfxAnim.event"
 #include "Contants/Text/Text.event"
 
-MESSAGE Main end at CURRENTOFFSET
+MESSAGE Main size (CURRENTOFFSET - FreeSpace) max FreeSpaceSize
 ASSERT (FreeSpace + FreeSpaceSize - CURRENTOFFSET)
 
 /* Install Fonts */
@@ -30,5 +30,5 @@ ASSERT (FreeSpace + FreeSpaceSize - CURRENTOFFSET)
 ORG FreeSpaceFont
 #include "Fonts/Fonts.event"
 
-MESSAGE Fonts end at CURRENTOFFSET
+MESSAGE Fonts size (CURRENTOFFSET - FreeSpaceFont) max FreeSpaceFontSize
 ASSERT (FreeSpaceFont + FreeSpaceFontSize - CURRENTOFFSET)

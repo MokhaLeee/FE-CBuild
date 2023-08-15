@@ -28,9 +28,9 @@ $(GLYPH_INSTALLER): FontList.txt
 
 CLEAN_FILES += $(GLYPH_INSTALLER)
 
-%.font.s: %.font.png
+%_font.img.bin: %_font.png
 	@echo "[GEN]	$@"
-	@$(GRIT) $< -gB2 -p! -tw16 -th16 -fts -fh!
+	@$(GRIT) $< -gB2 -p! -m! -tw16 -th16 -ftb -fh!
 
 CFILES := $(shell find $(mkfile_dir)Utf8 -type f -name '*.c')
 CLEAN_FILES += $(CFILES:.c=.o) $(CFILES:.c=.lyn.event)
