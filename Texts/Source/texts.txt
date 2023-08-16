@@ -1,0 +1,5 @@
+#0x212 msgEirikaName
+Eirikka[X]
+
+#0x1212 msgEirikaName_cn
+悠木[X]

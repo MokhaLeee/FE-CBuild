@@ -1,3 +1,3 @@
 #pragma once
 
-#include "../Contants/Text/TextDefs.h"
+#include "../Texts/TextDefs.h"

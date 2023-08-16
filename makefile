@@ -13,7 +13,9 @@ EXT_REF  := usr-defined.ref.s
 WIZARDRY_DIR := Wizardry
 CONTANTS_DIR := Contants
 GAMEDATA_DIR := GameData
-HACK_DIRS    := $(WIZARDRY_DIR) $(CONTANTS_DIR) $(GAMEDATA_DIR)
+TEXT_DIR     := Texts
+FONT_DIR     := Fonts # There are too many conponets in font so we cannot consider it as normal hack dirs
+HACK_DIRS    := $(WIZARDRY_DIR) $(CONTANTS_DIR) $(GAMEDATA_DIR) $(TEXT_DIR) # $(FONT_DIR)
 
 CACHE_DIR := .cache_dir
 $(shell mkdir -p $(CACHE_DIR) > /dev/null)
@@ -148,8 +150,6 @@ CLEAN_FILES += $(SFILES:.s=.o) $(SFILES:.s=.dmp) $(SFILES:.s=.lyn.event)
 # = Texts =
 # =========
 
-TEXT_DIR := Contants/Text
-
 text:
 	@$(MAKE) -C $(TEXT_DIR)
 
@@ -161,8 +161,6 @@ CLEAN_BUILD += $(TEXT_DIR)
 # =========
 # = Glyph =
 # =========
-
-FONT_DIR := Fonts
 
 font:
 	@$(MAKE) -C $(FONT_DIR)
