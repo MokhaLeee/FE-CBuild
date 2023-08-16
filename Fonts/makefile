@@ -30,7 +30,7 @@ CLEAN_FILES += $(GLYPH_INSTALLER)
 
 %_font.img.bin: %_font.png
 	@echo "[GEN]	$@"
-	@$(GRIT) $< -gB2 -p! -m! -tw16 -th16 -ftb -fh!
+	@$(GRIT) $< -gB2 -p! -tw16 -th16 -ftb -fh! -o $@
 
 CFILES := $(shell find $(mkfile_dir)Utf8 -type f -name '*.c')
 CLEAN_FILES += $(CFILES:.c=.o) $(CFILES:.c=.lyn.event)

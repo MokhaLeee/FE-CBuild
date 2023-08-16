@@ -14,7 +14,9 @@ WIZARDRY_DIR := Wizardry
 CONTANTS_DIR := Contants
 GAMEDATA_DIR := GameData
 TEXT_DIR     := Texts
-FONT_DIR     := Fonts # There are too many conponets in font so we cannot consider it as normal hack dirs
+FONT_DIR     := Fonts
+
+# There are too many conponets in $(FONT_DIR) so we cannot consider it as normal hack dirs
 HACK_DIRS    := $(WIZARDRY_DIR) $(CONTANTS_DIR) $(GAMEDATA_DIR) $(TEXT_DIR) # $(FONT_DIR)
 
 CACHE_DIR := .cache_dir
