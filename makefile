@@ -264,6 +264,17 @@ CLEAN_FILES += $(PORTRAIT_DEPS) $(PORTRAIT_INSTALLER)
 CSV_SOURCES := $(shell find $(GAMEDATA_DIR) -type f -name '*.csv')
 CLEAN_FILES += $(CSV_SOURCES:.csv=.csv.event)
 
+# ========
+# = MAPS =
+# ========
+
+%.event %_data.dmp: %.tmx
+	$(NOTIFY_PROCESS)
+	@echo | $(TMX2EA) $< > /dev/null
+
+TMXS := $(shell find -type f -name '*.tmx')
+CLEAN_FILES += $(TMXS:.tmx=.event) $(TMXS:.tmx=_data.dmp)
+
 # ==============
 # = MAKE CLEAN =
 # ==============

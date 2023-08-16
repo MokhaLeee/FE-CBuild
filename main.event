@@ -19,6 +19,7 @@ ORG FreeSpace
 #include "Contants/Sprite/Sprite.event"
 #include "Contants/ChapterTitles/ChapterTitles.event"
 #include "Contants/EfxAnim/EfxAnim.event"
+#include "Contants/Maps/Maps.event"
 
 MESSAGE Main size (CURRENTOFFSET - FreeSpace) max FreeSpaceSize
 ASSERT (FreeSpace + FreeSpaceSize - CURRENTOFFSET)
