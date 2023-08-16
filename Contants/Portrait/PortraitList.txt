@@ -1,2 +1,2 @@
 #                         Index MouthX MouthY EyesX EyesY IndexDefinition
-"Source/Lysithea.png"     0x01  2      6      2     4     Mug_Lysi
+"Source/Lysithea.png"     0x02  2      6      2     4     Mug_Lysi

@@ -2,8 +2,8 @@
 #define FONT_INSTALLED
 
 ALIGN 4
-#include "Utf8/Utf8Decode.lyn.event"
-#include "Utf8/LynJump.event"
+#include "Hacks/Utf8Decode.lyn.event"
+#include "Hacks/LynJump.event"
 
 /* Fake FEB draw-utf8 patch */
 PUSH

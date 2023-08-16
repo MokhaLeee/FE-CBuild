@@ -239,7 +239,7 @@ CLEAN_BUILD += $(BANIM_DIR)
 
 PORTRAIT_DIR       := Contants/Portrait
 PORTRAIT_LIST      := $(PORTRAIT_DIR)/PortraitList.txt
-PORTRAIT_INSTALLER := $(PORTRAIT_DIR)/Portraits.event
+PORTRAIT_INSTALLER := $(PORTRAIT_DIR)/PortraitInstaller.event
 
 PORTRAIT_DEPS := $(shell $(PORTRAIT_PROCESS) $(PORTRAIT_LIST) --list-files)
 
