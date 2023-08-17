@@ -1,0 +1,30 @@
+#ifndef SAVE_DATA_INSTALLED
+#define SAVE_DATA_INSTALLED
+
+/*
+    Mokha's plan:
+    SAVE NAME       SAVE OFFSET     SAVE LENGTH     DEFAULT LENGTH  EXPANSION SIZE
+    meta            0x00            0xD4            0xD4            0x0
+    suspend         0xD4            0x3258          0x1F78          0x12E0
+    save1           0x332C          0x18E8          0xDC8           0xB20
+    save2           0x4C14          0x18E8          0xDC8           0xB20
+    save3           0x64FC          0x18E8          0xDC8           0xB20
+    empty           0x7DE4          0x08            0x0             0x08
+    link_arena      0x691C          0x0             0xAE4           ---
+    extra_map       0x7400          0x0             0x600           ---
+*/
+
+#define DeclSaveChunk(aOffset, aSize, apSaver, apLoader) "SHORT (aOffset) (aSize); POIN (apSaver) (apLoader); SHORT 0 0"
+#define DeclSaveChunkEnd "SHORT 0xFFFF 0 0 0 0 0"
+
+#include "SaveDataInternal.event"
+#include "SaveDataExpansion/SaveDataExpansion.event"
+
+ALIGN 4
+
+
+ALIGN 4
+gEmsSaveChunks:
+    DeclSaveChunk(0, 0, 0, $0177C4+1) // Clear units on load
+
+#endif

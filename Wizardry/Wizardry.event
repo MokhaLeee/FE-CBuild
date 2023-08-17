@@ -5,3 +5,5 @@ ALIGN 4
 
 #include "UnitStatusGetter/UnitStatusGetter.event"
 #include "PostActionHook/PostActionHook.event"
+#include "BwlRework/BwlRework.event"
+#include "SaveData/SaveData.event"
