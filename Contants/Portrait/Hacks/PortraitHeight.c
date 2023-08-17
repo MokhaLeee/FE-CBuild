@@ -3,7 +3,8 @@
 
 extern const u8 HighPortraitFidLut[];
 
-bool ShouldFaceBeRaised(int fid) {
+bool ShouldFaceBeRaised(int fid)
+{
     const u8 * it;
     for (it = HighPortraitFidLut; *it; it++)
         if (*it == fid)

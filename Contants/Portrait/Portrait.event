@@ -4,10 +4,6 @@
 ALIGN 4
 #include "Hacks/PortraitHeight.lyn.event"
 
-// Auto generated
-ALIGN 4
-#include "PortraitInstaller.event"
-
 HighPortraitFidLut:
     BYTE $10    // Lute    
     BYTE $19    // Amelia
@@ -19,6 +15,8 @@ HighPortraitFidLut:
 
     BYTE 0
 
+// Auto generated
 ALIGN 4
+#include "PortraitInstaller.event"
 
 #endif
