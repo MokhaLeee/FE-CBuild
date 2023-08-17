@@ -2,11 +2,7 @@
 #include "Extensions/Hack Installation.txt"
 #include "Extensions/ProcDefinitions.txt"
 
-#ifndef FreeSpace
-#define FreeSpace $B2A604
-#define FreeSpaceSize 0xD59FC
-ORG FreeSpace
-#endif
+#include "Configs/configs.h"
 
 /* Include before tools helper */
 #include "Texts/Texts.event"
@@ -25,11 +21,6 @@ MESSAGE Main size (CURRENTOFFSET - FreeSpace) max FreeSpaceSize
 ASSERT (FreeSpace + FreeSpaceSize - CURRENTOFFSET)
 
 /* Install Fonts */
-#ifndef FreeSpaceFont
-#define FreeSpaceFont 0xEFB2E0
-#define FreeSpaceFontSize 0xE4D20
-#endif
-
 ORG FreeSpaceFont
 #include "Fonts/Fonts.event"
 

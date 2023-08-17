@@ -1,6 +1,10 @@
 #ifndef PORTRAIT_INSTALLED
 #define PORTRAIT_INSTALLED
 
+// Auto generated
+ALIGN 4
+#include "PortraitInstaller.event"
+
 ALIGN 4
 #include "Hacks/PortraitHeight.lyn.event"
 
@@ -14,9 +18,5 @@ HighPortraitFidLut:
     BYTE Mug_Lysi
 
     BYTE 0
-
-// Auto generated
-ALIGN 4
-#include "PortraitInstaller.event"
 
 #endif

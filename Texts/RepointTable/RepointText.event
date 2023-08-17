@@ -1,6 +1,10 @@
 
 // Include this in *before* text (and *before* Tool Helpers)
 
+#ifdef TOOL_HELPERS
+    ERROR "Need installed before tools helpers included!"
+#endif
+
 #define TextTable NewTextTable // define to not conflict with Tool Helpers
 #define MaxTextEntries 0x1000
 

@@ -6,9 +6,11 @@ FE8_GBA := fe8.gba
 
 TOOL_DIR := Tools
 LIB_DIR  := $(TOOL_DIR)/FE-CLib-Mokha
-FE8_REF  := $(LIB_DIR)/reference/fireemblem8.ref.s
+FE8_REF  := $(LIB_DIR)/reference/fireemblem8.ref.o
 FE8_SYM  := $(LIB_DIR)/reference/fireemblem8.sym
-EXT_REF  := usr-defined.ref.s
+
+CONFIG_DIR := Configs
+EXT_REF    := $(CONFIG_DIR)/usr-defined.ref.s
 
 WIZARDRY_DIR := Wizardry
 CONTANTS_DIR := Contants
@@ -17,7 +19,7 @@ TEXT_DIR     := Texts
 FONT_DIR     := Fonts
 
 # There are too many conponets in $(FONT_DIR) so we cannot consider it as normal hack dirs
-HACK_DIRS    := $(WIZARDRY_DIR) $(CONTANTS_DIR) $(GAMEDATA_DIR) $(TEXT_DIR) # $(FONT_DIR)
+HACK_DIRS    := $(CONFIG_DIR) $(WIZARDRY_DIR) $(CONTANTS_DIR) $(GAMEDATA_DIR) $(TEXT_DIR) # $(FONT_DIR)
 
 CACHE_DIR := .cache_dir
 $(shell mkdir -p $(CACHE_DIR) > /dev/null)
@@ -108,13 +110,7 @@ ASFLAGS := $(ARCH) $(INC_FLAG)
 CDEPFLAGS = -MMD -MT "$*.o" -MT "$*.asm" -MF "$(CACHE_DIR)/$(notdir $*).d" -MP
 SDEPFLAGS = --MD "$(CACHE_DIR)/$(notdir $*).d"
 
-LYN_REF := $(CACHE_DIR)/lyn-ref.o
-
-$(LYN_REF): $(FE8_REF) $(EXT_REF)
-	@echo "[AS ]	$@"
-	@cp $(FE8_REF) $(LYN_REF:.o=.s)
-	@cat $(EXT_REF) >> $(LYN_REF:.o=.s)
-	@$(AS) $(LYN_REF:.o=.s) -o $@
+LYN_REF := $(EXT_REF:.s=.o) $(FE8_REF)
 
 %.lyn.event: %.o $(LYN_REF)
 	@echo "[LYN]	$@"
@@ -128,11 +124,11 @@ $(LYN_REF): $(FE8_REF) $(EXT_REF)
 	@echo "[AS ]	$@"
 	@$(AS) $(ASFLAGS) $(SDEPFLAGS) -I $(dir $<) $< -o $@
 
-%.o: %.c
+%.o: %.c text
 	@echo "[CC ]	$@"
 	@$(CC) $(CFLAGS) $(CDEPFLAGS) -g -c $< -o $@
 
-%.asm: %.c
+%.asm: %.c text
 	@echo "[CC ]	$@"
 	@$(CC) $(CFLAGS) $(CDEPFLAGS) -S $< -o $@ -fverbose-asm
 
