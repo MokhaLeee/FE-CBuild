@@ -3,5 +3,5 @@ ALIGN 4
 #include "GameInitHook/GameInitHook.event"
 #include "DebugKit/DebugKit.event"
 
-/* DIY your own functions! */
-#include "StatusGetterHack/Unit.lyn.event"
+#include "UnitStatusGetter/UnitStatusGetter.event"
+#include "PostActionHook/PostActionHook.event"

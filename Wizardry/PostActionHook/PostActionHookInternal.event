@@ -1,0 +1,12 @@
+/* Dependence */
+#include "Extensions/ProcDefinitions.txt"
+
+#include "source/PostActionHook.lyn.event"
+
+PUSH
+    ORG $59ABE0
+    PROC_JUMP(ProcScr_PostActionHookPlayPhase)
+
+    ORG $5A8074
+    PROC_JUMP(ProcScr_PostActionHookCpPerform)
+POP

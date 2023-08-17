@@ -1,0 +1,64 @@
+#ifndef UNIT_STATUS_GETTER_H
+#define UNIT_STATUS_GETTER_H
+
+ALIGN 4
+gHpGetters:
+    POIN HpGetterWeaponBonus
+    POIN StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc
+    POIN StatusGetterCheckCpas
+    WORD 0
+
+gPowGetters:
+    POIN PowGetterWeaponBonus
+    POIN StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc
+    POIN StatusGetterCheckCpas
+    WORD 0
+
+gSklGetters:
+    POIN SklGetterWeaponBonus
+    POIN StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc
+    POIN StatusGetterCheckCpas
+    WORD 0
+
+gSpdGetters:
+    POIN SpdGetterWeaponBonus
+    POIN StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc
+    POIN StatusGetterCheckCpas
+    WORD 0
+
+gLckGetters:
+    POIN LckGetterWeaponBonus
+    POIN StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc
+    POIN StatusGetterCheckCpas
+    WORD 0
+
+gDefGetters:
+    POIN DefGetterWeaponBonus
+    POIN StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc
+    POIN StatusGetterCheckCpas
+    WORD 0
+
+gResGetters:
+    POIN ResGetterWeaponBonus
+    POIN StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc
+    POIN StatusGetterCheckCpas
+    WORD 0
+
+gMovGetters:
+    POIN StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc
+    POIN StatusGetterCheckCpas
+    WORD 0
+
+gConGetters:
+    POIN StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc
+    POIN StatusGetterCheckCpas
+    WORD 0
+
+gAidGetters:
+    POIN StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc
+    POIN StatusGetterCheckCpas
+    WORD 0
+
+#include "UnitStatusGetterInternal.event"
+
+#endif

@@ -169,6 +169,17 @@ font:
 
 CLEAN_BUILD += $(FONT_DIR)
 
+# ==========
+# = Banims =
+# ==========
+
+BANIM_DIR := Contants/Banim
+
+%Installer.event: %.txt
+	@$(MAKE) -f $(BANIM_DIR)/makefile $@
+
+CLEAN_BUILD += $(BANIM_DIR)
+
 # ============
 # = Spritans =
 # ============
@@ -217,17 +228,6 @@ EFX_TARGET   := $(EFX_SCRIPTS:.efx.txt=.efx.event)
 include $(EFX_SCR_DEPS)
 
 CLEAN_FILES += $(EFX_SCR_DEPS) $(EFX_TARGET)
-
-# ==========
-# = Banims =
-# ==========
-
-BANIM_DIR := Contants/Banim
-
-%Installer.event: %.txt
-	@$(MAKE) -f $(BANIM_DIR)/makefile $@
-
-CLEAN_BUILD += $(BANIM_DIR)
 
 # ============
 # = Portrait =

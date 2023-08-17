@@ -1,0 +1,11 @@
+#ifndef POST_ACTION_HOOK_H
+#define POST_ACTION_HOOK_H
+
+ALIGN 4
+gPostActionFuncs:
+    POIN PostActionPadFunc PostActionPadFunc PostActionPadFunc PostActionPadFunc
+    WORD 0
+
+#include "PostActionHookInternal.event"
+
+#endif

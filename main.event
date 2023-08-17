@@ -4,6 +4,8 @@
 
 #include "Configs/configs.h"
 
+ORG FreeSpace
+
 /* Include before tools helper */
 #include "Texts/Texts.event"
 
