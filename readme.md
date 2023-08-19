@@ -31,6 +31,12 @@ wget https://apt.devkitpro.org/install-devkitpro-pacman
 chmod +x ./install-devkitpro-pacman
 ./install-devkitpro-pacman
 sudo dkp-pacman -S gba-dev
+
+# Export vars
+export DEVKITPRO=/opt/devkitpro
+export DEVKITARM=${DEVKITPRO}/devkitARM
+export DEVKITPPC=${DEVKITPRO}/devkitPPC
+export PATH=${DEVKITPRO}/tools/bin:$PATH
 ```
 
 3. Build EA
