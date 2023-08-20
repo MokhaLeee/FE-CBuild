@@ -50,8 +50,19 @@ struct EmsPackedSusUnit {
              u32 yPos  : 6;
     /* 0F */ u8 ranks[0x8];
 
-    /* 17 */ union {
-                u8 skills[7];
+    /* 17 */ u8 cur_hp;
+    /* 18 */ u8 rescue;
+    /* 19 */ u8 ballista;
+    /* 1A */ u8 status   : 4;
+             u8 duration : 4;
+    /* 1B */ u8 torch    : 4;
+             u8 barrier  : 4;
+
+    /* 1C */ union {
+                struct {
+                    u8 skills[7];
+                    s8 support_gain;
+                } ally;
 
                 struct {
                     u8 ai1;
@@ -63,16 +74,10 @@ struct EmsPackedSusUnit {
                 } ai;
             } pad;
 
-    /* 1E */ u16 items[UNIT_ITEM_COUNT];
-    /* 28 */ u32 state;
-    /* 2C */
-    /* 2C */ u8 cur_hp;
-    /* 2D */ u8 rescue;
-    /* 2E */ u8 ballista;
-    /* 2F */ u8 status   : 4;
-             u8 duration : 4;
-    /* 30 */ u8 torch    : 4;
-             u8 barrier  : 4;
+    /* 24 */ u32 state;
+    /* 28 */ u16 items[UNIT_ITEM_COUNT];
 
-    /* 31 */
+    /* 32 */
 } BITPACKED;
+
+#define SIZE_OF_SUS_UNIT_PACK 0x32

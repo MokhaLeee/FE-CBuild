@@ -111,32 +111,209 @@ void MSU_LoadBonusClaimWIP(void)
     SetBonusContentClaimFlags(buf);
 }
 
+static void NewPackSuspandUnit(struct Unit * src, struct EmsPackedSusUnit * dst)
+{
+    int i;
+    struct Unit tmp_unit;
+
+    if (!dst)
+        return;
+
+    if (!src || !UNIT_IS_VALID(src))
+    {
+        ClearUnit(&tmp_unit);
+        src = &tmp_unit;
+        dst->jid = 0;
+        dst->pid = 0;
+    }
+    else
+    {
+        dst->jid = UNIT_CLASS_ID(src);
+        dst->pid = UNIT_CHAR_ID(src);
+    }
+
+    dst->max_hp = src->maxHP;
+    dst->pow = src->pow;
+    dst->mag = src->_u3A; /* w.i.p */
+    dst->skl = src->skl;
+    dst->spd = src->spd;
+    dst->lck = src->lck;
+    dst->def = src->def;
+    dst->res = src->res;
+    dst->mov = src->movBonus;
+    dst->con = src->conBonus;
+    dst->level = src->level;
+    dst->exp = src->exp;
+    dst->xPos = src->xPos;
+    dst->yPos = src->yPos;
+
+    for (i = 0; i < 8; i++)
+        dst->ranks[i] = src->ranks[i];
+
+    for (i = 0; i < 0x5; i++)
+        dst->items[i] = src->items[i];
+
+    dst->state = src->state;
+    dst->cur_hp = src->curHP;
+    dst->rescue = src->rescue;
+    dst->ballista = src->ballistaIndex;
+    dst->status = src->statusIndex;
+    dst->duration = src->statusDuration;
+    dst->torch = src->torchDuration;
+    dst->barrier = src->barrierDuration;
+
+    if (UNIT_FACTION(src) == FACTION_BLUE)
+    {
+        for (i = 0; i < 7; i++)
+            dst->pad.ally.skills[i] = src->supports[i];
+
+        dst->pad.ally.support_gain = src->supportBits;
+    }
+    else
+    {
+        dst->pad.ai.ai1 = src->ai1;
+        dst->pad.ai.ai1_cur = src->ai1data;
+        dst->pad.ai.ai2 = src->ai2;
+        dst->pad.ai.ai2_cur = src->ai2data;
+        dst->pad.ai.ai_flag = src->aiFlags;
+        dst->pad.ai.ai_config = src->ai3And4;
+    }
+}
+
+static void NewUnpackSuspandUnit(struct EmsPackedSusUnit * src, struct Unit * dst)
+{
+    int i;
+
+    if (!src || !dst)
+        return;
+
+    dst->pCharacterData = GetCharacterData(src->pid);
+    dst->pClassData = GetClassData(src->jid);
+    dst->maxHP = src->max_hp;
+    dst->pow = src->pow;
+    dst->_u3A = src->mag; /* w.i.p */
+    dst->skl = src->skl;
+    dst->spd = src->spd;
+    dst->lck = src->lck;
+    dst->def = src->def;
+    dst->res = src->res;
+    dst->movBonus = src->mov;
+    dst->conBonus = src->con;
+    dst->level = src->level;
+    dst->exp = src->exp;
+    dst->xPos = src->xPos;
+    dst->yPos = src->yPos;
+
+    for (i = 0; i < 8; i++)
+        dst->ranks[i] = src->ranks[i];
+
+    dst->curHP = src->cur_hp;
+    dst->rescue = src->rescue;
+    dst->ballistaIndex = src->ballista;
+    dst->statusIndex = src->status;
+    dst->statusDuration = src->duration;
+    dst->torchDuration = src->torch;
+    dst->barrierDuration = src->barrier;
+
+    if (UNIT_FACTION(src) == FACTION_BLUE)
+    {
+        for (i = 0; i < 7; i++)
+            src->supports[i] = dst->pad.ally.skills[i];
+
+        src->supportBits = dst->pad.ally.support_gain;
+    }
+    else
+    {
+        src->ai1 = dst->pad.ai.ai1;
+        src->ai1data = dst->pad.ai.ai1_cur;
+        src->ai2 = dst->pad.ai.ai2;
+        src->ai2data = dst->pad.ai.ai2_cur;
+        src->aiFlags = dst->pad.ai.ai_flag;
+        src->ai3And4 = dst->pad.ai.ai_config;
+    }
+
+    dst->state = src->state;
+
+    for (i = 0; i < 0x5; i++)
+        dst->items[i] = src->items[i];
+}
+
 void MSU_SaveBlueUnits(u8 * dst, const u32 size)
 {
-    return;
+    int i, amt = size / SIZE_OF_SUS_UNIT_PACK;
+
+    for (i = 0; i < amt; i++)
+    {
+        struct EmsPackedSusUnit pack;
+
+        NewPackSuspandUnit(&pack, &gUnitArrayBlue[i]);
+        WriteAndVerifySramFast(&pack, dst, SIZE_OF_SUS_UNIT_PACK);
+        src += SIZE_OF_SUS_UNIT_PACK;
+    }
 }
 
 void MSU_LoadBlueUnits(u8 * src, const u32 size)
 {
-    return;
+    int i, amt = size / SIZE_OF_SUS_UNIT_PACK;
+
+    for (i = 0; i < amt; i++)
+    {
+        struct EmsPackedSusUnit pack;
+
+        ReadSramFast(src, &pack, SIZE_OF_SUS_UNIT_PACK);
+        NewUnpackSuspandUnit(&pack, &gUnitArrayBlue[i]);
+        src += SIZE_OF_SUS_UNIT_PACK;
+    }
 }
 
 void MSU_SaveRedUnits(u8 * dst, const u32 size)
 {
-    return;
+    for (i = 0; i < amt; i++)
+    {
+        struct EmsPackedSusUnit pack;
+
+        NewPackSuspandUnit(&pack, &gUnitArrayRed[i]);
+        WriteAndVerifySramFast(&pack, dst, SIZE_OF_SUS_UNIT_PACK);
+        src += SIZE_OF_SUS_UNIT_PACK;
+    }
 }
 
 void MSU_LoadRedUnits(u8 * src, const u32 size)
 {
-    return;
+    int i, amt = size / SIZE_OF_SUS_UNIT_PACK;
+
+    for (i = 0; i < amt; i++)
+    {
+        struct EmsPackedSusUnit pack;
+
+        ReadSramFast(src, &pack, SIZE_OF_SUS_UNIT_PACK);
+        NewUnpackSuspandUnit(&pack, &gUnitArrayRed[i]);
+        src += SIZE_OF_SUS_UNIT_PACK;
+    }
 }
 
 void MSU_SaveGreenUnits(u8 * dst, const u32 size)
 {
-    return;
+    for (i = 0; i < amt; i++)
+    {
+        struct EmsPackedSusUnit pack;
+
+        NewPackSuspandUnit(&pack, &gUnitArrayGreen[i]);
+        WriteAndVerifySramFast(&pack, dst, SIZE_OF_SUS_UNIT_PACK);
+        src += SIZE_OF_SUS_UNIT_PACK;
+    }
 }
 
 void MSU_LoadGreenUnits(u8 * src, const u32 size)
 {
-    return;
+    int i, amt = size / SIZE_OF_SUS_UNIT_PACK;
+
+    for (i = 0; i < amt; i++)
+    {
+        struct EmsPackedSusUnit pack;
+
+        ReadSramFast(src, &pack, SIZE_OF_SUS_UNIT_PACK);
+        NewUnpackSuspandUnit(&pack, &gUnitArrayGreen[i]);
+        src += SIZE_OF_SUS_UNIT_PACK;
+    }
 }

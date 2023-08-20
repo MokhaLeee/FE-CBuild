@@ -70,11 +70,11 @@ gEmsSusChunks:
     EmsChunk($08CC, $0004, MSU_SaveEvtCounter, MSU_LoadEvtCounter)  /* Event slot counter */
     EmsChunk($08D0, $0000, MSU_SaveBonusClaim, MSU_LoadBonusClaimWIP)
 
-    EmsChunk($08D0, 51 * 0x31, MSU_SaveBlueUnits,  MSU_LoadBlueUnits)
-    EmsChunk($1294, 51 * 0x31, MSU_SaveRedUnits,   MSU_LoadRedUnits)
-    EmsChunk($1C58, 8  * 0x31, MSU_SaveGreenUnits, MSU_LoadGreenUnits)
+    EmsChunk($08D0, 51 * 0x32, MSU_SaveBlueUnits,  MSU_LoadBlueUnits)
+    EmsChunk($12C8, 51 * 0x32, MSU_SaveRedUnits,   MSU_LoadRedUnits)
+    EmsChunk($1CC0, 8  * 0x32, MSU_SaveGreenUnits, MSU_LoadGreenUnits)
 
-    /* Free: $1DE0 ~ $3258 */
+    /* Free: $1E50 ~ $3258 */
     EmsChunkEnd
 
 #endif
