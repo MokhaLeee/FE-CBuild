@@ -22,7 +22,9 @@ mkfile_dir := $(dir $(mkfile_path))
 GLYPH_GENERATOR := $(PYTHON3) $(mkfile_dir)Scripts/glyph-installer-generator.py
 GLYPH_INSTALLER := $(mkfile_dir)GlyphInstaller.event
 
-$(GLYPH_INSTALLER): FontList.txt
+GLYPH_DEPS := $(mkfile_dir)FontList.txt
+
+$(GLYPH_INSTALLER): $(GLYPH_DEPS)
 	@echo "[GEN]	$@"
 	@$(GLYPH_GENERATOR) -i $<
 

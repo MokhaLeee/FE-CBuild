@@ -124,11 +124,11 @@ LYN_REF := $(EXT_REF:.s=.o) $(FE8_REF)
 	@echo "[AS ]	$@"
 	@$(AS) $(ASFLAGS) $(SDEPFLAGS) -I $(dir $<) $< -o $@
 
-%.o: %.c text
+%.o: %.c
 	@echo "[CC ]	$@"
 	@$(CC) $(CFLAGS) $(CDEPFLAGS) -g -c $< -o $@
 
-%.asm: %.c text
+%.asm: %.c
 	@echo "[CC ]	$@"
 	@$(CC) $(CFLAGS) $(CDEPFLAGS) -S $< -o $@ -fverbose-asm
 
@@ -148,7 +148,16 @@ CLEAN_FILES += $(SFILES:.s=.o) $(SFILES:.s=.dmp) $(SFILES:.s=.lyn.event)
 # = Texts =
 # =========
 
-text:
+TEXT_MAIN   := $(TEXT_DIR)/Source/TextMain.txt
+TEXT_SOURCE := $(shell find $(TEXT_DIR) -type f -name '*.txt')
+
+TEXT_EVENT  := $(TEXT_DIR)/TextInstaller.event
+TEXT_DEF    := $(TEXT_DIR)/TextDefinitions.event
+TEXT_HEADER := $(TEXT_DIR)/TextDefs.h
+
+text: $(TEXT_HEADER)
+
+$(TEXT_EVENT) $(TEXT_DEF) $(TEXT_HEADER): $(TEXT_MAIN) $(TEXT_SOURCE)
 	@$(MAKE) -C $(TEXT_DIR)
 
 %.fetxt.dmp: %.fetxt
@@ -160,7 +169,12 @@ CLEAN_BUILD += $(TEXT_DIR)
 # = Glyph =
 # =========
 
-font:
+GLYPH_INSTALLER := $(FONT_DIR)/GlyphInstaller.event
+GLYPH_DEPS := $(FONT_DIR)/FontList.txt
+
+font: $(GLYPH_INSTALLER)
+
+$(GLYPH_INSTALLER): $(GLYPH_DEPS)
 	@$(MAKE) -C $(FONT_DIR)
 
 %_font.img.bin: %_font.png

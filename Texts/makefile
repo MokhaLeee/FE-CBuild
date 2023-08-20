@@ -25,7 +25,7 @@ TEXT_EVENT  := $(TEXT_DIR)TextInstaller.event
 TEXT_DEF    := $(TEXT_DIR)TextDefinitions.event
 TEXT_HEADER := $(TEXT_DIR)TextDefs.h
 
-all: $(TEXT_EVENT)
+all: $(TEXT_HEADER)
 
 $(TEXT_EVENT) $(TEXT_DEF) $(TEXT_HEADER): $(TEXT_MAIN) $(TEXT_SOURCE)
 	@echo "[TXT]	$@"
