@@ -171,6 +171,8 @@ void ReadGameSave(int slot)
     if (!(PLAY_FLAG_HARD & gBmSt.gameStateBits))
         InvalidateSuspendSave(SAVE_ID_SUSPEND);
 
+    InitUnits();
+
     for (cur = gEmsSavChunks; cur->offset != EMS_CHUNK_INVALID_OFFSET; cur++)
         cur->load(src + cur->offset, cur->size);
 

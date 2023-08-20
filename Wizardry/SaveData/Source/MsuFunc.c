@@ -215,21 +215,21 @@ static void NewUnpackSuspandUnit(struct EmsPackedSusUnit * src, struct Unit * ds
     dst->torchDuration = src->torch;
     dst->barrierDuration = src->barrier;
 
-    if (UNIT_FACTION(src) == FACTION_BLUE)
+    if (UNIT_FACTION(dst) == FACTION_BLUE)
     {
         for (i = 0; i < 7; i++)
-            src->supports[i] = dst->pad.ally.skills[i];
+            dst->supports[i] = src->pad.ally.skills[i];
 
-        src->supportBits = dst->pad.ally.support_gain;
+        dst->supportBits = src->pad.ally.support_gain;
     }
     else
     {
-        src->ai1 = dst->pad.ai.ai1;
-        src->ai1data = dst->pad.ai.ai1_cur;
-        src->ai2 = dst->pad.ai.ai2;
-        src->ai2data = dst->pad.ai.ai2_cur;
-        src->aiFlags = dst->pad.ai.ai_flag;
-        src->ai3And4 = dst->pad.ai.ai_config;
+        dst->ai1 = src->pad.ai.ai1;
+        dst->ai1data = src->pad.ai.ai1_cur;
+        dst->ai2 = src->pad.ai.ai2;
+        dst->ai2data = src->pad.ai.ai2_cur;
+        dst->aiFlags = src->pad.ai.ai_flag;
+        dst->ai3And4 = src->pad.ai.ai_config;
     }
 
     dst->state = src->state;
@@ -246,9 +246,9 @@ void MSU_SaveBlueUnits(u8 * dst, const u32 size)
     {
         struct EmsPackedSusUnit pack;
 
-        NewPackSuspandUnit(&pack, &gUnitArrayBlue[i]);
+        NewPackSuspandUnit(&gUnitArrayBlue[i], &pack);
         WriteAndVerifySramFast(&pack, dst, SIZE_OF_SUS_UNIT_PACK);
-        src += SIZE_OF_SUS_UNIT_PACK;
+        dst += SIZE_OF_SUS_UNIT_PACK;
     }
 }
 
@@ -268,13 +268,15 @@ void MSU_LoadBlueUnits(u8 * src, const u32 size)
 
 void MSU_SaveRedUnits(u8 * dst, const u32 size)
 {
+    int i, amt = size / SIZE_OF_SUS_UNIT_PACK;
+
     for (i = 0; i < amt; i++)
     {
         struct EmsPackedSusUnit pack;
 
-        NewPackSuspandUnit(&pack, &gUnitArrayRed[i]);
+        NewPackSuspandUnit(&gUnitArrayRed[i], &pack);
         WriteAndVerifySramFast(&pack, dst, SIZE_OF_SUS_UNIT_PACK);
-        src += SIZE_OF_SUS_UNIT_PACK;
+        dst += SIZE_OF_SUS_UNIT_PACK;
     }
 }
 
@@ -294,13 +296,15 @@ void MSU_LoadRedUnits(u8 * src, const u32 size)
 
 void MSU_SaveGreenUnits(u8 * dst, const u32 size)
 {
+    int i, amt = size / SIZE_OF_SUS_UNIT_PACK;
+
     for (i = 0; i < amt; i++)
     {
         struct EmsPackedSusUnit pack;
 
-        NewPackSuspandUnit(&pack, &gUnitArrayGreen[i]);
+        NewPackSuspandUnit(&gUnitArrayGreen[i], &pack);
         WriteAndVerifySramFast(&pack, dst, SIZE_OF_SUS_UNIT_PACK);
-        src += SIZE_OF_SUS_UNIT_PACK;
+        dst += SIZE_OF_SUS_UNIT_PACK;
     }
 }
 
@@ -317,3 +321,4 @@ void MSU_LoadGreenUnits(u8 * src, const u32 size)
         src += SIZE_OF_SUS_UNIT_PACK;
     }
 }
+

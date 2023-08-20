@@ -36,7 +36,6 @@ gEmsSizes:
 
 ALIGN 4
 gEmsSavChunks:
-    EmsChunk(0, 0, 0, $0177C4+1) // Clear units on load
     EmsChunk($0000, $004C, MSA_SavePlaySt,   MSA_LoadPlaySt)
     EmsChunk($004C, $00B0, $0A31E4+1,          $0A326C+1)           /* Supply */
     EmsChunk($00FC, $0019, $0A3150+1,          $0A3198+1)           /* Permanent flags */
@@ -54,7 +53,6 @@ gEmsSavChunks:
     EmsChunkEnd
 
 gEmsSusChunks:
-    EmsChunk(0, 0, 0, $0177C4+1) // Clear units on load
     EmsChunk($0000, $004C, MSU_SavePlaySt,     MSU_LoadPlaySt)
     EmsChunk($004C, $0038, MSU_SaveAction,     MSU_LoadAction)
     EmsChunk($0084, $0019, $0A3150+1,          $0A3198+1)           /* Permanent flags */
