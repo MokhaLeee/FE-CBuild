@@ -14,6 +14,11 @@ gPowGetters:
     POIN StatusGetterCheckCpas
     WORD 0
 
+gMagGetters:
+    POIN StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc
+    POIN StatusGetterCheckCpas
+    WORD 0
+
 gSklGetters:
     POIN SklGetterWeaponBonus
     POIN StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc

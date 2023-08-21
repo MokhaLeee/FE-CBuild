@@ -4,7 +4,7 @@
 #include "constants/characters.h"
 #include "constants/items.h"
 
-#include "StatusGetter.h"
+#include "status-getter.h"
 
 int StatusGetterPadFunc(int status, struct Unit * unit)
 {

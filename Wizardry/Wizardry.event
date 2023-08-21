@@ -7,3 +7,4 @@ ALIGN 4
 #include "PostActionHook/PostActionHook.event"
 #include "BwlRework/BwlRework.event"
 #include "SaveData/SaveData.event"
+#include "SkillSys/SkillSys.event"

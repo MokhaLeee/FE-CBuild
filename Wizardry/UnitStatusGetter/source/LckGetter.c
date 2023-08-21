@@ -2,7 +2,7 @@
 #include "bmunit.h"
 #include "bmitem.h"
 
-#include "StatusGetter.h"
+#include "status-getter.h"
 
 int _GetUnitLuck(struct Unit * unit)
 {

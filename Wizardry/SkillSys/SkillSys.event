@@ -1,0 +1,8 @@
+#ifndef SKILL_SYSTEM_INSTALLED
+#define SKILL_SYSTEM_INSTALLED
+
+#include "SkillTester/SkillList.lyn.event"
+#include "SkillTester/SkillTester.lyn.event"
+#include "EfxSkill/EfxSkill.event"
+
+#endif

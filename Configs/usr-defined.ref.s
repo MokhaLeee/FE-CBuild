@@ -11,3 +11,8 @@
 .endm
 
 SET_DATA FreeRamSpaceEntry, 0x02026E30
+
+SET_DATA sSkillListNext, 0x02026E30
+SET_DATA sSkillLists, 0x02026E34
+
+SET_DATA FreeRamSpaceTail, 0x02026E74
