@@ -1,0 +1,12 @@
+/* ROM data */
+ALIGN 4
+#include "SkillTable/SkillRomPData.lyn.event"
+
+ALIGN 4
+#include "SkillTable/SkillRomJData.lyn.event"
+
+/* Skill info */
+#include "SkillInfos/SkillAnimInfo.lyn.event"
+#include "SkillInfos/SkillInfo.lyn.event"
+
+#define InjectSkillInfo(index, icon, msg) "ORG (gSkillInfos + 8 * index); POIN icon; SHORT msg 0"

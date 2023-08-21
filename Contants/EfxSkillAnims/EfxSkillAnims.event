@@ -1,0 +1,13 @@
+ALIGN 4
+gEfxSkillAnims:
+    POIN EfxSkillVanilla EfxSkillMokha
+
+EfxSkillVanilla:
+{
+    #include "EfxSkillVanilla/EfxSkillVanilla.efx.event"
+}
+
+EfxSkillMokha:
+{
+    #include "EfxSkillMokha/EfxSkillMokha.efx.event"
+}

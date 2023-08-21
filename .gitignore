@@ -30,3 +30,6 @@ Tools/FE-CLib-Mokha/
 
 # Fonts
 *.fefont
+
+# EfxAnims
+*.efx.event

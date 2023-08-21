@@ -37,7 +37,6 @@ def gen_tokens(string):
 
 class GfxEntry:
     def __init__(self, line):
-        self.frameIndex = 0
         self.duration = 0
         self.fPath = ''
         self.hash = 0
@@ -45,7 +44,6 @@ class GfxEntry:
         tokens = gen_tokens(line)
 
         try:
-            self.frameIndex = next(tokens)
             self.duration = next(tokens)
             self.fPath = next(tokens)
 
@@ -70,20 +68,20 @@ class GfxEntry:
 
         incBase = os.path.splitext(self.fPath)[0]
 
-        yield '#ifndef IMG_{0}_{1}_INSTALLED\n'.format(incBase, self.hash)
-        yield '#define IMG_{0}_{1}_INSTALLED\n'.format(incBase, self.hash)
+        yield '#ifndef IMG_{0}_INSTALLED\n'.format(self.hash)
+        yield '#define IMG_{0}_INSTALLED\n'.format(self.hash)
         yield 'ALIGN 4\n'
         yield 'IMG_{0}:\n#incbin {1}\n'.format(incBase, incBase + '.img.bin')
         yield '#endif\n\n'
 
-        yield '#ifndef TSA_{0}_{1}_INSTALLED\n'.format(incBase, self.hash)
-        yield '#define TSA_{0}_{1}_INSTALLED\n'.format(incBase, self.hash)
+        yield '#ifndef TSA_{0}_INSTALLED\n'.format(self.hash)
+        yield '#define TSA_{0}_INSTALLED\n'.format(self.hash)
         yield 'ALIGN 4\n'
         yield 'TSA_{0}:\n#incbin {1}\n'.format(incBase, incBase + '.map.bin')
         yield '#endif\n\n'
 
-        yield '#ifndef PAL_{0}_{1}_INSTALLED\n'.format(incBase, self.hash)
-        yield '#define PAL_{0}_{1}_INSTALLED\n'.format(incBase, self.hash)
+        yield '#ifndef PAL_{0}_INSTALLED\n'.format(self.hash)
+        yield '#define PAL_{0}_INSTALLED\n'.format(self.hash)
         yield 'ALIGN 4\n'
         yield 'PAL_{0}:\n#incbin {1}\n'.format(incBase, incBase + '.pal.bin')
         yield '#endif\n\n'
@@ -136,7 +134,7 @@ def main(args):
         # Generate frame lut
         sys.stdout.writelines('\nFRAMEs:\n')
         for img in imgs:
-            sys.stdout.writelines('SHORT {0} {1}\n'.format(img.frameIndex, img.duration))
+            sys.stdout.writelines('SHORT {0} {1}\n'.format(hex(imgs.index(img)), img.duration))
         sys.stdout.writelines('SHORT 0xFFFF\n') # Terminator of frame_lut
 
         sys.stdout.writelines('\nALIGN 4')

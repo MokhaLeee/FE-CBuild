@@ -17,6 +17,7 @@ ORG FreeSpace
 #include "Contants/EfxAnim/EfxAnim.event"
 #include "Contants/Maps/Maps.event"
 #include "Contants/Portrait/Portrait.event"
+#include "Contants/EfxSkillAnims/EfxSkillAnims.event"
 #include "GameData/GameData.event"
 
 MESSAGE Main size (CURRENTOFFSET - FreeSpace) max FreeSpaceSize
