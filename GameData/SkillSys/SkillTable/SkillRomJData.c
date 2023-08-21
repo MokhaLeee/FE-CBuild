@@ -5,13 +5,9 @@
 
 const struct SkillRomData gSkillRomJData[0x100] = {
     [CLASS_EPHRAIM_LORD] = {
-        .alloc = {
-            [0] = {
-                .skills = {0x1},
-            },
-            [1] = {
-                .skills = {0x2},
-            },
-        }
+        .skills = {
+            [0] = 0x1,
+            [5] = 0x2,
+        },
     },
 };

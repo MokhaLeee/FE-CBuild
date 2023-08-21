@@ -1,6 +1,7 @@
 ALIGN 4
 gEfxSkillAnims:
     POIN EfxSkillVanilla EfxSkillMokha
+    WORD 0
 
 EfxSkillVanilla:
 {

@@ -1,6 +1,8 @@
 #pragma once
 
 #include "global.h"
+#include "bmunit.h"
+
 #include "efx-anim.h"
 
 #define MAX_SKILL_NUM 0xFF
@@ -45,9 +47,8 @@ extern bool (* const SkillTester)(struct Unit * unit, const u8 skill);
 /* Game data */
 #define SKILL_ROM_DATA_AMT 5
 struct SkillRomData {
-    struct LvBasedSkills {
-        u8 skills[SKILL_ROM_DATA_AMT];
-    } alloc[30 / 5 + 1];
+    /* Unit can learn 5 skills on lv0/5/10/15/20 */
+    u8 skills[SKILL_ROM_DATA_AMT * (UNIT_LEVEL_MAX / 5 + 1)];
 };
 
 extern const struct SkillRomData gSkillRomPData[0x100], gSkillRomJData[0x100];
