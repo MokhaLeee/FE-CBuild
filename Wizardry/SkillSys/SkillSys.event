@@ -3,6 +3,10 @@
 
 #include "SkillTester/SkillList.lyn.event"
 #include "SkillTester/SkillTester.lyn.event"
-#include "EfxSkill/EfxSkill.event"
+
+#include "EfxSkill/C07Hack.lyn.event"
+#include "EfxSkill/EkrSkill.lyn.event"
+#include "EfxSkill/EfxSkill.lyn.event"
+#include "EfxSkill/Utils.lyn.event"
 
 #endif

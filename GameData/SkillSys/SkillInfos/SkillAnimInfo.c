@@ -1,4 +1,6 @@
 #include "global.h"
+
+#include "common-chax.h"
 #include "skill-system.h"
 
 const struct SkillAnimInfo gSkillAnimInfos[0x100] = {
@@ -8,3 +10,5 @@ const struct SkillAnimInfo gSkillAnimInfos[0x100] = {
         .sfx = 0x3DC,
     },
 };
+
+FEB_IDENTIFIER(gSkillAnimInfos);

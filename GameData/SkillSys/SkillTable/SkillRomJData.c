@@ -11,3 +11,5 @@ const struct SkillRomData gSkillRomJData[0x100] = {
         },
     },
 };
+
+FEB_IDENTIFIER(gSkillRomJData);
