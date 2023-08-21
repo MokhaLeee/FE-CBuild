@@ -14,9 +14,6 @@
     extra_map       0x7400          0x0             0x600           ---
 */
 
-#define EmsChunk(offset, size, save, load) "SHORT (offset) (size); POIN (save) (load)"
-#define EmsChunkEnd "SHORT 0xFFFF 0 0 0 0 0"
-
 #include "SaveDataInternal.event"
 #include "SaveDataExpansion/SaveDataExpansion.event"
 
@@ -33,6 +30,9 @@ gEmsOffsets:
 gEmsSizes:
     SHORT 0x18E8 /* SAV */
     SHORT 0x3258 /* SUS */
+
+#define EmsChunk(offset, size, save, load) "SHORT (offset) (size); POIN (save) (load)"
+#define EmsChunkEnd "SHORT 0xFFFF 0 0 0 0 0"
 
 ALIGN 4
 gEmsSavChunks:

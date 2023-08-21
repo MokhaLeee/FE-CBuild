@@ -321,4 +321,3 @@ void MSU_LoadGreenUnits(u8 * src, const u32 size)
         src += SIZE_OF_SUS_UNIT_PACK;
     }
 }
-
