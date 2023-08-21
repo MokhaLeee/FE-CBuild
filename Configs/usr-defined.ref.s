@@ -10,6 +10,7 @@
     .set \name, \value
 .endm
 
+/* Free RAM space allocation */
 SET_DATA FreeRamSpaceEntry, 0x02026E30
 
 SET_DATA sSkillListNext, 0x02026E30

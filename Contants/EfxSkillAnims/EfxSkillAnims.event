@@ -1,7 +1,5 @@
 ALIGN 4
-gEfxSkillAnims:
-    POIN EfxSkillVanilla EfxSkillMokha
-    WORD 0
+#include "Source/EfxSkillTable.lyn.event"
 
 EfxSkillVanilla:
 {
