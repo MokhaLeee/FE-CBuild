@@ -22,7 +22,7 @@ struct ProcEfxSkillRework {
     const s16 * frames;
 };
 
-void NewEfxSkill(struct Anim *anim, int sid);
+void NewEfxSkill(struct Anim * anim, int sid);
 bool EfxSkillExists(void);
 
 /* Utils */

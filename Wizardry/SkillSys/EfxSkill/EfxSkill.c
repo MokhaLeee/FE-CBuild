@@ -16,19 +16,21 @@ static void EfxSkillOnInit(struct ProcEfxSkillRework * proc)
     return;
 }
 
-static void EfxSkillMain(struct ProcEfxSkillRework *proc)
+static void EfxSkillMain(struct ProcEfxSkillRework * proc)
 {
     int ret;
     ret = EfxAdvanceFrameLut((void *)&proc->timer, (void *)&proc->frame, proc->frames);
 
-    if (ret >= 0) {
+    if (ret >= 0)
+    {
         int i;
 
         SpellFx_WriteBgMap(proc->anim, proc->tsas[ret], proc->tsas[ret]);
         SpellFx_RegisterBgGfx(proc->imgs[ret], 0x2000);
         SpellFx_RegisterBgPal(proc->pals[ret], 0x20);
 
-        for (i = 0; i < 0x14; i++) {
+        for (i = 0; i < 0x14; i++)
+        {
             gBG1TilemapBuffer[0x20 * i + 0x1E] = gBG1TilemapBuffer[0];
             gBG1TilemapBuffer[0x20 * i + 0x1F] = gBG1TilemapBuffer[0];
         }
@@ -40,7 +42,7 @@ static void EfxSkillMain(struct ProcEfxSkillRework *proc)
         Proc_Break(proc);
 }
 
-static void EfxSkillOnEnd(struct ProcEfxSkillRework *proc)
+static void EfxSkillOnEnd(struct ProcEfxSkillRework * proc)
 {
     SpellFx_ClearBG1();
     SetDefaultColorEffects_();

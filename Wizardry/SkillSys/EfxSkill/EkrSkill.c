@@ -6,9 +6,9 @@
 #include "skill-system.h"
 #include "efx-skill.h"
 
-static void EfxSkillSetAnimState(struct Anim *anim)
+static void EfxSkillSetAnimState(struct Anim * anim)
 {
-    struct Anim *anim1, *anim2;
+    struct Anim * anim1, * anim2;
 
     anim1 = gAnims[GetAnimPosition(anim) * 2];
     anim2 = gAnims[GetAnimPosition(anim) * 2 + 1];
@@ -23,9 +23,9 @@ static void EfxSkillSetAnimState(struct Anim *anim)
     anim2->state |= ANIM_BIT_FROZEN;
 }
 
-static void EfxSkillResetAnimState(struct Anim *anim)
+static void EfxSkillResetAnimState(struct Anim * anim)
 {
-    struct Anim *anim1, *anim2;
+    struct Anim * anim1, * anim2;
 
     anim1 = gAnims[GetAnimPosition(anim) * 2];
     anim2 = gAnims[GetAnimPosition(anim) * 2 + 1];

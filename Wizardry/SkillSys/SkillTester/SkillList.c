@@ -5,7 +5,7 @@
 #include "common-chax.h"
 #include "skill-system.h"
 
-extern int sSkillListNext;
+extern u32 sSkillListNext;
 extern struct SkillList sSkillLists[2];
 
 struct SkillList * GetUnitSkillList(struct Unit * unit)
