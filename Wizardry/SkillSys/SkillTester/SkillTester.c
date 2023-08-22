@@ -30,11 +30,11 @@ static bool SkillTesterROM(struct Unit * unit, const u8 sid)
             const struct SkillRomData * data;
 
             data = &gSkillRomPData[UNIT_CHAR_ID(unit)];
-            if (data->skills[level * 5 + i] == sid)
+            if (data->skills[level + i] == sid)
                 return true;
 
             data = &gSkillRomJData[UNIT_CLASS_ID(unit)];
-            if (data->skills[level * 5 + i] == sid)
+            if (data->skills[level + i] == sid)
                 return true;
         }
     }

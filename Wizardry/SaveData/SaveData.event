@@ -10,8 +10,8 @@
     save2           0x4C14          0x18E8          0xDC8           0xB20
     save3           0x64FC          0x18E8          0xDC8           0xB20
     empty           0x7DE4          0x08            0x0             0x08
-    link_arena      0x691C          0x0             0xAE4           ---
-    extra_map       0x7400          0x0             0x600           ---
+    link_arena      ------          0x0             0xAE4           ----
+    extra_map       ------          0x0             0x600           ----
 */
 
 #include "SaveDataInternal.event"
