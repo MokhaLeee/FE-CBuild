@@ -9,4 +9,8 @@
 #include "EfxSkill/EfxSkill.lyn.event"
 #include "EfxSkill/Utils.lyn.event"
 
+#define InjectBanimCmd(index, routine) "PUSH; ORG ($58C44 + 4 * index); POIN routine | 1; POP"
+
+InjectBanimCmd(0x7, Banim07Rework)
+
 #endif

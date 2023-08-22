@@ -43,13 +43,11 @@ static void EfxSkillResetAnimState(struct Anim * anim)
 static void EkrSkillOnInit(struct ProcEkrSkill * proc)
 {
     EfxSkillSetAnimState(proc->anim);
-    EfxSkillSetAnimState(GetAnimAnotherSide(proc->anim));
 }
 
 static void EkrSkillOnEnd(struct ProcEkrSkill * proc)
 {
     EfxSkillResetAnimState(proc->anim);
-    EfxSkillResetAnimState(GetAnimAnotherSide(proc->anim));
 }
 
 static void NewEfxSkillForAttacker(struct ProcEkrSkill * proc)

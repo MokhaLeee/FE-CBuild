@@ -80,7 +80,7 @@ static inline int GetEfxSkillIndex(const u8 sid)
 
 static inline const struct EfxAnimConf * GetEfxSkillConf(const u8 sid)
 {
-    return gEfxSkillAnims[GetEfxSkillIndex(sid)];
+    return gEfxSkillAnims[GetEfxSkillIndex(sid) - 1];
 }
 
 static inline int GetEfxSkillPriority(const u8 sid)
