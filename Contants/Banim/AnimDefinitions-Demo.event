@@ -1,1 +1,8 @@
-#define _T0_RecruitF_Lance 0xC7
+#define _T0_RecruitF_Lance 0xCA
+#define _T0_RecruitF_Staff 0xCB
+#define _T0_RecruitF_Magic 0xCC
+#define _T0_RecruitF_Sword 0xCD
+
+#define Fighter_M_Axe FighterAxeAnimID
+#define Fighter_M_Handaxe FighterHandAxeAnimID
+#define Fighter_M_Unarmed FighterUnarmedAnimID

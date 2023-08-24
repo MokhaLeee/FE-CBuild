@@ -3,9 +3,9 @@
 
 #include "AnimDefinitions-Vanilla.event"
 #include "AnimDefinitions-Demo.event"
+#include "AnimMapping.evet"
 
 #include "Repoint/RepointBanim.event"
-
-#include "Source/T0_RecuritF_Lance/_T0_RecruitF_LanceInstaller.event"
+#include "Source/InstallBanims.event"
 
 #endif /* BANIMS_INSTALLED */

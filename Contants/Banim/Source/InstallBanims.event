@@ -1,0 +1,8 @@
+#include "T0_RecruitF/Lance/_T0_RecruitF_LanceInstaller.event"
+#include "T0_RecruitF/Magic/_T0_RecruitF_MagicInstaller.event"
+#include "T0_RecruitF/Staff/_T0_RecruitF_StaffInstaller.event"
+#include "T0_RecruitF/Sword/_T0_RecruitF_SwordInstaller.event"
+
+#include "Fighter/Axe/Fighter_M_AxeInstaller.event"
+#include "Fighter/Handaxe/Fighter_M_HandaxeInstaller.event"
+#include "Fighter/Unarmed/Fighter_M_UnarmedInstaller.event"
