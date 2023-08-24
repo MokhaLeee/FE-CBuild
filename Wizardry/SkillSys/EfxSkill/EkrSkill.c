@@ -42,7 +42,7 @@ static void EfxSkillResetAnimState(struct Anim * anim)
 
 static void EkrSkillOnInit(struct ProcEkrSkill * proc)
 {
-    EfxSkillSetAnimState(proc->anim);
+    return;
 }
 
 static void EkrSkillOnEnd(struct ProcEkrSkill * proc)
@@ -85,6 +85,9 @@ static void NewEkrSkill(struct Anim * anim)
     SortEfxSkills(anim, &sid_atk, &sid_def);
     proc->sid_atk = sid_atk;
     proc->sid_def = sid_def;
+
+    EfxSkillSetAnimState(anim);
+    EfxSkillSetAnimState(GetAnimAnotherSide(anim));
 }
 
 void BanimEkrSkillHandler(struct Anim * anim)

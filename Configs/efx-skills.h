@@ -1,8 +1,8 @@
 #ifndef CONFIG_EFX_SKILLS_INSTALLED
 #define CONFIG_EFX_SKILLS_INSTALLED
 
-#define EFX_SKILL_DEFAULT    0x00
-#define EFX_SKILL_MOKHA      0x01
+#define EFX_SKILL_DEFAULT    0x01
+#define EFX_SKILL_MOKHA      0x02
 
 #define EFX_SKILL_MAX        0x03
 
