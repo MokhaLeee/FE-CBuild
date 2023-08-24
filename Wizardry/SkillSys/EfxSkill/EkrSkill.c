@@ -6,7 +6,7 @@
 #include "skill-system.h"
 #include "efx-skill.h"
 
-static void EfxSkillSetAnimState(struct Anim * anim)
+STATIC_DECLAR void EfxSkillSetAnimState(struct Anim * anim)
 {
     struct Anim * anim1, * anim2;
 
@@ -23,7 +23,7 @@ static void EfxSkillSetAnimState(struct Anim * anim)
     anim2->state |= ANIM_BIT_FROZEN;
 }
 
-static void EfxSkillResetAnimState(struct Anim * anim)
+STATIC_DECLAR void EfxSkillResetAnimState(struct Anim * anim)
 {
     struct Anim * anim1, * anim2;
 
@@ -40,29 +40,29 @@ static void EfxSkillResetAnimState(struct Anim * anim)
     anim2->state &= ~ANIM_BIT_FROZEN;
 }
 
-static void EkrSkillOnInit(struct ProcEkrSkill * proc)
+STATIC_DECLAR void EkrSkillOnInit(struct ProcEkrSkill * proc)
 {
     return;
 }
 
-static void EkrSkillOnEnd(struct ProcEkrSkill * proc)
+STATIC_DECLAR void EkrSkillOnEnd(struct ProcEkrSkill * proc)
 {
     EfxSkillResetAnimState(proc->anim);
 }
 
-static void NewEfxSkillForAttacker(struct ProcEkrSkill * proc)
+STATIC_DECLAR void NewEfxSkillForAttacker(struct ProcEkrSkill * proc)
 {
     if (SKILL_VALID(proc->sid_atk))
         NewEfxSkill(proc->anim, proc->sid_atk);
 }
 
-static void NewEfxSkillForDefener(struct ProcEkrSkill * proc)
+STATIC_DECLAR void NewEfxSkillForDefener(struct ProcEkrSkill * proc)
 {
     /* Todo */
     return;
 }
 
-static const struct ProcCmd ProcScr_EkrSkill[] = {
+STATIC_DECLAR const struct ProcCmd ProcScr_EkrSkill[] = {
     PROC_NAME("EkrSkill"),
     PROC_CALL(EkrSkillOnInit),
     PROC_YIELD,
@@ -76,7 +76,7 @@ static const struct ProcCmd ProcScr_EkrSkill[] = {
     PROC_END
 };
 
-static void NewEkrSkill(struct Anim * anim)
+STATIC_DECLAR void NewEkrSkill(struct Anim * anim)
 {
     u8 sid_atk, sid_def;
     struct ProcEkrSkill * proc = Proc_Start(ProcScr_EkrSkill, PROC_TREE_3);
@@ -87,7 +87,6 @@ static void NewEkrSkill(struct Anim * anim)
     proc->sid_def = sid_def;
 
     EfxSkillSetAnimState(anim);
-    EfxSkillSetAnimState(GetAnimAnotherSide(anim));
 }
 
 void BanimEkrSkillHandler(struct Anim * anim)

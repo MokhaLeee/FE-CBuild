@@ -3,9 +3,11 @@
 #include "global.h"
 #include "bmunit.h"
 
-#include "debug-kit.h"
 #include "../Texts/TextDefs.h"
 #include "../Configs/configs.h"
+
+#define CONFIG_USE_DEBUG 1
+#include "debug-kit.h"
 
 #define UNIT_LEVEL_MAX_RE UNIT_LEVEL_MAX
 
@@ -18,3 +20,10 @@ const struct {                  \
     .magic = #PTR,              \
     .addr = PTR,                \
 };
+
+/* Set static declaration as a macro for debug purpose */
+#if CONFIG_USE_DEBUG
+#define STATIC_DECLAR
+#else
+#define STATIC_DECLAR static
+#endif

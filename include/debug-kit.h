@@ -6,7 +6,9 @@
 #include "mgba.h"
 #include "no-cash-gba.h"
 
+#ifndef CONFIG_USE_DEBUG
 #define CONFIG_USE_DEBUG 1
+#endif
 
 #if CONFIG_USE_DEBUG
 

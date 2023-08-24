@@ -8,6 +8,6 @@
 #include "Vanilla/ChracterData/CharacterTable.csv.event"
 #include "Vanilla/ClassData/ClassTable.csv.event"
 
-#include "SkillSys/SkillSysDataInstaller.event"
+#include "SkillSys/SkillSysData.event"
 
 #endif

@@ -8,8 +8,7 @@ ALIGN 4
 ALIGN 4
 #include "SkillInfos/EfxSkills.lyn.event"
 
-/* Skill info */
-#include "SkillInfos/SkillAnimInfo.lyn.event"
+ALIGN 4
 #include "SkillInfos/SkillInfo.lyn.event"
 
 #define InjectSkillInfo(index, icon, msg) "ORG (gSkillInfos + 8 * index); POIN icon; SHORT msg 0"
