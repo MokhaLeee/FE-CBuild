@@ -1,2 +1,11 @@
-EfxAnimConfig_Drsmmoya:
+ALIGN 4
+EfxDrsmmoya:
     #include "Source/EfxDrsmmoya/EfxDrsmmoya.efx.event"
+
+ALIGN 4
+EfxSkillVanilla:
+    #include "Source/EfxSkillVanilla/EfxSkillVanilla.efx.event"
+
+ALIGN 4
+EfxSkillMokha:
+    #include "Source/EfxSkillMokha/EfxSkillMokha.efx.event"

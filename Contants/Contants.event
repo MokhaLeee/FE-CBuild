@@ -1,0 +1,22 @@
+#ifndef CONTANTS_INSTALLED
+#define CONTANTS_INSTALLED
+
+ALIGN 4
+#include "Banim/Banim.event"
+
+ALIGN 4
+#include "Sprite/Sprite.event"
+
+ALIGN 4
+#include "ChapterTitles/ChapterTitles.event"
+
+ALIGN 4
+#include "EfxAnim/EfxAnim.event"
+
+ALIGN 4
+#include "Maps/Maps.event"
+
+ALIGN 4
+#include "Portrait/Portrait.event"
+
+#endif

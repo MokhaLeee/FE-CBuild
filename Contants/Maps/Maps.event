@@ -1,4 +1,2 @@
-{
-	ALIGN 4
-	#include "Source/Prologue.event"
-}
+ALIGN 4
+#include "Source/Prologue.event"

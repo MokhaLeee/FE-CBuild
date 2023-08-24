@@ -5,6 +5,9 @@ ALIGN 4
 ALIGN 4
 #include "SkillTable/SkillRomJData.lyn.event"
 
+ALIGN 4
+#include "SkillInfos/EfxSkills.lyn.event"
+
 /* Skill info */
 #include "SkillInfos/SkillAnimInfo.lyn.event"
 #include "SkillInfos/SkillInfo.lyn.event"
