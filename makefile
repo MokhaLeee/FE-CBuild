@@ -189,7 +189,7 @@ CLEAN_BUILD += $(FONT_DIR)
 
 BANIM_DIR := Contants/Banim
 
-%Installer.event: %.txt
+%.banim.event: %.banim.txt
 	@$(MAKE) -f $(BANIM_DIR)/makefile $@
 
 CLEAN_BUILD += $(BANIM_DIR)

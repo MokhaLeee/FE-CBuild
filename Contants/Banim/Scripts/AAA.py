@@ -12,6 +12,7 @@ import math as m
 import time
 import argparse
 import lzss
+import hashlib
 from PIL import Image
 from PIL import ImageChops
 
@@ -561,9 +562,9 @@ def main():
     print("ERROR: Couldn't find input file: \"" + args.filename + "\".")
     exit()
 
-  animName = args.filename[:-4]
+  animName = args.filename[:-10]
   scriptFile = open(args.filename, "r")
-  outputFile = open(animName+"Installer.event", "w")
+  outputFile = open(animName+".banim.event", "w")
   mode = 1                            # Current mode. [1, 12].
   rtlOAMData = b'\x01' + b'\x00'*11   # Starts with terminator for empty pierce frames.
   ltrOAMData = b'\x01' + b'\x00'*11   # Starts with terminator for empty pierce frames.
