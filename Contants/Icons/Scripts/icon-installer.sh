@@ -19,8 +19,9 @@ all_sources=$(find $SOURCE_DIR -type f -name "*.png")
 
 for file in $all_sources; do
     base_name=$(basename $file .png)
-    echo -e "SICON_$base_name:\n\t#incbin \"$SOURCE_DIR/$base_name.4bpp\"\n" >> $INSTALLER
-    echo -e "extern const unsigned char SICON_$base_name[];" >> $HEADER
+    target=$(echo $file | sed 's\.png\.4bpp\')
+    echo -e "ICON_$base_name:\n\t#incbin \"$target\"\n" >> $INSTALLER
+    echo -e "extern const unsigned char ICON_$base_name[];" >> $HEADER
 done
 
 echo -e "\n#endif /* SICON_CONFIG_INSTALLED */" >> $HEADER

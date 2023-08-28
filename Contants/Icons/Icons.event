@@ -3,6 +3,6 @@
 
 ALIGN 4
 /* Auto generated */
-#include "SkillIconInstaller.event"
+#include "IconInstaller.event"
 
 #endif /* SKILL_ICONS_INSTALLED */

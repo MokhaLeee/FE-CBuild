@@ -7,7 +7,7 @@
 
 /* auto generated */
 #include "../Texts/TextDefinitions.h"
-#include "../Contants/SkillIcon/SkillIconDefs.h"
+#include "../Contants/Icons/IconDefs.h"
 
 #define CONFIG_USE_DEBUG 1
 #include "debug-kit.h"

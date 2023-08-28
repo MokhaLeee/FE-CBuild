@@ -20,6 +20,6 @@ ALIGN 4
 #include "Portrait/Portrait.event"
 
 ALIGN 4
-#include "SkillIcon/SkillIcon.event"
+#include "Icons/Icons.event"
 
 #endif
