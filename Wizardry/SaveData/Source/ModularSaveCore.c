@@ -3,9 +3,11 @@
 #include "sram-layout.h"
 #include "bmcontainer.h"
 #include "bmmind.h"
-#include "ev_triggercheck.h"
 
 #include "save-data.h"
+
+// #include "ev_triggercheck.h"
+void ResetPermanentFlags(void);
 
 /* LynJump! */
 void WriteSaveBlockInfo(struct SaveBlockInfo * chunk, int index)

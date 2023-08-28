@@ -3,6 +3,7 @@
 
 #include "skills/efx-skills.h"
 #include "skills/skills.h"
+#include "../Contants/SkillIcon/SkillIconDefs.h"
 
 /* FreeSpace definitions */
 #define FreeSpace 0xB2A604

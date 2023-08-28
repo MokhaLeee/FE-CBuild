@@ -85,7 +85,7 @@ all:
 	@$(MAKE) pre_build
 	@$(MAKE) chax
 
-pre_build: text font
+pre_build: text font skill_icon
 chax: $(FE8_CHX)
 
 $(FE8_CHX): $(MAIN) $(FE8_GBA) $(FE8_SYM) $(shell $(EA_DEP) $(MAIN) -I $(EA_DIR) --add-missings)
@@ -284,6 +284,21 @@ CLEAN_FILES += $(CSV_SOURCES:.csv=.csv.event)
 
 TMXS := $(shell find -type f -name '*.tmx')
 CLEAN_FILES += $(TMXS:.tmx=.event) $(TMXS:.tmx=_data.dmp)
+
+# ===============
+# = Skill Icons =
+# ===============
+
+SICON_DIR     := Contants/SkillIcon
+SICON_SOURCES := $(shell find $(SICON_DIR)/Sources -type f -name '*.png')
+SICON_HEADER  := $(SICON_DIR)/SkillIconDefs.h
+
+skill_icon: $(SICON_HEADER)
+
+$(SICON_HEADER): $(SICON_SOURCES)
+	@$(MAKE) -C $(SICON_DIR)
+
+CLEAN_BUILD += $(SICON_DIR)
 
 # ==============
 # = MAKE CLEAN =
