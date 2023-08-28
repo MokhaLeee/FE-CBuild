@@ -291,7 +291,8 @@ CLEAN_FILES += $(TMXS:.tmx=.event) $(TMXS:.tmx=_data.dmp)
 
 SICON_DIR     := Contants/SkillIcon
 SICON_SOURCES := $(shell find $(SICON_DIR)/Sources -type f -name '*.png')
-SICON_HEADER  := $(SICON_DIR)/SkillIconDefs.h
+
+export SICON_HEADER := $(PWD)/Configs/SkillIconDefs.h
 
 skill_icon: $(SICON_HEADER)
 
@@ -299,6 +300,7 @@ $(SICON_HEADER): $(SICON_SOURCES)
 	@$(MAKE) -C $(SICON_DIR)
 
 CLEAN_BUILD += $(SICON_DIR)
+CLEAN_FILES += $(SICON_HEADER)
 
 # ==============
 # = MAKE CLEAN =
