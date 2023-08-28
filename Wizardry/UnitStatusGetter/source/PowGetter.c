@@ -2,6 +2,8 @@
 #include "bmunit.h"
 #include "bmitem.h"
 
+#include "common-chax.h"
+#include "skill-system.h"
 #include "status-getter.h"
 
 int _GetUnitPower(struct Unit * unit)
@@ -20,5 +22,29 @@ int PowGetterWeaponBonus(int status, struct Unit * unit)
 {
     u16 weapon = GetUnitEquippedWeapon(unit);
     status += GetItemPowBonus(weapon);
+    return status;
+}
+
+int PowGetterSkills(int status, struct Unit * unit)
+{
+    if (SkillTester(unit, SID_StrBonus))
+        status += 2;
+
+    if (SkillTester(unit, SID_DefiantStr))
+        if ((GetUnitCurrentHp(unit) * 4) < GetUnitMaxHp(unit))
+            status += 7;
+
+    if (SkillTester(unit, SID_Fury))
+        status += 3;
+
+    if (SkillTester(unit, SID_FuryPlus))
+        status += 4;
+
+    if (SkillTester(unit, SID_FortressDef))
+        status -= 3;
+
+    if (SkillTester(unit, SID_FortressRes))
+        status -= 3;
+
     return status;
 }

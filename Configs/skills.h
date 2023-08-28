@@ -1,4 +1,0 @@
-#ifndef CONFIG_SKILLS_INSTALLED
-#define CONFIG_SKILLS_INSTALLED
-
-#endif

@@ -2,6 +2,8 @@
 #include "bmunit.h"
 #include "bmitem.h"
 
+#include "common-chax.h"
+#include "skill-system.h"
 #include "status-getter.h"
 
 int _GetUnitMaxHp(struct Unit * unit)
@@ -20,5 +22,13 @@ int HpGetterWeaponBonus(int status, struct Unit * unit)
 {
     u16 weapon = GetUnitEquippedWeapon(unit);
     status += GetItemHpBonus(weapon);
+    return status;
+}
+
+int HpGetterSkills(int status, struct Unit * unit)
+{
+    if (SkillTester(unit, SID_HpBonus))
+        status += 5;
+
     return status;
 }

@@ -1,8 +1,8 @@
 #ifndef CONFIG_INSTALLED
 #define CONFIG_INSTALLED
 
-#include "efx-skills.h"
-#include "skills.h"
+#include "skills/efx-skills.h"
+#include "skills/skills.h"
 
 /* FreeSpace definitions */
 #define FreeSpace 0xB2A604

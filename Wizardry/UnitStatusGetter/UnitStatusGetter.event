@@ -3,48 +3,49 @@
 
 ALIGN 4
 gHpGetters:
-    POIN HpGetterWeaponBonus
+    POIN HpGetterWeaponBonus HpGetterSkills
     POIN StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc
     POIN StatusGetterCheckCpas
     WORD 0
 
 gPowGetters:
-    POIN PowGetterWeaponBonus
+    POIN PowGetterWeaponBonus PowGetterSkills
     POIN StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc
     POIN StatusGetterCheckCpas
     WORD 0
 
 gMagGetters:
+    POIN MagGetterSkills
     POIN StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc
     POIN StatusGetterCheckCpas
     WORD 0
 
 gSklGetters:
-    POIN SklGetterWeaponBonus
+    POIN SklGetterWeaponBonus SklGetterSkills
     POIN StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc
     POIN StatusGetterCheckCpas
     WORD 0
 
 gSpdGetters:
-    POIN SpdGetterWeaponBonus
+    POIN SpdGetterWeaponBonus SpdGetterSkills
     POIN StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc
     POIN StatusGetterCheckCpas
     WORD 0
 
 gLckGetters:
-    POIN LckGetterWeaponBonus
+    POIN LckGetterWeaponBonus LckGetterSkills
     POIN StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc
     POIN StatusGetterCheckCpas
     WORD 0
 
 gDefGetters:
-    POIN DefGetterWeaponBonus
+    POIN DefGetterWeaponBonus DefGetterSkills
     POIN StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc
     POIN StatusGetterCheckCpas
     WORD 0
 
 gResGetters:
-    POIN ResGetterWeaponBonus
+    POIN ResGetterWeaponBonus ResGetterSkills
     POIN StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc
     POIN StatusGetterCheckCpas
     WORD 0
