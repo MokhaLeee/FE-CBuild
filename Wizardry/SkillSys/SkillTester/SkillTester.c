@@ -11,9 +11,6 @@ do {                                \
                                     \
     if (0 == sid)                   \
         return true;                \
-                                    \
-    if (!UNIT_IS_VALID(unit))       \
-        return false;               \
 } while (0)
 
 static bool SkillTesterROM(struct Unit * unit, const u8 sid)
@@ -44,13 +41,22 @@ static bool SkillTesterROM(struct Unit * unit, const u8 sid)
 
 static bool SkillTesterRAM(struct Unit * unit, const u8 sid)
 {
-    /* TODO */
+    int i;
+    u8 * list = GetUnitSupportSkills(unit);
+    for (i = 0; i < UNIT_SUPPORT_SKILLS_LEN; i++)
+        if (sid == list[i])
+            return true;
+
     return false;
 }
 
 bool SkillTesterBasic(struct Unit * unit, const u8 sid)
 {
     int ret;
+
+    if (!UNIT_IS_VALID(unit))
+        return false;
+
     BasicJudgeSkill(unit, sid);
 
     ret = SkillTesterROM(unit, sid);

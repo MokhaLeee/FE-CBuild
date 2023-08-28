@@ -49,6 +49,12 @@ static inline void DisableUnitSkills(struct Unit * unit)
 }
 
 /* Skill tetsers */
+#define UNIT_SUPPORT_SKILLS_LEN 5
+static inline u8 * GetUnitSupportSkills(struct Unit * unit)
+{
+    return unit->supports;
+}
+
 bool SkillTesterBasic(struct Unit * unit, const u8 sid);
 bool SkillTesterFast(struct Unit * unit, const u8 sid);
 extern bool (* const SkillTester)(struct Unit * unit, const u8 sid);
