@@ -4,6 +4,8 @@
 #include "common-chax.h"
 #include "skill-system.h"
 
+#define UNIT_SUPPORT_SKILLS_LEN 5
+
 #define BasicJudgeSkill(unit, sid)  \
 do {                                \
     if (MAX_SKILL_NUM == sid)       \
@@ -37,6 +39,11 @@ static bool SkillTesterROM(struct Unit * unit, const u8 sid)
     }
 
     return false;
+}
+
+static u8 * GetUnitSupportSkills(struct Unit * unit)
+{
+    return unit->supports;
 }
 
 static bool SkillTesterRAM(struct Unit * unit, const u8 sid)
