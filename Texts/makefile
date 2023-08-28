@@ -22,18 +22,17 @@ TEXT_MAIN   := $(TEXT_DIR)Source/TextMain.txt
 TEXT_SOURCE := $(shell find $(TEXT_DIR) -type f -name '*.txt')
 
 TEXT_EVENT  := $(TEXT_DIR)TextInstaller.event
-TEXT_DEF    := $(TEXT_DIR)TextDefinitions.event
-TEXT_HEADER := $(TEXT_DIR)TextDefs.h
+TEXT_DEF    ?= $(TEXT_DIR)TextDefinitions.h
 
-all: $(TEXT_HEADER)
+all: $(TEXT_DEF)
 
-$(TEXT_EVENT) $(TEXT_DEF) $(TEXT_HEADER): $(TEXT_MAIN) $(TEXT_SOURCE)
+$(TEXT_EVENT) $(TEXT_DEF): $(TEXT_MAIN) $(TEXT_SOURCE)
 	@echo "[TXT]	$@"
-	@$(TEXT_PROCESS) $(TEXT_MAIN) --installer $(TEXT_EVENT) --definitions $(TEXT_DEF) --c-header $(TEXT_HEADER)
+	@$(TEXT_PROCESS) $(TEXT_MAIN) --installer $(TEXT_EVENT) --definitions $(TEXT_DEF)
 
 %.fetxt.dmp: %.fetxt
 	@$(PARSEFILE) -i $< -o $@ > /dev/null
 
 clean:
 	rm -rf $(mkfile_dir)Source/.TextEntries
-	rm -f $(TEXT_EVENT) $(TEXT_DEF) $(TEXT_HEADER)
+	rm -f $(TEXT_EVENT) $(TEXT_DEF)

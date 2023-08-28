@@ -3,8 +3,11 @@
 #include "global.h"
 #include "bmunit.h"
 
-#include "../Texts/TextDefs.h"
 #include "../Configs/configs.h"
+
+/* auto generated */
+#include "../Texts/TextDefinitions.h"
+#include "../Contants/SkillIcon/SkillIconDefs.h"
 
 #define CONFIG_USE_DEBUG 1
 #include "debug-kit.h"

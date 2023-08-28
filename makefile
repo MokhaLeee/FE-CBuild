@@ -1,27 +1,27 @@
 MAKEFLAGS += --no-print-directory
 
-MAIN    := main.event
-FE8_CHX := fe8-chax.gba
-FE8_GBA := fe8.gba
+MAIN    := $(PWD)/main.event
+FE8_CHX := $(PWD)/fe8-chax.gba
+FE8_GBA := $(PWD)/fe8.gba
 
-TOOL_DIR := Tools
+TOOL_DIR := $(PWD)/Tools
 LIB_DIR  := $(TOOL_DIR)/FE-CLib-Mokha
 FE8_REF  := $(LIB_DIR)/reference/fireemblem8.ref.o
 FE8_SYM  := $(LIB_DIR)/reference/fireemblem8.sym
 
-CONFIG_DIR := Configs
+CONFIG_DIR := $(PWD)/Configs
 EXT_REF    := $(CONFIG_DIR)/usr-defined.ref.s
 
-WIZARDRY_DIR := Wizardry
-CONTANTS_DIR := Contants
-GAMEDATA_DIR := GameData
-TEXT_DIR     := Texts
-FONT_DIR     := Fonts
+WIZARDRY_DIR := $(PWD)/Wizardry
+CONTANTS_DIR := $(PWD)/Contants
+GAMEDATA_DIR := $(PWD)/GameData
+TEXT_DIR     := $(PWD)/Texts
+FONT_DIR     := $(PWD)/Fonts
 
 # There are too many conponets in $(FONT_DIR) so we cannot consider it as normal hack dirs
 HACK_DIRS    := $(CONFIG_DIR) $(WIZARDRY_DIR) $(CONTANTS_DIR) $(GAMEDATA_DIR) $(TEXT_DIR) # $(FONT_DIR)
 
-CACHE_DIR := .cache_dir
+CACHE_DIR := $(PWD)/.cache_dir
 $(shell mkdir -p $(CACHE_DIR) > /dev/null)
 
 CLEAN_FILES :=
@@ -151,13 +151,11 @@ CLEAN_FILES += $(SFILES:.s=.o) $(SFILES:.s=.dmp) $(SFILES:.s=.lyn.event)
 TEXT_MAIN   := $(TEXT_DIR)/Source/TextMain.txt
 TEXT_SOURCE := $(shell find $(TEXT_DIR) -type f -name '*.txt')
 
-TEXT_EVENT  := $(TEXT_DIR)/TextInstaller.event
-TEXT_DEF    := $(TEXT_DIR)/TextDefinitions.event
-TEXT_HEADER := $(TEXT_DIR)/TextDefs.h
+export TEXT_DEF := $(TEXT_DIR)/TextDefinitions.h
 
-text: $(TEXT_HEADER)
+text: $(TEXT_DEF)
 
-$(TEXT_EVENT) $(TEXT_DEF) $(TEXT_HEADER): $(TEXT_MAIN) $(TEXT_SOURCE)
+$(TEXT_DEF): $(TEXT_MAIN) $(TEXT_SOURCE)
 	@$(MAKE) -C $(TEXT_DIR)
 
 %.fetxt.dmp: %.fetxt
@@ -187,7 +185,7 @@ CLEAN_BUILD += $(FONT_DIR)
 # = Banims =
 # ==========
 
-BANIM_DIR := Contants/Banim
+BANIM_DIR := $(PWD)/Contants/Banim
 
 %.banim.event: %.banim.txt
 	@$(MAKE) -f $(BANIM_DIR)/makefile $@
@@ -224,7 +222,7 @@ CLEAN_FILES += $(PNG_FILES:.png=.img.bin) $(PNG_FILES:.png=.map.bin) $(PNG_FILES
 # = EfxAnims =
 # ============
 
-EFX_ANIM_DIR := Contants/EfxAnim
+EFX_ANIM_DIR := $(PWD)/Contants/EfxAnim
 EFX_ANIMTOR  := $(PYTHON3) $(EFX_ANIM_DIR)/Scripts/efx-anim-creator.py
 
 EFX_SCRIPTS  := $(shell find $(HACK_DIRS) -type f -name '*.efx.txt')
@@ -247,7 +245,7 @@ CLEAN_FILES += $(EFX_SCR_DEPS) $(EFX_TARGET)
 # = Portrait =
 # ============
 
-PORTRAIT_DIR       := Contants/Portrait
+PORTRAIT_DIR       := $(PWD)/Contants/Portrait
 PORTRAIT_LIST      := $(PORTRAIT_DIR)/PortraitList.txt
 PORTRAIT_INSTALLER := $(PORTRAIT_DIR)/PortraitInstaller.event
 
@@ -289,10 +287,10 @@ CLEAN_FILES += $(TMXS:.tmx=.event) $(TMXS:.tmx=_data.dmp)
 # = Skill Icons =
 # ===============
 
-SICON_DIR     := Contants/SkillIcon
+SICON_DIR     := $(PWD)/Contants/SkillIcon
 SICON_SOURCES := $(shell find $(SICON_DIR)/Sources -type f -name '*.png')
 
-export SICON_HEADER := $(PWD)/Configs/SkillIconDefs.h
+export SICON_HEADER := $(SICON_DIR)/SkillIconDefs.h
 
 skill_icon: $(SICON_HEADER)
 

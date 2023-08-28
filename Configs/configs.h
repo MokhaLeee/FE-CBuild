@@ -11,7 +11,4 @@
 #define FreeSpaceFont 0xEFB2E0
 #define FreeSpaceFontSize 0xE4D20
 
-/* Auto generated */
-#include "SkillIconDefs.h"
-
 #endif /* CONFIG_INSTALLED */
