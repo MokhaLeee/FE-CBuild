@@ -8,3 +8,4 @@ ALIGN 4
 #include "BwlRework/BwlRework.event"
 #include "SaveData/SaveData.event"
 #include "SkillSys/SkillSys.event"
+#include "BattleSys/BattleSys.event"

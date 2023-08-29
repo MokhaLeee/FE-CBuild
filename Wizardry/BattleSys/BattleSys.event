@@ -1,0 +1,13 @@
+#ifndef BATTLE_SYS_INSTALLED
+#define BATTLE_SYS_INSTALLED
+
+#include "Source/PreBattleCalc.lyn.event"
+
+ALIGN 4
+PreBattleCalcFuncs:
+    POIN PreBattleCalcInit
+    POIN PreBattleCalcSkills
+    POIN PreBattleCalcEnd
+    WORD 0
+
+#endif
