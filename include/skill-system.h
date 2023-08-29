@@ -30,7 +30,7 @@ static inline u16 GetSkillInfoDesc(const u8 sid)
 /* Judge list */
 #define SKILL_LIST_MAX_AMT 0x1E
 struct SkillList {
-    u8 uid;
+    s8 uid;
     u8 amt;
     u8 data[SKILL_LIST_MAX_AMT];
 };
