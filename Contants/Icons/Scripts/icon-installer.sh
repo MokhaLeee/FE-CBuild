@@ -18,8 +18,8 @@ echo -e "#define SICON_CONFIG_INSTALLED\n" >> $HEADER
 all_sources=$(find $SOURCE_DIR -type f -name "*.png")
 
 for file in $all_sources; do
-    base_name=$(basename $file .png)
-    target=$(echo $file | sed 's\.png\.4bpp\')
+    base_name=$(echo ${file#*/} | sed 's/\.png//; s/\//_/g')
+    target=$(echo $file | sed 's/\.png/\.4bpp/')
     echo -e "ICON_$base_name:\n\t#incbin \"$target\"\n" >> $INSTALLER
     echo -e "extern const unsigned char ICON_$base_name[];" >> $HEADER
 done

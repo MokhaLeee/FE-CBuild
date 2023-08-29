@@ -22,9 +22,10 @@
 #define SID_DefiantCrit  0x11
 #define SID_DefiantAvoid 0x12
 
-#define SID_Fury        0x13
-#define SID_FuryPlus    0x14
-#define SID_FortressDef 0x15
-#define SID_FortressRes 0x16
+#define SID_Fury         0x13
+#define SID_FuryPlus     0x14
+#define SID_FortressDef  0x15
+#define SID_FortressRes  0x16
+#define SID_LifeAndDeath 0x17
 
 #endif

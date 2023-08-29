@@ -12,7 +12,7 @@
 
 struct SkillInfo {
     const u8 * icon;
-    u16 msg_desc;
+    u16 msg;
 };
 
 extern const struct SkillInfo gSkillInfos[0x100];
@@ -24,7 +24,7 @@ static inline const u8 * GetSkillInfoIcon(const u8 sid)
 
 static inline u16 GetSkillInfoDesc(const u8 sid)
 {
-    return gSkillInfos[sid].msg_desc;
+    return gSkillInfos[sid].msg;
 }
 
 /* Judge list */
