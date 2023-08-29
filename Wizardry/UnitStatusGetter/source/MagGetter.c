@@ -39,5 +39,8 @@ int MagGetterSkills(int status, struct Unit * unit)
     if (SkillTester(unit, SID_FortressRes))
         status -= 3;
 
+    if (SkillTester(unit, SID_RuinedBlade))
+        status -= 5;
+
     return status;
 }

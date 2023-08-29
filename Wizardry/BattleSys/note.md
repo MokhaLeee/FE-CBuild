@@ -6,7 +6,7 @@ ActionCombat
 │       ├── InitBattleUnit: Unit2BattleHook
 │       ├── SetBattleUnitWeapon
 │       ├── BattleInitTargetCanCounter: CheckCanCounter
-│       ├── BattleApplyWeaponTriangleEffect: WtaBonus
+│       ├── BattleApplyWeaponTriangleEffect: WeaponTriangle
 │       ├── BattleGenerate
 │       │   ├── ComputeBattleUnitStats: PreBattleCalc
 │       │   │   ├── ...
@@ -20,14 +20,11 @@ ActionCombat
 │       │           ├── GetBattleUnitHitCount
 │       │           └── BattleGenerateHit
 │       │               ├── BattleUpdateBattleStats
-│       │               ├── BattleGenerateHitTriangleAttack
+│       │               ├── BattleGenerateHitTriangleAttack: removed and put into PreBattleCalc
 │       │               ├── BattleGenerateHitAttributes
 │       │               │   ├── BattleCheckSureShot
-│       │               │   │   └── RollRN gBattleStats.hitRate
 │       │               │   ├── BattleCheckGreatShield
 │       │               │   ├── BattleCheckPierce
-│       │               │   ├── gBattleStats.damage = attack - defense
-│       │               │   ├── RollRN gBattleStats.critRate
 │       │               │   ├── BattleCheckSilencer
 │       │               │   └── BattleCheckPetrify
 │       │               └── BattleGenerateHitEffects

@@ -2,12 +2,20 @@
 #include "constants/classes.h"
 
 #include "skill-system.h"
+#include "constants/skills.h"
 
 const struct SkillRomData gSkillRomJData[0x100] = {
-    [CLASS_EPHRAIM_LORD] = {
+    [CLASS_ASSASSIN] = {
         .skills = {
-            [0] = 0x1,
-            [5] = 0x2,
+            [0]  = SID_Lethality,
+            [10] = SID_DefiantCrit,
+        },
+    },
+
+    [CLASS_ASSASSIN_F] = {
+        .skills = {
+            [0]  = SID_Lethality,
+            [10] = SID_DefiantCrit,
         },
     },
 };
