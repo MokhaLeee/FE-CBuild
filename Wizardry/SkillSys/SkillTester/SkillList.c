@@ -8,6 +8,11 @@
 extern u32 sSkillListNext;
 extern struct SkillList sSkillLists[2];
 
+void ResetSkillLists(void)
+{
+    CpuFastFill16(0, sSkillLists, sizeof(sSkillLists));
+}
+
 struct SkillList * GetUnitSkillList(struct Unit * unit)
 {
     int i;

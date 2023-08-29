@@ -1,9 +1,13 @@
 #ifndef CONFIG_EFX_SKILLS_INSTALLED
 #define CONFIG_EFX_SKILLS_INSTALLED
 
-#define EFX_SKILL_DEFAULT    0x01
-#define EFX_SKILL_MOKHA      0x02
+#include "efx-anim.h"
 
-#define EFX_SKILL_MAX        0x03
+enum EfxSkillIndex {
+    EFX_SKILL_DEFAULT = 0x1,
+    EFX_SKILL_MOKHA,
+
+    EFX_SKILL_MAX
+};
 
 #endif

@@ -1,56 +1,64 @@
 #ifndef CONFIG_SKILLS_INSTALLED
 #define CONFIG_SKILLS_INSTALLED
 
-/* Unit status skills */
-#define SID_HpBonus  0x01
-#define SID_StrBonus 0x02
-#define SID_MagBonus 0x03
-#define SID_SklBonus 0x04
-#define SID_SpdBonus 0x05
-#define SID_LckBonus 0x06
-#define SID_DefBonus 0x07
-#define SID_ResBonus 0x08
-#define SID_MovBonus 0x09
+#include "skill-system.h"
 
-#define SID_DefiantStr   0x0A
-#define SID_DefiantMag   0x0B
-#define SID_DefiantSkl   0x0C
-#define SID_DefiantSpd   0x0D
-#define SID_DefiantLck   0x0E
-#define SID_DefiantDef   0x0F
-#define SID_DefiantRes   0x10
-#define SID_DefiantCrit  0x11
-#define SID_DefiantAvoid 0x12
+enum SkillIndex {
+    SID_DEFAULT = 0x0,
 
-#define SID_Fury         0x13
-#define SID_FuryPlus     0x14
-#define SID_FortressDef  0x15
-#define SID_FortressRes  0x16
-#define SID_LifeAndDeath 0x17
+    /* Unit status skills */
+    SID_HpBonus,
+    SID_StrBonus,
+    SID_MagBonus,
+    SID_SklBonus,
+    SID_SpdBonus,
+    SID_LckBonus,
+    SID_DefBonus,
+    SID_ResBonus,
+    SID_MovBonus,
 
-/* Battle status skills */
-#define SID_Lethality         0x18
-#define SID_Crit              0x19
-#define SID_WatchfulEye       0x1A
-#define SID_CritSword         0x1B
-#define SID_CritAxe           0x1C
-#define SID_CritLance         0x1D
-#define SID_CritBow           0x1E
-#define SID_FaireSword        0x1F
-#define SID_FaireLance        0x20
-#define SID_FaireAxe          0x21
-#define SID_FaireBow          0x22
-#define SID_FaireBMag         0x23
-#define SID_Avoid             0x24
-#define SID_AvoidSword        0x25
-#define SID_RuinedBlade       0x26
-#define SID_RuinedBladePlus   0x27
-#define SID_InfinityEdge      0x28
-#define SID_HeavyBlade        0x29
-#define SID_FlashingBlade     0x2A
-#define SID_HeavyBladePlus    0x2B
-#define SID_FlashingBladePlus 0x2C
-#define SID_LunaAttack        0x2D
-#define SID_SorceryBlade      0x2E
+    SID_DefiantStr,
+    SID_DefiantMag,
+    SID_DefiantSkl,
+    SID_DefiantSpd,
+    SID_DefiantLck,
+    SID_DefiantDef,
+    SID_DefiantRes,
+    SID_DefiantCrit,
+    SID_DefiantAvoid,
+
+    SID_Fury,
+    SID_FuryPlus,
+    SID_FortressDef,
+    SID_FortressRes,
+    SID_LifeAndDeath,
+
+    /* Battle status skills */
+    SID_Lethality,
+    SID_Crit,
+    SID_WatchfulEye,
+    SID_CritSword,
+    SID_CritAxe,
+    SID_CritLance,
+    SID_CritBow,
+    SID_FaireSword,
+    SID_FaireLance,
+    SID_FaireAxe,
+    SID_FaireBow,
+    SID_FaireBMag,
+    SID_Avoid,
+    SID_AvoidSword,
+    SID_RuinedBlade,
+    SID_RuinedBladePlus,
+    SID_InfinityEdge,
+    SID_HeavyBlade,
+    SID_FlashingBlade,
+    SID_HeavyBladePlus,
+    SID_FlashingBladePlus,
+    SID_LunaAttack,
+    SID_SorceryBlade,
+
+    SID_MAX
+};
 
 #endif
