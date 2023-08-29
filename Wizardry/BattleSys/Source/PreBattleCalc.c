@@ -5,6 +5,7 @@
 #include "common-chax.h"
 #include "skill-system.h"
 #include "strmag.h"
+#include "constants/skills.h"
 
 typedef void (* PreBattleCalcFunc) (struct BattleUnit * buA, struct BattleUnit * buB);
 extern const PreBattleCalcFunc PreBattleCalcFuncs[];

@@ -8,6 +8,7 @@
 #include "common-chax.h"
 #include "skill-system.h"
 #include "efx-skill.h"
+#include "constants/efx-skills.h"
 
 #define EFX_SKILL_VALID(aid) ((aid > 0) && (aid < EFX_SKILL_MAX))
 

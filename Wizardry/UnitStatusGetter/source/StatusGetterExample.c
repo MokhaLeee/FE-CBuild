@@ -7,6 +7,9 @@
 
 #include "common-chax.h"
 #include "debug-kit.h"
+#include "skill-system.h"
+#include "status-getter.h"
+#include "constants/skills.h"
 
 /* LynJump! */
 int StatusGetterTest(int status, struct Unit * unit)

@@ -3,6 +3,8 @@
 
 #include "efx-anim.h"
 #include "skill-system.h"
+#include "constants/skills.h"
+#include "constants/efx-skills.h"
 
 extern const struct EfxAnimConf EfxSkillVanilla, EfxSkillMokha;
 

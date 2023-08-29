@@ -1,5 +1,10 @@
 #include "global.h"
+
+#include "common-chax.h"
 #include "skill-system.h"
+#include "constants/skills.h"
+#include "constants/texts.h"
+#include "constants/icons.h"
 
 const struct SkillInfo gSkillInfos[0x100] = {
     [SID_HpBonus] = {
@@ -93,6 +98,98 @@ const struct SkillInfo gSkillInfos[0x100] = {
     [SID_LifeAndDeath] = {
         .msg  = MSG_SKILL_LifeAndDeath,
         .icon = ICON_SkillIcon_LifeAndDeath,
+    },
+    [SID_Lethality] = {
+        .msg  = MSG_SKILL_Lethality,
+        .icon = ICON_SkillIcon_Lethality,
+    },
+    [SID_Crit] = {
+        .msg  = MSG_SKILL_Crit,
+        .icon = ICON_SkillIcon_Crit,
+    },
+    [SID_WatchfulEye] = {
+        .msg  = MSG_SKILL_WatchfulEye,
+        .icon = ICON_SkillIcon_WatchfulEye,
+    },
+    [SID_CritSword] = {
+        .msg  = MSG_SKILL_CritSword,
+        .icon = ICON_SkillIcon_CritSword,
+    },
+    [SID_CritAxe] = {
+        .msg  = MSG_SKILL_CritAxe,
+        .icon = ICON_SkillIcon_CritAxe,
+    },
+    [SID_CritLance] = {
+        .msg  = MSG_SKILL_CritLance,
+        .icon = ICON_SkillIcon_CritLance,
+    },
+    [SID_CritBow] = {
+        .msg  = MSG_SKILL_CritBow,
+        .icon = ICON_SkillIcon_CritBow,
+    },
+    [SID_FaireSword] = {
+        .msg  = MSG_SKILL_FaireSword,
+        .icon = ICON_SkillIcon_FaireSword,
+    },
+    [SID_FaireLance] = {
+        .msg  = MSG_SKILL_FaireLance,
+        .icon = ICON_SkillIcon_FaireLance,
+    },
+    [SID_FaireAxe] = {
+        .msg  = MSG_SKILL_FaireAxe,
+        .icon = ICON_SkillIcon_FaireAxe,
+    },
+    [SID_FaireBow] = {
+        .msg  = MSG_SKILL_FaireBow,
+        .icon = ICON_SkillIcon_FaireBow,
+    },
+    [SID_FaireBMag] = {
+        .msg  = MSG_SKILL_FaireBMag,
+        .icon = ICON_SkillIcon_FaireBMag,
+    },
+    [SID_Avoid] = {
+        .msg  = MSG_SKILL_Avoid,
+        .icon = ICON_SkillIcon_Avoid,
+    },
+    [SID_AvoidSword] = {
+        .msg  = MSG_SKILL_AvoidSword,
+        .icon = ICON_SkillIcon_AvoidSword,
+    },
+    [SID_RuinedBlade] = {
+        .msg  = MSG_SKILL_RuinedBlade,
+        .icon = ICON_SkillIcon_RuinedBlade,
+    },
+    [SID_RuinedBladePlus] = {
+        .msg  = MSG_SKILL_RuinedBladePlus,
+        .icon = ICON_SkillIcon_WIP,
+    },
+    [SID_InfinityEdge] = {
+        .msg  = MSG_SKILL_InfinityEdge,
+        .icon = ICON_SkillIcon_InfinityEdge,
+    },
+    [SID_HeavyBlade] = {
+        .msg  = MSG_SKILL_HeavyBlade,
+        .icon = ICON_SkillIcon_HeavyBlade,
+    },
+    [SID_FlashingBlade] = {
+        .msg  = MSG_SKILL_FlashingBlade,
+        .icon = ICON_SkillIcon_FlashingBlade,
+    },
+    [SID_HeavyBladePlus] = {
+        .msg  = MSG_SKILL_HeavyBladePlus,
+        .icon = ICON_SkillIcon_HeavyBladePlus,
+    },
+    [SID_FlashingBladePlus] = {
+        .msg  = MSG_SKILL_FlashingBladePlus,
+        .icon = ICON_SkillIcon_FlashingBladePlus,
+    },
+    [SID_LunaAttack] = {
+        .msg  = MSG_SKILL_LunaAttack,
+        .icon = ICON_SkillIcon_LunaAttack,
+    },
+    [SID_SorceryBlade] = {
+        .msg  = MSG_SKILL_SorceryBlade,
+        .icon = ICON_SkillIcon_SorceryBlade,
     },
 };
 

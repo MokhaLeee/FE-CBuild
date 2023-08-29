@@ -4,7 +4,10 @@
 #include "constants/characters.h"
 #include "constants/items.h"
 
+#include "common-chax.h"
+#include "skill-system.h"
 #include "status-getter.h"
+#include "constants/skills.h"
 
 int StatusGetterPadFunc(int status, struct Unit * unit)
 {

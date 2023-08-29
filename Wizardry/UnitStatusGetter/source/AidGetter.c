@@ -2,7 +2,10 @@
 #include "bmunit.h"
 #include "bmitem.h"
 
+#include "common-chax.h"
+#include "skill-system.h"
 #include "status-getter.h"
+#include "constants/skills.h"
 
 int _GetUnitAid(struct Unit * unit)
 {
