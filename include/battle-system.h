@@ -20,5 +20,4 @@ struct WeaponTriangleConf {
     s8 bonus_silencer;
 };
 
-extern const struct WeaponTriangleConf gWeaponTriangleConfs[];
 extern struct WeaponTriangleConf const * const gpWeaponTriangleConfs;

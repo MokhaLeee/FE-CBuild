@@ -5,7 +5,7 @@
 #include "battle-system.h"
 #include "constants/skills.h"
 
-const struct WeaponTriangleConf gWeaponTriangleConfs[] = {
+static const struct WeaponTriangleConf sWeaponTriangleConfs[] = {
     {ITYPE_SWORD, ITYPE_AXE,   SID_AxeBreaker,   0, 0, 0, 0, 20, 20, 0, 0, 0},
     {ITYPE_AXE,   ITYPE_LANCE, SID_LanceBreaker, 0, 0, 0, 0, 20, 20, 0, 0, 0},
     {ITYPE_LANCE, ITYPE_SWORD, SID_SwordBreaker, 0, 0, 0, 0, 20, 20, 0, 0, 0},
@@ -32,6 +32,5 @@ const struct WeaponTriangleConf gWeaponTriangleConfs[] = {
     {0}
 };
 
-struct WeaponTriangleConf const * const gpWeaponTriangleConfs = gWeaponTriangleConfs;
-
-FEB_IDENTIFIER(gWeaponTriangleConfs);
+struct WeaponTriangleConf const * const gpWeaponTriangleConfs = sWeaponTriangleConfs;
+FEB_IDENTIFIER(gpWeaponTriangleConfs);

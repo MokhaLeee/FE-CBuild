@@ -8,11 +8,14 @@
 
 extern const struct EfxAnimConf EfxSkillVanilla, EfxSkillMokha;
 
-struct EfxAnimConf const * const gEfxSkillAnims[] = {
+static struct EfxAnimConf const * const sEfxSkillAnims[] = {
     [EFX_SKILL_DEFAULT] = &EfxSkillVanilla,
     [EFX_SKILL_MOKHA] = &EfxSkillMokha,
     NULL
 };
+
+struct EfxAnimConf const * const * const gpEfxSkillAnims = sEfxSkillAnims;
+FEB_IDENTIFIER(gpEfxSkillAnims);
 
 const struct SkillAnimInfo gSkillAnimInfos[0x100] = {
     [0x01] = {
@@ -27,5 +30,4 @@ const struct SkillAnimInfo gSkillAnimInfos[0x100] = {
     },
 };
 
-FEB_IDENTIFIER(gEfxSkillAnims);
 FEB_IDENTIFIER(gSkillAnimInfos);

@@ -62,9 +62,6 @@ struct SkillRomData {
 
 extern const struct SkillRomData gSkillRomPData[0x100], gSkillRomJData[0x100];
 
-/* Efx skill */
-extern struct EfxAnimConf const * const gEfxSkillAnims[];
-
 struct SkillAnimInfo {
     u8 index;
     u8 priority;
@@ -78,11 +75,6 @@ static inline int GetEfxSkillIndex(const u8 sid)
     return gSkillAnimInfos[sid].index;
 }
 
-static inline const struct EfxAnimConf * GetEfxSkillConf(const u8 sid)
-{
-    return gEfxSkillAnims[GetEfxSkillIndex(sid)];
-}
-
 static inline int GetEfxSkillPriority(const u8 sid)
 {
     return gSkillAnimInfos[sid].priority;
@@ -91,4 +83,12 @@ static inline int GetEfxSkillPriority(const u8 sid)
 static inline int GetEfxSkillSfx(const u8 sid)
 {
     return gSkillAnimInfos[sid].sfx;
+}
+
+/* Efx skill */
+extern struct EfxAnimConf const * const * const gpEfxSkillAnims;
+
+static inline const struct EfxAnimConf * GetEfxSkillConf(const u8 sid)
+{
+    return gpEfxSkillAnims[GetEfxSkillIndex(sid)];
 }
