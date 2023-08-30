@@ -237,6 +237,15 @@ static void NewUnpackSuspandUnit(struct EmsPackedSusUnit * src, struct Unit * ds
 
     for (i = 0; i < 0x5; i++)
         dst->items[i] = src->items[i];
+
+    if (dst->exp > 99)
+        dst->exp = -1;
+
+    if (0x3F == dst->xPos)
+        dst->xPos = -1;
+
+    if (0x3F == dst->yPos)
+        dst->yPos = -1;
 }
 
 void MSU_SaveBlueUnits(u8 * dst, const u32 size)

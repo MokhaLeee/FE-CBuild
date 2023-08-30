@@ -142,6 +142,15 @@ static void NewUnpackSaveUnit(struct EmsPackedSavUnit * src, struct Unit * dst)
 
     SetUnitHp(dst, GetUnitMaxHp(dst));
     dst->supportBits = 0;
+
+    if (dst->exp > 99)
+        dst->exp = -1;
+
+    if (0x3F == dst->xPos)
+        dst->xPos = -1;
+
+    if (0x3F == dst->yPos)
+        dst->yPos = -1;
 }
 
 void MSA_SaveUnits(u8 * dst, const u32 size)
