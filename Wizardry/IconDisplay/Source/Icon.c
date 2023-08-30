@@ -79,8 +79,6 @@ u16 GetIconTileIndex(int icon)
     src = GetIconGfx(icon);
     dst = (void *)(BG_VRAM + tile * CHR_SIZE);
 
-    LogPrintf("%s: dst %p, dst %p", __func__, dst);
-
     if (src)
         RegisterDataMove(src, dst, CHR_SIZE * 4);
     else
@@ -95,8 +93,6 @@ void LoadIconObjectGraphics(int icon, int chr)
 {
     const u8 * src = GetIconGfx(icon);
     u8 * dst = OBJ_VRAM0 + CHR_SIZE * (chr & 0x3FF);
-
-    LogPrintf("%s: dst %p", __func__, dst);
 
     if (!src)
     {
