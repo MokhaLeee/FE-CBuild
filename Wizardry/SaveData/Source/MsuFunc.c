@@ -8,6 +8,7 @@
 
 #include "debug-kit.h"
 #include "save-data.h"
+#include "strmag.h"
 
 void MSU_SavePlaySt(u8 * dst, const u32 size)
 {
@@ -134,7 +135,7 @@ static void NewPackSuspandUnit(struct Unit * src, struct EmsPackedSusUnit * dst)
 
     dst->max_hp = src->maxHP;
     dst->pow = src->pow;
-    dst->mag = src->_u3A; /* w.i.p */
+    dst->mag = UNIT_MAG(src);
     dst->skl = src->skl;
     dst->spd = src->spd;
     dst->lck = src->lck;
@@ -191,7 +192,7 @@ static void NewUnpackSuspandUnit(struct EmsPackedSusUnit * src, struct Unit * ds
     dst->pClassData = GetClassData(src->jid);
     dst->maxHP = src->max_hp;
     dst->pow = src->pow;
-    dst->_u3A = src->mag; /* w.i.p */
+    UNIT_MAG(dst) = src->mag;
     dst->skl = src->skl;
     dst->spd = src->spd;
     dst->lck = src->lck;

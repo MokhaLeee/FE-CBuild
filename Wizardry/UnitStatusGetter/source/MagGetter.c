@@ -5,12 +5,13 @@
 #include "common-chax.h"
 #include "skill-system.h"
 #include "status-getter.h"
+#include "strmag.h"
 #include "constants/skills.h"
 
 int _GetUnitMagic(struct Unit * unit)
 {
     const StatusGetterFunc_t * it;
-    int status = unit->_u3A;
+    int status = UNIT_MAG(unit);
 
     for (it = gMagGetters; *it; it++)
         status = (*it)(status, unit);

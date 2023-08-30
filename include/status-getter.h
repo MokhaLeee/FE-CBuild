@@ -11,7 +11,7 @@ extern const StatusGetterFunc_t gMovGetters[], gConGetters[], gAidGetters[];
 
 int HpMaxGetter(struct Unit * unit);
 int PowGetter(struct Unit * unit);
-// int MagGetter(struct Unit * unit);
+int MagGetter(struct Unit * unit);
 int SklGetter(struct Unit * unit);
 int SpdGetter(struct Unit * unit);
 int DefGetter(struct Unit * unit);

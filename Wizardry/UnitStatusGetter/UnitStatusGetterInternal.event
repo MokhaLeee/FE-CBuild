@@ -31,7 +31,7 @@ _thumb(PowGetter)
 
 ORG CURRENTOFFSET
 _thumb(MagGetter)
-    // jumpToHack(_GetUnitMagic)
+    jumpToHack(_GetUnitMagic)
     PROTECT $191B0 $191CC
 
 ORG $0191D0

@@ -9,3 +9,4 @@ ALIGN 4
 #include "SaveData/SaveData.event"
 #include "SkillSys/SkillSys.event"
 #include "BattleSys/BattleSys.event"
+#include "BattleUnitHook/BattleUnitHook.event"
