@@ -19,7 +19,7 @@ STATIC_DECLAR int GetIconUsedSlot(const u32 icon)
     for (i = 0; i < MAX_SIMULTANEOUS_ICONS; i++)
     {
         if (icon == gIconReSts[i])
-            return i;
+            return i + 1;
     }
 
     return 0;
@@ -33,7 +33,7 @@ STATIC_DECLAR int GetIconNewSlot(const u32 icon)
         if ((u16)-1 == gIconReSts[i])
         {
             gIconReSts[i] = icon;
-            return i;
+            return i + 1;
         }
     }
 
@@ -61,7 +61,6 @@ void ClearIconGfx(u32 icon)
     }
 }
 
-
 /* LynJump */
 u16 GetIconTileIndex(int icon)
 {
@@ -78,7 +77,9 @@ u16 GetIconTileIndex(int icon)
     tile = GetIconGfxTileIndex(slot);
 
     src = GetIconGfx(icon);
-    dst = (u8 *)BG_VRAM + tile * CHR_SIZE;
+    dst = (void *)(BG_VRAM + tile * CHR_SIZE);
+
+    LogPrintf("%s: dst %p, dst %p", __func__, dst);
 
     if (src)
         RegisterDataMove(src, dst, CHR_SIZE * 4);
@@ -94,6 +95,8 @@ void LoadIconObjectGraphics(int icon, int chr)
 {
     const u8 * src = GetIconGfx(icon);
     u8 * dst = OBJ_VRAM0 + CHR_SIZE * (chr & 0x3FF);
+
+    LogPrintf("%s: dst %p", __func__, dst);
 
     if (!src)
     {
