@@ -86,7 +86,7 @@ bool SkillTesterFast(struct Unit * unit, const u8 sid)
     {
         for (i = 0; i < list->amt; i++)
         {
-            if (list->data[i] == sid)
+            if (list->sid[i] == sid)
                 return true;
         }
     }

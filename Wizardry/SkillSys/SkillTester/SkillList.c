@@ -41,7 +41,7 @@ struct SkillList * GetUnitSkillList(struct Unit * unit)
         {
             if (SkillTesterBasic(unit, i) == true)
             {
-                list->data[list->amt] = i;
+                list->sid[list->amt] = i;
 
                 list->amt++;
                 if (list->amt > SKILL_LIST_MAX_AMT)

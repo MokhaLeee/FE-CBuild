@@ -10,8 +10,6 @@
 #include "efx-skill.h"
 #include "constants/efx-skills.h"
 
-#define EFX_SKILL_VALID(aid) ((aid > 0) && (aid < EFX_SKILL_MAX))
-
 static void EfxSkillOnInit(struct ProcEfxSkillRework * proc)
 {
     return;
@@ -66,7 +64,7 @@ void NewEfxSkill(struct Anim * anim, int sid)
     u8 aid = GetEfxSkillIndex(sid);
     const struct EfxAnimConf * conf = GetEfxSkillConf(aid);
 
-    if (!(SKILL_VALID(sid)) || !EFX_SKILL_VALID(aid) || !conf)
+    if (!(SKILL_VALID(sid)) || !IS_ROM_DATA(conf))
         return;
 
     proc = Proc_Start(ProcScr_EfxSkill, PROC_TREE_3);

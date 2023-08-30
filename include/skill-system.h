@@ -24,7 +24,7 @@ u16 GetSkillInfoDesc(const u8 sid);
 struct SkillList {
     s8 uid;
     u8 amt;
-    u8 data[SKILL_LIST_MAX_AMT];
+    u8 sid[SKILL_LIST_MAX_AMT];
 };
 
 struct SkillList * GetUnitSkillList(struct Unit * unit);
@@ -47,7 +47,7 @@ struct SkillRomData {
 extern const struct SkillRomData gSkillRomPData[0x100], gSkillRomJData[0x100];
 
 struct SkillAnimInfo {
-    u8 index;
+    u8 aid;
     u8 priority;
     u16 sfx;
 };
@@ -60,4 +60,4 @@ int GetEfxSkillSfx(const u8 sid);
 
 /* Efx skill */
 extern struct EfxAnimConf const * const * const gpEfxSkillAnims;
-const struct EfxAnimConf * GetEfxSkillConf(const u8 sid);
+const struct EfxAnimConf * GetEfxSkillConf(const u8 aid);
