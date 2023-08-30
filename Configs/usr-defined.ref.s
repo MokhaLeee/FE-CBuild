@@ -17,3 +17,6 @@ SET_DATA sSkillListNext, 0x02026E30
 SET_DATA sSkillLists, 0x02026E34
 
 SET_DATA FreeRamSpaceTail, 0x02026E74
+
+/* IconDisplay */
+SET_DATA gIconReSts, 0x02026A90 @ DrawnIconLookupTable

@@ -11,4 +11,7 @@
 /* If set as 1, CHAX may print debug message to NO$GBA and mGBA console */
 #define CONFIG_USE_DEBUG 1
 
+/* Icon sheet amount */
+#define ICON_SHEET_AMT 4
+
 #endif /* CONFIG_INSTALLED */
