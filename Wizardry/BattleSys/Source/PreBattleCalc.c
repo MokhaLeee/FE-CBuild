@@ -8,6 +8,7 @@
 #include "constants/skills.h"
 
 typedef void (* PreBattleCalcFunc) (struct BattleUnit * buA, struct BattleUnit * buB);
+void PreBattleCalcWeaponTriangle(struct BattleUnit * attacker, struct BattleUnit * defender);
 
 /* LynJump */
 void ComputeBattleUnitDefense(struct BattleUnit * attacker, struct BattleUnit* defender) {
@@ -184,28 +185,6 @@ STATIC_DECLAR void PreBattlePostCalcSkills(struct BattleUnit * attacker, struct 
     }
 }
 
-STATIC_DECLAR void PreBattleCalcWeaponTriangle(struct BattleUnit * attacker, struct BattleUnit * defender)
-{
-    int atk_weight = 0;
-    int def_weight = 0;
-
-    /* Just a UI identifier for BattleForcase UI */
-    if (atk_weight > def_weight)
-    {
-        attacker->wTriangleHitBonus = +1;
-        attacker->wTriangleDmgBonus = +1;
-        defender->wTriangleHitBonus = -1;
-        defender->wTriangleDmgBonus = -1;
-    }
-    else
-    {
-        attacker->wTriangleHitBonus = -1;
-        attacker->wTriangleDmgBonus = -1;
-        defender->wTriangleHitBonus = +1;
-        defender->wTriangleDmgBonus = +1;
-    }
-}
-
 STATIC_DECLAR void PreBattleCalcSilencerRate(struct BattleUnit * attacker, struct BattleUnit * defender)
 {
     if (UNIT_CATTRIBUTES(&defender->unit) & CA_BOSS)
@@ -230,19 +209,6 @@ void ComputeBattleUnitStats(struct BattleUnit * attacker, struct BattleUnit * de
     const PreBattleCalcFunc * it;
     for (it = PreBattleCalcFuncs; *it; it++)
         (*it)(attacker, defender);
-}
-
-/* LynJump */
-void BattleApplyWeaponTriangleEffect(struct BattleUnit * attacker, struct BattleUnit * defender)
-{
-    /*
-     * Idea:
-     * Since vanilla WTA bonus can only get hit & dmg bonus.
-     * So here we null the vanilla WTA bonus
-     * But just calculate in Pre-Battle calc (PreBattleCalcWeaponTriangle)
-     * now WTA-bonus in BattleUnit struct is just for BkSel UI.
-     */
-    return;
 }
 
 /* LynJump */

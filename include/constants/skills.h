@@ -58,6 +58,13 @@ enum SkillIndex {
     SID_LunaAttack,
     SID_SorceryBlade,
 
+    /* Weapon triangle */
+    SID_SwordBreaker,
+    SID_AxeBreaker,
+    SID_LanceBreaker,
+    SID_BowBreaker,
+    SID_BMagBreaker,
+
     SID_MAX
 };
 

@@ -191,6 +191,26 @@ const struct SkillInfo gSkillInfos[0x100] = {
         .msg  = MSG_SKILL_SorceryBlade,
         .icon = ICON_SkillIcon_SorceryBlade,
     },
+    [SID_SwordBreaker] = {
+        .msg  = MSG_SKILL_SwordBreaker,
+        .icon = ICON_SkillIcon_SwordBreaker,
+    },
+    [SID_AxeBreaker] = {
+        .msg  = MSG_SKILL_AxeBreaker,
+        .icon = ICON_SkillIcon_AxeBreaker,
+    },
+    [SID_LanceBreaker] = {
+        .msg  = MSG_SKILL_LanceBreaker,
+        .icon = ICON_SkillIcon_LanceBreaker,
+    },
+    [SID_BowBreaker] = {
+        .msg  = MSG_SKILL_BowBreaker,
+        .icon = ICON_SkillIcon_BowBreaker,
+    },
+    [SID_BMagBreaker] = {
+        .msg  = MSG_SKILL_BMagBreaker,
+        .icon = ICON_SkillIcon_WIP,
+    },
 };
 
 FEB_IDENTIFIER(gSkillInfos);
