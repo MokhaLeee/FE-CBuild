@@ -1,6 +1,8 @@
 #ifndef SKILL_SYSTEM_INSTALLED
 #define SKILL_SYSTEM_INSTALLED
 
+#include "Source/Infos.lyn.event"
+
 #include "SkillTester/SkillList.lyn.event"
 #include "SkillTester/SkillTester.lyn.event"
 

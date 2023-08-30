@@ -16,16 +16,8 @@ struct SkillInfo {
 };
 
 extern const struct SkillInfo gSkillInfos[0x100];
-
-static inline const u8 * GetSkillInfoIcon(const u8 sid)
-{
-    return gSkillInfos[sid].icon;
-}
-
-static inline u16 GetSkillInfoDesc(const u8 sid)
-{
-    return gSkillInfos[sid].msg;
-}
+const u8 * GetSkillInfoIcon(const u8 sid);
+u16 GetSkillInfoDesc(const u8 sid);
 
 /* Judge list */
 #define SKILL_LIST_MAX_AMT 0x1E
@@ -37,16 +29,8 @@ struct SkillList {
 
 struct SkillList * GetUnitSkillList(struct Unit * unit);
 void ResetSkillLists(void);
-
-static inline int GetSkillListAmt(struct Unit * unit)
-{
-    return GetUnitSkillList(unit)->amt;
-}
-
-static inline void DisableUnitSkills(struct Unit * unit)
-{
-    GetUnitSkillList(unit)->amt = 0;
-}
+int GetSkillListAmt(struct Unit * unit);
+void DisableUnitSkills(struct Unit * unit);
 
 /* Skill tetsers */
 bool SkillTesterBasic(struct Unit * unit, const u8 sid);
@@ -70,25 +54,10 @@ struct SkillAnimInfo {
 
 extern const struct SkillAnimInfo gSkillAnimInfos[0x100];
 
-static inline int GetEfxSkillIndex(const u8 sid)
-{
-    return gSkillAnimInfos[sid].index;
-}
-
-static inline int GetEfxSkillPriority(const u8 sid)
-{
-    return gSkillAnimInfos[sid].priority;
-}
-
-static inline int GetEfxSkillSfx(const u8 sid)
-{
-    return gSkillAnimInfos[sid].sfx;
-}
+int GetEfxSkillIndex(const u8 sid);
+int GetEfxSkillPriority(const u8 sid);
+int GetEfxSkillSfx(const u8 sid);
 
 /* Efx skill */
 extern struct EfxAnimConf const * const * const gpEfxSkillAnims;
-
-static inline const struct EfxAnimConf * GetEfxSkillConf(const u8 sid)
-{
-    return gpEfxSkillAnims[GetEfxSkillIndex(sid)];
-}
+const struct EfxAnimConf * GetEfxSkillConf(const u8 sid);

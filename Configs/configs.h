@@ -8,4 +8,7 @@
 #define FreeSpaceFont 0xEFB2E0
 #define FreeSpaceFontSize 0xE4D20
 
+/* If set as 1, CHAX may print debug message to NO$GBA and mGBA console */
+#define CONFIG_USE_DEBUG 1
+
 #endif /* CONFIG_INSTALLED */

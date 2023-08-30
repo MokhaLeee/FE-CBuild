@@ -199,6 +199,7 @@ STATIC_DECLAR const PreBattleCalcFunc PreBattleCalcFuncs[] = {
     PreBattleCalcWeaponTriangle,
     PreBattleCalcSkills,
 
+    PreBattlePostCalcSkills,
     PreBattleCalcEnd,
     NULL,
 };

@@ -4,8 +4,6 @@
 #include "bmunit.h"
 
 #include "../Configs/configs.h"
-
-#define CONFIG_USE_DEBUG 1
 #include "debug-kit.h"
 
 #define UNIT_LEVEL_MAX_RE UNIT_LEVEL_MAX
