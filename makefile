@@ -197,6 +197,7 @@ CLEAN_BUILD += $(BANIM_DIR)
 # ============
 
 PNG_FILES := $(shell find $(HACK_DIRS) -type f -name '*.png')
+TSA_FILES := $(shell find $(HACK_DIRS) -type f -name '*.tsa')
 
 %.4bpp: %.png
 	@echo "[GEN]	$@"
@@ -211,6 +212,7 @@ PNG_FILES := $(shell find $(HACK_DIRS) -type f -name '*.png')
 	@$(COMPRESS) $< $@
 
 CLEAN_FILES += $(PNG_FILES:.png=.gbapal) $(PNG_FILES:.png=.4bpp) $(PNG_FILES:.png=.4bpp.lz)
+CLEAN_FILES += $(TSA_FILES:.tsa=.tsa.lz)
 
 %.img.bin %.map.bin %.pal.bin: %.png
 	@echo "[GEN]	$@"

@@ -1,0 +1,6 @@
+#ifndef LVUP_INSTALLED
+#define LVUP_INSTALLED
+
+#include "Source/GrowthGetter.lyn.event"
+
+#endif /* LVUP_INSTALLED */

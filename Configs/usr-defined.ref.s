@@ -15,8 +15,9 @@ SET_DATA FreeRamSpaceEntry, 0x02026E30
 
 SET_DATA sSkillListNext, 0x02026E30
 SET_DATA sSkillLists, 0x02026E34
+SET_DATA sStatScreenPage1BarMax, 0x02026E74
 
-SET_DATA FreeRamSpaceTail, 0x02026E74
+SET_DATA FreeRamSpaceTail, 0x02026E78
 
 /* IconDisplay */
 SET_DATA gIconReSts, 0x02026A90 @ DrawnIconLookupTable

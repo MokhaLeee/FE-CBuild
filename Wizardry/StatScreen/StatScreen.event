@@ -1,0 +1,31 @@
+#ifndef STATSCREEN_INSTALLED
+#define STATSCREEN_INSTALLED
+
+#include "DrawPages/Utils.lyn.event"
+#include "DrawPages/DrawPage1.lyn.event"
+
+/* Text colors */
+ALIGN 4
+ExpandedTextPals:
+    #include "Data/NewPalette.event"
+
+/* TSA for Page2 */
+ALIGN 4
+Page2SubWindow:
+    #incbin "Data/Page2SubWindow.tsa.lz"
+
+/* Upper name objs */
+ALIGN 4
+Gfx_StatScreenObj:
+    #incbin "Data/Gfx_StatScreenObj.4bpp.lz"
+
+PUSH
+    /* Replace rescue debuff arrow for Page1 */
+    ORG $0883C2
+    BYTE $48
+
+    ORG $088650
+    POIN Gfx_StatScreenObj
+POP
+
+#endif /* STATSCREEN_INSTALLED */
