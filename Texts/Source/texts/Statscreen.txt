@@ -1,0 +1,2 @@
+## MSG_MSS_BattleAmt
+Total[X]

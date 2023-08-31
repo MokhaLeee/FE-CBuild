@@ -3,11 +3,14 @@
 #include "hardware.h"
 #include "bmunit.h"
 #include "statscreen.h"
+#include "bmreliance.h"
+#include "icon.h"
 
 #include "common-chax.h"
 #include "stat-screen.h"
 #include "strmag.h"
 #include "lvup.h"
+#include "constants/texts.h"
 
 extern struct Font * gActiveFont;
 extern int sStatScreenPage1BarMax;
@@ -206,29 +209,22 @@ STATIC_DECLAR void DrawPage1TextCommon(void)
         GetStringFromIndex(0x4F8)); // Aid
 
     PutDrawText(
-        &gStatScreen.text[STATSCREEN_TEXT_ITEM1],
-        gBmFrameTmap0 + TILEMAP_INDEX(0x9, 0x7),
-        TEXT_COLOR_SYSTEM_GOLD,
-        0, 0,
-        GetStringFromIndex(0xD4C));
-
-    PutDrawText(
         &gStatScreen.text[STATSCREEN_TEXT_SUPPORT4],
-        gBmFrameTmap0 + TILEMAP_INDEX(0x9, 0x9),
+        gBmFrameTmap0 + TILEMAP_INDEX(0x9, 0x7),
         TEXT_COLOR_SYSTEM_GOLD,
         0, 0,
         GetStringFromIndex(0x4F1)); // Affin
 
     PutDrawText(
         &gStatScreen.text[STATSCREEN_TEXT_RESCUENAME],
-        gBmFrameTmap0 + TILEMAP_INDEX(0x9, 0xB),
+        gBmFrameTmap0 + TILEMAP_INDEX(0x9, 0x9),
         TEXT_COLOR_SYSTEM_GOLD,
         0, 0,
         GetStringFromIndex(0x4F9)); // Trv
 
     PutDrawText(
         &gStatScreen.text[STATSCREEN_TEXT_STATUS],
-        gBmFrameTmap0 + TILEMAP_INDEX(0x9, 0xD),
+        gBmFrameTmap0 + TILEMAP_INDEX(0x9, 0xB),
         TEXT_COLOR_SYSTEM_GOLD,
         0, 0,
         GetStringFromIndex(0x4FA)); // Cond
@@ -274,6 +270,123 @@ void DrawPage1ValueReal(void)
                     UNIT_RES_MAX(unit));
 }
 
+void DrawPage1ValueCommon(void)
+{
+    struct Unit * unit = gStatScreen.unit;
+
+    DrawStatWithBarRework(7, 0xD, 0x1,
+                    UNIT_MOV(unit),
+                    UNIT_MOV(unit),
+                    UNIT_MOV_MAX(unit));
+
+    DrawStatWithBarRework(8, 0xD, 0x3,
+                    UNIT_CON_BASE(unit),
+                    UNIT_CON_BASE(unit),
+                    UNIT_CON_MAX(unit));
+
+    // displaying unit aid
+    PutNumberOrBlank(
+        gBmFrameTmap0 + TILEMAP_INDEX(0xD, 0x5),
+        TEXT_COLOR_SYSTEM_BLUE,
+        GetUnitAid(unit));
+
+    // displaying unit aid icon
+    DrawIcon(gBmFrameTmap0 + TILEMAP_INDEX(0xE, 0x5),
+             GetUnitAidIconId(UNIT_CATTRIBUTES(unit)),
+             TILEREF(0, STATSCREEN_BGPAL_EXTICONS));
+
+    // displaying unit rescue name
+    Text_InsertDrawString(
+        &gStatScreen.text[STATSCREEN_TEXT_RESCUENAME],
+        24, TEXT_COLOR_SYSTEM_BLUE,
+        GetUnitRescueName(unit));
+
+    // displaying unit status name and turns
+    if (unit->statusIndex == UNIT_STATUS_NONE)
+    {
+        Text_InsertDrawString(
+            &gStatScreen.text[STATSCREEN_TEXT_STATUS],
+            24, TEXT_COLOR_SYSTEM_BLUE,
+            GetUnitStatusName(unit));
+    }
+    else
+    {
+        Text_InsertDrawString(
+            &gStatScreen.text[STATSCREEN_TEXT_STATUS],
+            22, TEXT_COLOR_SYSTEM_BLUE,
+            GetUnitStatusName(unit));
+    }
+
+    // display turns
+    if (gStatScreen.unit->statusIndex != UNIT_STATUS_NONE)
+    {
+        PutNumberSmall(
+            gBmFrameTmap0 + TILEMAP_INDEX(0xF, 0xB),
+            0, unit->statusDuration);
+    }
+
+    // display affininity icon
+    if (unit->pCharacterData->affinity)
+    {
+        DrawIcon(
+            gBmFrameTmap0 + TILEMAP_INDEX(0xC, 0x7),
+            GetUnitAffinityIcon(unit),
+            TILEREF(0, STATSCREEN_BGPAL_EXTICONS));
+    }
+    else
+    {
+        Text_InsertDrawString(
+            &gStatScreen.text[STATSCREEN_TEXT_SUPPORT4],
+            24, TEXT_COLOR_SYSTEM_BLUE,
+            GetStringFromIndex(0x536));
+    }
+}
+
+int GetUnitBattleAmt(struct Unit * unit)
+{
+    int status = 0;
+    status += GetUnitPower(unit);
+    status += GetUnitMagic(unit);
+    status += GetUnitSkill(unit);
+    status += GetUnitSpeed(unit);
+    status += GetUnitLuck(unit);
+    status += GetUnitDefense(unit);
+    status += GetUnitResistance(unit);
+
+    return status;
+}
+
+void DrawPage1BattleAmt(void)
+{
+    int amt = GetUnitBattleAmt(gStatScreen.unit);
+    int max = 50 * 7;
+
+    if (amt > max)
+        amt = max;
+
+    PutDrawText(
+        &gStatScreen.text[STATSCREEN_TEXT_ITEM3],
+        gBmFrameTmap0 + TILEMAP_INDEX(0x9, 0xD),
+        TEXT_COLOR_SYSTEM_GOLD, 0, 0,
+        GetStringFromIndex(MSG_MSS_BattleAmt));
+
+    if (amt < 100)
+        PutNumberOrBlank(gBmFrameTmap0 + TILEMAP_INDEX(0xD, 0xD),
+                        amt == max
+                            ? TEXT_COLOR_SYSTEM_GREEN
+                            : TEXT_COLOR_SYSTEM_BLUE,
+                        amt);
+    else
+        PutNumberOrBlank(gBmFrameTmap0 + TILEMAP_INDEX(0xE, 0xD),
+                        amt == max
+                            ? TEXT_COLOR_SYSTEM_GREEN
+                            : TEXT_COLOR_SYSTEM_BLUE,
+                        amt);
+    DrawStatWithBarReworkExt(
+        0x9, 0xD, 0xD,
+        amt, amt, max, max);
+}
+
 /* LynJump */
 void DisplayPage0(void)
 {
@@ -300,4 +413,6 @@ void DisplayPage0(void)
     InstallExpandedTextPal();
     DrawPage1TextCommon();
     DrawPage1ValueReal();
+    DrawPage1ValueCommon();
+    DrawPage1BattleAmt();
 }
