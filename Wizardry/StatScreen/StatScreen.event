@@ -3,8 +3,10 @@
 
 #include "DrawPages/Utils.lyn.event"
 #include "DrawPages/DrawPage1.lyn.event"
+#include "DrawPages/DrawPage3.lyn.event"
 #include "DrawPages/HelpBox.lyn.event"
 #include "DrawPages/HelpBoxPage1.lyn.event"
+#include "DrawPages/HelpBoxPage3.lyn.event"
 #include "DrawPages/LynJump.event"
 
 /* Text colors */

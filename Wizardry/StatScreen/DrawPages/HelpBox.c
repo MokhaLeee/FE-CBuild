@@ -23,7 +23,7 @@ void StartStatScreenHelp(int pageid, struct Proc * proc)
             break;
 
         case STATSCREEN_PAGE_2:
-            gStatScreen.help = &gHelpInfo_Ss2Rank0;
+            gStatScreen.help = RTextPageSkill;
             break;
 
         } // switch (pageid)

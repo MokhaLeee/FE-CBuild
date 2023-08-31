@@ -371,7 +371,7 @@ STATIC_DECLAR void DrawPage1BattleAmt(void)
         TEXT_COLOR_SYSTEM_GOLD, 0, 0,
         GetStringFromIndex(MSG_MSS_BattleAmt));
 
-    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(0xD + sub_80AEBEC(amt), 0xD),
+    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(0xC + sub_80AEBEC(amt), 0xD),
         TEXT_COLOR_SYSTEM_BLUE, amt);
 
     DrawStatWithBarReworkExt(

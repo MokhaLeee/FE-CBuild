@@ -86,7 +86,7 @@ foe, critical rate +15%[X]
 
 ## MSG_SKILL_FlashingBlade
 Flashing Blade: [NL]
-If unit's AS is higher than
+If unit's AS is higher than[NL]
 foe, critical rate +15% [X]
 
 ## MSG_SKILL_HeavyBladePlus

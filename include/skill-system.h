@@ -19,8 +19,9 @@ struct SkillInfo {
 };
 
 extern const struct SkillInfo gSkillInfos[0x100];
-const u8 * GetSkillInfoIcon(const u8 sid);
-u16 GetSkillInfoDesc(const u8 sid);
+const u8 * GetSkillIcon(const u8 sid);
+u16 GetSkillDesc(const u8 sid);
+const char * GetSkillName(const u8 sid);
 
 /* Judge list */
 #define SKILL_LIST_MAX_AMT 0x1E

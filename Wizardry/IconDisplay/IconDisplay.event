@@ -12,7 +12,7 @@
 ALIGN 4
 IconGetters:
     POIN IconGetterVanilla  // Sheet #0, vanilla
-    POIN GetSkillInfoIcon   // Sheet #1, skill
+    POIN GetSkillIcon       // Sheet #1, skill
 
 ORG (IconGetters + 4 * ICON_SHEET_AMT)
 
