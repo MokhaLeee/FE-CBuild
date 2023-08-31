@@ -10,6 +10,7 @@
 #include "stat-screen.h"
 #include "strmag.h"
 #include "lvup.h"
+#include "bwl.h"
 #include "constants/texts.h"
 
 extern struct Font * gActiveFont;
@@ -370,21 +371,53 @@ void DrawPage1BattleAmt(void)
         TEXT_COLOR_SYSTEM_GOLD, 0, 0,
         GetStringFromIndex(MSG_MSS_BattleAmt));
 
-    if (amt < 100)
-        PutNumberOrBlank(gBmFrameTmap0 + TILEMAP_INDEX(0xD, 0xD),
-                        amt == max
-                            ? TEXT_COLOR_SYSTEM_GREEN
-                            : TEXT_COLOR_SYSTEM_BLUE,
-                        amt);
-    else
-        PutNumberOrBlank(gBmFrameTmap0 + TILEMAP_INDEX(0xE, 0xD),
-                        amt == max
-                            ? TEXT_COLOR_SYSTEM_GREEN
-                            : TEXT_COLOR_SYSTEM_BLUE,
-                        amt);
+    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(0xD + sub_80AEBEC(amt), 0xD),
+        TEXT_COLOR_SYSTEM_BLUE, amt);
+
     DrawStatWithBarReworkExt(
         0x9, 0xD, 0xD,
         amt, amt, max, max);
+}
+
+/* BWL */
+STATIC_DECLAR void DrawPage1BWL(void)
+{
+    struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(gStatScreen.unit));
+    if (!bwl)
+        return;
+
+    if (UNIT_FACTION(gStatScreen.unit) != FACTION_BLUE)
+        return;
+
+    ClearText(&gStatScreen.text[STATSCREEN_TEXT_BWL]);
+
+    // Draw B label
+    Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_BWL],
+        0, TEXT_COLOR_SYSTEM_GOLD, GetStringFromIndex(0x51F));
+
+    // Draw W label
+    Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_BWL],
+        32, TEXT_COLOR_SYSTEM_GOLD, GetStringFromIndex(0x520));
+
+    // Draw L label
+    Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_BWL],
+        64, TEXT_COLOR_SYSTEM_GOLD, GetStringFromIndex(0x521));
+
+    // Display labels
+    PutText(&gStatScreen.text[STATSCREEN_TEXT_BWL],
+        gBmFrameTmap0 + TILEMAP_INDEX(3, 14));
+
+    // Display Battle Amt
+    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(3 + sub_80AEBEC(bwl->battleAmt), 14),
+        TEXT_COLOR_SYSTEM_BLUE, bwl->battleAmt);
+
+    // Display Win Amt
+    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(7 + sub_80AEBEC(bwl->winAmt), 14),
+        TEXT_COLOR_SYSTEM_BLUE, bwl->winAmt);
+
+    // Display Loss Amt
+    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(11 + sub_80AEBEC(bwl->lossAmt), 14),
+        TEXT_COLOR_SYSTEM_BLUE, bwl->lossAmt);
 }
 
 /* LynJump */
@@ -415,4 +448,5 @@ void DisplayPage0(void)
     DrawPage1ValueReal();
     DrawPage1ValueCommon();
     DrawPage1BattleAmt();
+    DrawPage1BWL();
 }
