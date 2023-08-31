@@ -3,6 +3,7 @@
 
 #include "common-chax.h"
 #include "strmag.h"
+#include "skill-system.h"
 
 STATIC_DECLAR void UnitLoadStatsFromChracterVanilla(struct Unit * unit, const struct CharacterData * character)
 {
@@ -41,6 +42,7 @@ void UnitLoadStatsFromChracter(struct Unit * unit, const struct CharacterData * 
 {
     UnitLoadStatsFromChracterVanilla(unit, character);
     UnitLoadStatsFromCharacterMagic(unit, character);
+    UnitAutoLoadSkills(unit);
 }
 
 /* LynJump */

@@ -2,6 +2,7 @@
 #define SKILL_SYSTEM_INSTALLED
 
 #include "Source/Infos.lyn.event"
+#include "Source/LearnSkill.lyn.event"
 
 #include "SkillTester/SkillList.lyn.event"
 #include "SkillTester/SkillTester.lyn.event"

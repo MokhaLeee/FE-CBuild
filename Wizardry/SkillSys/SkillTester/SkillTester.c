@@ -4,8 +4,6 @@
 #include "common-chax.h"
 #include "skill-system.h"
 
-#define UNIT_SUPPORT_SKILLS_LEN 5
-
 #define BasicJudgeSkill(unit, sid)  \
 do {                                \
     if (MAX_SKILL_NUM == sid)       \
@@ -17,40 +15,20 @@ do {                                \
 
 static bool SkillTesterROM(struct Unit * unit, const u8 sid)
 {
-    int i, level;
+    if (gSkillRomPTable[UNIT_CHAR_ID(unit)] == sid)
+        return true;
 
-    for (level = 0; level <= UNIT_LEVEL_MAX_RE; level += 5)
-    {
-        if (unit->level < level)
-            break;
-
-        for (i = 0; i < SKILL_ROM_DATA_AMT; i++)
-        {
-            const struct SkillRomData * data;
-
-            data = &gSkillRomPData[UNIT_CHAR_ID(unit)];
-            if (data->skills[level + i] == sid)
-                return true;
-
-            data = &gSkillRomJData[UNIT_CLASS_ID(unit)];
-            if (data->skills[level + i] == sid)
-                return true;
-        }
-    }
+    if (gSkillRomJTable[UNIT_CLASS_ID(unit)] == sid)
+        return true;
 
     return false;
-}
-
-static u8 * GetUnitSupportSkills(struct Unit * unit)
-{
-    return unit->supports;
 }
 
 static bool SkillTesterRAM(struct Unit * unit, const u8 sid)
 {
     int i;
-    u8 * list = GetUnitSupportSkills(unit);
-    for (i = 0; i < UNIT_SUPPORT_SKILLS_LEN; i++)
+    u8 * list = UNIT_RAM_SKILLS(unit);
+    for (i = 0; i < UNIT_RAM_SKILLS_LEN; i++)
         if (sid == list[i])
             return true;
 

@@ -1,0 +1,41 @@
+#include "global.h"
+#include "bmunit.h"
+
+#include "common-chax.h"
+#include "skill-system.h"
+
+void UnitAutoLoadSkills(struct Unit * unit)
+{
+    u8 sid;
+    int i, count = 0;
+    const struct SkillConf * pConf = &gSkillPData[UNIT_CHAR_ID(unit)];
+    const struct SkillConf * jConf = &gSkillJData[UNIT_CLASS_ID(unit)];
+    int level = Div(unit->level, 5) * 5;
+
+    LIMIT_AREA(level, 0, UNIT_LEVEL_MAX_RE);
+
+    while (level >= 0)
+    {
+        for (i = 0; i < 5; i++)
+        {
+            sid = pConf->skills[level + i];
+            if (SKILL_VALID(sid))
+            {
+                UNIT_RAM_SKILLS(unit)[count++] = sid;
+
+                if (count >= UNIT_RAM_SKILLS_LEN)
+                    return;
+            }
+
+            sid = jConf->skills[level + i];
+            if (SKILL_VALID(sid))
+            {
+                UNIT_RAM_SKILLS(unit)[count++] = sid;
+
+                if (count >= UNIT_RAM_SKILLS_LEN)
+                    return;
+            }
+        }
+        level = level - 5;
+    }
+}
