@@ -1,2 +1,5 @@
 ## MSG_MSS_BattleAmt
 Total[X]
+
+## MSG_MSS_BattleAmtDesc
+Total battle amount.[X]
