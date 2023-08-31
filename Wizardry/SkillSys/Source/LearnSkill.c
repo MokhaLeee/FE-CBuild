@@ -39,3 +39,31 @@ void UnitAutoLoadSkills(struct Unit * unit)
         level = level - 5;
     }
 }
+
+int RemoveSkill(struct Unit * unit, const u8 sid)
+{
+    int i;
+    u8 * list = UNIT_RAM_SKILLS(unit);
+    for (i = 0; i < UNIT_RAM_SKILLS_LEN; i++)
+        if (sid == list[i])
+            return 0;
+
+    return -1;
+}
+
+int AddSkill(struct Unit * unit, const u8 sid)
+{
+    int i;
+    u8 * list = UNIT_RAM_SKILLS(unit);
+
+    for (i = 0; i < UNIT_RAM_SKILLS_LEN; i++)
+    {
+        if (!SKILL_VALID(list[i]))
+        {
+            list[i] = sid;
+            return 0;
+        }
+    }
+
+    return -1;
+}

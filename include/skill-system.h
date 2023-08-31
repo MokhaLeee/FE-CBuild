@@ -70,3 +70,5 @@ const struct EfxAnimConf * GetEfxSkillConf(const u8 aid);
 
 /* Miscs */
 void UnitAutoLoadSkills(struct Unit * unit);
+int RemoveSkill(struct Unit * unit, const u8 sid);
+int AddSkill(struct Unit * unit, const u8 sid);
