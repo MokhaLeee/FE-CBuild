@@ -231,7 +231,7 @@ STATIC_DECLAR void DrawPage1TextCommon(void)
         GetStringFromIndex(0x4FA)); // Cond
 }
 
-void DrawPage1ValueReal(void)
+STATIC_DECLAR void DrawPage1ValueReal(void)
 {
     struct Unit * unit = gStatScreen.unit;
 
@@ -271,7 +271,7 @@ void DrawPage1ValueReal(void)
                     UNIT_RES_MAX(unit));
 }
 
-void DrawPage1ValueCommon(void)
+STATIC_DECLAR void DrawPage1ValueCommon(void)
 {
     struct Unit * unit = gStatScreen.unit;
 
@@ -343,7 +343,7 @@ void DrawPage1ValueCommon(void)
     }
 }
 
-int GetUnitBattleAmt(struct Unit * unit)
+STATIC_DECLAR int GetUnitBattleAmt(struct Unit * unit)
 {
     int status = 0;
     status += GetUnitPower(unit);
@@ -357,7 +357,7 @@ int GetUnitBattleAmt(struct Unit * unit)
     return status;
 }
 
-void DrawPage1BattleAmt(void)
+STATIC_DECLAR void DrawPage1BattleAmt(void)
 {
     int amt = GetUnitBattleAmt(gStatScreen.unit);
     int max = 50 * 7;
