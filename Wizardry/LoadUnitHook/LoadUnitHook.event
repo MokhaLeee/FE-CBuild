@@ -2,5 +2,6 @@
 #define LOAD_UNIT_HOOK_INSTALLED
 
 #include "Source/LoadUnit.lyn.event"
+#include "Source/LynJump.event"
 
 #endif
