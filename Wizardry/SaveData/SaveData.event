@@ -39,7 +39,7 @@ gEmsSavChunks:
     EmsChunk($0000, $004C, MSA_SavePlaySt,   MSA_LoadPlaySt)
     EmsChunk($004C, $00B0, $0A31E4+1,          $0A326C+1)           /* Supply */
     EmsChunk($00FC, $0019, $0A3150+1,          $0A3198+1)           /* Permanent flags */
-    EmsChunk($0118, $0460, $0A421C+1,          $0A4264+1)           /* BWL */
+    EmsChunk($0118, $0460, $0A4264+1,          $0A421C+1)           /* BWL */
     EmsChunk($0578, $00C0, $0a4248+1,          $0a4288+1)           /* Chapter states */
     EmsChunk($0638, $0004, MSA_SaveBonusClaim, MSA_LoadBonusClaim)  /* Bonus claim */
     EmsChunk($063C, $0021, MSA_SaveWorldMap,   MSA_LoadWorldMap)    /* World map */
@@ -58,7 +58,7 @@ gEmsSusChunks:
     EmsChunk($0084, $0019, $0A3150+1,          $0A3198+1)           /* Permanent flags */
     EmsChunk($009D, $0005, $0A3130+1,          $0A3170+1)           /* Chapter flags */
     EmsChunk($00A4, $00B0, $0A31E4+1,          $0A326C+1)           /* Supply */
-    EmsChunk($0154, $0460, $0A421C+1,          $0A4264+1)           /* BWL */
+    EmsChunk($0154, $0460, $0A4264+1,          $0A421C+1)           /* BWL */
     EmsChunk($05B4, $00C0, $0a4248+1,          $0a4288+1)           /* Chapter states */
     EmsChunk($0674, $0200, $0A6370+1,          $0A638C+1)           /* Traps */
     EmsChunk($0874, $0010, MSU_SaveMenuMask,   MSU_LoadMenuMask)    /* BM menu mask */
