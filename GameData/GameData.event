@@ -15,4 +15,6 @@
 
 #include "BattleSys/WeaponTriangle.lyn.event"
 
+#include "StrMag/UnitMagicInfos.lyn.event"
+
 #endif

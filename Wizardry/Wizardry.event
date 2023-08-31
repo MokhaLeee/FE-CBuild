@@ -14,3 +14,4 @@ ALIGN 4
 #include "NegativeStatBoosts/NegativeStatBoosts.event"
 #include "StatScreen/StatScreen.event"
 #include "Lvup/Lvup.event"
+#include "LoadUnitHook/LoadUnitHook.event"
