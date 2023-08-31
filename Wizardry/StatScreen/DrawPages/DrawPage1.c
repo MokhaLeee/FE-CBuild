@@ -405,18 +405,18 @@ STATIC_DECLAR void DrawPage1BWL(void)
 
     // Display labels
     PutText(&gStatScreen.text[STATSCREEN_TEXT_BWL],
-        gBmFrameTmap0 + TILEMAP_INDEX(3, 14));
+        gBmFrameTmap0 + TILEMAP_INDEX(3, 0xF));
 
     // Display Battle Amt
-    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(3 + sub_80AEBEC(bwl->battleAmt), 14),
+    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(3 + sub_80AEBEC(bwl->battleAmt), 0xF),
         TEXT_COLOR_SYSTEM_BLUE, bwl->battleAmt);
 
     // Display Win Amt
-    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(7 + sub_80AEBEC(bwl->winAmt), 14),
+    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(7 + sub_80AEBEC(bwl->winAmt), 0xF),
         TEXT_COLOR_SYSTEM_BLUE, bwl->winAmt);
 
     // Display Loss Amt
-    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(11 + sub_80AEBEC(bwl->lossAmt), 14),
+    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(11 + sub_80AEBEC(bwl->lossAmt), 0xF),
         TEXT_COLOR_SYSTEM_BLUE, bwl->lossAmt);
 }
 

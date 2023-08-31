@@ -40,13 +40,27 @@ void UnitAutoLoadSkills(struct Unit * unit)
     }
 }
 
+bool CanRemoveSkill(struct Unit * unit, const u8 sid)
+{
+    int i;
+    u8 * list = UNIT_RAM_SKILLS(unit);
+    for (i = 0; i < UNIT_RAM_SKILLS_LEN; i++)
+        if (sid == list[i])
+            return true;
+
+    return false;
+}
+
 int RemoveSkill(struct Unit * unit, const u8 sid)
 {
     int i;
     u8 * list = UNIT_RAM_SKILLS(unit);
     for (i = 0; i < UNIT_RAM_SKILLS_LEN; i++)
         if (sid == list[i])
+        {
+            list[i] = 0;
             return 0;
+        }
 
     return -1;
 }

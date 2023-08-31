@@ -14,43 +14,43 @@ DECL_INFO * const RTextPageUnit = &RText_Pow;
 
 /* Line #1 */
 static DECL_INFO RText_Pow = {
-    NULL, &RText_Mag, NULL, &RText_Mov,
+    NULL, &RText_Mag, &RText_Name, &RText_Mov,
     0x66, 0x18, 0x546,
     NULL, NULL
 };
 
 static DECL_INFO RText_Mag = {
-    &RText_Pow, &RText_Skl, NULL, &RText_Con,
+    &RText_Pow, &RText_Skl, &RText_Name, &RText_Con,
     0x66, 0x28, 0x547,
     NULL, NULL
 };
 
 static DECL_INFO RText_Skl = {
-    &RText_Mag, &RText_Spd, NULL, &RText_Aid,
+    &RText_Mag, &RText_Spd, &RText_Name, &RText_Aid,
     0x66, 0x38, 0x548,
     NULL, NULL
 };
 
 static DECL_INFO RText_Spd = {
-    &RText_Skl, &RText_Lck, NULL, &RText_Affin,
+    &RText_Skl, &RText_Lck, &RText_Name, &RText_Affin,
     0x66, 0x48, 0x549,
     NULL, NULL
 };
 
 static DECL_INFO RText_Lck = {
-    &RText_Spd, &RText_Def, NULL, &RText_Trv,
+    &RText_Spd, &RText_Def, &RText_Class, &RText_Trv,
     0x66, 0x58, 0x54A,
     NULL, NULL
 };
 
 static DECL_INFO RText_Def = {
-    &RText_Lck, &RText_Res, NULL, &RText_Cond,
+    &RText_Lck, &RText_Res, &RText_Class, &RText_Cond,
     0x66, 0x68, 0x54B,
     NULL, NULL
 };
 
 static DECL_INFO RText_Res = {
-    &RText_Def, NULL, NULL, &RText_BAmt,
+    &RText_Def, NULL, &RText_Exp, &RText_BAmt,
     0x66, 0x78, 0x54C,
     NULL, NULL
 };
@@ -64,37 +64,37 @@ static DECL_INFO RText_Mov = {
 
 static DECL_INFO RText_Con = {
     &RText_Mov, &RText_Aid, &RText_Mag, NULL,
-    0x66, 0x28, 0x54E,
+    0xA6, 0x28, 0x54E,
     NULL, NULL
 };
 
 static DECL_INFO RText_Aid = {
     &RText_Con, &RText_Affin, &RText_Skl, NULL,
-    0x66, 0x38, 0x54F,
+    0xA6, 0x38, 0x54F,
     NULL, NULL
 };
 
 static DECL_INFO RText_Affin = {
     &RText_Aid, &RText_Trv, &RText_Spd, NULL,
-    0x66, 0x48, 0x551,
+    0xA6, 0x48, 0x551,
     NULL, NULL
 };
 
 static DECL_INFO RText_Trv = {
     &RText_Affin, &RText_Cond, &RText_Lck, NULL,
-    0x66, 0x58, 0x550,
+    0xA6, 0x58, 0x550,
     NULL, NULL
 };
 
 static DECL_INFO RText_Cond = {
     &RText_Trv, &RText_BAmt, &RText_Def, NULL,
-    0x66, 0x68, 0x552,
+    0xA6, 0x68, 0x552,
     NULL, HbPopulate_SSStatus
 };
 
 static DECL_INFO RText_BAmt = {
     &RText_Cond, NULL, &RText_Res, NULL,
-    0x66, 0x78, MSG_MSS_BattleAmtDesc,
+    0xA6, 0x78, MSG_MSS_BattleAmtDesc,
     NULL, NULL
 };
 
@@ -118,7 +118,7 @@ static DECL_INFO RText_Level = {
 };
 
 static DECL_INFO RText_Exp = {
-    &RText_Class, &RText_Hp, &RText_Level, &RText_Def,
+    &RText_Class, &RText_Hp, &RText_Level, &RText_Res,
     0x26, 0x78, 0x543,
     NULL, NULL
 };
