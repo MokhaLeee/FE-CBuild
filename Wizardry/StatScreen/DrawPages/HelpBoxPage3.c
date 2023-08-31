@@ -87,7 +87,7 @@ static DECL_INFO RText_Dark = {
 };
 
 static DECL_INFO RText_Staff = {
-    &RText_Light, NULL, &RText_Exp, &RText_Skill8,
+    &RText_Dark, NULL, &RText_Exp, &RText_Skill8,
     0x66, 0x88, 0x54C,
     NULL, NULL
 };

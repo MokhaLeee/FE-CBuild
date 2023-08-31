@@ -1,0 +1,8 @@
+#ifndef EVENTS_INSTALLED
+#define EVENTS_INSTALLED
+
+{
+    #include "Prologue/Prologue.event"
+}
+
+#endif /* EVENTS_INSTALLED */

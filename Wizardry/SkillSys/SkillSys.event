@@ -7,6 +7,8 @@
 #include "SkillTester/SkillList.lyn.event"
 #include "SkillTester/SkillTester.lyn.event"
 
+/* EfxSkill */
+
 #include "EfxSkill/C07Hack.lyn.event"
 #include "EfxSkill/EkrSkill.lyn.event"
 #include "EfxSkill/EfxSkill.lyn.event"
@@ -15,5 +17,8 @@
 #define InjectBanimCmd(index, routine) "PUSH; ORG ($58C44 + 4 * index); POIN routine | 1; POP"
 
 InjectBanimCmd(0x7, Banim07Rework)
+
+/* PrepSkill */
+#include "PrepSkill/PrepSkill.event"
 
 #endif

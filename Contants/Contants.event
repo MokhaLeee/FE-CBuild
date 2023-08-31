@@ -22,4 +22,7 @@ ALIGN 4
 ALIGN 4
 #include "Icons/Icons.event"
 
+ALIGN 4
+#include "Events/Events.event"
+
 #endif
