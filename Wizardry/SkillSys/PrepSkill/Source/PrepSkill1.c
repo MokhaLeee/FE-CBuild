@@ -8,9 +8,36 @@
 #include "hardware.h"
 #include "soundwrapper.h"
 #include "statscreen.h"
+#include "icon.h"
 
 #include "common-chax.h"
+#include "skill-system.h"
 #include "prep-skill.h"
+
+STATIC_DECLAR void PrepSkill_DrawLeftSkillIcon(struct Unit * unit)
+{
+    int x, y;
+    struct SkillList * list = GetUnitSkillList(unit);
+    ResetIconGraphics_();
+    TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 1, 5), 0xB, 0xB, 0);
+
+    for (y = 0; y < 5; y++)
+    {
+        for (x = 0; x < 5; x++)
+        {
+            int count = x + y * 5;
+            if (count >= list->amt)
+                break;
+
+            DrawIcon(
+                TILEMAP_LOCATED(gBG0TilemapBuffer, 2 + x * 2, 6 + y * 2),
+                SKILL_ICON(list->sid[count]), 
+                TILEREF(0, STATSCREEN_BGPAL_ITEMICONS));
+        }
+    }
+
+    BG_EnableSyncByMask(BG0_SYNC_BIT);
+}
 
 STATIC_DECLAR void ProcPrepSkill1_OnEnd(struct ProcPrepSkill1 * proc)
 {
@@ -33,6 +60,7 @@ STATIC_DECLAR void ProcPrepSkill1_InitScreen(struct ProcPrepSkill1 * proc)
     };
 
     int i;
+    struct Unit * unit = GetUnitFromPrepList(proc->list_num_cur);
 
     SetupBackgrounds(BgConfig);
     SetDispEnable(0, 0, 0, 0, 0);
@@ -66,7 +94,8 @@ STATIC_DECLAR void ProcPrepSkill1_InitScreen(struct ProcPrepSkill1 * proc)
         0x7, 0x800);
 
     StartHelpPromptSprite(0x20, 0x8F, 9, proc);
-    PrepUnit_DrawLeftUnitName(GetUnitFromPrepList(proc->list_num_cur));
+    PrepUnit_DrawLeftUnitName(unit);
+    PrepSkill_DrawLeftSkillIcon(unit);
 
     for (i = 0; i < 6; i++)
         PrepUnit_DrawUnitListNames((ProcPtr)proc, proc->yDiff_cur / 0x10 + i);
@@ -103,6 +132,12 @@ STATIC_DECLAR void ProcPrepSkill1_Idle(struct ProcPrepSkill1 * proc)
                 PlaySoundEffect(0x6A);
                 Proc_Goto(proc, PL_PREPSKILL1_PRESS_START);
             }
+            return;
+        }
+
+        if (R_BUTTON & gKeyStatusPtr->newKeys)
+        {
+            Proc_Goto(proc, PL_PREPSKILL1_PRESS_R);
             return;
         }
 
@@ -147,6 +182,7 @@ STATIC_DECLAR void ProcPrepSkill1_Idle(struct ProcPrepSkill1 * proc)
         if (proc->list_num_pre == proc->list_num_cur)
             return;
 
+        PrepSkill_DrawLeftSkillIcon(GetUnitFromPrepList(proc->list_num_cur));
         StartParallelFiniteLoop(PrepUnit_DrawLeftUnitNameCur, 1, (u32)proc);
         PlaySoundEffect(0x65);
     
@@ -201,6 +237,8 @@ STATIC_DECLAR const struct ProcCmd ProcScr_PrepSkillUnitSel[] = {
     PROC_NAME("PrepSkillUnitSel"),
     PROC_YIELD,
     PROC_SET_END_CB(ProcPrepSkill1_OnEnd),
+
+PROC_LABEL(PL_PREPSKILL1_INIT),
     PROC_CALL(ProcPrepSkill1_InitScreen),
     PROC_CALL_ARG(NewFadeIn, 0x10),
     PROC_WHILE(FadeInExists),
@@ -215,7 +253,25 @@ PROC_LABEL(PL_PREPSKILL1_PRESS_START),
     PROC_WHILE(FadeOutExists),
     PROC_GOTO(PL_PREPSKILL1_END),
 
+PROC_LABEL(PL_PREPSKILL1_PRESS_R),
+    PROC_CALL(PrepUnitDisableDisp),
+    PROC_SLEEP(0x2),
+    PROC_CALL(sub_809B014),
+    PROC_CALL(sub_809B504),
+    PROC_YIELD,
+    PROC_CALL(sub_809B520),
+    PROC_CALL(ProcPrepSkill1_InitScreen),
+    PROC_SLEEP(0x2),
+    PROC_CALL(PrepUnitEnableDisp),
+    PROC_GOTO(PL_PREPSKILL1_IDLE),
+
 PROC_LABEL(PL_PREPSKILL1_PRESS_A),
+    PROC_CALL_ARG(NewFadeOut, 0x10),
+    PROC_WHILE(FadeOutExists),
+    PROC_CALL(StartPrepSelectSkillScreen),
+    PROC_YIELD,
+    PROC_GOTO(PL_PREPSKILL1_INIT),
+
 PROC_LABEL(PL_PREPSKILL1_PRESS_B),
     PROC_CALL_ARG(NewFadeOut, 0x10),
     PROC_WHILE(FadeOutExists),
