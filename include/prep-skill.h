@@ -7,13 +7,27 @@
 void StartPrepEquipScreen(struct ProcAtMenu * parent);
 
 /* On select unit */
-struct ProcPrepSkill1 {
-    PROC_HEADER;
-    u8 cur_counter; // Total unit number to be on battle
-    u8 max_counter; // Total unit number can be on battle
-    u16 list_num_pre; // pre unit index in prep-list(for scroll)
-    u16 list_num_cur; // current unit index in prep-list
-    u16 yDiff_cur; // y Pos offset of Unit SMS (current)
-    u8 scroll_val; // each px to scroll at each frame
-    u8 button_blank;
+#define ProcPrepSkill1 ProcPrepUnit /* Yeah, we directlt use PrepUnitList */
+
+enum ProcPrepSkill1Label {
+    PL_PREPSKILL1_INIT,
+    PL_PREPSKILL1_IDLE,
+    PL_PREPSKILL1_PRESS_A,
+    PL_PREPSKILL1_PRESS_B,
+    PL_PREPSKILL1_PRESS_START,
+    PL_PREPSKILL1_END,
 };
+
+/* Some vanilla declaration */
+extern struct Text gPrepUnitTexts[];
+void PrepUnit_DrawSMSAndObjs(struct ProcPrepUnit * proc);
+void PrepUnit_InitSMS(struct ProcPrepUnit * proc);
+void PrepUnit_DrawUnitListNames(struct ProcPrepUnit * proc, int line);
+void PrepUnit_InitTexts(void);
+void PrepUnit_InitGfx(void);
+void PrepUnit_DrawUnitItems(struct Unit * unit);
+void PrepUnit_DrawLeftUnitName(struct Unit * unit);
+void PrepUnit_DrawLeftUnitNameCur(struct ProcPrepUnit * proc);
+s8 ShouldPrepUnitMenuScroll(struct ProcPrepUnit * proc);
+void sub_809AE10(struct ProcPrepUnit * proc);
+void PrepUpdateMenuTsaScroll(int val);
