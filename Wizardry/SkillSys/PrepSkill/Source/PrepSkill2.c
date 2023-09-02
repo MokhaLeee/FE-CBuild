@@ -21,6 +21,7 @@
 STATIC_DECLAR void ProcPrepSkill2_OnEnd(struct ProcPrepSkill2 * proc)
 {
     PrepSetLatestCharId(proc->unit->pCharacterData->number);
+    EndPrepSkillObj();
 }
 
 STATIC_DECLAR void ProcPrepSkill2_InitScreen(struct ProcPrepSkill2 * proc)
@@ -76,6 +77,8 @@ STATIC_DECLAR void ProcPrepSkill2_InitScreen(struct ProcPrepSkill2 * proc)
     sub_80AD4A0(0x600, 0x1);
     ShowPrepScreenHandCursor(0x78, 0x28, 0x0, 0x800);
 
+    NewPrepSkillObj(proc);
+
     RestartMuralBackground();
 }
 
@@ -87,18 +90,77 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
         Proc_Goto(proc, PL_PREPSKILL2_PRESS_B);
         return;
     }
+
+    if (R_BUTTON & gKeyStatusPtr->newKeys)
+    {
+        Proc_Goto(proc, PL_PREPSKILL2_PRESS_R);
+        return;
+    }
+}
+
+STATIC_DECLAR void ProcPrepSkill2_EndMiscEffectForStatScreen(struct ProcPrepSkill2 * proc)
+{
+    EndMenuScrollBar();
+    EndAllParallelWorkers();
+	sub_80AD2D4();
+	EndPrepScreenHandCursor();
+	EndHelpPromptSprite();
+	sub_80ACDDC();
+	EndMuralBackground_();
+
+    EndPrepSkillObj();
+}
+
+STATIC_DECLAR void ProcPrepSkill2_NewStatScreen(struct ProcPrepSkill2 * proc)
+{
+    SetStatScreenConfig(STATSCREEN_CONFIG_NONUNK16 | STATSCREEN_CONFIG_NONDEAD);
+    StartStatScreen(proc->unit, proc);
+}
+
+STATIC_DECLAR void ProcPrepSkill2_UpdateListFromStatScreen(struct ProcPrepSkill2 * proc)
+{
+    int num;
+    struct ProcPrepSkill1 * pproc = proc->proc_parent;
+
+    MakePrepUnitList();
+    num = GetLatestUnitIndexInPrepListByUId();
+    pproc->list_num_pre = num;
+    pproc->list_num_cur = num;
+
+    /* Reset */
+    proc->unit = GetUnit(GetLastStatScreenUid());
+    proc->hand_pos = POS_R;
+    proc->hand_x = 0;
+    proc->hand_y = 0;
+    proc->left_line = 0;
+    proc->right_line = 0;
+    proc->scroll = PREP_SKILL2_SCROLL_NOPE;
 }
 
 STATIC_DECLAR const struct ProcCmd ProcScr_PrepSkillSkillSel[] = {
     PROC_NAME("PrepSkillSkillSel"),
     PROC_YIELD,
     PROC_SET_END_CB(ProcPrepSkill2_OnEnd),
+
+PROC_LABEL(PL_PREPSKILL2_INIT),
     PROC_CALL(ProcPrepSkill2_InitScreen),
     PROC_CALL_ARG(NewFadeIn, 0x10),
     PROC_WHILE(FadeInExists),
 
 PROC_LABEL(PL_PREPSKILL2_IDLE),
     PROC_REPEAT(ProcPrepSkill2_Idle),
+
+PROC_LABEL(PL_PREPSKILL2_PRESS_R),
+    PROC_CALL(PrepUnitDisableDisp),
+    PROC_SLEEP(0x2),
+    PROC_CALL(ProcPrepSkill2_EndMiscEffectForStatScreen),
+    PROC_CALL(ProcPrepSkill2_NewStatScreen),
+    PROC_YIELD,
+    PROC_CALL(ProcPrepSkill2_UpdateListFromStatScreen),
+    PROC_CALL(ProcPrepSkill2_InitScreen),
+    PROC_SLEEP(0x2),
+    PROC_CALL(PrepUnitEnableDisp),
+    PROC_GOTO(PL_PREPSKILL2_IDLE),
 
 PROC_LABEL(PL_PREPSKILL2_PRESS_B),
     PROC_CALL_ARG(NewFadeOut, 0x10),
@@ -120,6 +182,4 @@ void StartPrepSelectSkillScreen(struct ProcPrepSkill1 * pproc)
     proc->left_line = 0;
     proc->right_line = 0;
     proc->scroll = PREP_SKILL2_SCROLL_NOPE;
-
-    NewPrepSkillObj(proc);
 }

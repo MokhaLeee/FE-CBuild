@@ -126,6 +126,9 @@ STATIC_DECLAR void PrepSkillObjMain(struct ProcPrepSkillObj * proc)
     if (proc->reload)
         ReloadPrepSkill2IconGfx(proc);
 
+    if (!proc->active)
+        return;
+
     PutPrepSkill2IconSprits(proc);
 
     if(GetGameClock() & (1 << 5))
@@ -142,9 +145,15 @@ STATIC_DECLAR const struct ProcCmd ProcScr_PrepSkillObj[] = {
 void NewPrepSkillObj(struct ProcPrepSkill2 * pproc)
 {
     struct ProcPrepSkillObj * proc;
-    proc = Proc_Start(ProcScr_PrepSkillObj, pproc);
+
+    proc = Proc_Find(ProcScr_PrepSkillObj);
+
+    if (!proc)
+        proc = Proc_Start(ProcScr_PrepSkillObj, pproc);
+
     proc->data = GeneratePrepEquipSkillList(pproc->unit);
     proc->reload = true;
+    proc->active = true;
 }
 
 void EndPrepSkillObj(void)
@@ -159,4 +168,22 @@ void RegisterPrepSkillObjReload(void)
 
     if (proc)
         proc->reload = true;
+}
+
+void EnablePrepSkillObj(void)
+{
+    struct ProcPrepSkillObj * proc;
+    proc = Proc_Find(ProcScr_PrepSkillObj);
+
+    if (proc)
+        proc->active = true;
+}
+
+void DisablePrepSkillObj(void)
+{
+    struct ProcPrepSkillObj * proc;
+    proc = Proc_Find(ProcScr_PrepSkillObj);
+
+    if (proc)
+        proc->active = false;
 }

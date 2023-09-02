@@ -66,12 +66,15 @@ enum PrepSkill2ListConfig {
 struct ProcPrepSkillObj {
     PROC_HEADER;
     struct PrepEquipSkillList * data;
+    bool active;
     bool reload;
 };
 
 void NewPrepSkillObj(struct ProcPrepSkill2 * pproc);
-void EndPrepSkillObj(void);
 void RegisterPrepSkillObjReload(void);
+void EndPrepSkillObj(void);
+void EnablePrepSkillObj(void);
+void DisablePrepSkillObj(void);
 
 extern const u8 Gfx_ObjSkill[];
 extern const u16 Pal_ObjSkill[];
