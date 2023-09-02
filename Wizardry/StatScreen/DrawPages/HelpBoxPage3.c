@@ -75,7 +75,7 @@ static DECL_INFO RText_Anima = {
 };
 
 static DECL_INFO RText_Light = {
-    &RText_Anima, &RText_Dark, &RText_Class, &RText_Skill6,
+    &RText_Anima, &RText_Dark, &RText_Name, &RText_Skill6,
     0x66, 0x68, 0x54B,
     NULL, NULL
 };

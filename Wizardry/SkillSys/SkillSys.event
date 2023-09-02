@@ -3,6 +3,7 @@
 
 #include "Source/Infos.lyn.event"
 #include "Source/LearnSkill.lyn.event"
+#include "Source/EquipSkill.lyn.event"
 
 #include "SkillTester/SkillList.lyn.event"
 #include "SkillTester/SkillTester.lyn.event"

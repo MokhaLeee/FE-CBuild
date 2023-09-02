@@ -4,6 +4,8 @@
 #include "proc.h"
 #include "prepscreen.h"
 
+#include "skill-system.h"
+
 void StartPrepEquipScreen(struct ProcAtMenu * parent);
 
 /* On select unit */
@@ -19,13 +21,20 @@ enum ProcPrepSkill1Label {
     PL_PREPSKILL1_END,
 };
 
-void PrepSkill_DrawLeftSkillIcon(struct Unit * unit);
-
 /* On select skills */
+enum PrepSkill2ScrollType {
+    PREP_SKILL2_SCROLL_NOPE = 0,
+    PREP_SKILL2_SCROLL_UP,
+    PREP_SKILL2_SCROLL_DOWN,
+};
+
 struct ProcPrepSkill2 {
     PROC_HEADER;
     struct Unit * unit;
-    u8 pos;
+    u8 hand_pos;
+    u8 hand_x, hand_y;
+    u8 left_line, right_line;
+    u8 scroll; /* 0 = no scroll, 1 = up, 2 = down */
 };
 
 enum ProcPrepSkill2Label {
@@ -45,6 +54,30 @@ extern const u8 Gfx_PrepSkillScreen[];
 extern const u8 Gfx_PrepSkillScreen2[];
 extern const u8 Tsa_PrepSubPickSkillScreen[];
 extern const u16 Pal_PrepSkillScreen[];
+
+enum PrepSkill2ListConfig {
+    PREP_SRLIST_LENGTH = 7,
+    PREP_SRLIST_HEIGHT = 4,
+};
+
+#define PREP_SRLIST_OFFSET(x, y) ((y) * PREP_SRLIST_LENGTH + (x))
+
+/* PrepSkill objs */
+struct ProcPrepSkillObj {
+    PROC_HEADER;
+    struct PrepEquipSkillList * data;
+    bool reload;
+};
+
+void NewPrepSkillObj(struct ProcPrepSkill2 * pproc);
+void EndPrepSkillObj(void);
+void RegisterPrepSkillObjReload(void);
+
+extern const u8 Gfx_ObjSkill[];
+extern const u16 Pal_ObjSkill[];
+
+extern const u8 Gfx_ObjWindow[];
+extern const u16 Pal_ObjWindow[];
 
 /* Some vanilla declaration */
 extern struct Text gPrepUnitTexts[];

@@ -13,11 +13,13 @@
 /* Free RAM space allocation */
 SET_DATA FreeRamSpaceEntry, 0x02026E30
 
-SET_DATA sSkillListNext, 0x02026E30
-SET_DATA sSkillLists, 0x02026E34
-SET_DATA sStatScreenPage1BarMax, 0x02026E74
+SET_DATA sSkillListNext, FreeRamSpaceEntry + 0
+SET_DATA sSkillLists, sSkillListNext + 4
+SET_DATA sPrepEquipSkillList, sSkillLists + 0x40
+SET_DATA sPrepEquipSkillListExt, sPrepEquipSkillList + 0x100
+SET_DATA sStatScreenPage1BarMax, sPrepEquipSkillListExt + 0x100
 
-SET_DATA FreeRamSpaceTail, 0x02026E78
+SET_DATA FreeRamSpaceTail, sStatScreenPage1BarMax + 0x4
 
 /* IconDisplay */
 SET_DATA gIconReSts, 0x02026A90 @ DrawnIconLookupTable
