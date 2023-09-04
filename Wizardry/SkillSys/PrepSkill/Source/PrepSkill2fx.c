@@ -187,3 +187,10 @@ void DisablePrepSkillObj(void)
     if (proc)
         proc->active = false;
 }
+
+int GetPrepSkill2RListAmt(void)
+{
+    struct ProcPrepSkillObj * proc;
+    proc = Proc_Find(ProcScr_PrepSkillObj);
+    return proc->data->amt;
+}

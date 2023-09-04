@@ -75,6 +75,7 @@ void RegisterPrepSkillObjReload(void);
 void EndPrepSkillObj(void);
 void EnablePrepSkillObj(void);
 void DisablePrepSkillObj(void);
+int GetPrepSkill2RListAmt(void);
 
 extern const u8 Gfx_ObjSkill[];
 extern const u16 Pal_ObjSkill[];

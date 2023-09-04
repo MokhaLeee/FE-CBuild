@@ -75,7 +75,7 @@ STATIC_DECLAR void ProcPrepSkill2_InitScreen(struct ProcPrepSkill2 * proc)
     /* Hand cursor */
     ResetPrepScreenHandCursor(proc);
     sub_80AD4A0(0x600, 0x1);
-    ShowPrepScreenHandCursor(0x78, 0x28, 0x0, 0x800);
+    ShowPrepScreenHandCursor(0x74, 0x20, 0x0, 0x800);
 
     NewPrepSkillObj(proc);
 
@@ -84,6 +84,8 @@ STATIC_DECLAR void ProcPrepSkill2_InitScreen(struct ProcPrepSkill2 * proc)
 
 STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
 {
+    int repeated = gKeyStatusPtr->repeatedKeys;
+
     if (B_BUTTON & gKeyStatusPtr->newKeys)
     {
         PlaySoundEffect(0x6B);
@@ -96,6 +98,54 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
         Proc_Goto(proc, PL_PREPSKILL2_PRESS_R);
         return;
     }
+
+    if (DPAD_LEFT & repeated)
+    {
+        if (proc->hand_x != 0)
+            proc->hand_x--;
+    }
+
+    if (DPAD_RIGHT & repeated)
+    {
+        int next = PREP_SRLIST_OFFSET(proc->hand_x + 1, proc->right_line + proc->hand_y);
+        if (next < GetPrepSkill2RListAmt())
+            proc->hand_x++;
+    }
+
+    if (DPAD_UP & repeated)
+    {
+        int next = PREP_SRLIST_OFFSET(proc->hand_x, proc->right_line + proc->hand_y - 1);
+        if (next > 0)
+        {
+            if (proc->hand_y > 0)
+                proc->hand_y--;
+            else
+            {
+                proc->right_line--;
+                RegisterPrepSkillObjReload();
+            }
+        }
+    }
+
+    if (DPAD_DOWN & repeated)
+    {
+        int next = PREP_SRLIST_OFFSET(proc->hand_x, proc->right_line + proc->hand_y + 1);
+        if (next < GetPrepSkill2RListAmt())
+        {
+            if (proc->hand_y < (PREP_SRLIST_HEIGHT - 1))
+                proc->hand_y++;
+            else
+            {
+                proc->right_line++;
+                RegisterPrepSkillObjReload();
+            }
+        }
+    }
+
+    ShowPrepScreenHandCursor(
+        0x74 + 0x10 * proc->hand_x,
+        0x20 + 0x10 * proc->hand_y,
+        0x0, 0x800);
 }
 
 STATIC_DECLAR void ProcPrepSkill2_EndMiscEffectForStatScreen(struct ProcPrepSkill2 * proc)
