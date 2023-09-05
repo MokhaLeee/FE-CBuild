@@ -13,6 +13,7 @@
 #include "icon.h"
 #include "bmlib.h"
 #include "uiutils.h"
+#include "constants/video-global.h"
 
 #include "common-chax.h"
 #include "skill-system.h"
@@ -50,6 +51,15 @@ STATIC_DECLAR void ProcPrepSkill2_InitScreen(struct ProcPrepSkill2 * proc)
     BG_SetPosition(BG_2, 0, 0);
     BG_SetPosition(BG_3, 0, 0);
 
+    /* Init text */
+    PrepUnit_InitTexts();
+
+    /* Init gfx */
+    ResetIconGraphics_();
+    LoadUiFrameGraphics();
+    LoadObjUIGfx();
+    LoadIconPalettes(BGPAL_ICONS);
+
     EndGreenText();
 
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT);
@@ -59,15 +69,15 @@ STATIC_DECLAR void ProcPrepSkill2_InitScreen(struct ProcPrepSkill2 * proc)
     ResetIconGraphics_();
     LoadUiFrameGraphics();
     LoadObjUIGfx();
-    
+
     LoadIconPalettes(4); // item icon
-    
+
     Decompress(Gfx_PrepSkillScreen2, (void*)0x06006000);
     Decompress(Gfx_PrepPickSkillScreen, (void*)0x06000440);
-    
+
     Decompress(Tsa_PrepSubPickSkillScreen, gGenericBuffer);
     CallARM_FillTileRect(gBG1TilemapBuffer, gGenericBuffer, 0x1000);
-    
+
     CopyToPaletteBuffer(Pal_PrepSkillScreen, 0x1E0, 0x20);
     CopyToPaletteBuffer(Pal_PrepSkillScreen, 0x320, 0x20);
     EnablePaletteSync();
@@ -75,9 +85,17 @@ STATIC_DECLAR void ProcPrepSkill2_InitScreen(struct ProcPrepSkill2 * proc)
     /* Hand cursor */
     ResetPrepScreenHandCursor(proc);
     sub_80AD4A0(0x600, 0x1);
-    ShowPrepScreenHandCursor(0x74, 0x20, 0x0, 0x800);
+
+    ShowPrepScreenHandCursor(
+        0x74 + 0x10 * proc->hand_x,
+        0x20 + 0x10 * proc->hand_y,
+        0x0, 0x800);
 
     NewPrepSkillObj(proc);
+
+    /* Left pannel */
+    PrepSkill_DrawLeftSkillIcon(proc->unit);
+    PrepUnit_DrawLeftUnitName(proc->unit);
 
     RestartMuralBackground();
 }
@@ -198,13 +216,16 @@ STATIC_DECLAR void ProcPrepSkill2_UpdateListFromStatScreen(struct ProcPrepSkill2
     pproc->list_num_cur = num;
 
     /* Reset */
-    proc->unit = GetUnit(GetLastStatScreenUid());
-    proc->hand_pos = POS_R;
-    proc->hand_x = 0;
-    proc->hand_y = 0;
-    proc->left_line = 0;
-    proc->right_line = 0;
-    proc->scroll = PREP_SKILL2_SCROLL_NOPE;
+    if (proc->unit != GetUnit(GetLastStatScreenUid()))
+    {
+        proc->unit = GetUnit(GetLastStatScreenUid());
+        proc->hand_pos = POS_R;
+        proc->hand_x = 0;
+        proc->hand_y = 0;
+        proc->left_line = 0;
+        proc->right_line = 0;
+        proc->scroll = PREP_SKILL2_SCROLL_NOPE;
+    }
 }
 
 STATIC_DECLAR const struct ProcCmd ProcScr_PrepSkillSkillSel[] = {

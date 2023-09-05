@@ -21,6 +21,8 @@ enum ProcPrepSkill1Label {
     PL_PREPSKILL1_END,
 };
 
+void PrepSkill_DrawLeftSkillIcon(struct Unit * unit);
+
 /* On select skills */
 enum PrepSkill2ScrollType {
     PREP_SKILL2_SCROLL_NOPE = 0,

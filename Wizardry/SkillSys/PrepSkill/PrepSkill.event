@@ -1,6 +1,7 @@
 
 #include "Source/AtMenu.lyn.event"
 #include "Source/PrepSkill1.lyn.event"
+#include "Source/PrepSkill1fx.lyn.event"
 #include "Source/PrepSkill2.lyn.event"
 #include "Source/PrepSkill2fx.lyn.event"
 
