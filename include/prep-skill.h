@@ -42,7 +42,10 @@ struct ProcPrepSkill2 {
 enum ProcPrepSkill2Label {
     PL_PREPSKILL2_INIT,
     PL_PREPSKILL2_IDLE,
-    PL_PREPSKILL2_PRESS_A,
+    PL_PREPSKILL2_PRESS_A_ADD,
+    PL_PREPSKILL2_PRESS_A_ADD_FAILED,
+    PL_PREPSKILL2_PRESS_A_REMOVE,
+    PL_PREPSKILL2_PRESS_A_REMOVE_FAILED,
     PL_PREPSKILL2_PRESS_B,
     PL_PREPSKILL2_PRESS_R,
     PL_PREPSKILL2_PRESS_START,
@@ -67,7 +70,7 @@ enum PrepSkill2ListConfig {
 /* PrepSkill objs */
 struct ProcPrepSkillObj {
     PROC_HEADER;
-    struct PrepEquipSkillList * data;
+    struct Unit * unit;
     bool active;
     bool reload;
 };
@@ -77,7 +80,6 @@ void RegisterPrepSkillObjReload(void);
 void EndPrepSkillObj(void);
 void EnablePrepSkillObj(void);
 void DisablePrepSkillObj(void);
-int GetPrepSkill2RListAmt(void);
 
 extern const u8 Gfx_ObjSkill[];
 extern const u16 Pal_ObjSkill[];

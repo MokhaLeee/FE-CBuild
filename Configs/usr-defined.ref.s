@@ -15,8 +15,8 @@ SET_DATA FreeRamSpaceEntry, 0x02026E30
 
 SET_DATA sSkillListNext, FreeRamSpaceEntry + 0
 SET_DATA sSkillLists, sSkillListNext + 4
-SET_DATA sPrepEquipSkillList, sSkillLists + 0x40
-SET_DATA sPrepEquipSkillListExt, sPrepEquipSkillList + 0x100
+SET_DATA gPrepEquipSkillList, sSkillLists + 0x40
+SET_DATA sPrepEquipSkillListExt, gPrepEquipSkillList + 0x100
 SET_DATA sStatScreenPage1BarMax, sPrepEquipSkillListExt + 0x100
 
 SET_DATA FreeRamSpaceTail, sStatScreenPage1BarMax + 0x4

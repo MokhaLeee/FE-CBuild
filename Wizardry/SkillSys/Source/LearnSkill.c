@@ -38,6 +38,7 @@ void UnitAutoLoadSkills(struct Unit * unit)
         }
         level = level - 5;
     }
+    ResetSkillLists();
 }
 
 bool CanRemoveSkill(struct Unit * unit, const u8 sid)
@@ -59,6 +60,7 @@ int RemoveSkill(struct Unit * unit, const u8 sid)
         if (sid == list[i])
         {
             list[i] = 0;
+            ResetSkillLists();
             return 0;
         }
 
@@ -75,9 +77,9 @@ int AddSkill(struct Unit * unit, const u8 sid)
         if (!SKILL_VALID(list[i]))
         {
             list[i] = sid;
+            ResetSkillLists();
             return 0;
         }
     }
-
     return -1;
 }

@@ -19,6 +19,11 @@
 #include "skill-system.h"
 #include "prep-skill.h"
 
+/**
+ * L-list: struct SkillList * GetUnitSkillList(struct Unit * unit)
+ * R-list: struct PrepEquipSkillList * GetPrepEquipSkillList(struct Unit * unit)
+ */
+
 STATIC_DECLAR void ProcPrepSkill2_OnEnd(struct ProcPrepSkill2 * proc)
 {
     PrepSetLatestCharId(proc->unit->pCharacterData->number);
@@ -102,7 +107,8 @@ STATIC_DECLAR void ProcPrepSkill2_InitScreen(struct ProcPrepSkill2 * proc)
 
 STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
 {
-    bool hand_moved = false;;
+    bool hand_moved = false;
+    int ret;
     int repeated = gKeyStatusPtr->repeatedKeys;
 
     if (B_BUTTON & gKeyStatusPtr->newKeys)
@@ -110,6 +116,46 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
         PlaySoundEffect(0x6B);
         Proc_Goto(proc, PL_PREPSKILL2_PRESS_B);
         return;
+    }
+
+    if (A_BUTTON & gKeyStatusPtr->newKeys)
+    {
+        if (proc->hand_pos == POS_R)
+        {
+            struct PrepEquipSkillList * rlist = GetPrepEquipSkillList(proc->unit);
+            u8 sid =  rlist->sid[PREP_SRLIST_OFFSET(proc->hand_x, proc->right_line + proc->hand_y)];
+
+            if (!SkillTester(proc->unit, sid))
+            {
+                ret = AddSkill(proc->unit, sid);
+                if (ret)
+                {
+                    PlaySoundEffect(0x6C);
+                    Proc_Goto(proc, PL_PREPSKILL2_PRESS_A_ADD_FAILED);
+                }
+                else
+                {
+                    PlaySoundEffect(0x6A);
+                    Proc_Goto(proc, PL_PREPSKILL2_PRESS_A_ADD);
+                }
+                return;
+            }
+            else
+            {
+                ret = RemoveSkill(proc->unit, sid);
+                if (ret)
+                {
+                    PlaySoundEffect(0x6C);
+                    Proc_Goto(proc, PL_PREPSKILL2_PRESS_A_REMOVE_FAILED);
+                }
+                else
+                {
+                    PlaySoundEffect(0x6A);
+                    Proc_Goto(proc, PL_PREPSKILL2_PRESS_A_REMOVE);
+                }
+                return;
+            }
+        }
     }
 
     if (R_BUTTON & gKeyStatusPtr->newKeys)
@@ -130,7 +176,7 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
     if (DPAD_RIGHT & repeated)
     {
         int next = PREP_SRLIST_OFFSET(proc->hand_x + 1, proc->right_line + proc->hand_y);
-        if (next < GetPrepSkill2RListAmt())
+        if (next < GetPrepEquipSkillList(proc->unit)->amt)
         {
             if (proc->hand_x < (PREP_SRLIST_LENGTH - 1))
                 proc->hand_x++;
@@ -161,7 +207,7 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
     if (DPAD_DOWN & repeated)
     {
         int next = PREP_SRLIST_OFFSET(proc->hand_x, proc->right_line + proc->hand_y + 1);
-        if (next < GetPrepSkill2RListAmt())
+        if (next < GetPrepEquipSkillList(proc->unit)->amt)
         {
             if (proc->hand_y < (PREP_SRLIST_HEIGHT - 1))
             {
@@ -240,6 +286,14 @@ PROC_LABEL(PL_PREPSKILL2_INIT),
 
 PROC_LABEL(PL_PREPSKILL2_IDLE),
     PROC_REPEAT(ProcPrepSkill2_Idle),
+
+PROC_LABEL(PL_PREPSKILL2_PRESS_A_ADD_FAILED),
+PROC_LABEL(PL_PREPSKILL2_PRESS_A_REMOVE_FAILED),
+    PROC_GOTO(PL_PREPSKILL2_IDLE),
+
+PROC_LABEL(PL_PREPSKILL2_PRESS_A_ADD),
+PROC_LABEL(PL_PREPSKILL2_PRESS_A_REMOVE),
+    PROC_GOTO(PL_PREPSKILL2_INIT),
 
 PROC_LABEL(PL_PREPSKILL2_PRESS_R),
     PROC_CALL(PrepUnitDisableDisp),

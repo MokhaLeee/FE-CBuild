@@ -23,7 +23,7 @@ STATIC_DECLAR void ReloadPrepSkill2IconGfx(struct ProcPrepSkillObj * proc)
 {
     int x, y;
     struct ProcPrepSkill2 * pproc = proc->proc_parent;
-    struct PrepEquipSkillList * rlist = proc->data;
+    struct PrepEquipSkillList * rlist = GetPrepEquipSkillList(proc->unit);
 
     for (y = 0; y < PREP_SRLIST_HEIGHT; y++)
     {
@@ -50,7 +50,7 @@ STATIC_DECLAR void PutPrepSkill2IconSprits(struct ProcPrepSkillObj * proc)
 {
     int x, y;
     struct ProcPrepSkill2 * pproc = proc->proc_parent;
-    struct PrepEquipSkillList * rlist = proc->data;
+    struct PrepEquipSkillList * rlist = GetPrepEquipSkillList(proc->unit);
 
     for (y = 0; y < PREP_SRLIST_HEIGHT; y++)
     {
@@ -81,7 +81,7 @@ STATIC_DECLAR void PutPrepSkill2Suffix(struct ProcPrepSkillObj * proc)
 {
     int x, y;
     struct ProcPrepSkill2 * pproc = proc->proc_parent;
-    struct PrepEquipSkillList * rlist = proc->data;
+    struct PrepEquipSkillList * rlist = GetPrepEquipSkillList(proc->unit);
     struct Unit * unit = pproc->unit;
 
     /* Draw R-list suffix */
@@ -151,7 +151,7 @@ void NewPrepSkillObj(struct ProcPrepSkill2 * pproc)
     if (!proc)
         proc = Proc_Start(ProcScr_PrepSkillObj, pproc);
 
-    proc->data = GeneratePrepEquipSkillList(pproc->unit);
+    proc->unit = pproc->unit;
     proc->reload = true;
     proc->active = true;
 }
@@ -186,11 +186,4 @@ void DisablePrepSkillObj(void)
 
     if (proc)
         proc->active = false;
-}
-
-int GetPrepSkill2RListAmt(void)
-{
-    struct ProcPrepSkillObj * proc;
-    proc = Proc_Find(ProcScr_PrepSkillObj);
-    return proc->data->amt;
 }

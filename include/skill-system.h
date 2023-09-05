@@ -43,11 +43,12 @@ extern bool (* const SkillTester)(struct Unit * unit, const u8 sid);
 
 /* Prep equip skill list */
 struct PrepEquipSkillList {
+    s8 uid;
     u8 amt;
     u8 sid[0xFE];
 };
 
-struct PrepEquipSkillList * GeneratePrepEquipSkillList(struct Unit * unit);
+struct PrepEquipSkillList * GetPrepEquipSkillList(struct Unit * unit);
 
 /* Game data */
 #define SKILL_ROM_DATA_AMT 5
