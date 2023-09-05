@@ -84,6 +84,7 @@ STATIC_DECLAR void ProcPrepSkill2_InitScreen(struct ProcPrepSkill2 * proc)
 
 STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
 {
+    bool hand_moved = false;;
     int repeated = gKeyStatusPtr->repeatedKeys;
 
     if (B_BUTTON & gKeyStatusPtr->newKeys)
@@ -102,25 +103,37 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
     if (DPAD_LEFT & repeated)
     {
         if (proc->hand_x != 0)
+        {
+            hand_moved = true;
             proc->hand_x--;
+        }
     }
 
     if (DPAD_RIGHT & repeated)
     {
         int next = PREP_SRLIST_OFFSET(proc->hand_x + 1, proc->right_line + proc->hand_y);
         if (next < GetPrepSkill2RListAmt())
-            proc->hand_x++;
+        {
+            if (proc->hand_x < (PREP_SRLIST_LENGTH - 1))
+                proc->hand_x++;
+
+            hand_moved = true;
+        }
     }
 
     if (DPAD_UP & repeated)
     {
         int next = PREP_SRLIST_OFFSET(proc->hand_x, proc->right_line + proc->hand_y - 1);
-        if (next > 0)
+        if (next >= 0)
         {
             if (proc->hand_y > 0)
+            {
+                hand_moved = true;
                 proc->hand_y--;
+            }
             else
             {
+                hand_moved = true;
                 proc->right_line--;
                 RegisterPrepSkillObjReload();
             }
@@ -133,14 +146,21 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
         if (next < GetPrepSkill2RListAmt())
         {
             if (proc->hand_y < (PREP_SRLIST_HEIGHT - 1))
+            {
                 proc->hand_y++;
+                hand_moved = true;
+            }
             else
             {
+                hand_moved = true;
                 proc->right_line++;
                 RegisterPrepSkillObjReload();
             }
         }
     }
+
+    if (!hand_moved)
+        return;
 
     ShowPrepScreenHandCursor(
         0x74 + 0x10 * proc->hand_x,

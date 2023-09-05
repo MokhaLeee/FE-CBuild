@@ -32,7 +32,7 @@ STATIC_DECLAR void ReloadPrepSkill2IconGfx(struct ProcPrepSkillObj * proc)
             int off  = PREP_SRLIST_OFFSET(x, y);
             int real = PREP_SRLIST_OFFSET(x, pproc->right_line + y);
             u8 sid = rlist->sid[real];
-            u8 * dst = real < 0x10
+            u8 * dst = off < 0x10
                      ? OBJ_VRAM0 + VOBJ_SKILL_ICONS + 0x40 * off
                      : OBJ_VRAM0 + VOBJ_SKILL_ICONS + 0x40 * (off + 0x10);
 

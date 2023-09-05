@@ -124,7 +124,7 @@ static DECL_INFO RText_Skill5 = {
 };
 
 static DECL_INFO RText_Skill6 = {
-    &RText_Skill5, &RText_Skill7, &RText_Light, &RText_Name,
+    &RText_Skill5, &RText_Skill7, &RText_Light, &RText_Class,
     0xA6, 0x68, 5,
     HbRedirect_Skill, HbPopuplate_Skill
 };
@@ -143,7 +143,7 @@ static DECL_INFO RText_Skill8 = {
 
 /* Page left */
 static DECL_INFO RText_Name = {
-    &RText_Hp, &RText_Class, NULL, &RText_Light,
+    &RText_Hp, &RText_Class, NULL, &RText_Anima,
     0x18, 0x50, 0,
     NULL, HbPopulate_SSCharacter
 };
@@ -167,7 +167,7 @@ static DECL_INFO RText_Exp = {
 };
 
 static DECL_INFO RText_Hp = {
-    &RText_Level, &RText_Name, NULL, &RText_Dark,
+    &RText_Level, &RText_Name, NULL, &RText_Staff,
     0x06, 0x88, 0x544,
     NULL, NULL
 };

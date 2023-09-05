@@ -3,14 +3,20 @@
 #include "common-chax.h"
 #include "skill-system.h"
 #include "debug-kit.h"
+#include "constants/icons.h"
 
 const u8 * GetSkillIcon(const u8 sid)
 {
+    const u8 * icon = NULL;
     if (SKILL_VALID(sid))
-        return gSkillInfos[sid].icon;
+        icon = gSkillInfos[sid].icon;
 
-    LogErrorf("%s: Try get invalid skill info: %#X", __func__, sid);
-    return NULL;
+    if (!icon)
+    {
+        LogPrintf("%s: Try get invalid skill info: %#X", __func__, sid);
+        icon = ICON_SkillIcon_WIP;
+    }
+    return icon;
 }
 
 u16 GetSkillDesc(const u8 sid)
@@ -18,7 +24,7 @@ u16 GetSkillDesc(const u8 sid)
     if (SKILL_VALID(sid))
         return gSkillInfos[sid].msg;
 
-    LogErrorf("%s: Try get invalid skill info: %#X", __func__, sid);
+    LogPrintf("%s: Try get invalid skill info: %#X", __func__, sid);
     return 0;
 }
 
@@ -28,8 +34,8 @@ const char * GetSkillName(const u8 sid)
     u16 msg = GetSkillDesc(sid);
     if (msg == 0)
     {
-        LogErrorf("%s: Get invalid desc: %#X", __func__, sid);
-        return NULL;
+        LogPrintf("%s: Get invalid desc: %#X", __func__, sid);
+        return "W.I.P";
     }
 
     str = GetStringFromIndex(msg);
@@ -49,7 +55,7 @@ int GetEfxSkillIndex(const u8 sid)
     if (SKILL_VALID(sid))
         return gSkillAnimInfos[sid].aid;
 
-    LogErrorf("%s: Try get invalid skill info: %#X", __func__, sid);
+    LogPrintf("%s: Try get invalid skill info: %#X", __func__, sid);
     return 0;
 }
 
@@ -58,7 +64,7 @@ int GetEfxSkillPriority(const u8 sid)
     if (SKILL_VALID(sid))
         return gSkillAnimInfos[sid].priority;
 
-    LogErrorf("%s: Try get invalid skill info: %#X", __func__, sid);
+    LogPrintf("%s: Try get invalid skill info: %#X", __func__, sid);
     return 0;
 }
 
@@ -67,7 +73,7 @@ int GetEfxSkillSfx(const u8 sid)
     if (SKILL_VALID(sid))
         return gSkillAnimInfos[sid].sfx;
 
-    LogErrorf("%s: Try get invalid skill info: %#X", __func__, sid);
+    LogPrintf("%s: Try get invalid skill info: %#X", __func__, sid);
     return 0;
 }
 

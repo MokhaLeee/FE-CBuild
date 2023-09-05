@@ -9,7 +9,7 @@
 #define FreeSpaceFontSize 0xE4D20
 
 /* If unset, CHAX may run faster without any debug info */
-#define CONFIG_USE_DEBUG 0
+#define CONFIG_USE_DEBUG 1
 
 /* Icon sheet amount */
 #define ICON_SHEET_AMT 4
