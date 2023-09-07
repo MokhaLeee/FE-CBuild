@@ -65,13 +65,6 @@ STATIC_DECLAR void ProcPrepSkill2_InitScreen(struct ProcPrepSkill2 * proc)
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT);
     SetDefaultColorEffects();
 
-    /* Init BG gfx */
-    ResetIconGraphics_();
-    LoadUiFrameGraphics();
-    LoadObjUIGfx();
-
-    LoadIconPalettes(4); // item icon
-
     Decompress(Gfx_PrepSkillScreen2, (void*)0x06006000);
     Decompress(Gfx_PrepPickSkillScreen, (void*)0x06000440);
 
@@ -92,6 +85,7 @@ STATIC_DECLAR void ProcPrepSkill2_InitScreen(struct ProcPrepSkill2 * proc)
         0x0, 0x800);
 
     NewPrepSkillObj(proc);
+    StartParallelFiniteLoop(PrepSkill2_DrawDrawSkillDesc, 0, (u32)proc);
 
     /* Left pannel */
     PrepSkill_DrawLeftSkillIcon(proc->unit);
@@ -195,10 +189,16 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
             {
                 if (proc->hand_x < (PREP_SRLIST_LENGTH - 1))
                     proc->hand_x++;
-                else
+                else if (proc->hand_y < (PREP_SRLIST_HEIGHT - 1))
                 {
                     proc->hand_x = 0;
                     proc->hand_y++;
+                }
+                else
+                {
+                    proc->hand_x = 0;
+                    proc->right_line++;
+                    RegisterPrepSkillObjReload();
                 }
 
                 hand_moved = true;
@@ -206,7 +206,8 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
         }
         else if (proc->hand_pos == POS_L)
         {
-            if (proc->hand_x == (PREP_SLLIST_LENGTH - 1) && rlist->amt > 0)
+            int next = PREP_SLLIST_OFFSET(proc->hand_x + 1, proc->left_line + proc->hand_y);
+            if (next >= llist->amt || (proc->hand_x == (PREP_SLLIST_LENGTH - 1) && rlist->amt > 0))
             {
                 proc->hand_pos = POS_R;
                 proc->left_line = 0;
@@ -407,4 +408,5 @@ void StartPrepSelectSkillScreen(struct ProcPrepSkill1 * pproc)
     proc->scroll = PREP_SKILL2_SCROLL_NOPE;
 
     ResetPrepEquipSkillList();
+    EndHelpPromptSprite();
 }
