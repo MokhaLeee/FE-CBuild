@@ -52,7 +52,7 @@ STATIC_DECLAR void ProcPrepSkill2_InitScreen(struct ProcPrepSkill2 * proc)
     BG_SetPosition(BG_3, 0, 0);
 
     /* Init text */
-    PrepUnit_InitTexts();
+    PrepSkill_InitTexts();
 
     /* Init gfx */
     ResetIconGraphics_();
@@ -293,30 +293,32 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
         }
     }
 
-    if (!hand_moved)
-        return;
+    if (hand_moved)
+    {
+        if (proc->hand_pos == POS_R)
+            ShowPrepScreenHandCursor(
+                0x74 + 0x10 * proc->hand_x,
+                0x20 + 0x10 * proc->hand_y,
+                0x0, 0x800);
+        else
+            ShowPrepScreenHandCursor(
+                0x10 + 0x10 * proc->hand_x,
+                0x30 + 0x10 * proc->hand_y,
+                0x0, 0x800);
 
-    if (proc->hand_pos == POS_R)
-        ShowPrepScreenHandCursor(
-            0x74 + 0x10 * proc->hand_x,
-            0x20 + 0x10 * proc->hand_y,
-            0x0, 0x800);
-    else
-        ShowPrepScreenHandCursor(
-            0x10 + 0x10 * proc->hand_x,
-            0x30 + 0x10 * proc->hand_y,
-            0x0, 0x800);
+        StartParallelFiniteLoop(PrepSkill2_DrawDrawSkillDesc, 0, (u32)proc);
+    }
 }
 
 STATIC_DECLAR void ProcPrepSkill2_EndMiscEffectForStatScreen(struct ProcPrepSkill2 * proc)
 {
     EndMenuScrollBar();
     EndAllParallelWorkers();
-	sub_80AD2D4();
-	EndPrepScreenHandCursor();
-	EndHelpPromptSprite();
-	sub_80ACDDC();
-	EndMuralBackground_();
+    sub_80AD2D4();
+    EndPrepScreenHandCursor();
+    EndHelpPromptSprite();
+    sub_80ACDDC();
+    EndMuralBackground_();
 
     EndPrepSkillObj();
 }

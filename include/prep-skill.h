@@ -22,6 +22,7 @@ enum ProcPrepSkill1Label {
 };
 
 void PrepSkill_DrawLeftSkillIcon(struct Unit * unit);
+void PrepSkill_InitTexts(void);
 
 /* On select skills */
 enum PrepSkill2ScrollType {
@@ -91,12 +92,13 @@ extern const u16 Pal_ObjSkill[];
 extern const u8 Gfx_ObjWindow[];
 extern const u16 Pal_ObjWindow[];
 
+void PrepSkill2_DrawDrawSkillDesc(struct ProcPrepSkill2 * proc);
+
 /* Some vanilla declaration */
 extern struct Text gPrepUnitTexts[];
 void PrepUnit_DrawSMSAndObjs(struct ProcPrepUnit * proc);
 void PrepUnit_InitSMS(struct ProcPrepUnit * proc);
 void PrepUnit_DrawUnitListNames(struct ProcPrepUnit * proc, int line);
-void PrepUnit_InitTexts(void);
 void PrepUnit_InitGfx(void);
 void PrepUnit_DrawUnitItems(struct Unit * unit);
 void PrepUnit_DrawLeftUnitName(struct Unit * unit);

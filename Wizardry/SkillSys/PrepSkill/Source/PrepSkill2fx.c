@@ -187,3 +187,47 @@ void DisablePrepSkillObj(void)
     if (proc)
         proc->active = false;
 }
+
+/* Skill desc */
+void PrepSkill2_DrawDrawSkillDesc(struct ProcPrepSkill2 * proc)
+{
+    u8 sid;
+    int i;
+    const char * str;
+
+    const int X = 0x5;
+    const int Y = 0xD;
+
+    if (proc->hand_pos == POS_L)
+    {
+        struct SkillList * llist = GetUnitSkillList(proc->unit);
+        int index = PREP_SLLIST_OFFSET(proc->hand_x, proc->left_line + proc->hand_y);
+        sid = llist->sid[index];
+    }
+    else
+    {
+        struct PrepEquipSkillList * rlist = GetPrepEquipSkillList(proc->unit);
+        int index = PREP_SRLIST_OFFSET(proc->hand_x, proc->right_line + proc->hand_y);
+        sid = rlist->sid[index];
+    }
+
+    TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, X, Y), 0x10, 0x6, 0);
+
+    str = GetStringFromIndex(GetSkillDesc(sid));
+
+    for (i = 0; i < 3 && '\0' != *str; i++)
+    {
+        struct Text * text = &gPrepUnitTexts[i + 0xE];
+        ClearText(text);
+        PutDrawText(
+            text,
+            TILEMAP_LOCATED(gBG0TilemapBuffer, X, Y + 2 * i),
+            TEXT_COLOR_SYSTEM_WHITE, 0, 0, str
+        );
+
+        while ('\1' != *str++)
+            if ('\0' == *str)
+                break;
+    }
+    BG_EnableSyncByMask(BG0_SYNC_BIT);
+}

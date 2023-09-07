@@ -32,3 +32,25 @@ void PrepSkill_DrawLeftSkillIcon(struct Unit * unit)
 
     BG_EnableSyncByMask(BG0_SYNC_BIT);
 }
+
+void PrepSkill_InitTexts(void)
+{
+    int i;
+
+    ResetText();
+
+    /* 0x00 ~ 0x0D (size = 14): unit name */
+    for (i = 0; i < 14; i++)
+        InitText(&gPrepUnitTexts[i], 5);
+
+    /* Vanilla: item, new: skill desc */
+    for (i = 0; i < 3; i++)
+        InitText(&gPrepUnitTexts[i + 0xE], 0x15);
+
+    /* Left unit name */
+    InitText(&gPrepUnitTexts[0x13], 7);
+    InitText(&gPrepUnitTexts[0x14], 10);
+
+    /* Right top bar */
+    InitText(&gPrepUnitTexts[0x15], 12);
+}
