@@ -70,10 +70,13 @@ STATIC_DECLAR void ProcPrepSkill1_InitScreen(struct ProcPrepSkill1 * proc)
 
     StartHelpPromptSprite(0x20, 0x8F, 9, proc);
     PrepUnit_DrawLeftUnitName(unit);
-    PrepSkill_DrawLeftSkillIcon(unit);
+
+    StartParallelFiniteLoop(PrepSkill1_DrawLeftSkillIcon, 0, (u32)proc);
 
     for (i = 0; i < 6; i++)
         PrepUnit_DrawUnitListNames((ProcPtr)proc, proc->yDiff_cur / 0x10 + i);
+
+    StartParallelFiniteLoop(PrepSkill1_DrawRightTopBar, 0, (u32)proc);
 
     StartGreenText(proc);
     LoadHelpBoxGfx(BG_SCREEN_ADDR(0x29), 5);
@@ -82,8 +85,6 @@ STATIC_DECLAR void ProcPrepSkill1_InitScreen(struct ProcPrepSkill1 * proc)
 
 STATIC_DECLAR void ProcPrepSkill1_Idle(struct ProcPrepSkill1 * proc)
 {
-    struct Unit * unit;
-
     if (proc->list_num_pre == proc->list_num_cur)
     {
         int key_pre = gKeyStatusPtr->repeatedKeys;
@@ -159,11 +160,9 @@ STATIC_DECLAR void ProcPrepSkill1_Idle(struct ProcPrepSkill1 * proc)
         if (proc->list_num_pre == proc->list_num_cur)
             return;
 
-        unit = GetUnitFromPrepList(proc->list_num_cur);
-
-        PrepSkill_DrawLeftSkillIcon(unit);
+        StartParallelFiniteLoop(PrepSkill2_DrawLeftSkillIcon, 0, (u32)proc);
         StartParallelFiniteLoop(PrepUnit_DrawLeftUnitNameCur, 0, (u32)proc);
-        StartParallelFiniteLoop(PrepSkill_DrawRightTopBar, 0, (u32)unit);
+        StartParallelFiniteLoop(PrepSkill1_DrawRightTopBar, 0, (u32)proc);
         PlaySoundEffect(0x65);
     
         if (ShouldPrepUnitMenuScroll(proc))

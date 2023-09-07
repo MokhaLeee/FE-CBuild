@@ -23,6 +23,7 @@
 STATIC_DECLAR void ProcPrepSkill2_OnEnd(struct ProcPrepSkill2 * proc)
 {
     PrepSetLatestCharId(proc->unit->pCharacterData->number);
+    EndGreenText();
     EndPrepSkillObj();
 }
 
@@ -42,7 +43,7 @@ STATIC_DECLAR void ProcPrepSkill2_InitScreen(struct ProcPrepSkill2 * proc)
     BG_Fill(gBG1TilemapBuffer, 0);
     BG_Fill(gBG2TilemapBuffer, 0);
 
-    gLCDControlBuffer.bg0cnt.priority = 2;
+    gLCDControlBuffer.bg0cnt.priority = 0;
     gLCDControlBuffer.bg1cnt.priority = 2;
     gLCDControlBuffer.bg2cnt.priority = 1;
     gLCDControlBuffer.bg3cnt.priority = 3;
@@ -61,7 +62,7 @@ STATIC_DECLAR void ProcPrepSkill2_InitScreen(struct ProcPrepSkill2 * proc)
     LoadObjUIGfx();
     LoadIconPalettes(BGPAL_ICONS);
 
-    EndGreenText();
+    StartGreenText(proc);
 
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT);
     SetDefaultColorEffects();
@@ -80,17 +81,23 @@ STATIC_DECLAR void ProcPrepSkill2_InitScreen(struct ProcPrepSkill2 * proc)
     ResetPrepScreenHandCursor(proc);
     sub_80AD4A0(0x600, 0x1);
 
-    ShowPrepScreenHandCursor(
-        0x74 + 0x10 * proc->hand_x,
-        0x20 + 0x10 * proc->hand_y,
-        0x0, 0x800);
+    if (proc->hand_pos == POS_R)
+        ShowPrepScreenHandCursor(
+            0x74 + 0x10 * proc->hand_x,
+            0x20 + 0x10 * proc->hand_y,
+            0x0, 0x800);
+    else
+        ShowPrepScreenHandCursor(
+            0x10 + 0x10 * proc->hand_x,
+            0x30 + 0x10 * proc->hand_y,
+            0x0, 0x800);
 
     NewPrepSkillObj(proc);
     StartParallelFiniteLoop(PrepSkill2_DrawDrawSkillDesc, 0, (u32)proc);
-    StartParallelFiniteLoop(PrepSkill_DrawRightTopBar, 0, (u32)proc->unit);
+    StartParallelFiniteLoop(PrepSkill2_DrawRightTopBar, 0, (u32)proc);
+    StartParallelFiniteLoop(PrepSkill2_DrawLeftSkillIcon, 0, (u32)proc);
 
     /* Left pannel */
-    PrepSkill_DrawLeftSkillIcon(proc->unit);
     PrepUnit_DrawLeftUnitName(proc->unit);
 
     RestartMuralBackground();
@@ -99,7 +106,7 @@ STATIC_DECLAR void ProcPrepSkill2_InitScreen(struct ProcPrepSkill2 * proc)
 STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
 {
     bool hand_moved = false;
-    int ret;
+    int ret, next;
     int repeated = gKeyStatusPtr->repeatedKeys;
 
     /**
@@ -122,6 +129,8 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
         if (proc->hand_pos == POS_R)
         {
             u8 sid =  rlist->sid[PREP_SRLIST_OFFSET(proc->hand_x, proc->right_line + proc->hand_y)];
+            if (!SKILL_VALID(sid))
+                return;
 
             if (!SkillTester(proc->unit, sid))
             {
@@ -133,6 +142,7 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
                 }
                 else
                 {
+                    StartParallelFiniteLoop(PrepSkill2_DrawLeftSkillIcon, 0, (u32)proc);
                     PlaySoundEffect(0x6A);
                     Proc_Goto(proc, PL_PREPSKILL2_PRESS_A_ADD);
                 }
@@ -149,6 +159,15 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
                 else
                 {
                     PlaySoundEffect(0x6A);
+
+                    llist = GetUnitSkillList(proc->unit);
+                    next = PREP_SLLIST_OFFSET(proc->hand_x, proc->left_line + proc->hand_y);
+                    if (!(next < llist->amt) && (llist->amt > 0))
+                    {
+                        proc->hand_y = Div(llist->amt, PREP_SLLIST_LENGTH);
+                        proc->hand_x = llist->amt - proc->hand_y * PREP_SLLIST_LENGTH - 1;
+                    }
+                    StartParallelFiniteLoop(PrepSkill2_DrawLeftSkillIcon, 0, (u32)proc);
                     Proc_Goto(proc, PL_PREPSKILL2_PRESS_A_REMOVE);
                 }
                 return;
@@ -165,6 +184,7 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
             }
             else
             {
+                StartParallelFiniteLoop(PrepSkill2_DrawLeftSkillIcon, 0, (u32)proc);
                 PlaySoundEffect(0x6A);
                 Proc_Goto(proc, PL_PREPSKILL2_PRESS_A_REMOVE);
             }
@@ -202,7 +222,7 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
     {
         if (proc->hand_pos == POS_R)
         {
-            int next = PREP_SRLIST_OFFSET(proc->hand_x + 1, proc->right_line + proc->hand_y);
+            next = PREP_SRLIST_OFFSET(proc->hand_x + 1, proc->right_line + proc->hand_y);
             if (next < rlist->amt)
             {
                 if (proc->hand_x < (PREP_SRLIST_LENGTH - 1))
@@ -224,7 +244,7 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
         }
         else if (proc->hand_pos == POS_L)
         {
-            int next = PREP_SLLIST_OFFSET(proc->hand_x + 1, proc->left_line + proc->hand_y);
+            next = PREP_SLLIST_OFFSET(proc->hand_x + 1, proc->left_line + proc->hand_y);
             if (next >= llist->amt || (proc->hand_x == (PREP_SLLIST_LENGTH - 1) && rlist->amt > 0))
             {
                 proc->hand_pos = POS_R;
@@ -235,7 +255,7 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
             }
             else
             {
-                int next = PREP_SLLIST_OFFSET(proc->hand_x + 1, proc->left_line + proc->hand_y);
+                next = PREP_SLLIST_OFFSET(proc->hand_x + 1, proc->left_line + proc->hand_y);
                 if (next < llist->amt)
                 {
                     if (proc->hand_x < (PREP_SLLIST_LENGTH - 1))
@@ -263,7 +283,7 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
         }
         else if (proc->hand_pos == POS_R)
         {
-            int next = PREP_SRLIST_OFFSET(proc->hand_x, proc->right_line + proc->hand_y - 1);
+            next = PREP_SRLIST_OFFSET(proc->hand_x, proc->right_line + proc->hand_y - 1);
             if (next >= 0)
             {
                 if (proc->hand_y > 0)
@@ -285,7 +305,7 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
     {
         if (proc->hand_pos == POS_L)
         {
-            int next = PREP_SRLIST_OFFSET(proc->hand_x, proc->left_line + proc->hand_y + 1);
+            next = PREP_SRLIST_OFFSET(proc->hand_x, proc->left_line + proc->hand_y + 1);
             if (next < llist->amt)
             {
                 proc->hand_y++;
@@ -294,7 +314,7 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
         }
         else if (proc->hand_pos == POS_R)
         {
-            int next = PREP_SRLIST_OFFSET(proc->hand_x, proc->right_line + proc->hand_y + 1);
+            next = PREP_SRLIST_OFFSET(proc->hand_x, proc->right_line + proc->hand_y + 1);
             if (next < rlist->amt)
             {
                 if (proc->hand_y < (PREP_SRLIST_HEIGHT - 1))
@@ -307,6 +327,25 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
                     hand_moved = true;
                     proc->right_line++;
                     RegisterPrepSkillObjReload();
+                }
+            }
+            else
+            {
+                next = PREP_SRLIST_OFFSET(0, proc->right_line + proc->hand_y + 1);
+                if (next < rlist->amt)
+                {
+                    proc->hand_x = rlist->amt - next - 1;
+                    if (proc->hand_y < (PREP_SRLIST_HEIGHT - 1))
+                    {
+                        proc->hand_y++;
+                        hand_moved = true;
+                    }
+                    else
+                    {
+                        hand_moved = true;
+                        proc->right_line++;
+                        RegisterPrepSkillObjReload();
+                    }
                 }
             }
         }
@@ -369,7 +408,7 @@ STATIC_DECLAR void ProcPrepSkill2_UpdateListFromStatScreen(struct ProcPrepSkill2
         proc->left_line = 0;
         proc->right_line = 0;
         proc->scroll = PREP_SKILL2_SCROLL_NOPE;
-        StartParallelFiniteLoop(PrepSkill_DrawRightTopBar, 0, (u32)proc->unit);
+        StartParallelFiniteLoop(PrepSkill2_DrawRightTopBar, 0, (u32)proc);
     }
 }
 
@@ -379,11 +418,11 @@ STATIC_DECLAR void ProcPrepSkill2_MsgOnDraw(int msg)
     int i;
     const char * str = GetStringFromIndex(msg);
 
-    TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 0xD, 0x6), 0x5, 0x1, 0);
+    TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 0xD, 0x6), 0xC, 0x4, 0);
 
     for (i = 0; i < 2 && '\0' != *str; i++)
     {
-        struct Text * text = &gPrepUnitTexts[0x02 + i];
+        struct Text * text = &gPrepUnitTexts[0x03 + i];
         ClearText(text);
         PutDrawText(
             text,
@@ -402,11 +441,12 @@ STATIC_DECLAR void ProcPrepSkill2_MsgWindowIDLE(struct ProcPrepSkill2 * proc)
 {
     if ((A_BUTTON | B_BUTTON) & gKeyStatusPtr->newKeys)
     {
-        Proc_Break(proc);
+        TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 0xD, 0x6), 0xC, 0x4, 0);
+        BG_EnableSyncByMask(BG0_SYNC_BIT);
         PlaySoundEffect(0x6B);
+        Proc_Break(proc);
         return;
     }
-
     PutPrepSkill2PopupBox(0x60, 0x2E, 0x0E, 0x04, 0x1);
 }
 
@@ -454,12 +494,12 @@ PROC_LABEL(PL_PREPSKILL2_IDLE),
 PROC_LABEL(PL_PREPSKILL2_PRESS_A_ADD_FAILED),
     PROC_CALL(ProcPrepSkill2_FailedAddOnDraw),
     PROC_REPEAT(ProcPrepSkill2_MsgWindowIDLE),
-    PROC_GOTO(PL_PREPSKILL2_IDLE),
+    PROC_GOTO(PL_PREPSKILL2_INIT),
 
 PROC_LABEL(PL_PREPSKILL2_PRESS_A_REMOVE_FAILED),
     PROC_CALL(ProcPrepSkill2_FailedRemoveOnDraw),
     PROC_REPEAT(ProcPrepSkill2_MsgWindowIDLE),
-    PROC_GOTO(PL_PREPSKILL2_IDLE),
+    PROC_GOTO(PL_PREPSKILL2_INIT),
 
 PROC_LABEL(PL_PREPSKILL2_PRESS_A_ADD),
     PROC_CALL(ProcPrepSkill2_AddOnDraw),

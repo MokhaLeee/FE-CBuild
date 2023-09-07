@@ -8,12 +8,10 @@
 #include "Source/AutoLevel.lyn.event"
 #include "Source/CheckCap.lyn.event"
 #include "Source/Levelup.lyn.event"
-
 #include "Source/LynJump.event"
 
 #include "Lvupfx/MapLvup.lyn.event"
 #include "Lvupfx/EfxLvup.lyn.event"
-
 #include "Lvupfx/LynJump.event"
 
 #endif /* LVUP_INSTALLED */

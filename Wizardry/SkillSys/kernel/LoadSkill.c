@@ -3,6 +3,7 @@
 
 #include "common-chax.h"
 #include "skill-system.h"
+#include "constants/skills.h"
 
 bool CanRemoveSkill(struct Unit * unit, const u8 sid)
 {
@@ -26,7 +27,6 @@ int RemoveSkill(struct Unit * unit, const u8 sid)
             ResetSkillLists();
             return 0;
         }
-
     return -1;
 }
 
@@ -79,4 +79,12 @@ void UnitAutoLoadSkills(struct Unit * unit)
         }
         level = level - 5;
     }
+
+#if CONFIG_USE_DEBUG
+
+    /* For debug, we enable unit learn all of skills */
+    for (i = 1; i < SID_MAX; i++)
+        LearnSkill(unit, i);
+
+#endif
 }

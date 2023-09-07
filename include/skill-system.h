@@ -26,7 +26,7 @@ u16 GetSkillDesc(const u8 sid);
 const char * GetSkillName(const u8 sid);
 
 /* Judge list */
-#define SKILL_LIST_MAX_AMT 25
+#define SKILL_LIST_MAX_AMT 15
 struct SkillList {
     s8 uid;
     u8 amt;

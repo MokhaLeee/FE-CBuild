@@ -9,12 +9,13 @@
 #include "prep-skill.h"
 #include "constants/texts.h"
 
-void PrepSkill_DrawLeftSkillIcon(struct Unit * unit)
+void PrepSkill1_DrawLeftSkillIcon(struct ProcPrepSkill1 * proc)
 {
     int x, y;
+    struct Unit * unit = GetUnitFromPrepList(proc->list_num_cur);
     struct SkillList * list = GetUnitSkillList(unit);
     ResetIconGraphics_();
-    TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 1, 5), 0xB, 0xB, 0);
+    TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 1, 6), 0xA, 0x6, 0);
 
     for (y = 0; y < PREP_SLLIST_HEIGHT; y++)
     {
@@ -30,7 +31,6 @@ void PrepSkill_DrawLeftSkillIcon(struct Unit * unit)
                 TILEREF(0, STATSCREEN_BGPAL_ITEMICONS));
         }
     }
-
     BG_EnableSyncByMask(BG0_SYNC_BIT);
 }
 
@@ -49,22 +49,24 @@ void PrepSkill1_InitTexts(void)
     InitText(&gPrepUnitTexts[0x14], 10);
 
     /* Right top bar */
-    InitText(&gPrepUnitTexts[0x15], 12);
+    InitText(&gPrepUnitTexts[0x15], 5);
 }
 
-void PrepSkill_DrawRightTopBar(struct Unit * unit)
+void PrepSkill1_DrawRightTopBar(struct ProcPrepSkill1 * proc)
 {
     struct Text * text = &gPrepUnitTexts[0x15];
+    struct Unit * unit = GetUnitFromPrepList(proc->list_num_cur);
+    int color = AddSkill(unit, 0) == 0
+              ? TEXT_COLOR_SYSTEM_WHITE
+              : TEXT_COLOR_SYSTEM_GREEN;
     struct SkillList * llist = GetUnitSkillList(unit);
 
     ClearText(text);
-    TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 0xE, 0x1), 0x10, 0x1, 0);
+    TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 0x10, 0x1), 0xA, 0x1, 0);
 
     PutNumber(
         TILEMAP_LOCATED(gBG0TilemapBuffer, 0x12, 0x1),
-        AddSkill(unit, 0) == 0
-            ? TEXT_COLOR_SYSTEM_WHITE
-            : TEXT_COLOR_SYSTEM_GREEN,
+        color,
         llist->amt
     );
 

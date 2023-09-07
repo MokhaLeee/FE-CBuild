@@ -4,10 +4,13 @@
 #include "ctc.h"
 #include "ap.h"
 #include "icon.h"
+#include "fontgrp.h"
+#include "statscreen.h"
 
 #include "common-chax.h"
 #include "skill-system.h"
 #include "prep-skill.h"
+#include "constants/texts.h"
 
 STATIC_DECLAR void ReloadPrepSkill2IconGfx(struct ProcPrepSkillObj * proc)
 {
@@ -71,6 +74,7 @@ STATIC_DECLAR void PutPrepSkill2Suffix(struct ProcPrepSkillObj * proc)
 {
     int x, y;
     struct ProcPrepSkill2 * pproc = proc->proc_parent;
+    struct SkillList * llist = GetUnitSkillList(proc->unit);
     struct PrepEquipSkillList * rlist = GetPrepEquipSkillList(proc->unit);
     struct Unit * unit = pproc->unit;
 
@@ -89,6 +93,33 @@ STATIC_DECLAR void PutPrepSkill2Suffix(struct ProcPrepSkillObj * proc)
             {
                 int ix = 0x72 + 0x10 * x + 8;
                 int iy = 0x1E + 0x10 * y + 0;
+                int oam2 = OAM2_PAL(SKILLOBJ_PAL) +
+                           OAM2_LAYER(0b01) +
+                           OAM2_CHR(SKILLOBJ_VOBJ / 0x20);
+
+                if (CanRemoveSkill(unit, sid))
+                    PutSprite(5, ix, iy, gObject_8x16, oam2);
+                else
+                    PutSprite(5, ix, iy, gObject_8x16, oam2 + 1);
+            }
+        }
+    }
+
+    /* Draw L-list suffix */
+    for (y = 0; y < PREP_SLLIST_HEIGHT; y++)
+    {
+        for (x = 0; x < PREP_SLLIST_LENGTH; x++)
+        {
+            int real = PREP_SLLIST_OFFSET(x, pproc->left_line + y);
+            u8 sid = llist->sid[real];
+
+            if (real >= llist->amt)
+                break;
+
+            if (SkillTester(unit, sid))
+            {
+                int ix = 0x10 + 0x10 * x + 8;
+                int iy = 0x30 + 0x10 * y + 0;
                 int oam2 = OAM2_PAL(SKILLOBJ_PAL) +
                            OAM2_LAYER(0b01) +
                            OAM2_CHR(SKILLOBJ_VOBJ / 0x20);
@@ -183,6 +214,31 @@ void PutPrepSkill2PopupBox(int x, int y, int w, int h, int priority)
     PrepItemDrawPopupBox(x, y, w, h, OAM2_PAL(OBJWINDOW_PAL) + OAM2_LAYER(priority) + OAM2_CHR(OBJWINDOW_VOBJ / 0x20));
 }
 
+void PrepSkill2_DrawLeftSkillIcon(struct ProcPrepSkill2 * proc)
+{
+    int x, y;
+    struct Unit * unit = proc->unit;
+    struct SkillList * list = GetUnitSkillList(unit);
+    ResetIconGraphics_();
+    TileMap_FillRect(TILEMAP_LOCATED(gBG2TilemapBuffer, 1, 6), 0xA, 0x6, 0);
+
+    for (y = 0; y < PREP_SLLIST_HEIGHT; y++)
+    {
+        for (x = 0; x < PREP_SLLIST_LENGTH; x++)
+        {
+            int count = x + y * PREP_SLLIST_LENGTH;
+            if (count >= list->amt)
+                break;
+
+            DrawIcon(
+                TILEMAP_LOCATED(gBG2TilemapBuffer, 2 + x * 2, 6 + y * 2),
+                SKILL_ICON(list->sid[count]), 
+                TILEREF(0, STATSCREEN_BGPAL_ITEMICONS));
+        }
+    }
+    BG_EnableSyncByMask(BG2_SYNC_BIT);
+}
+
 /* Texts */
 void PrepSkill2_InitTexts(void)
 {
@@ -194,13 +250,13 @@ void PrepSkill2_InitTexts(void)
     InitText(&gPrepUnitTexts[0x02], 0x15);
 
     /* Failed to add skill */
-    InitText(&gPrepUnitTexts[0x02], 0x12);
     InitText(&gPrepUnitTexts[0x03], 0x12);
+    InitText(&gPrepUnitTexts[0x04], 0x12);
 
     /* Don't touch: Left unit name & Right top bar*/
     InitText(&gPrepUnitTexts[0x13], 7);
     InitText(&gPrepUnitTexts[0x14], 10);
-    InitText(&gPrepUnitTexts[0x15], 12);
+    InitText(&gPrepUnitTexts[0x15], 5);
 }
 
 /* Skill desc */
@@ -245,4 +301,32 @@ void PrepSkill2_DrawDrawSkillDesc(struct ProcPrepSkill2 * proc)
                 break;
     }
     BG_EnableSyncByMask(BG0_SYNC_BIT);
+}
+
+void PrepSkill2_DrawRightTopBar(struct ProcPrepSkill2 * proc)
+{
+    struct Text * text = &gPrepUnitTexts[0x15];
+    struct Unit * unit = proc->unit;
+    int color = AddSkill(unit, 0) == 0
+              ? TEXT_COLOR_SYSTEM_WHITE
+              : TEXT_COLOR_SYSTEM_GREEN;
+    struct SkillList * llist = GetUnitSkillList(unit);
+
+    ClearText(text);
+    TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 0x10, 0x1), 0xA, 0x1, 0);
+
+    LogDebugf("%s: llist %p, uid %d, amt %d", __func__, llist, llist->uid, llist->amt);
+
+    PutNumber(
+        TILEMAP_LOCATED(gBG0TilemapBuffer, 0x12, 0x1),
+        color,
+        llist->amt
+    );
+
+    PutDrawText(
+        text,
+        TILEMAP_LOCATED(gBG0TilemapBuffer, 0x16, 0x1),
+        TEXT_COLOR_SYSTEM_WHITE, 0, 0,
+        GetStringFromIndex(MSG_PREPSKILL_RightTopBar)
+    );
 }
