@@ -35,11 +35,12 @@ int AddSkill(struct Unit * unit, const u8 sid)
     int i;
     u8 * list = UNIT_RAM_SKILLS(unit);
 
+    LearnSkill(unit, sid);
+
     for (i = 0; i < UNIT_RAM_SKILLS_LEN; i++)
     {
         if (!SKILL_VALID(list[i]))
         {
-            LearnSkill(unit, sid);
             list[i] = sid;
             ResetSkillLists();
             return 0;

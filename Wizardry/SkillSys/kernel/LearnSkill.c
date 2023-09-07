@@ -57,3 +57,13 @@ void LearnSkill(struct Unit * unit, const u8 sid)
     if (pid < NEW_BWL_ARRAY_NUM)
         sLearnedSkillPLists[pid].data[hi] |= 1 << lo;
 }
+
+void ForgetSkill(struct Unit * unit, const u8 sid)
+{
+    u8 lo = (sid & 0x0F);
+    u8 hi = (sid & 0xF0) >> 4;
+    u8 pid = UNIT_CHAR_ID(unit);
+
+    if (pid < NEW_BWL_ARRAY_NUM)
+        sLearnedSkillPLists[pid].data[hi] &= ~(1 << lo);
+}
