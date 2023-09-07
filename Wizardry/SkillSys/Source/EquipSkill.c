@@ -5,8 +5,14 @@
 #include "skill-system.h"
 #include "prep-skill.h"
 
-extern struct PrepEquipSkillList gPrepEquipSkillList;
+extern struct PrepEquipSkillList sPrepEquipSkillList;
 extern u8 sPrepEquipSkillListExt[MAX_SKILL_NUM + 1];
+
+void ResetPrepEquipSkillList(void)
+{
+    CpuFill16(0, sPrepEquipSkillListExt, sizeof(sPrepEquipSkillListExt));
+    CpuFill16(0, &sPrepEquipSkillList,   sizeof(sPrepEquipSkillList));
+}
 
 STATIC_DECLAR void RegisterToPrepEquipSkillListExt(const u8 sid)
 {
@@ -18,28 +24,27 @@ STATIC_DECLAR void SetupPrepEquipReal(void)
     int i;
     for (i = 1; i < MAX_SKILL_NUM; i++)
         if (sPrepEquipSkillListExt[i] & 1)
-            gPrepEquipSkillList.sid[gPrepEquipSkillList.amt++] = i;
+            sPrepEquipSkillList.sid[sPrepEquipSkillList.amt++] = i;
 }
 
 STATIC_DECLAR void UpdatePrepEquipSkillList(struct Unit * unit)
 {
     int i;
 
-    CpuFill16(0, sPrepEquipSkillListExt, sizeof(sPrepEquipSkillListExt));
-    CpuFill16(0, &gPrepEquipSkillList,   sizeof(gPrepEquipSkillList));
+    ResetPrepEquipSkillList();
 
     /* Todo */
     for (i = 1; i < 0x100; i++)
         RegisterToPrepEquipSkillListExt(i);
 
     SetupPrepEquipReal();
-    gPrepEquipSkillList.uid = unit->index;
+    sPrepEquipSkillList.uid = unit->index;
 }
 
 struct PrepEquipSkillList * GetPrepEquipSkillList(struct Unit * unit)
 {
-    if (gPrepEquipSkillList.uid != unit->index)
+    if (sPrepEquipSkillList.uid != unit->index)
         UpdatePrepEquipSkillList(unit);
 
-    return &gPrepEquipSkillList;
+    return &sPrepEquipSkillList;
 }

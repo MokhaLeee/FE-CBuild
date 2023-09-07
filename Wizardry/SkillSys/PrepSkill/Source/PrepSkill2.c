@@ -405,4 +405,6 @@ void StartPrepSelectSkillScreen(struct ProcPrepSkill1 * pproc)
     proc->left_line = 0;
     proc->right_line = 0;
     proc->scroll = PREP_SKILL2_SCROLL_NOPE;
+
+    ResetPrepEquipSkillList();
 }

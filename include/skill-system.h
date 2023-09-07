@@ -48,6 +48,7 @@ struct PrepEquipSkillList {
     u8 sid[0xFE];
 };
 
+void ResetPrepEquipSkillList(void);
 struct PrepEquipSkillList * GetPrepEquipSkillList(struct Unit * unit);
 
 /* Game data */
