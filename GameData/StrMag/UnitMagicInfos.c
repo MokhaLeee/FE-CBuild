@@ -9,7 +9,7 @@
 const struct UnitMagicInfo gMagicPInfos[0x100] = {
     [CHARACTER_EIRIKA] = {
         .base = 5,
-        .growth = 40,
+        .growth = 100,
     },
 };
 
