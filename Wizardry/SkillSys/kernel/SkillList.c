@@ -57,11 +57,6 @@ void ResetSkillLists(void)
     CpuFastFill16(0, sSkillLists, sizeof(sSkillLists));
 }
 
-int GetSkillListAmt(struct Unit * unit)
-{
-    return GetUnitSkillList(unit)->amt;
-}
-
 void DisableUnitSkills(struct Unit * unit)
 {
     GetUnitSkillList(unit)->amt = 0;

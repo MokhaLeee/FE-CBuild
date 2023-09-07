@@ -35,7 +35,6 @@ struct SkillList {
 
 struct SkillList * GetUnitSkillList(struct Unit * unit);
 void ResetSkillLists(void);
-int GetSkillListAmt(struct Unit * unit);
 void DisableUnitSkills(struct Unit * unit);
 
 /* Skill tetsers */
