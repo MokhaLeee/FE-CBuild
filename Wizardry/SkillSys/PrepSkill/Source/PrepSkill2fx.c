@@ -9,16 +9,6 @@
 #include "skill-system.h"
 #include "prep-skill.h"
 
-enum PrepSkillObjConfigs {
-    SKILLOBJ_VOBJ = 0x3000,
-    SKILLOBJ_PAL = 0x3,
-
-    OBJWINDOW_VOBJ = 0x4000,
-    OBJWINDOW_PAL = 0x6,
-
-    VOBJ_SKILL_ICONS = 0x4400,
-};
-
 STATIC_DECLAR void ReloadPrepSkill2IconGfx(struct ProcPrepSkillObj * proc)
 {
     int x, y;
@@ -188,6 +178,31 @@ void DisablePrepSkillObj(void)
         proc->active = false;
 }
 
+void PutPrepSkill2PopupBox(int x, int y, int w, int h, int priority)
+{
+    PrepItemDrawPopupBox(x, y, w, h, OAM2_PAL(OBJWINDOW_PAL) + OAM2_LAYER(priority) + OAM2_CHR(OBJWINDOW_VOBJ / 0x20));
+}
+
+/* Texts */
+void PrepSkill2_InitTexts(void)
+{
+    ResetText();
+
+    /* Skill desc */
+    InitText(&gPrepUnitTexts[0x00], 0x15);
+    InitText(&gPrepUnitTexts[0x01], 0x15);
+    InitText(&gPrepUnitTexts[0x02], 0x15);
+
+    /* Failed to add skill */
+    InitText(&gPrepUnitTexts[0x02], 0x12);
+    InitText(&gPrepUnitTexts[0x03], 0x12);
+
+    /* Don't touch: Left unit name & Right top bar*/
+    InitText(&gPrepUnitTexts[0x13], 7);
+    InitText(&gPrepUnitTexts[0x14], 10);
+    InitText(&gPrepUnitTexts[0x15], 12);
+}
+
 /* Skill desc */
 void PrepSkill2_DrawDrawSkillDesc(struct ProcPrepSkill2 * proc)
 {
@@ -217,7 +232,7 @@ void PrepSkill2_DrawDrawSkillDesc(struct ProcPrepSkill2 * proc)
 
     for (i = 0; i < 3 && '\0' != *str; i++)
     {
-        struct Text * text = &gPrepUnitTexts[i + 0xE];
+        struct Text * text = &gPrepUnitTexts[0x00 + i];
         ClearText(text);
         PutDrawText(
             text,

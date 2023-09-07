@@ -22,7 +22,8 @@ enum ProcPrepSkill1Label {
 };
 
 void PrepSkill_DrawLeftSkillIcon(struct Unit * unit);
-void PrepSkill_InitTexts(void);
+void PrepSkill1_InitTexts(void);
+void PrepSkill_DrawRightTopBar(struct Unit * unit);
 
 /* On select skills */
 enum PrepSkill2ScrollType {
@@ -73,6 +74,16 @@ enum PrepSkill2ListConfig {
 #define PREP_SLLIST_OFFSET(x, y) ((y) * PREP_SLLIST_LENGTH + (x))
 
 /* PrepSkill objs */
+enum PrepSkillObjConfigs {
+    SKILLOBJ_VOBJ = 0x3000,
+    SKILLOBJ_PAL = 0x3,
+
+    OBJWINDOW_VOBJ = 0x4000,
+    OBJWINDOW_PAL = 0x6,
+
+    VOBJ_SKILL_ICONS = 0x4400,
+};
+
 struct ProcPrepSkillObj {
     PROC_HEADER;
     struct Unit * unit;
@@ -85,6 +96,7 @@ void RegisterPrepSkillObjReload(void);
 void EndPrepSkillObj(void);
 void EnablePrepSkillObj(void);
 void DisablePrepSkillObj(void);
+void PutPrepSkill2PopupBox(int x, int y, int w, int h, int priority);
 
 extern const u8 Gfx_ObjSkill[];
 extern const u16 Pal_ObjSkill[];
@@ -92,6 +104,7 @@ extern const u16 Pal_ObjSkill[];
 extern const u8 Gfx_ObjWindow[];
 extern const u16 Pal_ObjWindow[];
 
+void PrepSkill2_InitTexts(void);
 void PrepSkill2_DrawDrawSkillDesc(struct ProcPrepSkill2 * proc);
 
 /* Some vanilla declaration */

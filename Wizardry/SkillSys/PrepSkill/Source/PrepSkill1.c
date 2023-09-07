@@ -53,7 +53,7 @@ STATIC_DECLAR void ProcPrepSkill1_InitScreen(struct ProcPrepSkill1 * proc)
     BG_SetPosition(BG_2, 0, proc->yDiff_cur - 0x18);
     BG_SetPosition(BG_3, 0, 0);
 
-    PrepSkill_InitTexts();
+    PrepSkill1_InitTexts();
     PrepUnit_InitGfx();
 
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT);
@@ -82,6 +82,8 @@ STATIC_DECLAR void ProcPrepSkill1_InitScreen(struct ProcPrepSkill1 * proc)
 
 STATIC_DECLAR void ProcPrepSkill1_Idle(struct ProcPrepSkill1 * proc)
 {
+    struct Unit * unit;
+
     if (proc->list_num_pre == proc->list_num_cur)
     {
         int key_pre = gKeyStatusPtr->repeatedKeys;
@@ -157,8 +159,11 @@ STATIC_DECLAR void ProcPrepSkill1_Idle(struct ProcPrepSkill1 * proc)
         if (proc->list_num_pre == proc->list_num_cur)
             return;
 
-        PrepSkill_DrawLeftSkillIcon(GetUnitFromPrepList(proc->list_num_cur));
+        unit = GetUnitFromPrepList(proc->list_num_cur);
+
+        PrepSkill_DrawLeftSkillIcon(unit);
         StartParallelFiniteLoop(PrepUnit_DrawLeftUnitNameCur, 0, (u32)proc);
+        StartParallelFiniteLoop(PrepSkill_DrawRightTopBar, 0, (u32)unit);
         PlaySoundEffect(0x65);
     
         if (ShouldPrepUnitMenuScroll(proc))

@@ -18,6 +18,7 @@
 #include "common-chax.h"
 #include "skill-system.h"
 #include "prep-skill.h"
+#include "constants/texts.h"
 
 STATIC_DECLAR void ProcPrepSkill2_OnEnd(struct ProcPrepSkill2 * proc)
 {
@@ -52,7 +53,7 @@ STATIC_DECLAR void ProcPrepSkill2_InitScreen(struct ProcPrepSkill2 * proc)
     BG_SetPosition(BG_3, 0, 0);
 
     /* Init text */
-    PrepSkill_InitTexts();
+    PrepSkill2_InitTexts();
 
     /* Init gfx */
     ResetIconGraphics_();
@@ -86,6 +87,7 @@ STATIC_DECLAR void ProcPrepSkill2_InitScreen(struct ProcPrepSkill2 * proc)
 
     NewPrepSkillObj(proc);
     StartParallelFiniteLoop(PrepSkill2_DrawDrawSkillDesc, 0, (u32)proc);
+    StartParallelFiniteLoop(PrepSkill_DrawRightTopBar, 0, (u32)proc->unit);
 
     /* Left pannel */
     PrepSkill_DrawLeftSkillIcon(proc->unit);
@@ -151,6 +153,22 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
                 }
                 return;
             }
+        }
+        else if (proc->hand_pos == POS_L)
+        {
+            u8 sid =  llist->sid[PREP_SLLIST_OFFSET(proc->hand_x, proc->left_line + proc->hand_y)];
+            ret = RemoveSkill(proc->unit, sid);
+            if (ret)
+            {
+                PlaySoundEffect(0x6C);
+                Proc_Goto(proc, PL_PREPSKILL2_PRESS_A_REMOVE_FAILED);
+            }
+            else
+            {
+                PlaySoundEffect(0x6A);
+                Proc_Goto(proc, PL_PREPSKILL2_PRESS_A_REMOVE);
+            }
+            return;
         }
     }
 
@@ -311,6 +329,7 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
     }
 }
 
+/* Statscreen */
 STATIC_DECLAR void ProcPrepSkill2_EndMiscEffectForStatScreen(struct ProcPrepSkill2 * proc)
 {
     EndMenuScrollBar();
@@ -350,7 +369,69 @@ STATIC_DECLAR void ProcPrepSkill2_UpdateListFromStatScreen(struct ProcPrepSkill2
         proc->left_line = 0;
         proc->right_line = 0;
         proc->scroll = PREP_SKILL2_SCROLL_NOPE;
+        StartParallelFiniteLoop(PrepSkill_DrawRightTopBar, 0, (u32)proc->unit);
     }
+}
+
+/* Failed to add skill */
+STATIC_DECLAR void ProcPrepSkill2_MsgOnDraw(int msg)
+{
+    int i;
+    const char * str = GetStringFromIndex(msg);
+
+    TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 0xD, 0x6), 0x5, 0x1, 0);
+
+    for (i = 0; i < 2 && '\0' != *str; i++)
+    {
+        struct Text * text = &gPrepUnitTexts[0x02 + i];
+        ClearText(text);
+        PutDrawText(
+            text,
+            TILEMAP_LOCATED(gBG0TilemapBuffer, 0xD, 0x6 + 2 * i),
+            TEXT_COLOR_SYSTEM_WHITE, 0, 0, str
+        );
+
+        while ('\1' != *str++)
+            if ('\0' == *str)
+                break;
+    }
+    BG_EnableSyncByMask(BG0_SYNC_BIT);
+}
+
+STATIC_DECLAR void ProcPrepSkill2_MsgWindowIDLE(struct ProcPrepSkill2 * proc)
+{
+    if ((A_BUTTON | B_BUTTON) & gKeyStatusPtr->newKeys)
+    {
+        Proc_Break(proc);
+        PlaySoundEffect(0x6B);
+        return;
+    }
+
+    PutPrepSkill2PopupBox(0x60, 0x2E, 0x0E, 0x04, 0x1);
+}
+
+STATIC_DECLAR void ProcPrepSkill2_AddOnDraw(struct ProcPrepSkill2 * proc)
+{
+    ProcPrepSkill2_MsgOnDraw(MSG_PREPSKILL_AddSkill);
+    HidePrepScreenHandCursor();
+}
+
+STATIC_DECLAR void ProcPrepSkill2_RemoveOnDraw(struct ProcPrepSkill2 * proc)
+{
+    ProcPrepSkill2_MsgOnDraw(MSG_PREPSKILL_RemoveSkill);
+    HidePrepScreenHandCursor();
+}
+
+STATIC_DECLAR void ProcPrepSkill2_FailedAddOnDraw(struct ProcPrepSkill2 * proc)
+{
+    ProcPrepSkill2_MsgOnDraw(MSG_PREPSKILL_FailAddSkill);
+    HidePrepScreenHandCursor();
+}
+
+STATIC_DECLAR void ProcPrepSkill2_FailedRemoveOnDraw(struct ProcPrepSkill2 * proc)
+{
+    ProcPrepSkill2_MsgOnDraw(MSG_PREPSKILL_FailRemoveSkill);
+    HidePrepScreenHandCursor();
 }
 
 STATIC_DECLAR const struct ProcCmd ProcScr_PrepSkillSkillSel[] = {
@@ -363,15 +444,31 @@ PROC_LABEL(PL_PREPSKILL2_INIT),
     PROC_CALL_ARG(NewFadeIn, 0x10),
     PROC_WHILE(FadeInExists),
 
+    /* Fall through */
+
 PROC_LABEL(PL_PREPSKILL2_IDLE),
     PROC_REPEAT(ProcPrepSkill2_Idle),
 
+    /* Never break directly */
+
 PROC_LABEL(PL_PREPSKILL2_PRESS_A_ADD_FAILED),
+    PROC_CALL(ProcPrepSkill2_FailedAddOnDraw),
+    PROC_REPEAT(ProcPrepSkill2_MsgWindowIDLE),
+    PROC_GOTO(PL_PREPSKILL2_IDLE),
+
 PROC_LABEL(PL_PREPSKILL2_PRESS_A_REMOVE_FAILED),
+    PROC_CALL(ProcPrepSkill2_FailedRemoveOnDraw),
+    PROC_REPEAT(ProcPrepSkill2_MsgWindowIDLE),
     PROC_GOTO(PL_PREPSKILL2_IDLE),
 
 PROC_LABEL(PL_PREPSKILL2_PRESS_A_ADD),
+    PROC_CALL(ProcPrepSkill2_AddOnDraw),
+    PROC_REPEAT(ProcPrepSkill2_MsgWindowIDLE),
+    PROC_GOTO(PL_PREPSKILL2_INIT),
+
 PROC_LABEL(PL_PREPSKILL2_PRESS_A_REMOVE),
+    PROC_CALL(ProcPrepSkill2_RemoveOnDraw),
+    PROC_REPEAT(ProcPrepSkill2_MsgWindowIDLE),
     PROC_GOTO(PL_PREPSKILL2_INIT),
 
 PROC_LABEL(PL_PREPSKILL2_PRESS_R),

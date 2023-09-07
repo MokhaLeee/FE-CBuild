@@ -1,0 +1,16 @@
+## MSG_PREPSKILL_RightTopBar
+Equiped[X]
+
+## MSG_PREPSKILL_AddSkill
+     Skill added[X]
+
+## MSG_PREPSKILL_RemoveSkill
+     Skill removed[X]
+
+## MSG_PREPSKILL_FailAddSkill
+This skill is[NL]
+not able to equipping.[X]
+
+## MSG_PREPSKILL_FailRemoveSkill
+This skill is[NL]
+not removable.[X]

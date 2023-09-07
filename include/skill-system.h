@@ -13,6 +13,8 @@
 #define UNIT_RAM_SKILLS_LEN 6
 #define UNIT_RAM_SKILLS(unit) ((u8 *)((unit)->supports))
 
+#define STAT_SKILL_NUM_MAX 8
+
 struct SkillInfo {
     const u8 * icon;
     u16 msg;

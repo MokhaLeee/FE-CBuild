@@ -10,8 +10,6 @@
 #include "stat-screen.h"
 #include "skill-system.h"
 
-#define STAT_SKILL_NUM_MAX 8
-
 /* LynJump */
 void DisplayPage2(void)
 {
