@@ -39,10 +39,10 @@ bool SkillTesterBasic(struct Unit * unit, const u8 sid)
 {
     int ret;
 
+    BasicJudgeSkill(unit, sid);
+
     if (!UNIT_IS_VALID(unit))
         return false;
-
-    BasicJudgeSkill(unit, sid);
 
     ret = SkillTesterROM(unit, sid);
     if (ret == true)
