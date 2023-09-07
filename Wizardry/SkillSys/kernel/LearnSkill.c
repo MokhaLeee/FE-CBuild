@@ -12,6 +12,10 @@ struct LearnedSkillList {
 
 extern struct LearnedSkillList sLearnedSkillPLists[NEW_BWL_ARRAY_NUM];
 
+#if CONFIG_USE_DEBUG
+void * const Identifier_sLearnedSkillPLists = sLearnedSkillPLists;
+#endif
+
 /* GameInitHook */
 void ResetUnitLearnedSkillLists(void)
 {
@@ -34,8 +38,8 @@ void LoadUnitLearnedSkillLists(u8 * src, const u32 size)
 
 bool IsSkillLearned(struct Unit * unit, const u8 sid)
 {
-    u8 lo = sid & 0xF;
-    u8 hi = (sid >> 4) & 0xF;
+    u8 lo = (sid & 0x0F);
+    u8 hi = (sid & 0xF0) >> 4;
     u8 pid = UNIT_CHAR_ID(unit);
 
     if (pid < NEW_BWL_ARRAY_NUM)
