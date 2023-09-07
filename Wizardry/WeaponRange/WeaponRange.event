@@ -1,0 +1,6 @@
+#ifndef WEAPON_RANGE_INSTALLED
+#define WEAPON_RANGE_INSTALLED
+
+#include "source/RangeGetter.lyn.event"
+
+#endif /* WEAPON_RANGE_INSTALLED */

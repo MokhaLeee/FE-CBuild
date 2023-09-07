@@ -65,10 +65,10 @@ _thumb(AidGetter)
     
 ORG CURRENTOFFSET
 _thumb(ConGetter)
-    // jumpToHack(_GetUnitCon)
+    jumpToHack(_GetUnitCon)
 
 ORG CURRENTOFFSET
 _thumb(MovGetter)
-    // jumpToHack(_GetUnitMov)
+    jumpToHack(_GetUnitMov)
     PROTECT $189B8 $18A18
 POP

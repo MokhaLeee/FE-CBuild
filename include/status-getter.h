@@ -18,5 +18,5 @@ int DefGetter(struct Unit * unit);
 int ResGetter(struct Unit * unit);
 int LckGetter(struct Unit * unit);
 int AidGetter(struct Unit * unit);
-// int ConGetter(struct Unit * unit);
-// int MovGetter(struct Unit * unit);
+int ConGetter(struct Unit * unit);
+int MovGetter(struct Unit * unit);
