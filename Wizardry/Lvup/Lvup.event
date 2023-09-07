@@ -2,5 +2,12 @@
 #define LVUP_INSTALLED
 
 #include "Source/GrowthGetter.lyn.event"
+#include "Source/Promotion.lyn.event"
+#include "Source/AutoLevel.lyn.event"
+#include "Source/CheckCap.lyn.event"
+#include "Source/Levelup.lyn.event"
+
+#include "Lvupfx/MapLvup.lyn.event"
+#include "Lvupfx/EfxLvup.lyn.event"
 
 #endif /* LVUP_INSTALLED */

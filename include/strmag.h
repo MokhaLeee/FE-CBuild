@@ -36,6 +36,14 @@ static inline int GetUnitMaxMagic(struct Unit * unit)
     return status;
 }
 
+static inline int GetUnitBaseMagic(struct Unit * unit)
+{
+    int status = 0;
+    status += gMagicJInfos[UNIT_CLASS_ID(unit)].base;
+    status += gMagicPInfos[UNIT_CHAR_ID(unit)].base;
+    return status;
+}
+
 static inline int GetUnitBasicMagGrowth(struct Unit * unit)
 {
     return gMagicPInfos[UNIT_CHAR_ID(unit)].growth;
