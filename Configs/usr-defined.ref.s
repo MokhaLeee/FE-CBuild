@@ -18,8 +18,9 @@ SET_DATA sSkillLists, sSkillListNext + 4
 SET_DATA sPrepEquipSkillList, sSkillLists + 0x40
 SET_DATA sPrepEquipSkillListExt, sPrepEquipSkillList + 0x100
 SET_DATA sStatScreenPage1BarMax, sPrepEquipSkillListExt + 0x100
+SET_DATA sLearnedSkillPLists, sStatScreenPage1BarMax + 0x4
 
-SET_DATA FreeRamSpaceTail, sStatScreenPage1BarMax + 0x4
+SET_DATA FreeRamSpaceTail, sLearnedSkillPLists + 0x46 * 0x20
 
 /* IconDisplay */
 SET_DATA gIconReSts, 0x02026A90 @ DrawnIconLookupTable

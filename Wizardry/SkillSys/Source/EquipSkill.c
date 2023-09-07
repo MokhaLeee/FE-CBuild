@@ -33,9 +33,9 @@ STATIC_DECLAR void UpdatePrepEquipSkillList(struct Unit * unit)
 
     ResetPrepEquipSkillList();
 
-    /* Todo */
-    for (i = 1; i < 0x100; i++)
-        RegisterToPrepEquipSkillListExt(i);
+    for (i = 1; i < MAX_SKILL_NUM; i++)
+        if (IsSkillLearned(unit, i))
+            RegisterToPrepEquipSkillListExt(i);
 
     SetupPrepEquipReal();
     sPrepEquipSkillList.uid = unit->index;
