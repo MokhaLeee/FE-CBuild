@@ -63,9 +63,13 @@ extern const u16 Pal_PrepSkillScreen[];
 enum PrepSkill2ListConfig {
     PREP_SRLIST_LENGTH = 7,
     PREP_SRLIST_HEIGHT = 4,
+
+    PREP_SLLIST_LENGTH = 5,
+    PREP_SLLIST_HEIGHT = 5,
 };
 
 #define PREP_SRLIST_OFFSET(x, y) ((y) * PREP_SRLIST_LENGTH + (x))
+#define PREP_SLLIST_OFFSET(x, y) ((y) * PREP_SLLIST_LENGTH + (x))
 
 /* PrepSkill objs */
 struct ProcPrepSkillObj {

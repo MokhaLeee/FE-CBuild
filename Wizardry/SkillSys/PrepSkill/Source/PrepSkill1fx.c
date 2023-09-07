@@ -15,11 +15,11 @@ void PrepSkill_DrawLeftSkillIcon(struct Unit * unit)
     ResetIconGraphics_();
     TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 1, 5), 0xB, 0xB, 0);
 
-    for (y = 0; y < 5; y++)
+    for (y = 0; y < PREP_SLLIST_HEIGHT; y++)
     {
-        for (x = 0; x < 5; x++)
+        for (x = 0; x < PREP_SLLIST_LENGTH; x++)
         {
-            int count = x + y * 5;
+            int count = x + y * PREP_SLLIST_LENGTH;
             if (count >= list->amt)
                 break;
 

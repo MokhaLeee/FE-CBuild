@@ -19,11 +19,6 @@
 #include "skill-system.h"
 #include "prep-skill.h"
 
-/**
- * L-list: struct SkillList * GetUnitSkillList(struct Unit * unit)
- * R-list: struct PrepEquipSkillList * GetPrepEquipSkillList(struct Unit * unit)
- */
-
 STATIC_DECLAR void ProcPrepSkill2_OnEnd(struct ProcPrepSkill2 * proc)
 {
     PrepSetLatestCharId(proc->unit->pCharacterData->number);
@@ -111,6 +106,14 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
     int ret;
     int repeated = gKeyStatusPtr->repeatedKeys;
 
+    /**
+     * L-list: struct SkillList * GetUnitSkillList(struct Unit * unit)
+     * R-list: struct PrepEquipSkillList * GetPrepEquipSkillList(struct Unit * unit)
+     */
+
+    struct SkillList * llist = GetUnitSkillList(proc->unit);
+    struct PrepEquipSkillList * rlist = GetPrepEquipSkillList(proc->unit);
+
     if (B_BUTTON & gKeyStatusPtr->newKeys)
     {
         PlaySoundEffect(0x6B);
@@ -122,7 +125,6 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
     {
         if (proc->hand_pos == POS_R)
         {
-            struct PrepEquipSkillList * rlist = GetPrepEquipSkillList(proc->unit);
             u8 sid =  rlist->sid[PREP_SRLIST_OFFSET(proc->hand_x, proc->right_line + proc->hand_y)];
 
             if (!SkillTester(proc->unit, sid))
@@ -171,54 +173,122 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
             hand_moved = true;
             proc->hand_x--;
         }
+        else if (proc->hand_pos == POS_R)
+        {
+            if (llist->amt > 0)
+            {
+                proc->hand_pos = POS_L;
+                proc->left_line = 0;
+                proc->hand_x = 0;
+                proc->hand_y = 0;
+                hand_moved = true;
+            }
+        }
     }
 
     if (DPAD_RIGHT & repeated)
     {
-        int next = PREP_SRLIST_OFFSET(proc->hand_x + 1, proc->right_line + proc->hand_y);
-        if (next < GetPrepEquipSkillList(proc->unit)->amt)
+        if (proc->hand_pos == POS_R)
         {
-            if (proc->hand_x < (PREP_SRLIST_LENGTH - 1))
-                proc->hand_x++;
+            int next = PREP_SRLIST_OFFSET(proc->hand_x + 1, proc->right_line + proc->hand_y);
+            if (next < rlist->amt)
+            {
+                if (proc->hand_x < (PREP_SRLIST_LENGTH - 1))
+                    proc->hand_x++;
+                else
+                {
+                    proc->hand_x = 0;
+                    proc->hand_y++;
+                }
 
-            hand_moved = true;
+                hand_moved = true;
+            }
+        }
+        else if (proc->hand_pos == POS_L)
+        {
+            if (proc->hand_x == (PREP_SLLIST_LENGTH - 1) && rlist->amt > 0)
+            {
+                proc->hand_pos = POS_R;
+                proc->left_line = 0;
+                proc->hand_x = 0;
+                proc->hand_y = 0;
+                hand_moved = true;
+            }
+            else
+            {
+                int next = PREP_SLLIST_OFFSET(proc->hand_x + 1, proc->left_line + proc->hand_y);
+                if (next < llist->amt)
+                {
+                    if (proc->hand_x < (PREP_SLLIST_LENGTH - 1))
+                        proc->hand_x++;
+                    else
+                    {
+                        proc->hand_x = 0;
+                        proc->hand_y++;
+                    }
+                    hand_moved = true;
+                }
+            }
         }
     }
 
     if (DPAD_UP & repeated)
     {
-        int next = PREP_SRLIST_OFFSET(proc->hand_x, proc->right_line + proc->hand_y - 1);
-        if (next >= 0)
+        if (proc->hand_pos == POS_L)
         {
             if (proc->hand_y > 0)
             {
                 hand_moved = true;
                 proc->hand_y--;
             }
-            else
+        }
+        else if (proc->hand_pos == POS_R)
+        {
+            int next = PREP_SRLIST_OFFSET(proc->hand_x, proc->right_line + proc->hand_y - 1);
+            if (next >= 0)
             {
-                hand_moved = true;
-                proc->right_line--;
-                RegisterPrepSkillObjReload();
+                if (proc->hand_y > 0)
+                {
+                    hand_moved = true;
+                    proc->hand_y--;
+                }
+                else
+                {
+                    hand_moved = true;
+                    proc->right_line--;
+                    RegisterPrepSkillObjReload();
+                }
             }
         }
     }
 
     if (DPAD_DOWN & repeated)
     {
-        int next = PREP_SRLIST_OFFSET(proc->hand_x, proc->right_line + proc->hand_y + 1);
-        if (next < GetPrepEquipSkillList(proc->unit)->amt)
+        if (proc->hand_pos == POS_L)
         {
-            if (proc->hand_y < (PREP_SRLIST_HEIGHT - 1))
+            int next = PREP_SRLIST_OFFSET(proc->hand_x, proc->left_line + proc->hand_y + 1);
+            if (next < llist->amt)
             {
                 proc->hand_y++;
                 hand_moved = true;
             }
-            else
+        }
+        else if (proc->hand_pos == POS_R)
+        {
+            int next = PREP_SRLIST_OFFSET(proc->hand_x, proc->right_line + proc->hand_y + 1);
+            if (next < rlist->amt)
             {
-                hand_moved = true;
-                proc->right_line++;
-                RegisterPrepSkillObjReload();
+                if (proc->hand_y < (PREP_SRLIST_HEIGHT - 1))
+                {
+                    proc->hand_y++;
+                    hand_moved = true;
+                }
+                else
+                {
+                    hand_moved = true;
+                    proc->right_line++;
+                    RegisterPrepSkillObjReload();
+                }
             }
         }
     }
@@ -226,10 +296,16 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
     if (!hand_moved)
         return;
 
-    ShowPrepScreenHandCursor(
-        0x74 + 0x10 * proc->hand_x,
-        0x20 + 0x10 * proc->hand_y,
-        0x0, 0x800);
+    if (proc->hand_pos == POS_R)
+        ShowPrepScreenHandCursor(
+            0x74 + 0x10 * proc->hand_x,
+            0x20 + 0x10 * proc->hand_y,
+            0x0, 0x800);
+    else
+        ShowPrepScreenHandCursor(
+            0x10 + 0x10 * proc->hand_x,
+            0x30 + 0x10 * proc->hand_y,
+            0x0, 0x800);
 }
 
 STATIC_DECLAR void ProcPrepSkill2_EndMiscEffectForStatScreen(struct ProcPrepSkill2 * proc)
