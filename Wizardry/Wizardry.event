@@ -3,6 +3,7 @@ ALIGN 4
 #include "GameInitHook/GameInitHook.event"
 #include "DebugKit/DebugKit.event"
 
+#include "StrMagSplit/StrMagSplit.event"
 #include "IconDisplay/IconDisplay.event"
 #include "UnitStatusGetter/UnitStatusGetter.event"
 #include "PostActionHook/PostActionHook.event"

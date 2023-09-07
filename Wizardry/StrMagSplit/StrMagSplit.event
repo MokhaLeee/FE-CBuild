@@ -1,0 +1,75 @@
+#ifndef STR_MAG_SPLIT_INSTALLED
+#define STR_MAG_SPLIT_INSTALLED
+
+PUSH
+    // Remove lightning-sword debuff
+    ORG $2AE02
+    SHORT 0009	// lsl r1,#0
+
+    // Staff accuracy
+    ORG $2CCE2
+    BL(MagGetter)
+    PROTECT $02CCDC $02CD62
+
+    // Healing amount
+    ORG $17012
+    BL(MagGetter)
+    PROTECT $016FB8 $017024
+
+/*
+    // Staff range
+    ORG $18A32 // GetUnitMagBy2Range
+    BL(MagGetter)
+    SHORT 0x1C01 0xE004 //mov r1,r0; b 
+    PROTECT $018A1C $018A54
+*/
+
+    // Prevent arena display glitches
+    ORG $583E0
+    jumpToHack(Arena_Fix1)
+    ORG $58438
+    jumpToHack(Arena_Fix2)
+    ORG $58414
+    jumpToHack(Arena_Fix3)
+    ORG $5849C
+    jumpToHack(Arena_Fix4)
+    PROTECT $0581EC $058842
+POP
+
+ALIGN 4
+SHORT 0
+Arena_Fix1:
+BL(Arena_Mage_Melee_Fix)
+SHORT 0x0600 0x2800 0x46C0 //lsl r0,#0x18; cmp r0, #0x00; nop
+jumpToHack(0x583E8)
+
+ALIGN 4
+Arena_Fix2:
+BL(Arena_Mage_Melee_Fix)
+SHORT 0x0600 0x2800 //lsl r0,#0x18; cmp r0,#0x0
+jumpToHack(0x58440)
+
+ALIGN 4
+SHORT 0
+Arena_Fix3:
+BL(Arena_Mage_Melee_Fix)
+SHORT 0x0600 //lsl r0,#0x18
+jumpToHack(0x5841A)
+
+ALIGN 4
+SHORT 0
+Arena_Fix4:
+BL(Arena_Mage_Melee_Fix)
+SHORT 0x0600 0x2800 0x46C0 //lsl r0,#0x18; cmp r0,#0x00; nop
+jumpToHack(0x584A4)
+
+#ifndef ItemTable
+#define ItemTable $809B10
+#endif
+
+ALIGN 4
+Arena_Mage_Melee_Fix:
+#incbin "Source/Arena_Mage_Melee_Fix.dmp"
+POIN ItemTable
+
+#endif /* STR_MAG_SPLIT_INSTALLED */

@@ -100,7 +100,7 @@ void InitBattleUnit(struct BattleUnit * bu, struct Unit * unit)
 {
     InitBattleUnitVanilla(bu, unit);
 
-    UNIT_MAG(&bu->unit) = UNIT_MAG(unit);
+    UNIT_MAG(&bu->unit) = MagGetter(unit);
     BU_CHG_MAG(bu) = 0;
 }
 

@@ -11,7 +11,26 @@ typedef void (* PreBattleCalcFunc) (struct BattleUnit * buA, struct BattleUnit *
 void PreBattleCalcWeaponTriangle(struct BattleUnit * attacker, struct BattleUnit * defender);
 
 /* LynJump */
-void ComputeBattleUnitDefense(struct BattleUnit * attacker, struct BattleUnit* defender) {
+void ComputeBattleUnitAttack(struct BattleUnit * attacker, struct BattleUnit * defender)
+{
+    int status;
+    status = GetItemMight(attacker->weapon);
+
+    if (IsUnitEffectiveAgainst(&attacker->unit, &defender->unit))
+        status = status * 3;
+    else if (IsItemEffectiveAgainst(attacker->weapon, &defender->unit))
+        status = status * 3;
+
+    if (IsMagicAttack(attacker))
+        status = status + attacker->unit.pow;
+    else
+        status = status + UNIT_MAG(&attacker->unit);
+
+    attacker->battleAttack = status;
+}
+
+/* LynJump */
+void ComputeBattleUnitDefense(struct BattleUnit * attacker, struct BattleUnit * defender) {
     int status, def, res;
     struct Unit * unit = GetUnit(attacker->unit.index);
 

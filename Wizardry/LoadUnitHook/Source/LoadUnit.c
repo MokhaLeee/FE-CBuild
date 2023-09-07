@@ -34,7 +34,7 @@ STATIC_DECLAR void UnitLoadStatsFromChracterVanilla(struct Unit * unit, const st
 
 STATIC_DECLAR void UnitLoadStatsFromCharacterMagic(struct Unit * unit, const struct CharacterData * character)
 {
-    UNIT_MAG(unit) = gMagicPInfos[character->number].base + gMagicJInfos[UNIT_CLASS_ID(unit)].base;
+    UNIT_MAG(unit) = GetUnitBaseMagic(unit);
 }
 
 /* LynJump */

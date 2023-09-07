@@ -28,7 +28,7 @@ int GetUnitMagBy2Range(struct Unit * unit)
     if (unit->pCharacterData->number == CHARACTER_FOMORTIIS)
         return GetItemMaxRange(ITEM_NIGHTMARE);
 
-    range = GetUnitPower(unit) / 2;
+    range = MagGetter(unit) / 2;
 
     if (range < 5)
         range = 5;
