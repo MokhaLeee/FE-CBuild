@@ -1,12 +1,12 @@
 #ifndef SKILL_SYSTEM_INSTALLED
 #define SKILL_SYSTEM_INSTALLED
 
-#include "Source/Infos.lyn.event"
-#include "Source/LearnSkill.lyn.event"
-#include "Source/EquipSkill.lyn.event"
-
-#include "SkillTester/SkillList.lyn.event"
-#include "SkillTester/SkillTester.lyn.event"
+#include "kernel/Infos.lyn.event"
+#include "kernel/LearnSkill.lyn.event"
+#include "kernel/LoadSkill.lyn.event"
+#include "kernel/EquipSkill.lyn.event"
+#include "kernel/JudgeSkill.lyn.event"
+#include "kernel/SkillList.lyn.event"
 
 /* EfxSkill */
 
@@ -16,7 +16,6 @@
 #include "EfxSkill/Utils.lyn.event"
 
 #define InjectBanimCmd(index, routine) "PUSH; ORG ($58C44 + 4 * index); POIN routine | 1; POP"
-
 InjectBanimCmd(0x7, Banim07Rework)
 
 /* PrepSkill */

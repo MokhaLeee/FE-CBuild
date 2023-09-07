@@ -83,7 +83,7 @@ const struct EfxAnimConf * GetEfxSkillConf(const u8 aid);
 
 /* Miscs */
 bool IsSkillLearned(struct Unit * unit, const u8 sid);
-void UnitLearnSkill(struct Unit * unit, const u8 sid);
+void LearnSkill(struct Unit * unit, const u8 sid);
 void ResetUnitLearnedSkillLists(void);                      /* GameInitHook */
 void SaveUnitLearnedSkillLists(u8 * dst, const u32 size);   /* SaveData */
 void LoadUnitLearnedSkillLists(u8 * src, const u32 size);   /* LoadData */
