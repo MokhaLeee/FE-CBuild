@@ -15,10 +15,10 @@ do {                                \
 
 static bool SkillTesterROM(struct Unit * unit, const u8 sid)
 {
-    if (gSkillRomPTable[UNIT_CHAR_ID(unit)] == sid)
+    if (gConstSkillPTable[UNIT_CHAR_ID(unit)] == sid)
         return true;
 
-    if (gSkillRomJTable[UNIT_CLASS_ID(unit)] == sid)
+    if (gConstSkillJTable[UNIT_CLASS_ID(unit)] == sid)
         return true;
 
     return false;

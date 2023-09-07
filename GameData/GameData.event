@@ -8,10 +8,10 @@
 #include "Vanilla/ChracterData/CharacterTable.csv.event"
 #include "Vanilla/ClassData/ClassTable.csv.event"
 
-#include "SkillSys/SkillPreLoad.lyn.event"
-#include "SkillSys/SkillRomTable.lyn.event"
 #include "SkillSys/EfxSkills.lyn.event"
 #include "SkillSys/SkillInfo.lyn.event"
+#include "SkillSys/PreLoadSkills.lyn.event"
+#include "SkillSys/ConstSkills.lyn.event"
 
 #include "BattleSys/WeaponTriangle.lyn.event"
 

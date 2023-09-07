@@ -53,8 +53,8 @@ void UnitAutoLoadSkills(struct Unit * unit)
 {
     u8 sid;
     int i;
-    const struct SkillConf * pConf = &gSkillPData[UNIT_CHAR_ID(unit)];
-    const struct SkillConf * jConf = &gSkillJData[UNIT_CLASS_ID(unit)];
+    const struct SkillPreloadConf * pConf = &gSkillPreloadPData[UNIT_CHAR_ID(unit)];
+    const struct SkillPreloadConf * jConf = &gSkillPreloadJData[UNIT_CLASS_ID(unit)];
     int level = Div(unit->level, 5) * 5;
 
     LIMIT_AREA(level, 0, UNIT_LEVEL_MAX_RE);

@@ -54,15 +54,15 @@ struct PrepEquipSkillList * GetPrepEquipSkillList(struct Unit * unit);
 
 /* Game data */
 #define SKILL_ROM_DATA_AMT 5
-struct SkillConf {
+struct SkillPreloadConf {
     /* Unit can learn 5 skills on lv0/5/10/15/20 */
     u8 skills[SKILL_ROM_DATA_AMT * (UNIT_LEVEL_MAX_RE / 5 + 1)];
 };
 
-extern const struct SkillConf gSkillPData[0x100], gSkillJData[0x100];
+extern const struct SkillPreloadConf gSkillPreloadPData[0x100], gSkillPreloadJData[0x100];
 
-extern const u8 gSkillRomPTable[0x100];
-extern const u8 gSkillRomJTable[0x100];
+extern const u8 gConstSkillPTable[0x100];
+extern const u8 gConstSkillJTable[0x100];
 
 struct SkillAnimInfo {
     u8 aid;
