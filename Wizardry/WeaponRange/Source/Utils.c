@@ -8,19 +8,36 @@
 #include "status-getter.h"
 #include "weapon-range.h"
 
-u32 ItemRangeToMask(u16 item, struct Unit * unit)
+STATIC_DECLAR u32 GetRangeMask(int min, int max)
 {
     int i;
     u32 mask = 0;
-
-    int min = GetItemMinRangeRework(item, unit);
-    int max = GetItemMaxRangeRework(item, unit);
 
     for (i = 0; i < 32; i++)
         if (i >= min && i < max)
             mask |= 1 << i;
 
     return mask;
+}
+
+/* External jump at 0x080170D4 */
+u32 GetItemReachBitsRework(u16 item, struct Unit * unit)
+{
+    int min = GetItemMinRangeRework(item, unit);
+    int max = GetItemMaxRangeRework(item, unit);
+    return GetRangeMask(min, max);
+}
+
+/* External jump at 0x08016B8C */
+bool IsItemCoveringRangeRework(int item, int range, struct Unit * unit)
+{
+    if (range > GetItemMaxRangeRework(item, unit))
+        return false;
+
+    if (range < GetItemMinRangeRework(item, unit))
+        return false;
+
+    return true;
 }
 
 void AddMap(int x, int y, u32 mask, int on, int off)
@@ -48,6 +65,20 @@ void AddMap(int x, int y, u32 mask, int on, int off)
                 gWorkingBmMap[iy][ix] += off;
         }
     }
+}
+
+void AddMapForItem(struct Unit * unit, u16 item)
+{
+    int min = GetItemMinRangeRework(item, unit);
+    int max = GetItemMaxRangeRework(item, unit);
+
+    if (max == 0)
+        max = GetUnitMagBy2Range(unit);
+
+    MapAddInRange(unit->xPos, unit->yPos, max, 1);
+
+    if (min != 0)
+        MapAddInRange(unit->xPos, unit->yPos, min - 1, -1);
 }
 
 void ForEachUnit(void (* func)(struct Unit *), u8 ** map, const int off)
