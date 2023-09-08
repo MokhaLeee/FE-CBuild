@@ -1,0 +1,4 @@
+#include "Source/PrepItemUsability.lyn.event"
+#include "Source/PrepItemEffect.lyn.event"
+
+#define InjectItemPrepUsabilityJpt(index, routine) "PUSH; ORG (gPrepItemUsabilityFuncs + 4 * index); POIN routine | 1; POP"

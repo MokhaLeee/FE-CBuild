@@ -6,5 +6,6 @@
 #include "Source/LynJump.event"
 
 #include "Remap/Remap.event"
+#include "PrepItem/PrepItem.event"
 
 #endif
