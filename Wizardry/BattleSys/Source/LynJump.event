@@ -34,10 +34,16 @@ ALIGN 4
 WORD $46C04778 $E59FC000 $E12FFF1C
 POIN ComputeBattleUnitAttack
 POP
-
+PUSH
+ORG $2adcc
+ALIGN 4
+WORD $46C04778 $E59FC000 $E12FFF1C
+POIN ComputeBattleUnitSpecialWeaponStats
+POP
 PROTECT $2a95c $2a95c + 0x10
 PROTECT $2aa44 $2aa44 + 0x10
 PROTECT $2acf8 $2acf8 + 0x10
 PROTECT $2c7c0 $2c7c0 + 0x10
 PROTECT $2b3ec $2b3ec + 0x10
 PROTECT $2aabc $2aabc + 0x10
+PROTECT $2adcc $2adcc + 0x10

@@ -1,0 +1,8 @@
+#ifndef ITEM_SYS_INSTALLED
+#define ITEM_SYS_INSTALLED
+
+#include "Source/StaffAccuracy.lyn.event"
+#include "Source/StaffHeal.lyn.event"
+#include "Source/LynJump.event"
+
+#endif

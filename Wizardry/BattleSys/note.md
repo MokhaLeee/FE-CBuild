@@ -14,6 +14,11 @@ ActionCombat
 │       │   │   │   ├── IsUnitEffectiveAgainst
 │       │   │   │   └── IsItemEffectiveAgainst
 │       │   │   └── ...
+│       │   ├── ComputeBattleUnitEffectiveStats: BattlcCalcReal
+│       │   │   ├── ComputeBattleUnitEffectiveHitRate
+│       │   │   ├── ComputeBattleUnitEffectiveCritRate
+│       │   │   ├── ComputeBattleUnitSilencerRate
+│       │   │   └── ComputeBattleUnitSpecialWeaponStats
 │       │   └── BattleUnwind
 │       │       ├── BattleGetFollowUpOrder
 │       │       └── BattleGenerateRoundHits

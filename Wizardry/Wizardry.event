@@ -16,3 +16,4 @@ ALIGN 4
 #include "StatScreen/StatScreen.event"
 #include "LoadUnitHook/LoadUnitHook.event"
 #include "Lvup/Lvup.event"
+#include "ItemSys/ItemSys.event"
