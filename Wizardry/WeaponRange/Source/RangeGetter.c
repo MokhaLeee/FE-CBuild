@@ -39,6 +39,5 @@ int WeaponRangeGetterSkills(int status, struct Unit * unit, u16 item)
 #if CONFIG_USE_DEBUG
     status = status + 1;
 #endif
-    status = status + 1;
     return status;
 }

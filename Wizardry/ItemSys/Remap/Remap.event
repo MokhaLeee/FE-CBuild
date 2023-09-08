@@ -41,8 +41,6 @@ PUSH
         #incbin "Data/ItemUsabilityJpt.bin"
 POP
 
-#define InjectItemUsabilityJpt(index, routine) "PUSH; ORG (ItemUsabilityJumpTable + 4 * index); POIN routine | 1; POP"
-
 PUSH
     ORG $288AC
     POIN ItemUsabilityJumpTable
@@ -94,8 +92,6 @@ PUSH
         #incbin "Data/ItemEffectJpt.bin"
 POP
 
-#define InjectItemEffectJpt(index, routine) "PUSH; ORG (ItemEffectJumpTable + 4 * index); POIN routine | 1; POP"
-
 PUSH
     ORG $28E88
     POIN ItemEffectJumpTable
@@ -146,8 +142,6 @@ PUSH
     ORG ItemActionJumpTable + 4 * 0x4B
         #incbin "Data/ItemActionJpt.bin"
 POP
-
-#define InjectItemActionJpt(index, routine) "PUSH; ORG (ItemActionJumpTable + 4 * index); POIN routine | 1; POP"
 
 PUSH
     ORG $2FC8C

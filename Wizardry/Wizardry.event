@@ -4,6 +4,7 @@ ALIGN 4
 #include "DebugKit/DebugKit.event"
 
 #include "WeaponRange/WeaponRange.event"
+#include "ItemSys/ItemSys.event"
 #include "StrMagSplit/StrMagSplit.event"
 #include "IconDisplay/IconDisplay.event"
 #include "UnitStatusGetter/UnitStatusGetter.event"
@@ -17,5 +18,4 @@ ALIGN 4
 #include "StatScreen/StatScreen.event"
 #include "LoadUnitHook/LoadUnitHook.event"
 #include "Lvup/Lvup.event"
-#include "ItemSys/ItemSys.event"
 #include "MoveLimitViewHack/MoveLimitViewHack.lyn.event"
