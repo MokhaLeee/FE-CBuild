@@ -25,9 +25,14 @@ void AddMap(int x, int y, u32 mask, int on, int off)
 {
     int ix, iy;
 
-    for (iy = 0; iy < gBmMapSize.y; iy++)
+    const int X1 = (x - 32) >= 0 ? x - 32 : 0;
+    const int X2 = (x + 32) < gBmMapSize.x ? x + 32 : gBmMapSize.x;
+    const int Y1 = (y - 32) >= 0 ? y - 32 : 0;
+    const int Y2 = (y + 32) < gBmMapSize.y ? y + 32 : gBmMapSize.y;
+
+    for (iy = Y1; iy < Y2; iy++)
     {
-        for (ix = 0; ix < gBmMapSize.x; ix++)
+        for (ix = X1; ix < X2; ix++)
         {
             int distance = RECT_DISTANCE(x, y, ix, iy);
             if (mask & (1 << distance))

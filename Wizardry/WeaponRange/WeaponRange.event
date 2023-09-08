@@ -1,6 +1,11 @@
 #ifndef WEAPON_RANGE_INSTALLED
 #define WEAPON_RANGE_INSTALLED
 
-#include "source/RangeGetter.lyn.event"
+#include "Source/RangeGetter.lyn.event"
+#include "Source/Utils.lyn.event"
+#include "Source/CoverRange.lyn.event"
+#include "Source/FillMap.lyn.event"
+
+#include "Source/LynJump.event"
 
 #endif /* WEAPON_RANGE_INSTALLED */
