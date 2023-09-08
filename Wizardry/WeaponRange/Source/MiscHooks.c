@@ -152,8 +152,11 @@ void DisplayUnitEffectRange(struct Unit * unit)
     if (!(gActiveUnit->state & US_CANTOING))
     {
         BmMapFill(gBmMapOther, 0);
+
+        if (UnitHasMagicRank(unit))
+            GenerateMagicSealMap(1);
+
         BmMapFill(gBmMapRange, 0);
-        GenerateMagicSealMap(1);
 
         switch (GetUnitWeaponUsabilityBits(gActiveUnit)) {
         case (UNIT_USEBIT_STAFF | UNIT_USEBIT_WEAPON):
@@ -175,7 +178,7 @@ void DisplayUnitEffectRange(struct Unit * unit)
             break;
         case UNIT_USEBIT_WEAPON:
             GenerateUnitCompleteAttackRange(gActiveUnit);
-            movelimitv_flag = MOVLIMITV_RMAP_GREEN | MOVLIMITV_RMAP_RED;
+            movelimitv_flag = MOVLIMITV_MMAP_BLUE | MOVLIMITV_RMAP_RED;
             break;
         } /* switch */
     }

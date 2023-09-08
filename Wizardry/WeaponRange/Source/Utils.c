@@ -14,9 +14,15 @@ STATIC_DECLAR u32 GetRangeMask(int min, int max)
     u32 mask = 0;
 
     for (i = 0; i < 32; i++)
-        if (i >= min && i < max)
-            mask |= 1 << i;
+    {
+        if (i < min)
+            continue;
 
+        if (i > max)
+            continue;
+
+        mask |= 1 << i;
+    }
     return mask;
 }
 
