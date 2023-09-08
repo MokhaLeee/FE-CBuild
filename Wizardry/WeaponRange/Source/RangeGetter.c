@@ -9,7 +9,7 @@ int GetItemMinRangeRework(u16 item, struct Unit * unit)
 {
     int status = GetItemMinRange(item);
 
-    if (UNIT_IS_VALID(unit))
+    if (IS_EWRAM_PTR(unit) && UNIT_IS_VALID(unit))
     {
 
     }
@@ -19,7 +19,7 @@ int GetItemMinRangeRework(u16 item, struct Unit * unit)
 int GetItemMaxRangeRework(u16 item, struct Unit * unit)
 {
     int status = GetItemMaxRange(item);
-    if (UNIT_IS_VALID(unit))
+    if (IS_EWRAM_PTR(unit) && UNIT_IS_VALID(unit))
     {
 
     }

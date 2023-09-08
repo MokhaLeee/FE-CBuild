@@ -19,16 +19,23 @@ u32 ItemRangeToMask(u16 item, struct Unit * unit)
     for (i = 0; i < 32; i++)
         if (i >= min && i < max)
             mask |= 1 << i;
+
+    return mask;
 }
 
 void AddMap(int x, int y, u32 mask, int on, int off)
 {
     int ix, iy;
 
-    const int X1 = (x - 32) >= 0 ? x - 32 : 0;
-    const int X2 = (x + 32) < gBmMapSize.x ? x + 32 : gBmMapSize.x;
-    const int Y1 = (y - 32) >= 0 ? y - 32 : 0;
-    const int Y2 = (y + 32) < gBmMapSize.y ? y + 32 : gBmMapSize.y;
+    int X1 = x - 32;
+    int X2 = x + 32;
+    int Y1 = y - 32;
+    int Y2 = y + 32;
+
+    LIMIT_AREA(X1, 0, gBmMapSize.x);
+    LIMIT_AREA(X2, 0, gBmMapSize.x);
+    LIMIT_AREA(Y1, 0, gBmMapSize.y);
+    LIMIT_AREA(Y2, 0, gBmMapSize.y);
 
     for (iy = Y1; iy < Y2; iy++)
     {
@@ -43,7 +50,7 @@ void AddMap(int x, int y, u32 mask, int on, int off)
     }
 }
 
-void ForEachUnit(void (*func)(struct Unit *), u8 ** map, const int off)
+void ForEachUnit(void (* func)(struct Unit *), u8 ** map, const int off)
 {
     int x, y;
 
