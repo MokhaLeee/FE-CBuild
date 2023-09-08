@@ -5,4 +5,6 @@
 #include "Source/StaffHeal.lyn.event"
 #include "Source/LynJump.event"
 
+#include "Remap/Remap.event"
+
 #endif
