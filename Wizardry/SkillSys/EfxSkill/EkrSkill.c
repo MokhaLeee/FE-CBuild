@@ -6,6 +6,13 @@
 #include "skill-system.h"
 #include "efx-skill.h"
 
+struct ProcEkrSkill {
+    PROC_HEADER;
+    struct Anim * anim;
+    int sid_atk;
+    int sid_def;
+};
+
 STATIC_DECLAR void EfxSkillSetAnimState(struct Anim * anim)
 {
     struct Anim * anim1, * anim2;
@@ -78,13 +85,15 @@ STATIC_DECLAR const struct ProcCmd ProcScr_EkrSkill[] = {
 
 STATIC_DECLAR void NewEkrSkill(struct Anim * anim)
 {
-    u8 sid_atk, sid_def;
-    struct ProcEkrSkill * proc = Proc_Start(ProcScr_EkrSkill, PROC_TREE_3);
+    int round;
+    struct ProcEkrSkill * proc;
+    
+    proc = Proc_Start(ProcScr_EkrSkill, PROC_TREE_3);
     proc->anim = anim;
 
-    SortEfxSkills(anim, &sid_atk, &sid_def);
-    proc->sid_atk = sid_atk;
-    proc->sid_def = sid_def;
+    round = anim->nextRoundId - 1;
+    proc->sid_atk = GetActorEfxSkill(round);
+    proc->sid_def = GetTargetEfxSkill(round);
 
     EfxSkillSetAnimState(anim);
 }

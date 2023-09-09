@@ -10,12 +10,24 @@
 #include "efx-skill.h"
 #include "constants/efx-skills.h"
 
-static void EfxSkillOnInit(struct ProcEfxSkillRework * proc)
+struct ProcEfxSkillRework {
+    PROC_HEADER;
+    int timer;
+    int frame;
+    int sid;
+    struct Anim * anim;
+    const u16 * const * imgs;
+    const u16 * const * pals;
+    const u16 * const * tsas;
+    const s16 * frames;
+};
+
+STATIC_DECLAR void EfxSkillOnInit(struct ProcEfxSkillRework * proc)
 {
     return;
 }
 
-static void EfxSkillMain(struct ProcEfxSkillRework * proc)
+STATIC_DECLAR void EfxSkillMain(struct ProcEfxSkillRework * proc)
 {
     int ret;
     ret = EfxAdvanceFrameLut((void *)&proc->timer, (void *)&proc->frame, proc->frames);
@@ -41,13 +53,13 @@ static void EfxSkillMain(struct ProcEfxSkillRework * proc)
         Proc_Break(proc);
 }
 
-static void EfxSkillOnEnd(struct ProcEfxSkillRework * proc)
+STATIC_DECLAR void EfxSkillOnEnd(struct ProcEfxSkillRework * proc)
 {
     SpellFx_ClearBG1();
     SetDefaultColorEffects_();
 }
 
-static const struct ProcCmd ProcScr_EfxSkill[] = {
+STATIC_DECLAR const struct ProcCmd ProcScr_EfxSkill[] = {
     PROC_NAME("EfxSkill"),
     PROC_CALL(EfxSkillOnInit),
     PROC_REPEAT(EfxSkillMain),
