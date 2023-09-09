@@ -315,8 +315,6 @@ void PrepSkill2_DrawRightTopBar(struct ProcPrepSkill2 * proc)
     ClearText(text);
     TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 0x10, 0x1), 0xA, 0x1, 0);
 
-    LogDebugf("%s: llist %p, uid %d, amt %d", __func__, llist, llist->uid, llist->amt);
-
     PutNumber(
         TILEMAP_LOCATED(gBG0TilemapBuffer, 0x12, 0x1),
         color,

@@ -159,14 +159,6 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
                 else
                 {
                     PlaySoundEffect(0x6A);
-
-                    llist = GetUnitSkillList(proc->unit);
-                    next = PREP_SLLIST_OFFSET(proc->hand_x, proc->left_line + proc->hand_y);
-                    if (!(next < llist->amt) && (llist->amt > 0))
-                    {
-                        proc->hand_y = Div(llist->amt, PREP_SLLIST_LENGTH);
-                        proc->hand_x = llist->amt - proc->hand_y * PREP_SLLIST_LENGTH - 1;
-                    }
                     StartParallelFiniteLoop(PrepSkill2_DrawLeftSkillIcon, 0, (u32)proc);
                     Proc_Goto(proc, PL_PREPSKILL2_PRESS_A_REMOVE);
                 }
@@ -184,6 +176,13 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
             }
             else
             {
+                llist = GetUnitSkillList(proc->unit);
+                next = PREP_SLLIST_OFFSET(proc->hand_x, proc->left_line + proc->hand_y);
+                if (!(next < llist->amt) && (llist->amt > 0))
+                {
+                    proc->hand_y = Div(llist->amt, PREP_SLLIST_LENGTH);
+                    proc->hand_x = llist->amt - proc->hand_y * PREP_SLLIST_LENGTH - 1;
+                }
                 StartParallelFiniteLoop(PrepSkill2_DrawLeftSkillIcon, 0, (u32)proc);
                 PlaySoundEffect(0x6A);
                 Proc_Goto(proc, PL_PREPSKILL2_PRESS_A_REMOVE);
@@ -305,11 +304,21 @@ STATIC_DECLAR void ProcPrepSkill2_Idle(struct ProcPrepSkill2 * proc)
     {
         if (proc->hand_pos == POS_L)
         {
-            next = PREP_SRLIST_OFFSET(proc->hand_x, proc->left_line + proc->hand_y + 1);
+            next = PREP_SLLIST_OFFSET(proc->hand_x, proc->left_line + proc->hand_y + 1);
             if (next < llist->amt)
             {
                 proc->hand_y++;
                 hand_moved = true;
+            }
+            else
+            {
+                next = PREP_SLLIST_OFFSET(0, proc->left_line + proc->hand_y + 1);
+                if (next < llist->amt)
+                {
+                    proc->hand_x = llist->amt - next - 1;
+                    proc->hand_y++;
+                    hand_moved = true;
+                }
             }
         }
         else if (proc->hand_pos == POS_R)

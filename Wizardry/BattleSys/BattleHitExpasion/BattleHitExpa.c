@@ -4,6 +4,7 @@
 
 #include "common-chax.h"
 #include "skill-system.h"
+#include "efx-skill.h"
 #include "battle-system.h"
 
 int GetBattleHitRound(struct BattleHit * hit)
@@ -51,5 +52,6 @@ bool BattleGenerateRoundHits(struct BattleUnit * attacker, struct BattleUnit * d
 void ClearBattleHits(void)
 {
     CpuFastFill16(0, gBattleHitArrayRe, sizeof(gBattleHitArrayRe));
+    InitEfxSkillRoundData();
     gBattleHitIterator = gBattleHitArrayRe;
 }

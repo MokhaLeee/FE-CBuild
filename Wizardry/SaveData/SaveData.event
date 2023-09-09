@@ -15,7 +15,6 @@
 */
 
 #include "SaveDataInternal.event"
-#include "SaveDataExpansion/SaveDataExpansion.event"
 
 ALIGN 4
 gEmsOffsets:
@@ -26,6 +25,9 @@ gEmsOffsets:
     SHORT 0x00D4 /* SAVE_ID_SUSPEND_ALT */
     SHORT 0x0000 /* SAVE_ID_ARENA */
     SHORT 0x0000 /* SAVE_ID_XMAP */
+
+gSkillSysMagicOffset:
+    SHORT 0x7DE4
 
 gEmsSizes:
     SHORT 0x18E8 /* SAV */

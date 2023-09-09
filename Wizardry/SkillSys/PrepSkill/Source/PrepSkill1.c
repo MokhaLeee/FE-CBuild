@@ -160,7 +160,7 @@ STATIC_DECLAR void ProcPrepSkill1_Idle(struct ProcPrepSkill1 * proc)
         if (proc->list_num_pre == proc->list_num_cur)
             return;
 
-        StartParallelFiniteLoop(PrepSkill2_DrawLeftSkillIcon, 0, (u32)proc);
+        StartParallelFiniteLoop(PrepSkill1_DrawLeftSkillIcon, 0, (u32)proc);
         StartParallelFiniteLoop(PrepUnit_DrawLeftUnitNameCur, 0, (u32)proc);
         StartParallelFiniteLoop(PrepSkill1_DrawRightTopBar, 0, (u32)proc);
         PlaySoundEffect(0x65);

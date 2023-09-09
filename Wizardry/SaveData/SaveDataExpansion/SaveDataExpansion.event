@@ -1,6 +1,0 @@
-#ifndef SAVE_DATA_EXPANSION_H
-#define SAVE_DATA_EXPANSION_H
-
-#include "SaveDataExpansionInternal.event"
-
-#endif

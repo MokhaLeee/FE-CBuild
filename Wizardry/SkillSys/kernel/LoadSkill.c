@@ -66,15 +66,27 @@ void UnitAutoLoadSkills(struct Unit * unit)
             sid = pConf->skills[level + i];
             if (SKILL_VALID(sid))
             {
-                LearnSkill(unit, sid);
-                AddSkill(unit, sid);
+                /**
+                 * Directly load to RAM list for enimy,
+                 * but just make unit learned the skill for ally.
+                 */
+                if (UNIT_FACTION(unit) == FACTION_BLUE)
+                    LearnSkill(unit, sid);
+                else
+                    AddSkill(unit, sid);
             }
 
             sid = jConf->skills[level + i];
             if (SKILL_VALID(sid))
             {
-                LearnSkill(unit, sid);
-                AddSkill(unit, sid);
+                /**
+                 * Directly load to RAM list for enimy,
+                 * but just make unit learned the skill for ally.
+                 */
+                if (UNIT_FACTION(unit) == FACTION_BLUE)
+                    LearnSkill(unit, sid);
+                else
+                    AddSkill(unit, sid);
             }
         }
         level = level - 5;
@@ -83,8 +95,14 @@ void UnitAutoLoadSkills(struct Unit * unit)
 #if CONFIG_USE_DEBUG
 
     /* For debug, we enable unit learn all of skills */
-    for (i = 1; i < SID_MAX; i++)
-        LearnSkill(unit, i);
+    if (UNIT_FACTION(unit) == FACTION_BLUE)
+    {
+        Debugf("Character %#x auto learned skill %#x ~ %#x",
+                UNIT_CHAR_ID(unit), 1, SID_MAX);
+
+        for (i = 1; i < SID_MAX; i++)
+            LearnSkill(unit, i);
+    }
 
 #endif
 }
