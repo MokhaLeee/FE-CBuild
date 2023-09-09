@@ -58,8 +58,8 @@ STATIC_DECLAR void NewEfxSkillForAttacker(struct ProcEkrSkill * proc)
 
 STATIC_DECLAR void NewEfxSkillForDefener(struct ProcEkrSkill * proc)
 {
-    /* Todo */
-    return;
+    if (SKILL_VALID(proc->sid_def))
+        NewEfxSkill(GetAnimAnotherSide(proc->anim), proc->sid_def);
 }
 
 STATIC_DECLAR const struct ProcCmd ProcScr_EkrSkill[] = {

@@ -55,21 +55,21 @@ void InitBattleForecastBattleStats(struct BattleForecastProc * proc)
     int usesB = GetItemUses(gBattleTarget.weaponBefore);
 
     proc->hitCountA = 0;
-    proc->isEffectiveA = 0;
+    proc->isEffectiveA = false;
 
     if ((gBattleActor.weapon != 0) || (gBattleActor.weaponBroke))
     {
         BattleForecastHitCountUpdate(&gBattleActor, &proc->hitCountA, &usesA);
 
         if (IsUnitEffectiveAgainst(&gBattleActor.unit, &gBattleTarget.unit))
-            proc->isEffectiveA = 1;
+            proc->isEffectiveA = true;
 
         if (IsItemEffectiveAgainst(gBattleActor.weaponBefore, &gBattleTarget.unit))
-            proc->isEffectiveA = 1;
+            proc->isEffectiveA = true;
     }
 
     proc->hitCountB = 0;
-    proc->isEffectiveB = 0;
+    proc->isEffectiveB = false;
 
     if ((gBattleTarget.weapon != 0) || (gBattleTarget.weaponBroke))
     {
