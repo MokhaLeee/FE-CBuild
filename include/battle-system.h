@@ -4,6 +4,7 @@
 #include "bmunit.h"
 #include "bmbattle.h"
 
+/* WTA bonus */
 struct WeaponTriangleConf {
     s8 wtype_a;
     s8 wtype_b;
@@ -22,4 +23,9 @@ struct WeaponTriangleConf {
 
 extern struct WeaponTriangleConf const * const gpWeaponTriangleConfs;
 
+/* Battle hit expansion */
+#define NEW_BATTLE_HIT_MAX 20 /* This should align to gAnimRoundData */
+extern struct BattleHit gBattleHitArrayRe[NEW_BATTLE_HIT_MAX];
+
+bool CheckBattleHitOverflow(void);
 bool CheckCanFollowUpAttack(struct BattleUnit * actor, struct BattleUnit * target);
