@@ -21,3 +21,5 @@ struct WeaponTriangleConf {
 };
 
 extern struct WeaponTriangleConf const * const gpWeaponTriangleConfs;
+
+bool CheckCanFollowUpAttack(struct BattleUnit * actor, struct BattleUnit * target);
