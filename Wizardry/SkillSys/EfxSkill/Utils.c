@@ -23,8 +23,10 @@ void RegisterActorEfxSkill(int round, const u8 sid)
     if (round < NEW_BATTLE_HIT_MAX)
     {
         u8 sid_old = sEfxSkillRoundData[round].sid_actor;
-        if (GetEfxSkillPriority(sid) > GetEfxSkillPriority(sid_old))
-            sEfxSkillRoundData[round].sid_actor = sid;
+        if (SKILL_VALID(sid_old) && GetEfxSkillPriority(sid_old) >= GetEfxSkillPriority(sid))
+            return;
+
+        sEfxSkillRoundData[round].sid_actor = sid;
     }
 }
 
@@ -33,8 +35,10 @@ void RegisterTargetEfxSkill(int round, const u8 sid)
     if (round < NEW_BATTLE_HIT_MAX)
     {
         u8 sid_old = sEfxSkillRoundData[round].sid_target;
-        if (GetEfxSkillPriority(sid) > GetEfxSkillPriority(sid_old))
-            sEfxSkillRoundData[round].sid_target = sid;
+        if (SKILL_VALID(sid_old) && GetEfxSkillPriority(sid_old) >= GetEfxSkillPriority(sid))
+            return;
+
+        sEfxSkillRoundData[round].sid_target = sid;
     }
 }
 

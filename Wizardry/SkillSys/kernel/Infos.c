@@ -79,5 +79,5 @@ int GetEfxSkillSfx(const u8 sid)
 
 const struct EfxAnimConf * GetEfxSkillConf(const u8 aid)
 {
-    return gpEfxSkillAnims[GetEfxSkillIndex(aid)];
+    return gEfxSkillAnims[aid];
 }

@@ -36,8 +36,5 @@ int GetItemMaxRangeRework(u16 item, struct Unit * unit)
 
 int WeaponRangeGetterSkills(int status, struct Unit * unit, u16 item)
 {
-#if CONFIG_USE_DEBUG
-    status = status + 1;
-#endif
     return status;
 }

@@ -8,24 +8,22 @@
 
 extern const struct EfxAnimConf EfxSkillVanilla, EfxSkillMokha;
 
-static struct EfxAnimConf const * const sEfxSkillAnims[] = {
+struct EfxAnimConf const * const gEfxSkillAnims[0x100] = {
     [EFX_SKILL_DEFAULT] = &EfxSkillVanilla,
     [EFX_SKILL_MOKHA] = &EfxSkillMokha,
-    NULL
 };
 
-struct EfxAnimConf const * const * const gpEfxSkillAnims = sEfxSkillAnims;
-FEB_IDENTIFIER(gpEfxSkillAnims);
+FEB_IDENTIFIER(gEfxSkillAnims);
 
 const struct SkillAnimInfo gSkillAnimInfos[0x100] = {
-    [0x01] = {
+    [SID_RuinedBlade] = {
         .aid = EFX_SKILL_DEFAULT,
-        .priority = 0x0,
+        .priority = 0x1,
         .sfx = 0x3D1,
     },
-    [0x02] = {
-        .aid = EFX_SKILL_DEFAULT,
-        .priority = 0x0,
+    [SID_RuinedBladePlus] = {
+        .aid = EFX_SKILL_MOKHA,
+        .priority = 0x1,
         .sfx = 0x3D1,
     },
 };

@@ -77,7 +77,7 @@ int GetEfxSkillPriority(const u8 sid);
 int GetEfxSkillSfx(const u8 sid);
 
 /* Efx skill */
-extern struct EfxAnimConf const * const * const gpEfxSkillAnims;
+extern struct EfxAnimConf const * const gEfxSkillAnims[0x100];
 const struct EfxAnimConf * GetEfxSkillConf(const u8 aid);
 
 /* Miscs */

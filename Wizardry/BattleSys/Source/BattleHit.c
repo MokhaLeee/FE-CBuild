@@ -4,6 +4,8 @@
 
 #include "common-chax.h"
 #include "skill-system.h"
+#include "efx-skill.h"
+#include "battle-system.h"
 #include "strmag.h"
 #include "constants/skills.h"
 
@@ -19,6 +21,13 @@ void BattleGenerateHitAttributes(struct BattleUnit * attacker, struct BattleUnit
         gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_MISS;
         return;
     }
+
+#if CONFIG_USE_DEBUG
+    Debugf("Auto register a default skill to round %d", GetBattleHitRound(gBattleHitIterator));
+
+    RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_RuinedBlade);
+    RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_RuinedBlade);
+#endif
 
     attack = gBattleStats.attack;
     defense = gBattleStats.defense;

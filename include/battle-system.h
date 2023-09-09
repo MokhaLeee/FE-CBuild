@@ -27,5 +27,6 @@ extern struct WeaponTriangleConf const * const gpWeaponTriangleConfs;
 #define NEW_BATTLE_HIT_MAX 20 /* This should align to gAnimRoundData */
 extern struct BattleHit gBattleHitArrayRe[NEW_BATTLE_HIT_MAX];
 
+int GetBattleHitRound(struct BattleHit * hit);
 bool CheckBattleHitOverflow(void);
 bool CheckCanFollowUpAttack(struct BattleUnit * actor, struct BattleUnit * target);

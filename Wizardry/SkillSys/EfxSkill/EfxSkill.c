@@ -14,7 +14,7 @@ struct ProcEfxSkillRework {
     PROC_HEADER;
     int timer;
     int frame;
-    int sid;
+    u8 sid;
     struct Anim * anim;
     const u16 * const * imgs;
     const u16 * const * pals;
@@ -76,6 +76,8 @@ void NewEfxSkill(struct Anim * anim, int sid)
     u8 aid = GetEfxSkillIndex(sid);
     const struct EfxAnimConf * conf = GetEfxSkillConf(aid);
 
+    Debugf("sid %#x, conf %p", sid, conf);
+
     if (!(SKILL_VALID(sid)) || !IS_ROM_DATA(conf))
         return;
 
@@ -97,7 +99,7 @@ void NewEfxSkill(struct Anim * anim, int sid)
     if (gEkrDistanceType != EKR_DISTANCE_CLOSE)
     {
         if (GetAnimPosition(anim) == EKR_POS_L)
-            BG_SetPosition(BG_1, 0x18, 0);
+            BG_SetPosition(BG_1, 0x28, 0);
         else
             BG_SetPosition(BG_1, 0xE8, 0);
     }

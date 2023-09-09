@@ -6,6 +6,11 @@
 #include "skill-system.h"
 #include "battle-system.h"
 
+int GetBattleHitRound(struct BattleHit * hit)
+{
+    return hit - gBattleHitArrayRe;
+}
+
 bool CheckBattleHitOverflow(void)
 {
     return (gBattleHitIterator - gBattleHitArrayRe) >= NEW_BATTLE_HIT_MAX;
@@ -33,7 +38,7 @@ bool BattleGenerateRoundHits(struct BattleUnit * attacker, struct BattleUnit * d
         /* Hack here: we need avoid hit array overflow */
         if (CheckBattleHitOverflow())
         {
-            LogDebugf("%s: battle hit overflowed!", __func__);
+            Error("%s: battle hit overflowed!");
             gBattleHitIterator = gBattleHitIterator - 1;
             gBattleHitIterator->info |= (BATTLE_HIT_INFO_FINISHES | BATTLE_HIT_INFO_END);
             return true;

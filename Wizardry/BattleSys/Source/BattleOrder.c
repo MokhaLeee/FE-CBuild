@@ -50,10 +50,5 @@ int GetBattleUnitHitCount(struct BattleUnit * attacker)
 {
     int result = 1;
     result <<= BattleCheckBraveEffect(attacker);
-
-#if CONFIG_USE_DEBUG
-    result += 2;
-#endif
-
     return result;
 }
