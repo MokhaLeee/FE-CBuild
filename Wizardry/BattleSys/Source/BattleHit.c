@@ -9,6 +9,23 @@
 #include "strmag.h"
 #include "constants/skills.h"
 
+int CalcBattleRealDamage(struct BattleUnit * attacker, struct BattleUnit * defender)
+{
+    struct Unit * unit = GetUnit(attacker->unit.index);
+    int damage = 0;
+
+    if (SkillTester(unit, SID_RuinedBlade))
+        damage += 5;
+
+    if (SkillTester(unit, SID_RuinedBladePlus))
+        damage += 5;
+
+    if (SkillTester(unit, SID_LunaAttack))
+        damage += defender->battleDefense / 4;
+
+    return damage;
+}
+
 /* LynJump */
 void BattleGenerateHitAttributes(struct BattleUnit * attacker, struct BattleUnit * defender)
 {
@@ -55,14 +72,7 @@ void BattleGenerateHitAttributes(struct BattleUnit * attacker, struct BattleUnit
         gBattleStats.damage = 0;
 
     /* Real damage */
-    if (SkillTester(unit, SID_RuinedBlade))
-        gBattleStats.damage += 5;
-
-    if (SkillTester(unit, SID_RuinedBladePlus))
-        gBattleStats.damage += 5;
-
-    if (SkillTester(unit, SID_LunaAttack))
-        gBattleStats.damage += defender->battleDefense / 4;
+    gBattleStats.damage += CalcBattleRealDamage(attacker, defender);
 
     /* Post calc */
     if (gBattleStats.damage > BATTLE_MAX_DAMAGE)

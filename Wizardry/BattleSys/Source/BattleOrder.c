@@ -74,6 +74,7 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * tar
         {
             if (GetUnitCurrentHp(real_actor) == HpMaxGetter(real_actor))
             {
+                gDoubleLionPostActionFlag = true;
                 sDoubleLionOrderFlag = true;
                 return true;
             }
@@ -146,6 +147,9 @@ void BattleUnwind(void)
 
     ClearBattleHits();
     gBattleHitIterator->info |= BATTLE_HIT_INFO_BEGIN;
+
+    /* Register post-action */
+    gDoubleLionPostActionFlag = false;
 
     if (CheckDesperationOrder())
         round_mask |= UNWIND_DESPERA;

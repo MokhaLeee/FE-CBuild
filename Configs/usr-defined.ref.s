@@ -25,9 +25,10 @@ SET_DATA sVantageOrderFlag, sEfxSkillRoundData + 4 * 0x21
 SET_DATA sDesperationOrderFlag, sVantageOrderFlag + 1
 SET_DATA sQuickRiposteOrderFlag, sDesperationOrderFlag + 1
 SET_DATA sDoubleLionOrderFlag, sQuickRiposteOrderFlag + 1
-SET_DATA sRuinedBladePlusOrderFlag, sDoubleLionOrderFlag + 1
+SET_DATA gDoubleLionPostActionFlag, sDoubleLionOrderFlag + 1
+SET_DATA sRuinedBladePlusOrderFlag, gDoubleLionPostActionFlag + 1
 
-SET_DATA FreeRamSpaceTail, sRuinedBladePlusOrderFlag + 3
+SET_DATA FreeRamSpaceTail, sRuinedBladePlusOrderFlag + 2
 
 /* IconDisplay */
 SET_DATA gIconReSts, 0x02026A90 @ DrawnIconLookupTable

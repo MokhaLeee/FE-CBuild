@@ -30,3 +30,6 @@ extern struct BattleHit gBattleHitArrayRe[NEW_BATTLE_HIT_MAX];
 int GetBattleHitRound(struct BattleHit * hit);
 bool CheckBattleHitOverflow(void);
 bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * target);
+int CalcBattleRealDamage(struct BattleUnit * attacker, struct BattleUnit * defender);
+
+extern bool gDoubleLionPostActionFlag;

@@ -82,6 +82,10 @@ void InitBattleForecastBattleStats(struct BattleForecastProc * proc)
             proc->isEffectiveB = true;
     }
 
+    /* Fix on real dmg */
+    gBattleActor.battleAttack += CalcBattleRealDamage(&gBattleActor, &gBattleTarget);
+    gBattleTarget.battleAttack += CalcBattleRealDamage(&gBattleTarget, &gBattleActor);
+
     /* Prepare GFX here */
     switch (proc->hitCountA)
     {
