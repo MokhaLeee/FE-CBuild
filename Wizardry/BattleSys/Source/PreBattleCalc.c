@@ -22,9 +22,9 @@ void ComputeBattleUnitAttack(struct BattleUnit * attacker, struct BattleUnit * d
         status = status * 3;
 
     if (IsMagicAttack(attacker))
-        status = status + attacker->unit.pow;
-    else
         status = status + UNIT_MAG(&attacker->unit);
+    else
+        status = status + attacker->unit.pow;
 
     attacker->battleAttack = status;
 }

@@ -18,37 +18,6 @@ bool CheckBattleHitOverflow(void)
 }
 
 /* LynJump */
-bool BattleGenerateRoundHits(struct BattleUnit * attacker, struct BattleUnit * defender)
-{
-    int i, count;
-    u32 attrs;
-
-    if (!attacker->weapon)
-        return FALSE;
-
-    attrs = gBattleHitIterator->attributes;
-    count = GetBattleUnitHitCount(attacker);
-
-    for (i = 0; i < count; ++i)
-    {
-        gBattleHitIterator->attributes |= attrs;
-
-        if (BattleGenerateHit(attacker, defender))
-            return true;
-
-        /* Hack here: we need avoid hit array overflow */
-        if (CheckBattleHitOverflow())
-        {
-            Error("%s: battle hit overflowed!");
-            gBattleHitIterator = gBattleHitIterator - 1;
-            gBattleHitIterator->info |= (BATTLE_HIT_INFO_FINISHES | BATTLE_HIT_INFO_END);
-            return true;
-        }
-    }
-    return false;
-}
-
-/* LynJump */
 void ClearBattleHits(void)
 {
     CpuFastFill16(0, gBattleHitArrayRe, sizeof(gBattleHitArrayRe));

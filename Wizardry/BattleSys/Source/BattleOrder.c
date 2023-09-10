@@ -5,12 +5,93 @@
 #include "constants/items.h"
 
 #include "common-chax.h"
+#include "status-getter.h"
+#include "skill-system.h"
+#include "efx-skill.h"
 #include "battle-system.h"
+#include "constants/skills.h"
 
-bool CheckCanFollowUpAttack(struct BattleUnit * actor, struct BattleUnit * target)
+enum {
+	NOP_ATTACK = 0,
+	ACT_ATTACK = 1,
+	TAR_ATTACK = 2,
+};
+
+enum {
+	UNWIND_VANTAGE = 1 << 0,
+	UNWIND_DESPERA = 1 << 1,
+	UNWIND_DOUBLE_ACT = 1 << 2,
+	UNWIND_DOUBLE_TAR = 1 << 3,
+};
+
+
+static const u8 BattleUnwindConfig[14][4] = {
+	{ ACT_ATTACK, TAR_ATTACK, NOP_ATTACK, NOP_ATTACK }, // 0:default
+	{ TAR_ATTACK, ACT_ATTACK, NOP_ATTACK, NOP_ATTACK }, // 1   = 1
+	{ ACT_ATTACK, ACT_ATTACK, TAR_ATTACK, NOP_ATTACK }, // 2   = 2	
+
+	{ TAR_ATTACK, ACT_ATTACK, ACT_ATTACK, NOP_ATTACK }, // 12  = 3
+	{ ACT_ATTACK, TAR_ATTACK, ACT_ATTACK, NOP_ATTACK }, // 3   = 4
+	{ TAR_ATTACK, ACT_ATTACK, ACT_ATTACK, NOP_ATTACK }, // 13  = 5
+	{ ACT_ATTACK, TAR_ATTACK, NOP_ATTACK, NOP_ATTACK }, // 0:default
+	{ ACT_ATTACK, TAR_ATTACK, NOP_ATTACK, NOP_ATTACK }, // 0:default
+	{ ACT_ATTACK, TAR_ATTACK, TAR_ATTACK, NOP_ATTACK }, // 4   = 8
+	{ TAR_ATTACK, ACT_ATTACK, TAR_ATTACK, NOP_ATTACK }, // 14  = 9
+	{ ACT_ATTACK, ACT_ATTACK, TAR_ATTACK, TAR_ATTACK }, // 24  = 10
+
+	{ TAR_ATTACK, ACT_ATTACK, ACT_ATTACK, TAR_ATTACK }, // 124 = 11
+	{ ACT_ATTACK, TAR_ATTACK, ACT_ATTACK, TAR_ATTACK }, // 34  = 12
+	{ TAR_ATTACK, ACT_ATTACK, TAR_ATTACK, ACT_ATTACK }  // 134 = 13
+};
+
+extern bool sVantageOrderFlag, sDesperationOrderFlag, sQuickRiposteOrderFlag, sDoubleLionOrderFlag;
+extern bool sRuinedBladePlusOrderFlag;
+
+/* This function should also be called by BKSEL, so non static */
+bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * target)
 {
+    struct Unit * real_actor = GetUnit(gBattleActor.unit.index);
+    struct Unit * real_target = GetUnit(gBattleTarget.unit.index);
+
     if (target->battleSpeed > 250)
         return false;
+
+    if (GetItemWeaponEffect(actor->weaponBefore) == WPN_EFFECT_HPHALVE)
+        return false;
+
+    if (GetItemIndex(actor->weapon) == ITEM_MONSTER_STONE)
+        return false;
+
+    if (&gBattleActor == actor)
+    {
+        if (SkillTester(real_target, SID_WaryFighter))
+            if ((GetUnitCurrentHp(real_target) * 2) > HpMaxGetter(real_target))
+                return false;
+
+        sDoubleLionOrderFlag = false;
+
+        if (SkillTester(real_actor, SID_DoubleLion))
+        {
+            if (GetUnitCurrentHp(real_actor) == HpMaxGetter(real_actor))
+            {
+                sDoubleLionOrderFlag = true;
+                return true;
+            }
+        }
+    }
+    else if (&gBattleTarget == actor)
+    {
+        sQuickRiposteOrderFlag = false;
+
+        if (SkillTester(real_actor, SID_QuickRiposte))
+        {
+            if ((GetUnitCurrentHp(real_target) * 2) > HpMaxGetter(real_target))
+            {
+                sQuickRiposteOrderFlag = true;
+                return true;
+            }
+        }
+    }
 
     if ((actor->battleSpeed - target->battleSpeed) < BATTLE_FOLLOWUP_SPEED_THRESHOLD)
         return false;
@@ -18,37 +99,195 @@ bool CheckCanFollowUpAttack(struct BattleUnit * actor, struct BattleUnit * targe
     return true;
 }
 
-/* LynJump */
-bool BattleGetFollowUpOrder(struct BattleUnit ** outAttacker, struct BattleUnit ** outDefender)
+STATIC_DECLAR bool CheckDesperationOrder(void)
 {
-    if (CheckCanFollowUpAttack(&gBattleActor, &gBattleTarget))
-    {
-        *outAttacker = &gBattleActor;
-        *outDefender = &gBattleTarget;
-    }
-    else if (CheckCanFollowUpAttack(&gBattleTarget, &gBattleActor))
-    {
-        *outAttacker = &gBattleTarget;
-        *outDefender = &gBattleActor;
-    }
-    else
-    {
-        return false;
-    }
+    struct Unit * actor = GetUnit(gBattleActor.unit.index);
 
-    if (GetItemWeaponEffect((*outAttacker)->weaponBefore) == WPN_EFFECT_HPHALVE)
-        return false;
+    sDesperationOrderFlag = false;
 
-    if (GetItemIndex((*outAttacker)->weapon) == ITEM_MONSTER_STONE)
-        return false;
+    if (SkillTester(actor, SID_Desperation))
+    {
+        if ((GetUnitCurrentHp(actor) * 2) < HpMaxGetter(actor))
+        {
+            sDesperationOrderFlag = true;
+            return true;
+        }
+    }
+    return false;
+}
 
-    return true;
+STATIC_DECLAR bool CheckVantageOrder(void)
+{
+    struct Unit * target = GetUnit(gBattleTarget.unit.index);
+
+    sVantageOrderFlag = false;
+
+    if (SkillTester(target, SID_Vantage))
+    {
+        if ((GetUnitCurrentHp(target) * 2) < HpMaxGetter(target))
+        {
+            sVantageOrderFlag = true;
+            return true;
+        }
+    }
+    return false;
 }
 
 /* LynJump */
-int GetBattleUnitHitCount(struct BattleUnit * attacker)
+void BattleUnwind(void)
+{
+    int i, ret;
+    u8 round_mask = 0;
+    const u8 * config;
+
+    /* Identifier to record attack amount for skill anim triger */
+    int actor_count = 0;
+    int target_count = 0;
+
+    ClearBattleHits();
+    gBattleHitIterator->info |= BATTLE_HIT_INFO_BEGIN;
+
+    if (CheckDesperationOrder())
+        round_mask |= UNWIND_DESPERA;
+
+    if (CheckVantageOrder())
+        round_mask |= UNWIND_VANTAGE;
+
+    if (CheckCanTwiceAttackOrder(&gBattleActor, &gBattleTarget))
+        round_mask |= UNWIND_DOUBLE_ACT;
+
+    if (CheckCanTwiceAttackOrder(&gBattleTarget, &gBattleActor))
+        round_mask |= UNWIND_DOUBLE_TAR;
+
+    config = BattleUnwindConfig[round_mask];
+
+    for (i = 0; i < 4; i++)
+    {
+        struct BattleHit * old = gBattleHitIterator;
+
+        if (ACT_ATTACK == config[i])
+        {
+            ret = BattleGenerateRoundHits(&gBattleActor, &gBattleTarget);
+            actor_count++;
+        }
+        else if (TAR_ATTACK == config[i])
+        {
+            gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_RETALIATE;
+            ret = BattleGenerateRoundHits(&gBattleTarget, &gBattleActor);
+            target_count++;
+        }
+        else if (NOP_ATTACK == config[i])
+        {
+            break;
+        }
+
+        if (i != 0 && config[i - 1] == config[i])
+            gBattleHitIterator->attributes = BATTLE_HIT_ATTR_FOLLOWUP;
+
+        /* Vantage */
+        if (i == 0 && (round_mask & UNWIND_VANTAGE))
+        {
+            if (sVantageOrderFlag)
+                RegisterActorEfxSkill(GetBattleHitRound(old), SID_Vantage);
+        }
+
+        /* Desperation */
+        if (i == 1 && (round_mask & UNWIND_DESPERA))
+        {
+            if (config[0] == ACT_ATTACK && config[1] == ACT_ATTACK && config[2] == TAR_ATTACK)
+            {
+                if (sDesperationOrderFlag)
+                    RegisterActorEfxSkill(GetBattleHitRound(old), SID_Desperation);
+            }
+        }
+
+        /* Target double attack */
+        if (target_count > 1 && config[i] == TAR_ATTACK)
+        {
+            if (sQuickRiposteOrderFlag)
+                RegisterActorEfxSkill(GetBattleHitRound(old), SID_QuickRiposte);
+        }
+
+        /* Actor double attack */
+        if (actor_count > 1 && config[i] == ACT_ATTACK)
+        {
+            if (sDoubleLionOrderFlag)
+                RegisterActorEfxSkill(GetBattleHitRound(old), SID_DoubleLion);
+        }
+
+        if (ret)
+            break;
+    }
+    gBattleHitIterator->info |= BATTLE_HIT_INFO_END;
+}
+
+/* LynJump */
+bool BattleGenerateRoundHits(struct BattleUnit * attacker, struct BattleUnit * defender)
+{
+    int i, count;
+    u32 attrs;
+
+    if (!attacker->weapon)
+        return FALSE;
+
+    attrs = gBattleHitIterator->attributes;
+    count = GetBattleUnitHitCount(attacker);
+
+    for (i = 0; i < count; ++i)
+    {
+        gBattleHitIterator->attributes |= attrs;
+
+        /* RuinedBladePlus */
+        if (i == 1 && sRuinedBladePlusOrderFlag)
+            RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_RuinedBladePlus);
+
+        if (BattleGenerateHit(attacker, defender))
+            return true;
+
+        /* Hack here: we need avoid hit array overflow */
+        if (CheckBattleHitOverflow())
+        {
+            Error("Battle hit overflowed!");
+            gBattleHitIterator = gBattleHitIterator - 1;
+            gBattleHitIterator->info |= (BATTLE_HIT_INFO_FINISHES | BATTLE_HIT_INFO_END);
+            return true;
+        }
+    }
+    return false;
+}
+
+/* LynJump */
+bool BattleGetFollowUpOrder(struct BattleUnit ** outAttacker, struct BattleUnit ** outDefender)
+{
+    if (CheckCanTwiceAttackOrder(&gBattleActor, &gBattleTarget))
+    {
+        *outAttacker = &gBattleActor;
+        *outDefender = &gBattleTarget;
+        return true;
+    }
+    else if (CheckCanTwiceAttackOrder(&gBattleTarget, &gBattleActor))
+    {
+        *outAttacker = &gBattleTarget;
+        *outDefender = &gBattleActor;
+        return true;
+    }
+    return false;
+}
+
+/* LynJump */
+int GetBattleUnitHitCount(struct BattleUnit * actor)
 {
     int result = 1;
-    result <<= BattleCheckBraveEffect(attacker);
+
+    sRuinedBladePlusOrderFlag = false;
+
+    if (BattleCheckBraveEffect(actor))
+        result = result + 1;
+
+    if (SkillTester(&actor->unit, SID_RuinedBladePlus))
+    {
+        sRuinedBladePlusOrderFlag = true;
+        result = result + 1;
+    }
     return result;
 }

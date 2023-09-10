@@ -1,0 +1,24 @@
+## MSG_SKILL_Vantage
+Vantage:[NL]
+When unit is defender with[NL]
+HP is <50%, attack first[X]
+
+## MSG_SKILL_Desperation
+Desperation: When unit[NL]
+attacks with HP <50%,[NL]
+double attacks immediately[X]
+
+## MSG_SKILL_QuickRiposte
+Quick Riposte: [NL]
+If unit is attacked with HP[NL]
+>50%, double attacks[X]
+
+## MSG_SKILL_WaryFighter
+Wary Fighter:[NL]
+Prevents follow up attack[NL]
+if unit's HP >50%[X]
+
+## MSG_SKILL_DoubleLion
+Double Lion:[NL]
+If unit attacks with full HP,[NL]
+enjoys Brave effect and lose 1 HP[X]

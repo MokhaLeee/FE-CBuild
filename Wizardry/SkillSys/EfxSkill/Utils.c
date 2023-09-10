@@ -26,6 +26,7 @@ void RegisterActorEfxSkill(int round, const u8 sid)
         if (SKILL_VALID(sid_old) && GetEfxSkillPriority(sid_old) >= GetEfxSkillPriority(sid))
             return;
 
+        Debugf("Skill %#x at round %d", sid, round);
         sEfxSkillRoundData[round].sid_actor = sid;
     }
 }
@@ -38,6 +39,7 @@ void RegisterTargetEfxSkill(int round, const u8 sid)
         if (SKILL_VALID(sid_old) && GetEfxSkillPriority(sid_old) >= GetEfxSkillPriority(sid))
             return;
 
+        Debugf("Skill %#x at round %d", sid, round);
         sEfxSkillRoundData[round].sid_target = sid;
     }
 }

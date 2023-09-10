@@ -21,7 +21,13 @@ SET_DATA sStatScreenPage1BarMax, sPrepEquipSkillListExt + 0x100
 SET_DATA sLearnedSkillPLists, sStatScreenPage1BarMax + 0x4
 SET_DATA sEfxSkillRoundData, sLearnedSkillPLists + 0x46 * 0x20
 
-SET_DATA FreeRamSpaceTail, sEfxSkillRoundData + 4 * 0x21
+SET_DATA sVantageOrderFlag, sEfxSkillRoundData + 4 * 0x21
+SET_DATA sDesperationOrderFlag, sVantageOrderFlag + 1
+SET_DATA sQuickRiposteOrderFlag, sDesperationOrderFlag + 1
+SET_DATA sDoubleLionOrderFlag, sQuickRiposteOrderFlag + 1
+SET_DATA sRuinedBladePlusOrderFlag, sDoubleLionOrderFlag + 1
+
+SET_DATA FreeRamSpaceTail, sRuinedBladePlusOrderFlag + 3
 
 /* IconDisplay */
 SET_DATA gIconReSts, 0x02026A90 @ DrawnIconLookupTable

@@ -22,13 +22,6 @@ void BattleGenerateHitAttributes(struct BattleUnit * attacker, struct BattleUnit
         return;
     }
 
-#if CONFIG_USE_DEBUG
-    Debugf("Auto register a default skill to round %d", GetBattleHitRound(gBattleHitIterator));
-
-    RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_RuinedBlade);
-    RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_RuinedBlade);
-#endif
-
     attack = gBattleStats.attack;
     defense = gBattleStats.defense;
 

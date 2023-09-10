@@ -76,7 +76,7 @@ void NewEfxSkill(struct Anim * anim, int sid)
     u8 aid = GetEfxSkillIndex(sid);
     const struct EfxAnimConf * conf = GetEfxSkillConf(aid);
 
-    Debugf("sid %#x, conf %p", sid, conf);
+    Debugf("sid %#x, aid %#x, conf %p", sid, aid, conf);
 
     if (!(SKILL_VALID(sid)) || !IS_ROM_DATA(conf))
         return;

@@ -211,6 +211,26 @@ const struct SkillInfo gSkillInfos[0x100] = {
         .msg  = MSG_SKILL_BMagBreaker,
         .icon = ICON_SkillIcon_WIP,
     },
+    [SID_Vantage] = {
+        .msg  = MSG_SKILL_Vantage,
+        .icon = ICON_SkillIcon_Vantage,
+    },
+    [SID_Desperation] = {
+        .msg  = MSG_SKILL_Desperation,
+        .icon = ICON_SkillIcon_Desperation,
+    },
+    [SID_QuickRiposte] = {
+        .msg  = MSG_SKILL_QuickRiposte,
+        .icon = ICON_SkillIcon_QuickRiposte,
+    },
+    [SID_WaryFighter] = {
+        .msg  = MSG_SKILL_WaryFighter,
+        .icon = ICON_SkillIcon_WaryFighter,
+    },
+    [SID_DoubleLion] = {
+        .msg  = MSG_SKILL_DoubleLion,
+        .icon = ICON_SkillIcon_DoubleLion,
+    },
 };
 
 FEB_IDENTIFIER(gSkillInfos);

@@ -29,4 +29,4 @@ extern struct BattleHit gBattleHitArrayRe[NEW_BATTLE_HIT_MAX];
 
 int GetBattleHitRound(struct BattleHit * hit);
 bool CheckBattleHitOverflow(void);
-bool CheckCanFollowUpAttack(struct BattleUnit * actor, struct BattleUnit * target);
+bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * target);

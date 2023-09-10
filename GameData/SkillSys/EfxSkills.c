@@ -26,6 +26,31 @@ const struct SkillAnimInfo gSkillAnimInfos[0x100] = {
         .priority = 0x1,
         .sfx = 0x3D1,
     },
+    [SID_Vantage] = {
+        .aid = EFX_SKILL_DEFAULT,
+        .priority = 0x10,
+        .sfx = 0x3D1,
+    },
+    [SID_Desperation] = {
+        .aid = EFX_SKILL_DEFAULT,
+        .priority = 0x10,
+        .sfx = 0x3D1,
+    },
+    [SID_QuickRiposte] = {
+        .aid = EFX_SKILL_DEFAULT,
+        .priority = 0x10,
+        .sfx = 0x3D1,
+    },
+    [SID_WaryFighter] = {
+        .aid = EFX_SKILL_DEFAULT,
+        .priority = 0x10,
+        .sfx = 0x3D1,
+    },
+    [SID_DoubleLion] = {
+        .aid = EFX_SKILL_DEFAULT,
+        .priority = 0x10,
+        .sfx = 0x3D1,
+    },
 };
 
 FEB_IDENTIFIER(gSkillAnimInfos);

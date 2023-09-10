@@ -36,7 +36,7 @@ void BattleForecastHitCountUpdate(struct BattleUnit * bu, s8 * hitsCounter, int 
 {
     int i;
     struct BattleUnit * target = (bu == &gBattleActor) ? &gBattleTarget : &gBattleActor;
-    int count  = CheckCanFollowUpAttack(bu, target) ? GetBattleUnitHitCount(bu) * 2 : GetBattleUnitHitCount(bu);
+    int count  = CheckCanTwiceAttackOrder(bu, target) ? GetBattleUnitHitCount(bu) * 2 : GetBattleUnitHitCount(bu);
 
     for (i = 0; i < count; i++)
     {

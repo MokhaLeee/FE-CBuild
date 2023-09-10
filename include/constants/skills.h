@@ -65,6 +65,13 @@ enum SkillIndex {
     SID_BowBreaker,
     SID_BMagBreaker,
 
+    /* Battle order */
+    SID_Vantage,
+    SID_Desperation,
+    SID_QuickRiposte,
+    SID_WaryFighter,
+    SID_DoubleLion,
+
     SID_MAX
 };
 
