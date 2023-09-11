@@ -57,7 +57,7 @@ const struct SkillInfo gSkillInfos[0x100] = {
     },
     [SID_DefiantSpd] = {
         .msg  = MSG_SKILL_DefiantSpd,
-        .icon = ICON_SkillIcon_DefiantStr,
+        .icon = ICON_SkillIcon_DefiantSpd,
     },
     [SID_DefiantLck] = {
         .msg  = MSG_SKILL_DefiantLck,
