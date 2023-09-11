@@ -51,3 +51,5 @@ int GetUnitStatusDuration(struct Unit * unit);
 void SetUnitStatusIndex(struct Unit * unit, int status);
 void SetUnitStatusDuration(struct Unit * unit, int duration);
 int TryTickUnitStatusDuration(struct Unit * unit);
+
+void PutUnitStatusIconOAM(struct Unit * unit);

@@ -1,0 +1,34 @@
+PUSH
+    ORG $1D58E
+    SHORT 0x213F //change 0xF bitmask to 0x3F bitmask
+
+    ORG $24D18
+    SHORT 0x203F //change 0xF bitmask to 0x3F bitmask
+
+    ORG $25AA6
+    SHORT 0x203F //change 0xF bitmask to 0x3F bitmask
+
+    ORG $27200
+    SHORT 0x213F //change 0xF bitmask to 0x3F bitmask
+
+    ORG $27A8C
+    SHORT 0x213F //change 0xF bitmask to 0x3F bitmask
+
+    ORG $27B42
+    SHORT 0x213F //change 0xF bitmask to 0x3F bitmask
+
+    ORG $8C470
+    SHORT 0x203F //change 0xF bitmask to 0x3F bitmask
+
+    ORG $8C536
+    SHORT 0x203F //change 0xF bitmask to 0x3F bitmask
+
+    ORG $1D732
+    SHORT 0x213F //change 0xF bitmask to 0x3F bitmask
+
+    ORG $25FC4 //restore staff targeting
+    SHORT 0x203F
+
+    ORG $25A22 //poison damage
+    SHORT 0x203F
+POP

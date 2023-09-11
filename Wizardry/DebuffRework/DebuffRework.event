@@ -4,5 +4,7 @@
 #include "Source/Core.lyn.event"
 #include "Source/MiscHooks.lyn.event"
 #include "Source/MiscHooks.event"
+#include "Source/DebuffIconBlink.lyn.event"
+#include "Source/StatusDepletion.lyn.event"
 
 #endif /* DEBUFF_REWORK_INSTALLED */

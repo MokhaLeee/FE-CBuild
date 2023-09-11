@@ -69,3 +69,28 @@ void HbPopulate_SSStatus(struct HelpBoxProc * proc)
 	u8 index = GetUnitStatusIndex(gStatScreen.unit);
 	proc->mid = gDebuffInfos[index].desc;
 }
+
+/* LynJump */
+void MMB_DrawStatusText(s16 * buffer, struct Unit * unit)
+{
+    int tileIdx = 0x16F;
+    const u8 * img;
+
+    if (!unit)
+        return;
+
+    img = gDebuffInfos[GetUnitStatusIndex(unit)].img;
+
+    if (img)
+    {
+        CpuFastCopy(img, (void *)BG_VRAM + 0x2DE0, 0xA0);
+
+        buffer[0] = tileIdx++;
+        buffer[1] = tileIdx++;
+        buffer[2] = tileIdx++;
+        buffer[3] = tileIdx++;
+        buffer[4] = tileIdx++;
+        buffer[5] = 0;
+        buffer[6] = unit->statusDuration + 0x1128;
+    }
+}

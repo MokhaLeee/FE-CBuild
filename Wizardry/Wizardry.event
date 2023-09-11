@@ -20,5 +20,6 @@ ALIGN 4
 #include "Lvup/Lvup.event"
 #include "MoveLimitViewHack/MoveLimitViewHack.lyn.event"
 #include "DebuffRework/DebuffRework.event"
+#include "HpBar/HpBar.event"
 
 #include "CommonLib/map.lyn.event"
