@@ -26,9 +26,18 @@ enum UNIT_STATUS_IDENTIFIER {
     NEW_UNIT_STATUS_MAX = 64
 };
 
+enum DEBUFF_INFO_TYPE {
+    STATUS_INFO_TYPE_DEFAULT = 0,
+    STATUS_INFO_TYPE_DEBUFF = 1,
+    STATUS_INFO_TYPE_BUFF = 2,
+};
+
 struct DebuffInfo {
     u16 name, desc;
     const u8 * img;
+
+    u8 type;
+
     u8 duration;
 
     s8 pow, mag, skl, spd, def, res, lck, mov;
