@@ -1,0 +1,8 @@
+/* Skill related event operations */
+#include "Source/EventOps.lyn.event"
+
+#define EVT_ADD_SKILL(sid, pid)        "SHORT 0x0441 sid pid 0"
+#define EVT_ADD_SKILL_AT(sid, x, y)    "SHORT 0x0442 sid x y"
+#define EVT_ADD_SKILL_SC(sid)          "SHORT 0x0443 sid 0 0"
+#define EVT_REMOVE_SKILL(sid, pid)     "SHORT 0x0444 sid pid 0"
+#define EVT_REMOVE_SKILL_AT(sid, x, y) "SHORT 0x0445 sid x y"

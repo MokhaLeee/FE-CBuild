@@ -21,4 +21,7 @@ InjectBanimCmd(0x7, Banim07Rework)
 /* PrepSkill */
 #include "PrepSkill/PrepSkill.event"
 
+/* Skill related event operations */
+#include "EventOps/EventOps.event"
+
 #endif

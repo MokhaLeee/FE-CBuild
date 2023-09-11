@@ -1,8 +1,6 @@
 #ifndef CONFIG_SKILLS_INSTALLED
 #define CONFIG_SKILLS_INSTALLED
 
-#include "skill-system.h"
-
 enum SkillIndex {
     SID_DEFAULT = 0x0,
 
