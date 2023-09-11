@@ -20,7 +20,7 @@ all_sources=$(find $SOURCE_DIR -type f -name "*.png")
 for file in $all_sources; do
     base_name=$(echo ${file#*/} | sed 's/\.png//; s/\//_/g')
     target=$(echo $file | sed 's/\.png/\.4bpp/')
-    echo -e "GFX_$base_name:\n\t#incbin \"$target\"\n" >> $INSTALLER
+    echo -e "ALIGN 4\nGFX_$base_name:\n\t#incbin \"$target\"\n" >> $INSTALLER
     echo -e "extern const unsigned char GFX_$base_name[];" >> $HEADER
 done
 
