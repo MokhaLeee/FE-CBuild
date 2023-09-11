@@ -111,8 +111,104 @@ STATIC_DECLAR void PreBattleCalcSkills(struct BattleUnit * attacker, struct Batt
     }
 
     /* Blow skills */
+    if (attacker == &gBattleActor)
+    {
+        if (SkillTester(unit, SID_BlowDarting))
+            attacker->battleSpeed += 6;
+
+        if (SkillTester(unit, SID_BlowDeath))
+        {
+            if (!IsMagicAttack(attacker))
+                attacker->battleAttack += 6;
+        }
+
+        if (SkillTester(unit, SID_BlowArmored))
+        {
+            if (!IsMagicAttack(defender))
+                attacker->battleDefense += 6;
+        }
+
+        if (SkillTester(unit, SID_BlowFiendish))
+        {
+            if (IsMagicAttack(attacker))
+                attacker->battleAttack += 6;
+        }
+
+        if (SkillTester(unit, SID_BlowWarding))
+        {
+            if (IsMagicAttack(defender))
+                attacker->battleDefense += 6;
+        }
+
+        if (SkillTester(unit, SID_BlowDuelist))
+           attacker->battleAvoidRate += 20;
+
+        if (SkillTester(unit, SID_BlowUncanny))
+            attacker->battleHitRate += 30;
+    }
 
     /* Stance skills */
+    if (attacker == &gBattleTarget)
+    {
+        if (SkillTester(unit, SID_StanceBracing))
+            attacker->battleDefense += 4;
+
+        if (SkillTester(unit, SID_StanceDarting))
+            attacker->battleSpeed += 6;
+
+        if (SkillTester(unit, SID_StanceFierce))
+            attacker->battleAttack += 6;
+
+        if (SkillTester(unit, SID_StanceKestrel))
+        {
+            attacker->battleAttack += 4;
+            attacker->battleSpeed += 4;
+        }
+
+        if (SkillTester(unit, SID_StanceMirror))
+        {
+            attacker->battleAttack += 4;
+
+            if (IsMagicAttack(defender))
+                attacker->battleDefense += 4;
+        }
+
+        if (SkillTester(unit, SID_StanceReady))
+        {
+            attacker->battleSpeed += 4;
+
+            if (!IsMagicAttack(defender))
+                attacker->battleDefense += 4;
+        }
+
+        if (SkillTester(unit, SID_StanceSteady))
+        {
+            if (!IsMagicAttack(defender))
+                attacker->battleDefense += 6;
+        }
+
+        if (SkillTester(unit, SID_StanceSturdy))
+        {
+            attacker->battleAttack += 4;
+
+            if (!IsMagicAttack(defender))
+                attacker->battleDefense += 4;
+        }
+
+        if (SkillTester(unit, SID_StanceSwift))
+        {
+            attacker->battleSpeed += 4;
+
+            if (IsMagicAttack(defender))
+                attacker->battleDefense += 4;
+        }
+
+        if (SkillTester(unit, SID_StanceWarding))
+        {
+            if (IsMagicAttack(defender))
+                attacker->battleDefense += 6;
+        }
+    }
 
     /* Misc */
     if (SkillTester(unit, SID_Lethality))

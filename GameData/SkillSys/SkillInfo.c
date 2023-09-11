@@ -231,6 +231,74 @@ const struct SkillInfo gSkillInfos[0x100] = {
         .msg  = MSG_SKILL_DoubleLion,
         .icon = ICON_SkillIcon_DoubleLion,
     },
+    [SID_BlowDarting] = {
+        .msg  = MSG_SKILL_BlowDarting,
+        .icon = ICON_SkillIcon_BlowDarting,
+    },
+    [SID_BlowDeath] = {
+        .msg  = MSG_SKILL_BlowDeath,
+        .icon = ICON_SkillIcon_BlowDeath,
+    },
+    [SID_BlowArmored] = {
+        .msg  = MSG_SKILL_BlowArmored,
+        .icon = ICON_SkillIcon_BlowArmored,
+    },
+    [SID_BlowFiendish] = {
+        .msg  = MSG_SKILL_BlowFiendish,
+        .icon = ICON_SkillIcon_BlowFiendish,
+    },
+    [SID_BlowWarding] = {
+        .msg  = MSG_SKILL_BlowWarding,
+        .icon = ICON_SkillIcon_BlowWarding,
+    },
+    [SID_BlowDuelist] = {
+        .msg  = MSG_SKILL_BlowDuelist,
+        .icon = ICON_SkillIcon_BlowDuelist,
+    },
+    [SID_BlowUncanny] = {
+        .msg  = MSG_SKILL_BlowUncanny,
+        .icon = ICON_SkillIcon_BlowUncanny,
+    },
+    [SID_StanceBracing] = {
+        .msg  = MSG_SKILL_StanceBracing,
+        .icon = ICON_SkillIcon_StanceBracing,
+    },
+    [SID_StanceDarting] = {
+        .msg  = MSG_SKILL_StanceDarting,
+        .icon = ICON_SkillIcon_StanceDarting,
+    },
+    [SID_StanceFierce] = {
+        .msg  = MSG_SKILL_StanceFierce,
+        .icon = ICON_SkillIcon_StanceFierce,
+    },
+    [SID_StanceKestrel] = {
+        .msg  = MSG_SKILL_StanceKestrel,
+        .icon = ICON_SkillIcon_StanceKestrel,
+    },
+    [SID_StanceMirror] = {
+        .msg  = MSG_SKILL_StanceMirror,
+        .icon = ICON_SkillIcon_StanceMirror,
+    },
+    [SID_StanceReady] = {
+        .msg  = MSG_SKILL_StanceReady,
+        .icon = ICON_SkillIcon_StanceReady,
+    },
+    [SID_StanceSteady] = {
+        .msg  = MSG_SKILL_StanceSteady,
+        .icon = ICON_SkillIcon_StanceSteady,
+    },
+    [SID_StanceSturdy] = {
+        .msg  = MSG_SKILL_StanceSturdy,
+        .icon = ICON_SkillIcon_StanceSturdy,
+    },
+    [SID_StanceSwift] = {
+        .msg  = MSG_SKILL_StanceSwift,
+        .icon = ICON_SkillIcon_StanceSwift,
+    },
+    [SID_StanceWarding] = {
+        .msg  = MSG_SKILL_StanceWarding,
+        .icon = ICON_SkillIcon_StanceWarding,
+    },
 };
 
 FEB_IDENTIFIER(gSkillInfos);

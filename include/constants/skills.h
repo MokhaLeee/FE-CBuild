@@ -72,6 +72,27 @@ enum SkillIndex {
     SID_WaryFighter,
     SID_DoubleLion,
 
+    /* Blow skills */
+    SID_BlowDarting,
+    SID_BlowDeath,
+    SID_BlowArmored,
+    SID_BlowFiendish,
+    SID_BlowWarding,
+    SID_BlowDuelist,
+    SID_BlowUncanny,
+
+    /* Stance skills */
+    SID_StanceBracing,
+    SID_StanceDarting,
+    SID_StanceFierce,
+    SID_StanceKestrel,
+    SID_StanceMirror,
+    SID_StanceReady,
+    SID_StanceSteady,
+    SID_StanceSturdy,
+    SID_StanceSwift,
+    SID_StanceWarding,
+
     SID_MAX
 };
 
