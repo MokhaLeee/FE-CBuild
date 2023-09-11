@@ -325,22 +325,6 @@ STATIC_DECLAR void DrawPage1ValueCommon(void)
             gBmFrameTmap0 + TILEMAP_INDEX(0xF, 0xB),
             0, unit->statusDuration);
     }
-
-    // display affininity icon
-    if (unit->pCharacterData->affinity)
-    {
-        DrawIcon(
-            gBmFrameTmap0 + TILEMAP_INDEX(0xC, 0x7),
-            GetUnitAffinityIcon(unit),
-            TILEREF(0, STATSCREEN_BGPAL_EXTICONS));
-    }
-    else
-    {
-        Text_InsertDrawString(
-            &gStatScreen.text[STATSCREEN_TEXT_SUPPORT4],
-            24, TEXT_COLOR_SYSTEM_BLUE,
-            GetStringFromIndex(0x536));
-    }
 }
 
 STATIC_DECLAR int GetUnitBattleAmt(struct Unit * unit)
@@ -393,15 +377,18 @@ STATIC_DECLAR void DrawPage1BWL(void)
 
     // Draw B label
     Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_BWL],
-        0, TEXT_COLOR_SYSTEM_GOLD, GetStringFromIndex(0x51F));
+        0, TEXT_COLOR_SYSTEM_GOLD,
+        GetStringFromIndex(MSG_MSS_BWL_BATTLE));
 
     // Draw W label
     Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_BWL],
-        32, TEXT_COLOR_SYSTEM_GOLD, GetStringFromIndex(0x520));
+        32, TEXT_COLOR_SYSTEM_GOLD,
+        GetStringFromIndex(MSG_MSS_BWL_WIN));
 
     // Draw L label
     Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_BWL],
-        64, TEXT_COLOR_SYSTEM_GOLD, GetStringFromIndex(0x521));
+        64, TEXT_COLOR_SYSTEM_GOLD,
+        GetStringFromIndex(MSG_MSS_BWL_LOSE));
 
     // Display labels
     PutText(&gStatScreen.text[STATSCREEN_TEXT_BWL],
@@ -418,6 +405,44 @@ STATIC_DECLAR void DrawPage1BWL(void)
     // Display Loss Amt
     PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(11 + sub_80AEBEC(bwl->lossAmt), 0xF),
         TEXT_COLOR_SYSTEM_BLUE, bwl->lossAmt);
+}
+
+STATIC_DECLAR void DrawPage1Affin(void)
+{
+    struct Unit * unit = gStatScreen.unit;
+    int affin = unit->pCharacterData->affinity;
+
+    const int msg[] = {
+        [UNIT_AFFIN_FIRE]    = MSG_MSS_AFFIN_FIRE,
+        [UNIT_AFFIN_THUNDER] = MSG_MSS_AFFIN_THUNDER,
+        [UNIT_AFFIN_WIND]    = MSG_MSS_AFFIN_WIND,
+        [UNIT_AFFIN_ICE]     = MSG_MSS_AFFIN_ICE,
+        [UNIT_AFFIN_DARK]    = MSG_MSS_AFFIN_DARK,
+        [UNIT_AFFIN_LIGHT]   = MSG_MSS_AFFIN_LIGHT,
+        [UNIT_AFFIN_ANIMA]   = MSG_MSS_AFFIN_ANIMA,
+    };
+
+    if (affin)
+    {
+        DrawIcon(
+            gBmFrameTmap0 + TILEMAP_INDEX(0xC, 0x7),
+            GetUnitAffinityIcon(unit),
+            TILEREF(0, STATSCREEN_BGPAL_EXTICONS));
+
+        PutDrawText(
+            &gStatScreen.text[STATSCREEN_TEXT_BSRANGE],
+            gBmFrameTmap0 + TILEMAP_INDEX(0xE, 0x7),
+            TEXT_COLOR_SYSTEM_GOLD,
+            0, 0,
+            GetStringFromIndex(msg[affin]));
+    }
+    else
+    {
+        Text_InsertDrawString(
+            &gStatScreen.text[STATSCREEN_TEXT_SUPPORT4],
+            24, TEXT_COLOR_SYSTEM_BLUE,
+            GetStringFromIndex(0x536));
+    }
 }
 
 /* LynJump */
@@ -437,7 +462,7 @@ void DisplayPage0(void)
 
     sStatScreenPage1BarMax = SortMax(max_vals, sizeof(max_vals) / sizeof(int));
 
-    for (i = STATSCREEN_TEXT_POWLABEL; i < STATSCREEN_TEXT_BSRANGE; i++)
+    for (i = STATSCREEN_TEXT_POWLABEL; i < STATSCREEN_TEXT_BSATKLABEL; i++)
         ClearText(&gStatScreen.text[i]);
 
     ClearText(&gStatScreen.text[STATSCREEN_TEXT_SUPPORT3]);
@@ -449,4 +474,5 @@ void DisplayPage0(void)
     DrawPage1ValueCommon();
     DrawPage1BattleAmt();
     DrawPage1BWL();
+    DrawPage1Affin();
 }

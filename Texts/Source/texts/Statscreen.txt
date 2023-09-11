@@ -3,3 +3,33 @@ Total[X]
 
 ## MSG_MSS_BattleAmtDesc
 Total battle amount.[X]
+
+## MSG_MSS_AFFIN_FIRE
+炎[X]
+
+## MSG_MSS_AFFIN_THUNDER
+雷[X]
+
+## MSG_MSS_AFFIN_WIND
+風[X]
+
+## MSG_MSS_AFFIN_ICE
+冰[X]
+
+## MSG_MSS_AFFIN_DARK
+闇[X]
+
+## MSG_MSS_AFFIN_LIGHT
+光[X]
+
+## MSG_MSS_AFFIN_ANIMA
+理[X]
+
+## MSG_MSS_BWL_BATTLE
+戰[X]
+
+## MSG_MSS_BWL_WIN
+勝[X]
+
+## MSG_MSS_BWL_LOSE
+敗[X]
