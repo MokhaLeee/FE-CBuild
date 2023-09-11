@@ -4,7 +4,6 @@
 #include "rng.h"
 
 #include "common-chax.h"
-#include "skillsys-lib.h"
 #include "skill-system.h"
 
 enum SkillSubOps {

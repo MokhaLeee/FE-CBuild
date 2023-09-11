@@ -2,6 +2,7 @@
 
 #include "global.h"
 #include "bmunit.h"
+#include "bmmap.h"
 
 #include "../Configs/configs.h"
 #include "debug-kit.h"
@@ -27,3 +28,7 @@
 #define IS_ANTI_HUFFMAN(ptr) ((((u32)(ptr)) & 0xFF000001) == 0x88000000)
 
 #define IS_UNIT_PTR(unit)    (UNIT_IS_VALID((unit)) && IS_ROM_DATA((unit)->pCharacterData) && IS_ROM_DATA((unit)->pClassData))
+
+/* Common lib */
+bool IsPositionValid(s8 x, s8 y);
+struct Unit * GetUnitAtPosition(s8 x, s8 y);
