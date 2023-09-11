@@ -93,6 +93,12 @@ enum SkillIndex {
     SID_StanceSwift,
     SID_StanceWarding,
 
+    /* Weapon range */
+    SID_RangeBonusBMag1,
+    SID_RangeBonusBMag2,
+    SID_RangeBonusBow1,
+    SID_RangeBonusBow2,
+
     SID_MAX
 };
 

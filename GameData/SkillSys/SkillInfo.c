@@ -299,6 +299,22 @@ const struct SkillInfo gSkillInfos[0x100] = {
         .msg  = MSG_SKILL_StanceWarding,
         .icon = ICON_SkillIcon_StanceWarding,
     },
+    [SID_RangeBonusBMag1] = {
+        .msg  = MSG_SKILL_RangeBonusBMag1,
+        .icon = ICON_SkillIcon_RangeBonusBMag1,
+    },
+    [SID_RangeBonusBMag2] = {
+        .msg  = MSG_SKILL_RangeBonusBMag2,
+        .icon = ICON_SkillIcon_RangeBonusBMag2,
+    },
+    [SID_RangeBonusBow1] = {
+        .msg  = MSG_SKILL_RangeBonusBow1,
+        .icon = ICON_SkillIcon_RangeBonusBow1,
+    },
+    [SID_RangeBonusBow2] = {
+        .msg  = MSG_SKILL_RangeBonusBow2,
+        .icon = ICON_SkillIcon_RangeBonusBow2,
+    },
 };
 
 FEB_IDENTIFIER(gSkillInfos);

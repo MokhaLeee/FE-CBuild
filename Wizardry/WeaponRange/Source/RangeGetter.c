@@ -5,8 +5,10 @@
 #include "bmidoten.h"
 
 #include "common-chax.h"
+#include "skill-system.h"
 #include "status-getter.h"
 #include "weapon-range.h"
+#include "constants/skills.h"
 
 typedef int (* WeaponRangeGetterFunc_t)(int old, struct Unit * unit, u16 item);
 extern const WeaponRangeGetterFunc_t gWeaponRangeGetters[];
@@ -34,7 +36,26 @@ int GetItemMaxRangeRework(u16 item, struct Unit * unit)
     return status;
 }
 
-int WeaponRangeGetterSkills(int status, struct Unit * unit, u16 item)
+int WeaponRangeGetterSkills(int range, struct Unit * unit, u16 item)
 {
-    return status;
+    switch (GetItemType(item)) {
+    case ITYPE_BOW:
+        if (SkillTester(unit, SID_RangeBonusBow1))
+            range = range + 1;
+
+        if (SkillTester(unit, SID_RangeBonusBow2))
+            range = range + 2;
+        break;
+
+    case ITYPE_ANIMA:
+    case ITYPE_LIGHT:
+    case ITYPE_DARK:
+        if (SkillTester(unit, SID_RangeBonusBMag1))
+            range = range + 1;
+
+        if (SkillTester(unit, SID_RangeBonusBMag2))
+            range = range + 2;
+        break;
+    }
+    return range;
 }
