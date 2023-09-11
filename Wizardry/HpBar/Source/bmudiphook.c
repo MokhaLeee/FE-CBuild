@@ -17,7 +17,7 @@ STATIC_DECLAR void PutSubIconCommon(int x, int y, int oam2)
     if (y < -16 || y > DISPLAY_HEIGHT)
         return;
 
-    if ((GetGameClock() & 0x1F) >= 20)
+    if ((GetGameClock() & 0x3F) >= 0x28)
         return;
 
     CallARM_PushToSecondaryOAM(
@@ -90,11 +90,7 @@ void PutUnitSpriteIconsOam(void)
             PutRescuingIcon(unit);
         else if ((UNIT_FACTION(unit) != FACTION_BLUE) && (UNIT_CATTRIBUTES(unit) & CA_BOSS))
             PutBossIcon(unit);
-        else if (GetChapterThing() != 2)
-        {
-            u8 pid_protected = GetROMChapterStruct(gPlaySt.chapterIndex)->protectCharacterIndex;
-            if (UNIT_CHAR_ID(unit) == pid_protected)
-                PutProtectIcon(unit);
-        }
+        else if (GetChapterThing() != 2 && UNIT_CHAR_ID(unit) == GetROMChapterStruct(gPlaySt.chapterIndex)->protectCharacterIndex)
+            PutProtectIcon(unit);
     }
 }

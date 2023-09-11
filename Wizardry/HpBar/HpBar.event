@@ -1,7 +1,7 @@
 #ifndef HP_BAR_INSTALLED
 #define HP_BAR_INSTALLED
 
-#include "Source/HpBar.lyn.event"
+#include "Source/bmudiphook.lyn.event"
 
 ALIGN 4
 Img_HpBar:
