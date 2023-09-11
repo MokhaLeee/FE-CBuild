@@ -11,8 +11,8 @@
 
 #include "SkillSys/EfxSkills.lyn.event"
 #include "SkillSys/SkillInfo.lyn.event"
-#include "SkillSys/PreLoadSkills.lyn.event"
-#include "SkillSys/ConstSkills.lyn.event"
+#include "SkillSys/PreLoadConfig.lyn.event"
+#include "SkillSys/RomTable.lyn.event"
 
 #include "BattleSys/WeaponTriangle.lyn.event"
 
