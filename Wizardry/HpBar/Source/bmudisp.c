@@ -7,6 +7,10 @@
 #include "common-chax.h"
 #include "debuff.h"
 
+/* External */
+void PutUnitHpBar(struct Unit * unit);
+
+/* Vanilla port */
 void PutChapterMarkedTileIconOam(void);
 
 STATIC_DECLAR void PutSubIconCommon(int x, int y, int oam2)
@@ -38,7 +42,7 @@ STATIC_DECLAR void PutRescuingIcon(struct Unit * unit)
     PutSubIconCommon(
         unit->xPos * 16 - gBmSt.camera.x,
         unit->yPos * 16 - gBmSt.camera.y,
-        OAM2_PAL(rescuePalLut[faction]) + OAM2_LAYER(2) + OAM2_CHR(0x3)
+        OAM2_PAL(rescuePalLut[faction]) + OAM2_LAYER(2) + OAM2_CHR(0x60 / 0x20)
     );
 }
 
@@ -47,7 +51,7 @@ STATIC_DECLAR void PutBossIcon(struct Unit * unit)
     PutSubIconCommon(
         unit->xPos * 16 - gBmSt.camera.x,
         unit->yPos * 16 - gBmSt.camera.y,
-        OAM2_PAL(0) + OAM2_LAYER(2) + OAM2_CHR(0x10)
+        OAM2_PAL(0) + OAM2_LAYER(2) + OAM2_CHR(0x200 / 0x20)
     );
 }
 
@@ -56,7 +60,7 @@ STATIC_DECLAR void PutProtectIcon(struct Unit * unit)
     PutSubIconCommon(
         unit->xPos * 16 - gBmSt.camera.x,
         unit->yPos * 16 - gBmSt.camera.y,
-        OAM2_PAL(0) + OAM2_LAYER(2) + OAM2_CHR(0x11)
+        OAM2_PAL(0) + OAM2_LAYER(2) + OAM2_CHR(0x220 / 0x20)
     );
 }
 
@@ -82,6 +86,9 @@ void PutUnitSpriteIconsOam(void)
 
         if (GetUnitSpriteHideFlag(unit) != 0)
             continue;
+
+        /* Hp bar */
+        PutUnitHpBar(unit);
 
         /* In DebuffRework */
         PutUnitStatusIconOAM(unit);

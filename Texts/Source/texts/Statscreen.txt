@@ -26,10 +26,10 @@ Total battle amount.[X]
 理[X]
 
 ## MSG_MSS_BWL_BATTLE
-戰[X]
+B[X]
 
 ## MSG_MSS_BWL_WIN
-勝[X]
+W[X]
 
 ## MSG_MSS_BWL_LOSE
-敗[X]
+L[X]

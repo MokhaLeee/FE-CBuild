@@ -58,7 +58,7 @@ ENUN
 LOAD1 1 EnemyUnits
 ENUN
 
-EVT_ADD_SKILL(Eirika, 0x4A)
+EVT_ADD_SKILL(0x4A, Eirika)
 
 PREP
 ENDA

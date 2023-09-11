@@ -37,6 +37,8 @@ STATIC_DECLAR u8 EventAddSkill(struct EventEngineProc * proc)
     u8 pid = argv[2];
     struct Unit * unit = GetUnitFromCharId(pid);
 
+    Debugf("sid %#x, pid %#x, unit %p", sid, pid, unit);
+
     if (argc < 3)
     {
         Errorf("No enough argument at %p", proc->pEventCurrent);
