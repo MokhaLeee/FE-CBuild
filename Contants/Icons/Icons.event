@@ -1,8 +1,0 @@
-#ifndef SKILL_ICONS_INSTALLED
-#define SKILL_ICONS_INSTALLED
-
-ALIGN 4
-/* Auto generated */
-#include "IconInstaller.event"
-
-#endif /* SKILL_ICONS_INSTALLED */

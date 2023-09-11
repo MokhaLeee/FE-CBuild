@@ -3,7 +3,7 @@
 #include "common-chax.h"
 #include "skill-system.h"
 #include "debug-kit.h"
-#include "constants/icons.h"
+#include "constants/gfx.h"
 
 const u8 * GetSkillIcon(const u8 sid)
 {
@@ -14,7 +14,7 @@ const u8 * GetSkillIcon(const u8 sid)
     if (!icon)
     {
         LogPrintf("%s: Try get invalid skill info: %#X", __func__, sid);
-        icon = ICON_SkillIcon_WIP;
+        icon = GFX_SkillIcon_WIP;
     }
     return icon;
 }

@@ -85,7 +85,7 @@ all:
 	@$(MAKE) pre_build
 	@$(MAKE) chax
 
-pre_build: text font icon
+pre_build: text font gfx
 chax: $(FE8_CHX)
 
 $(FE8_CHX): $(MAIN) $(FE8_GBA) $(FE8_SYM) $(shell $(EA_DEP) $(MAIN) -I $(EA_DIR) --add-missings)
@@ -286,21 +286,21 @@ TMXS := $(shell find -type f -name '*.tmx')
 CLEAN_FILES += $(TMXS:.tmx=.event) $(TMXS:.tmx=_data.dmp)
 
 # ===============
-# = Skill Icons =
+# = GFX  =
 # ===============
 
-SICON_DIR     := $(PWD)/Contants/Icons
-SICON_SOURCES := $(shell find $(SICON_DIR)/Sources -type f -name '*.png')
+GFX_DIR     := $(PWD)/Contants/Gfx
+GFX_SOURCES := $(shell find $(GFX_DIR)/Sources -type f -name '*.png')
 
-export SICON_HEADER := $(SICON_DIR)/IconDefs.h
+export GFX_HEADER := $(GFX_DIR)/GfxDefs.h
 
-icon: $(SICON_HEADER)
+gfx: $(GFX_HEADER)
 
-$(SICON_HEADER): $(SICON_SOURCES)
-	@$(MAKE) -C $(SICON_DIR)
+$(GFX_HEADER): $(GFX_SOURCES)
+	@$(MAKE) -C $(GFX_DIR)
 
-CLEAN_BUILD += $(SICON_DIR)
-CLEAN_FILES += $(SICON_HEADER)
+CLEAN_BUILD += $(GFX_DIR)
+CLEAN_FILES += $(GFX_HEADER)
 
 # ==============
 # = MAKE CLEAN =

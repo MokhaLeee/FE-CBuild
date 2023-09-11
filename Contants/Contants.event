@@ -20,7 +20,7 @@ ALIGN 4
 #include "Portrait/Portrait.event"
 
 ALIGN 4
-#include "Icons/Icons.event"
+#include "Gfx/Gfx.event"
 
 ALIGN 4
 #include "Events/Events.event"
