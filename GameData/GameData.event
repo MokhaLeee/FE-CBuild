@@ -18,4 +18,6 @@
 
 #include "StrMag/UnitMagicInfos.lyn.event"
 
+#include "Debuff/DebuffInfo.lyn.event"
+
 #endif
