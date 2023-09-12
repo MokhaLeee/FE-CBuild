@@ -19,6 +19,7 @@ Raises magic.[X]
 
 #include texts/Statscreen.txt
 #include texts/PrepScreen.txt
+#include texts/Debuff.txt
 #include texts/Skills_StatusGetter.txt
 #include texts/Skills_BattleStatus.txt
 #include texts/Skills_WeaponTriangle.txt

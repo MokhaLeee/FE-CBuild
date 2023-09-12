@@ -58,7 +58,7 @@ char * GetUnitStatusName(struct Unit * unit)
 char * GetUnitRescueName(struct Unit * unit)
 {
     if (!unit->rescue)
-        return GetStringFromIndex(gDebuffInfos[MEW_UNIT_STATUS_NONE].name);
+        return GetStringFromIndex(gDebuffInfos[UNIT_STATUS_POISON].name);
 
     return GetStringFromIndex(GetUnit(unit->rescue)->pCharacterData->nameTextId);
 }
