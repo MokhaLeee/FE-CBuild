@@ -97,6 +97,11 @@ enum SkillIndex {
     SID_RangeBonusBow1,
     SID_RangeBonusBow2,
 
+    /* Post action */
+    SID_Canto,
+    SID_AlertStance,
+    SID_AlertStancePlus,
+
     SID_MAX
 };
 

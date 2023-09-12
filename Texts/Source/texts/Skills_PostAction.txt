@@ -1,0 +1,13 @@
+## MSG_SKILL_Canto
+Canto:[NL]
+Unit can move again[X]
+
+## MSG_SKILL_AlertStance
+Alert Stance:[NL]
+If unit takes no action[NL]
+except Wait, grants Avo +15%[X]
+
+## MSG_SKILL_AlertStancePlus
+Alert Stance+:[NL]
+If unit takes no action[NL]
+except Wait, grants Avo +30%[X]

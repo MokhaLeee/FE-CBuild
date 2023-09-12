@@ -315,6 +315,18 @@ const struct SkillInfo gSkillInfos[0x100] = {
         .msg  = MSG_SKILL_RangeBonusBow2,
         .icon = GFX_SkillIcon_RangeBonusBow2,
     },
+    [SID_Canto] = {
+        .msg  = MSG_SKILL_Canto,
+        .icon = GFX_SkillIcon_Canto,
+    },
+    [SID_AlertStance] = {
+        .msg  = MSG_SKILL_AlertStance,
+        .icon = GFX_SkillIcon_AlertStance,
+    },
+    [SID_AlertStancePlus] = {
+        .msg  = MSG_SKILL_AlertStancePlus,
+        .icon = GFX_SkillIcon_AlertStancePlus,
+    },
 };
 
 FEB_IDENTIFIER(gSkillInfos);
