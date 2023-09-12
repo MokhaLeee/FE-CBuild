@@ -16,18 +16,6 @@ enum SkillSubOps {
     EVSUBCMD_REMOVE_SKILL_SC,
 };
 
-STATIC_DECLAR u8 Event04_CheckRandomVanilla(struct EventEngineProc * proc)
-{
-    u16 max = EVT_CMD_ARGV(proc->pEventCurrent)[0];
-
-    if (max == 0)
-        gEventSlots[0xC] = 0;
-    else
-        gEventSlots[0xC] = NextRN_N(max + 1);
-
-    return EVC_ADVANCE_CONTINUE;
-}
-
 STATIC_DECLAR u8 EventAddSkill(struct EventEngineProc * proc)
 {
     u16 argc = EVT_CMD_LEN(proc->pEventCurrent);
@@ -159,7 +147,7 @@ STATIC_DECLAR u8 EventRemoveSkillBySlotC(struct EventEngineProc * proc)
 }
 
 /* LynJump */
-u8 Event04_CheckRandom(struct EventEngineProc * proc)
+u8 EventSkillOperation(struct EventEngineProc * proc)
 {
     switch (EVT_SUB_CMD(proc->pEventCurrent)) {
     case EVSUBCMD_ADD_SKILL:
@@ -181,6 +169,7 @@ u8 Event04_CheckRandom(struct EventEngineProc * proc)
         return EventRemoveSkillBySlotC(proc);
 
     default:
-        return Event04_CheckRandomVanilla(proc);
+        Errorf("Event format error at %p", proc->pEventCurrent);
+        return EVC_ERROR;
     };
 }

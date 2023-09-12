@@ -3,6 +3,7 @@ ALIGN 4
 #include "GameInitHook/GameInitHook.event"
 #include "DebugKit/DebugKit.event"
 
+#include "EventExpansion/EventExpansion.event"
 #include "WeaponRange/WeaponRange.event"
 #include "ItemSys/ItemSys.event"
 #include "StrMagSplit/StrMagSplit.event"
