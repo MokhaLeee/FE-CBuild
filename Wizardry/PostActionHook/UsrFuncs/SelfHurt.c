@@ -70,7 +70,7 @@ void PostActionBattleActorSelfHurt(ProcPtr parent)
         if (SkillTester(unit, SID_FuryPlus))
             damage += 8;
 
-        if (SkillTester(unit, SID_DoubleLion) && gDoubleLionPostActionFlag)
+        if (SkillTester(unit, SID_DoubleLion) && (gBattleGlobalFlag & BATTLE_DOUBLE_LION_POST_ACTION_FLAG))
             damage += 1;
 
         break;

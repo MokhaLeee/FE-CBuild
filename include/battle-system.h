@@ -32,4 +32,19 @@ bool CheckBattleHitOverflow(void);
 bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * target);
 int CalcBattleRealDamage(struct BattleUnit * attacker, struct BattleUnit * defender);
 
-extern bool gDoubleLionPostActionFlag;
+/* Flags in .data section */
+enum BattleStaticFlags {
+    TMP_VANTAGE_ORDER_FLAG = 1 << 0x00,
+    TMP_DESPERATION_ORDER_FLAG = 1 << 0x01,
+    TMP_QUICK_RIPOSTE_ORDER_FLAG = 1 << 0x02,
+    TMP_DOUBLE_LION_ORDER_FLAG = 1 << 0x03,
+    TMP_RUINED_BLADE_PLUS_ORDER_FLAG = 1 << 0x04,
+};
+
+extern u32 gBattleTemporaryFlag;
+
+enum BattleGlobalFlags {
+    BATTLE_DOUBLE_LION_POST_ACTION_FLAG = 1 << 0x00,
+};
+
+extern u32 gBattleGlobalFlag;

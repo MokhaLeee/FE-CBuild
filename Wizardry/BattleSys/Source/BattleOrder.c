@@ -44,9 +44,6 @@ static const u8 BattleUnwindConfig[14][4] = {
 	{ TAR_ATTACK, ACT_ATTACK, TAR_ATTACK, ACT_ATTACK }  // 134 = 13
 };
 
-extern bool sVantageOrderFlag, sDesperationOrderFlag, sQuickRiposteOrderFlag, sDoubleLionOrderFlag;
-extern bool sRuinedBladePlusOrderFlag;
-
 /* This function should also be called by BKSEL, so non static */
 bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * target)
 {
@@ -68,27 +65,27 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * tar
             if ((GetUnitCurrentHp(real_target) * 2) > HpMaxGetter(real_target))
                 return false;
 
-        sDoubleLionOrderFlag = false;
+        gBattleTemporaryFlag &= ~TMP_DOUBLE_LION_ORDER_FLAG;
 
         if (SkillTester(real_actor, SID_DoubleLion))
         {
             if (GetUnitCurrentHp(real_actor) == HpMaxGetter(real_actor))
             {
-                gDoubleLionPostActionFlag = true;
-                sDoubleLionOrderFlag = true;
+                gBattleGlobalFlag |= BATTLE_DOUBLE_LION_POST_ACTION_FLAG;
+                gBattleTemporaryFlag |= TMP_DOUBLE_LION_ORDER_FLAG;
                 return true;
             }
         }
     }
     else if (&gBattleTarget == actor)
     {
-        sQuickRiposteOrderFlag = false;
+        gBattleTemporaryFlag &= ~TMP_QUICK_RIPOSTE_ORDER_FLAG;
 
         if (SkillTester(real_actor, SID_QuickRiposte))
         {
             if ((GetUnitCurrentHp(real_target) * 2) > HpMaxGetter(real_target))
             {
-                sQuickRiposteOrderFlag = true;
+                gBattleTemporaryFlag |= TMP_QUICK_RIPOSTE_ORDER_FLAG;
                 return true;
             }
         }
@@ -104,13 +101,13 @@ STATIC_DECLAR bool CheckDesperationOrder(void)
 {
     struct Unit * actor = GetUnit(gBattleActor.unit.index);
 
-    sDesperationOrderFlag = false;
+    gBattleTemporaryFlag &= ~TMP_DESPERATION_ORDER_FLAG;
 
     if (SkillTester(actor, SID_Desperation))
     {
         if ((GetUnitCurrentHp(actor) * 2) < HpMaxGetter(actor))
         {
-            sDesperationOrderFlag = true;
+            gBattleTemporaryFlag |= TMP_DESPERATION_ORDER_FLAG;
             return true;
         }
     }
@@ -121,13 +118,13 @@ STATIC_DECLAR bool CheckVantageOrder(void)
 {
     struct Unit * target = GetUnit(gBattleTarget.unit.index);
 
-    sVantageOrderFlag = false;
+    gBattleTemporaryFlag &= ~TMP_VANTAGE_ORDER_FLAG;
 
     if (SkillTester(target, SID_Vantage))
     {
         if ((GetUnitCurrentHp(target) * 2) < HpMaxGetter(target))
         {
-            sVantageOrderFlag = true;
+            gBattleTemporaryFlag |= TMP_VANTAGE_ORDER_FLAG;
             return true;
         }
     }
@@ -149,7 +146,7 @@ void BattleUnwind(void)
     gBattleHitIterator->info |= BATTLE_HIT_INFO_BEGIN;
 
     /* Register post-action */
-    gDoubleLionPostActionFlag = false;
+    gBattleGlobalFlag = 0;
 
     if (CheckDesperationOrder())
         round_mask |= UNWIND_DESPERA;
@@ -191,7 +188,7 @@ void BattleUnwind(void)
         /* Vantage */
         if (i == 0 && (round_mask & UNWIND_VANTAGE))
         {
-            if (sVantageOrderFlag)
+            if (gBattleTemporaryFlag & TMP_VANTAGE_ORDER_FLAG)
                 RegisterActorEfxSkill(GetBattleHitRound(old), SID_Vantage);
         }
 
@@ -200,7 +197,7 @@ void BattleUnwind(void)
         {
             if (config[0] == ACT_ATTACK && config[1] == ACT_ATTACK && config[2] == TAR_ATTACK)
             {
-                if (sDesperationOrderFlag)
+                if (gBattleTemporaryFlag & TMP_DESPERATION_ORDER_FLAG)
                     RegisterActorEfxSkill(GetBattleHitRound(old), SID_Desperation);
             }
         }
@@ -208,14 +205,14 @@ void BattleUnwind(void)
         /* Target double attack */
         if (target_count > 1 && config[i] == TAR_ATTACK)
         {
-            if (sQuickRiposteOrderFlag)
+            if (gBattleTemporaryFlag & TMP_QUICK_RIPOSTE_ORDER_FLAG)
                 RegisterActorEfxSkill(GetBattleHitRound(old), SID_QuickRiposte);
         }
 
         /* Actor double attack */
         if (actor_count > 1 && config[i] == ACT_ATTACK)
         {
-            if (sDoubleLionOrderFlag)
+            if (gBattleTemporaryFlag & TMP_DOUBLE_LION_ORDER_FLAG)
                 RegisterActorEfxSkill(GetBattleHitRound(old), SID_DoubleLion);
         }
 
@@ -242,7 +239,7 @@ bool BattleGenerateRoundHits(struct BattleUnit * attacker, struct BattleUnit * d
         gBattleHitIterator->attributes |= attrs;
 
         /* RuinedBladePlus */
-        if (i == 1 && sRuinedBladePlusOrderFlag)
+        if (i == 1 && (gBattleTemporaryFlag & TMP_RUINED_BLADE_PLUS_ORDER_FLAG))
             RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_RuinedBladePlus);
 
         if (BattleGenerateHit(attacker, defender))
@@ -283,14 +280,14 @@ int GetBattleUnitHitCount(struct BattleUnit * actor)
 {
     int result = 1;
 
-    sRuinedBladePlusOrderFlag = false;
+    gBattleTemporaryFlag &= ~TMP_RUINED_BLADE_PLUS_ORDER_FLAG;
 
     if (BattleCheckBraveEffect(actor))
         result = result + 1;
 
     if (SkillTester(&actor->unit, SID_RuinedBladePlus))
     {
-        sRuinedBladePlusOrderFlag = true;
+        gBattleTemporaryFlag |= TMP_RUINED_BLADE_PLUS_ORDER_FLAG;
         result = result + 1;
     }
     return result;
