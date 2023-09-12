@@ -2,6 +2,9 @@
 #include "proc.h"
 #include "bmtrap.h"
 
+#include "common-chax.h"
+#include "battle-system.h"
+
 struct ProcPostAction {
     PROC_HEADER;
     int index;
@@ -43,6 +46,9 @@ void PostActionExecHooks(struct ProcPostAction * proc)
         it(proc);
         return;
     }
+
+    /* Some other proc-free routine */
+    gBattleGlobalFlag = 0;
 
     Proc_Goto(proc, 2);
 }

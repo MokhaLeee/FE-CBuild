@@ -145,8 +145,15 @@ void BattleUnwind(void)
     ClearBattleHits();
     gBattleHitIterator->info |= BATTLE_HIT_INFO_BEGIN;
 
-    /* Register post-action */
-    gBattleGlobalFlag = 0;
+    /**
+     * gBattleGlobalFlag should not clear in battle routine
+     * because combat art flag is configured in pre-combat.
+     * It is cleared in:
+     *  a). post action
+     *  b). game init
+     */
+
+    // gBattleGlobalFlag = 0;
 
     if (CheckDesperationOrder())
         round_mask |= UNWIND_DESPERA;

@@ -5,6 +5,7 @@
 #include "hardware.h"
 
 #include "debug-kit.h"
+#include "battle-system.h"
 
 typedef void (* GameInitHookFunc_t)(void);
 extern const GameInitHookFunc_t gGameInitHookTable[];
@@ -28,6 +29,8 @@ void StartGame(void)
 #if CONFIG_USE_DEBUG
     LogInit();
 #endif
+
+    gBattleGlobalFlag = 0;
 
     /* External hooks */
     for (it = gGameInitHookTable; *it; it++)
