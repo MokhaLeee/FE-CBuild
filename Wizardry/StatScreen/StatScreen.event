@@ -25,10 +25,6 @@ Gfx_StatScreenObj:
     #incbin "Data/Gfx_StatScreenObj.4bpp.lz"
 
 PUSH
-    /* Replace rescue debuff arrow for Page1 */
-    ORG $0883C2
-    BYTE $48
-
     ORG $088650
     POIN Gfx_StatScreenObj
 POP

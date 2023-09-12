@@ -1,5 +1,5 @@
 ## MSG_SKILL_LifeAndDeath
-Life And Death:[NL]
+Life-Death:[NL]
 Pow and Mag +5[NL]
 Def and Res -5[X]
 

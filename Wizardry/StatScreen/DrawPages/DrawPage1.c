@@ -5,6 +5,8 @@
 #include "statscreen.h"
 #include "bmreliance.h"
 #include "icon.h"
+#include "ctc.h"
+#include "bm.h"
 
 #include "common-chax.h"
 #include "stat-screen.h"
@@ -475,4 +477,37 @@ void DisplayPage0(void)
     DrawPage1BattleAmt();
     DrawPage1BWL();
     DrawPage1Affin();
+}
+
+/* LynJump */
+void PageNumCtrl_DisplayBlinkIcons(struct StatScreenPageNameProc * proc)
+{
+    s8 displayIcon = (GetGameClock() % 32) < 20;
+    const u16 palidLut[3] = { 0xC, 0xE, 0xD }; // TODO: palid constants
+
+    if (!gStatScreen.inTransition)
+    {
+        if ((gStatScreen.page == STATSCREEN_PAGE_0) && (gStatScreen.unit->state & US_RESCUING))
+        {
+            UpdateStatArrowSprites(120, 56, 1);
+            UpdateStatArrowSprites(120, 72, 1);
+
+            if (displayIcon)
+            {
+                PutSprite(4,
+                    184, 94, gObject_8x8,
+                    TILEREF(3, 0xF & palidLut[gStatScreen.unit->rescue >> 6]) + OAM2_LAYER(2));
+            }
+        }
+
+        if (gStatScreen.unit->state & US_RESCUED)
+        {
+            if (displayIcon)
+            {
+                PutSprite(4,
+                    10, 86, gObject_8x8,
+                    TILEREF(3, 0xF & palidLut[gStatScreen.unit->rescue>>6]) + OAM2_LAYER(2));
+            }
+        }
+    }
 }

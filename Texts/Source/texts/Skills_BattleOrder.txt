@@ -9,7 +9,7 @@ attacks with HP <50%,[NL]
 double attacks immediately[X]
 
 ## MSG_SKILL_QuickRiposte
-Quick Riposte: [NL]
+Quick Ripo: [NL]
 If unit is attacked with HP[NL]
 >50%, double attacks[X]
 
