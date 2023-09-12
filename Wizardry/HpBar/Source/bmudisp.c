@@ -91,7 +91,7 @@ void PutUnitSpriteIconsOam(void)
         PutUnitHpBar(unit);
 
         /* In DebuffRework */
-        PutUnitStatusIconOAM(unit);
+        PutUnitStatusIcon(unit);
 
         if (unit->state & US_RESCUING)
             PutRescuingIcon(unit);

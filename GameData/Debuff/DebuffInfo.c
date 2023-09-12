@@ -48,6 +48,7 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
         .duration = 3,
         .atk = 10,
         .img = GFX_DebuffMinibox_Attack,
+        .on_draw = PutUnitDanceRingBuffIcon,
     },
 
     [MEW_UNIT_STATUS_DEFENSE] = {
@@ -56,6 +57,7 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
         .type = STATUS_INFO_TYPE_BUFF,
         .duration = 3,
         .img = GFX_DebuffMinibox_Defense,
+        .on_draw = PutUnitDanceRingBuffIcon,
     },
 
     [MEW_UNIT_STATUS_CRIT] = {
@@ -64,6 +66,7 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
         .type = STATUS_INFO_TYPE_BUFF,
         .duration = 3,
         .img = GFX_DebuffMinibox_Crit,
+        .on_draw = PutUnitDanceRingBuffIcon,
     },
 
     [MEW_UNIT_STATUS_AVOID] = {
@@ -72,6 +75,7 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
         .type = STATUS_INFO_TYPE_BUFF,
         .duration = 3,
         .img = GFX_DebuffMinibox_Aviod,
+        .on_draw = PutUnitDanceRingBuffIcon,
     },
 
     [MEW_UNIT_STATUS_SICK] = {

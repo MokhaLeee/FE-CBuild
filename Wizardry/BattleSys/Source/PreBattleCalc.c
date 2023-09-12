@@ -30,7 +30,8 @@ void ComputeBattleUnitAttack(struct BattleUnit * attacker, struct BattleUnit * d
 }
 
 /* LynJump */
-void ComputeBattleUnitDefense(struct BattleUnit * attacker, struct BattleUnit * defender) {
+void ComputeBattleUnitDefense(struct BattleUnit * attacker, struct BattleUnit * defender)
+{
     int status, def, res;
     struct Unit * unit = GetUnit(attacker->unit.index);
 

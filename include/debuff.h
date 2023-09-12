@@ -35,6 +35,7 @@ enum DEBUFF_INFO_TYPE {
 struct DebuffInfo {
     u16 name, desc;
     const u8 * img;
+    void (* on_draw)(struct Unit * unit);
 
     u8 type;
 
@@ -52,4 +53,5 @@ void SetUnitStatusIndex(struct Unit * unit, int status);
 void SetUnitStatusDuration(struct Unit * unit, int duration);
 int TryTickUnitStatusDuration(struct Unit * unit);
 
-void PutUnitStatusIconOAM(struct Unit * unit);
+void PutUnitStatusIcon(struct Unit * unit);
+void PutUnitDanceRingBuffIcon(struct Unit * unit);

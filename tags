@@ -1,0 +1,22 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/mokha/fe-cbuild/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	//
+ComputeBattleUnitAttack	Wizardry/BattleSys/Source/PreBattleCalc.c	/^void ComputeBattleUnitAttack(struct BattleUnit * attacker, struct BattleUnit * defender)$/;"	f	typeref:typename:void
+ComputeBattleUnitDefense	Wizardry/BattleSys/Source/PreBattleCalc.c	/^void ComputeBattleUnitDefense(struct BattleUnit * attacker, struct BattleUnit * defender) {$/;"	f	typeref:typename:void
+ComputeBattleUnitSilencerRate	Wizardry/BattleSys/Source/PreBattleCalc.c	/^void ComputeBattleUnitSilencerRate(struct BattleUnit * attacker, struct BattleUnit * defender)$/;"	f	typeref:typename:void
+ComputeBattleUnitStats	Wizardry/BattleSys/Source/PreBattleCalc.c	/^void ComputeBattleUnitStats(struct BattleUnit * attacker, struct BattleUnit * defender)$/;"	f	typeref:typename:void
+PreBattleCalcEnd	Wizardry/BattleSys/Source/PreBattleCalc.c	/^STATIC_DECLAR void PreBattleCalcEnd(struct BattleUnit * attacker, struct BattleUnit * defender)$/;"	f	typeref:typename:STATIC_DECLAR void
+PreBattleCalcFunc	Wizardry/BattleSys/Source/PreBattleCalc.c	/^typedef void (* PreBattleCalcFunc) (struct BattleUnit * buA, struct BattleUnit * buB);$/;"	t	typeref:typename:void (*)(struct BattleUnit * buA,struct BattleUnit * buB)	file:
+PreBattleCalcFuncs	Wizardry/BattleSys/Source/PreBattleCalc.c	/^STATIC_DECLAR const PreBattleCalcFunc PreBattleCalcFuncs[] = {$/;"	v	typeref:typename:STATIC_DECLAR const PreBattleCalcFunc[]
+PreBattleCalcInit	Wizardry/BattleSys/Source/PreBattleCalc.c	/^STATIC_DECLAR void PreBattleCalcInit(struct BattleUnit * attacker, struct BattleUnit * defender)$/;"	f	typeref:typename:STATIC_DECLAR void
+PreBattleCalcSilencerRate	Wizardry/BattleSys/Source/PreBattleCalc.c	/^STATIC_DECLAR void PreBattleCalcSilencerRate(struct BattleUnit * attacker, struct BattleUnit * d/;"	f	typeref:typename:STATIC_DECLAR void
+PreBattleCalcSkills	Wizardry/BattleSys/Source/PreBattleCalc.c	/^STATIC_DECLAR void PreBattleCalcSkills(struct BattleUnit * attacker, struct BattleUnit * defende/;"	f	typeref:typename:STATIC_DECLAR void
+PreBattlePostCalcSkills	Wizardry/BattleSys/Source/PreBattleCalc.c	/^STATIC_DECLAR void PreBattlePostCalcSkills(struct BattleUnit * attacker, struct BattleUnit * def/;"	f	typeref:typename:STATIC_DECLAR void
