@@ -3,6 +3,7 @@
 #include "bmtrap.h"
 
 #include "common-chax.h"
+#include "combat-art.h"
 #include "battle-system.h"
 
 struct ProcPostAction {
@@ -49,6 +50,7 @@ void PostActionExecHooks(struct ProcPostAction * proc)
 
     /* Some other proc-free routine */
     gBattleGlobalFlag = 0;
+    CpuFastFill16(0, &gCombatArtStatus, sizeof(gCombatArtStatus));
 
     Proc_Goto(proc, 2);
 }

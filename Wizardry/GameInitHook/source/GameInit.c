@@ -5,6 +5,7 @@
 #include "hardware.h"
 
 #include "debug-kit.h"
+#include "combat-art.h"
 #include "battle-system.h"
 
 typedef void (* GameInitHookFunc_t)(void);
@@ -31,6 +32,7 @@ void StartGame(void)
 #endif
 
     gBattleGlobalFlag = 0;
+    CpuFastFill16(0, &gCombatArtStatus, sizeof(gCombatArtStatus));
 
     /* External hooks */
     for (it = gGameInitHookTable; *it; it++)

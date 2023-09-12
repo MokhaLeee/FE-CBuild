@@ -28,3 +28,7 @@ Raises magic.[X]
 #include texts/Skills_Stance.txt
 #include texts/Skills_WeaponRange.txt
 #include texts/Skills_PostAction.txt
+#include texts/CombatArt_Sword.txt
+#include texts/CombatArt_Axe.txt
+#include texts/CombatArt_Lance.txt
+#include texts/CombatArt_Bow.txt

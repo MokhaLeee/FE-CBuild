@@ -1,0 +1,23 @@
+## MSG_COMART_NAME_Grounder
+Grounder[X]
+
+## MSG_COMART_DESC_Grounder
+Effective against Flying enemies[X]
+
+## MSG_COMART_NAME_BaneOfMonsters
+Bane Of Monsters[X]
+
+## MSG_COMART_DESC_BaneOfMonsters
+Effective against monsters[X]
+
+## MSG_COMART_NAME_Hexblade
+Hexblade[X]
+
+## MSG_COMART_DESC_Hexblade
+Magic attack[X]
+
+## MSG_COMART_NAME_FoudroyantStrike
+Foudroyant Strike[X]
+
+## MSG_COMART_DESC_FoudroyantStrike
+Effective against Armored enemies[X]

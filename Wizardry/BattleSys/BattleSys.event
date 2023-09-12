@@ -7,6 +7,7 @@
 #include "Source/BattleHit.lyn.event"
 #include "Source/BattleForcast.lyn.event"
 #include "Source/BattleOrder.lyn.event"
+#include "Source/CheckEffective.lyn.event"
 #include "BattleHitExpasion/BattleHitExpa.lyn.event"
 #include "BattleHitExpasion/RepointEfxHp.event"
 #include "BattleHitExpasion/RepointBattleHit.event"

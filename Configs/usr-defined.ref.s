@@ -22,8 +22,9 @@ SET_DATA sLearnedSkillPLists, sStatScreenPage1BarMax + 0x4
 SET_DATA sEfxSkillRoundData, sLearnedSkillPLists + 0x46 * 0x20
 SET_DATA gBattleTemporaryFlag, sEfxSkillRoundData + 4 * 0x21
 SET_DATA gBattleGlobalFlag, gBattleTemporaryFlag + 4
+SET_DATA gCombatArtStatus, gBattleGlobalFlag + 4
 
-SET_DATA FreeRamSpaceTail, gBattleGlobalFlag + 4
+SET_DATA FreeRamSpaceTail, gCombatArtStatus + 0x10
 
 /* IconDisplay */
 SET_DATA gIconReSts, 0x02026A90 @ DrawnIconLookupTable

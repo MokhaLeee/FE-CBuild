@@ -1,0 +1,20 @@
+## MSG_COMART_NAME_TempestLance
+Tempest Lance[X]
+
+## MSG_COMART_NAME_SwiftStrikes
+Swift Strikes[X]
+
+## MSG_COMART_DESC_SwiftStrikes
+Twice consecutive hits[X]
+
+## MSG_COMART_NAME_FrozenLance
+Frozen Lance[X]
+
+## MSG_COMART_DESC_FrozenLance
+Magic attack, damage + SKL bonus[X]
+
+## MSG_COMART_NAME_Vengeance
+Vengeance[X]
+
+## MSG_COMART_DESC_Vengeance
+Damage + lost HP[X]
