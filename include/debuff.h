@@ -62,3 +62,13 @@ int TryTickUnitStatusDuration(struct Unit * unit);
 
 void PutUnitStatusIcon(struct Unit * unit);
 void PutUnitDanceRingBuffIcon(struct Unit * unit);
+
+void PreBattleCalcDebuffs(struct BattleUnit * attacker, struct BattleUnit * defender);
+int PowGetterDebuff(int status, struct Unit * unit);
+int MagGetterDebuff(int status, struct Unit * unit);
+int SklGetterDebuff(int status, struct Unit * unit);
+int SpdGetterDebuff(int status, struct Unit * unit);
+int DefGetterDebuff(int status, struct Unit * unit);
+int ResGetterDebuff(int status, struct Unit * unit);
+int LckGetterDebuff(int status, struct Unit * unit);
+int MovGetterDebuff(int status, struct Unit * unit);
