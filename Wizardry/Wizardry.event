@@ -4,12 +4,14 @@ ALIGN 4
 #include "DebugKit/DebugKit.event"
 
 #include "EventExpansion/EventExpansion.event"
+#include "DebuffRework/DebuffRework.event"
 #include "WeaponRange/WeaponRange.event"
+
+#include "PostActionHook/PostActionHook.event"
 #include "ItemSys/ItemSys.event"
 #include "StrMagSplit/StrMagSplit.event"
 #include "IconDisplay/IconDisplay.event"
 #include "UnitStatusGetter/UnitStatusGetter.event"
-#include "PostActionHook/PostActionHook.event"
 #include "BwlRework/BwlRework.event"
 #include "SaveData/SaveData.event"
 #include "SkillSys/SkillSys.event"
@@ -20,7 +22,6 @@ ALIGN 4
 #include "LoadUnitHook/LoadUnitHook.event"
 #include "Lvup/Lvup.event"
 #include "MoveLimitViewHack/MoveLimitViewHack.lyn.event"
-#include "DebuffRework/DebuffRework.event"
 #include "HpBar/HpBar.event"
 
 #include "CommonLib/map.lyn.event"

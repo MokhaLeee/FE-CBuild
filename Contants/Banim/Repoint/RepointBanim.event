@@ -17,6 +17,7 @@ ORG ClassAnimTable
 
 ORG 0x59BD8
 POIN ClassAnimTable
+PROTECT $599E8 $59D28 // Port from DebuffRework/Source/MiscHooks.event
 
 ORG 0x5A600
 POIN ClassAnimTable

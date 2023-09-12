@@ -59,6 +59,7 @@ LOAD1 1 EnemyUnits
 ENUN
 
 EVT_ADD_SKILL(0x4A, Eirika)
+EVT_SET_DEBUFF(Eirika, 18)
 
 PREP
 ENDA

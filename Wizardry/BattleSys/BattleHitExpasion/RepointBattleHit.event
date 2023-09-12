@@ -16,6 +16,7 @@ PUSH
 
     ORG $2CFA8
     WORD gBattleHitArrayRe
+    PROTECT $2CF4C $2D0BC // Port from DebuffRework/Source/MiscHooks.event
 
     ORG $2F658
     WORD gBattleHitArrayRe

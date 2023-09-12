@@ -1,12 +1,11 @@
 #include "global.h"
 #include "bmunit.h"
 #include "event.h"
-#include "rng.h"
 
 #include "common-chax.h"
 #include "skill-system.h"
 
-enum SkillSubOps {
+enum EventSkillSubOps {
     EVSUBCMD_ADD_SKILL = 1,
     EVSUBCMD_ADD_SKILL_AT,
     EVSUBCMD_ADD_SKILL_SC,

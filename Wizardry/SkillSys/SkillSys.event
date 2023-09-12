@@ -22,6 +22,19 @@ InjectBanimCmd(0x7, Banim07Rework)
 #include "PrepSkill/PrepSkill.event"
 
 /* Skill related event operations */
-#include "EventOps/EventOps.event"
+#ifndef EVENT_EXPANSION_INSTALLED
+ERROR "Need module: EventExpansion installed!"
+#endif
+
+#include "kernel/SkillEventCmd.lyn.event"
+
+InjectEventLoCmd(EVENT_CMD_SKILL, EventSkillOperation)
+
+#define EVT_ADD_SKILL(sid, pid)        "BYTE 0x41 EVENT_CMD_SKILL; SHORT sid pid 0"
+#define EVT_ADD_SKILL_AT(sid, x, y)    "BYTE 0x42 EVENT_CMD_SKILL; SHORT sid x y"
+#define EVT_ADD_SKILL_SC(sid)          "BYTE 0x43 EVENT_CMD_SKILL; SHORT sid 0 0"
+#define EVT_REMOVE_SKILL(sid, pid)     "BYTE 0x44 EVENT_CMD_SKILL; SHORT sid pid 0"
+#define EVT_REMOVE_SKILL_AT(sid, x, y) "BYTE 0x45 EVENT_CMD_SKILL; SHORT sid x y"
+#define EVT_REMOVE_SKILL_SC(sid)       "BYTE 0x46 EVENT_CMD_SKILL; SHORT sid 0 0"
 
 #endif

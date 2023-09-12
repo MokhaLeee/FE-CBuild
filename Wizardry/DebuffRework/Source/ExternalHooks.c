@@ -5,20 +5,28 @@
 #include "common-chax.h"
 #include "debuff.h"
 
-/* Pre-battle calc */
-void PreBattleCalcDebuffs(struct BattleUnit * attacker, struct BattleUnit * defender)
+/* LynJump */
+void ComputeBattleUnitStatusBonuses(struct BattleUnit * bu)
 {
-    struct Unit * unit = GetUnit(attacker->unit.index);
+    /**
+     * Did nothing since now we put it in pre-battle calc
+     */
+    return;
+}
+
+void PreBattleCalcDebuffs(struct BattleUnit * bu, struct BattleUnit * defender)
+{
+    struct Unit * unit = GetUnit(bu->unit.index);
     int debuff = GetUnitStatusIndex(unit);
     const struct DebuffInfo * info = gDebuffInfos + debuff;
 
-    attacker->battleAttack       += info->battle_status.atk;
-    attacker->battleDefense      += info->battle_status.def;
-    attacker->battleHitRate      += info->battle_status.hit;
-    attacker->battleAvoidRate    += info->battle_status.avo;
-    attacker->battleCritRate     += info->battle_status.crit;
-    attacker->battleSilencerRate += info->battle_status.silencer;
-    attacker->battleDodgeRate    += info->battle_status.dodge;
+    bu->battleAttack       += info->battle_status.atk;
+    bu->battleDefense      += info->battle_status.def;
+    bu->battleHitRate      += info->battle_status.hit;
+    bu->battleAvoidRate    += info->battle_status.avo;
+    bu->battleCritRate     += info->battle_status.crit;
+    bu->battleSilencerRate += info->battle_status.silencer;
+    bu->battleDodgeRate    += info->battle_status.dodge;
 }
 
 /* Unit status getter */

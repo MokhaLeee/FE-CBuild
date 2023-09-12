@@ -6,7 +6,10 @@
 #include "common-chax.h"
 #include "debuff.h"
 
-STATIC_DECLAR void PutUnitStatusIconCommon(struct Unit * unit, const u16 * obj)
+extern u16 sSprite_SysUpArrowA[], sSprite_SysUpArrowB[], sSprite_SysUpArrowC[];
+extern u16 sSprite_SysDownArrowA[], sSprite_SysDownArrowB[], sSprite_SysDownArrowC[];
+
+STATIC_DECLAR void PutUnitStatusBuffIcon(struct Unit * unit)
 {
     int ix = unit->xPos * 16 - gBmSt.camera.x;
     int iy = unit->yPos * 16 - gBmSt.camera.y;
@@ -17,35 +20,35 @@ STATIC_DECLAR void PutUnitStatusIconCommon(struct Unit * unit, const u16 * obj)
     if (iy < -16 || iy > DISPLAY_HEIGHT)
         return;
 
+    if ((GetGameClock() & 0x3F) < 0x28)
+        return;
+
     CallARM_PushToSecondaryOAM(
-        OAM1_X(ix - 1),
-        OAM0_Y(iy),
-        obj,
+        OAM1_X(0x200 + ix - 1),
+        OAM0_Y(0x100 + iy),
+        sSprite_SysUpArrowA,
         0);
-}
-
-STATIC_DECLAR void PutUnitStatusBuffIcon(struct Unit * unit)
-{
-    const u16 objs[3][4] =
-    {
-        { 1, 0x8000, 0x00, OAM2_PAL(0) + OAM2_LAYER(0x2) + OAM2_CHR(0x980 / 0x20) },
-        { 1, 0x8000, 0x00, OAM2_PAL(0) + OAM2_LAYER(0x2) + OAM2_CHR(0x9A0 / 0x20) },
-        { 1, 0x80FF, 0x00, OAM2_PAL(0) + OAM2_LAYER(0x2) + OAM2_CHR(0x9A0 / 0x20) }
-    };
-
-    PutUnitStatusIconCommon(unit, objs[(GetGameClock()/8) % 3]);
 }
 
 STATIC_DECLAR void PutUnitStatusDebuffIcon(struct Unit * unit)
 {
-    const u16 objs[3][4] =
-    {
-        { 1, 0x8000, 0x00, OAM2_PAL(0) + OAM2_LAYER(0x2) + OAM2_CHR(0x9C0 / 0x20) },
-        { 1, 0x8000, 0x00, OAM2_PAL(0) + OAM2_LAYER(0x2) + OAM2_CHR(0x9E0 / 0x20) },
-        { 1, 0x80FF, 0x00, OAM2_PAL(0) + OAM2_LAYER(0x2) + OAM2_CHR(0x9E0 / 0x20) }
-    };
+    int ix = unit->xPos * 16 - gBmSt.camera.x;
+    int iy = unit->yPos * 16 - gBmSt.camera.y;
 
-    PutUnitStatusIconCommon(unit, objs[(GetGameClock() >> 3) % 3]);
+    if (ix < -16 || ix > DISPLAY_WIDTH)
+        return;
+
+    if (iy < -16 || iy > DISPLAY_HEIGHT)
+        return;
+
+    if ((GetGameClock() & 0x3F) < 0x28)
+        return;
+
+    CallARM_PushToSecondaryOAM(
+        OAM1_X(0x200 + ix - 1),
+        OAM0_Y(0x100 + iy),
+        sSprite_SysDownArrowA,
+        0);
 }
 
 /* Called from HpBar */
@@ -94,8 +97,8 @@ void PutUnitDanceRingBuffIcon(struct Unit * unit)
         return;
 
     CallARM_PushToSecondaryOAM(
-        OAM1_X(ix - 1),
-        OAM0_Y(iy - 5),
+        OAM1_X(0x200 + ix - 1),
+        OAM0_Y(0x100 + iy - 5),
         obj,
         0);    
 }

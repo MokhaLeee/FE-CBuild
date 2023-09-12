@@ -6,6 +6,7 @@
 #include "common-chax.h"
 #include "skill-system.h"
 #include "strmag.h"
+#include "debuff.h"
 #include "constants/skills.h"
 
 /* LynJump */
@@ -39,7 +40,8 @@ void ComputeBattleUnitSpecialWeaponStats(struct BattleUnit * attacker, struct Ba
         if (attacker->weaponAttributes & IA_NEGATE_DEFENSE)
             defender->battleDefense = 0;
 
-        if (defender->unit.statusIndex == UNIT_STATUS_PETRIFY || defender->unit.statusIndex == UNIT_STATUS_13)
+        // if (defender->unit.statusIndex == UNIT_STATUS_PETRIFY || defender->unit.statusIndex == UNIT_STATUS_13)
+        if (GetUnitStatusIndex(&defender->unit) == UNIT_STATUS_PETRIFY || GetUnitStatusIndex(&defender->unit) == UNIT_STATUS_13)
         {
             attacker->battleEffectiveHitRate = 100;
             attacker->battleEffectiveCritRate += 30;
