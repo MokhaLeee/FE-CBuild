@@ -8,7 +8,7 @@ A project goals to insert everything through EA by makefile & Linux. (W.I.P)
 
 ```bash
 cd Tools
-git clone https://github.com/MokhaLeee/FE-CLib-Mokha.git -b 5.0
+git clone https://github.com/MokhaLeee/FE-CLib-Mokha.git
 git clone https://github.com/StanHash/EventAssembler.git --recursive
 git clone https://github.com/StanHash/FE-PyTools.git --recursive
 ```
