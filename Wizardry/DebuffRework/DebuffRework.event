@@ -6,5 +6,6 @@
 #include "Source/MiscHooks.event"
 #include "Source/DebuffIconBlink.lyn.event"
 #include "Source/StatusDepletion.lyn.event"
+#include "Source/EfxStatusUnit.lyn.event"
 
 #endif /* DEBUFF_REWORK_INSTALLED */

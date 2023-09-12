@@ -15,6 +15,7 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
         .type = STATUS_INFO_TYPE_DEBUFF,
         .duration = 3,
         .img = GFX_DebuffMinibox_Posion,
+        .efx_config = {EFX_DEBUFF_NORMAL, 0x10, 0, 0x10},
     },
 
     [MEW_UNIT_STATUS_SLEEP] = {
@@ -23,6 +24,7 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
         .type = STATUS_INFO_TYPE_DEBUFF,
         .duration = 3,
         .img = GFX_DebuffMinibox_Sleep,
+        .efx_config = {EFX_DEBUFF_NORMAL, 0, 0, 0x10},
     },
 
     [MEW_UNIT_STATUS_SILENCED] = {
@@ -39,6 +41,7 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
         .type = STATUS_INFO_TYPE_DEBUFF,
         .duration = 3,
         .img = GFX_DebuffMinibox_Berserk,
+        .efx_config = {EFX_DEBUFF_NORMAL, 0x10, 0, 0},
     },
 
     [MEW_UNIT_STATUS_ATTACK] = {
@@ -46,7 +49,7 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
         .desc = 0x558,
         .type = STATUS_INFO_TYPE_BUFF,
         .duration = 3,
-        .atk = 10,
+        .battle_status.atk = 10,
         .img = GFX_DebuffMinibox_Attack,
         .on_draw = PutUnitDanceRingBuffIcon,
     },
@@ -56,6 +59,7 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
         .desc = 0x559,
         .type = STATUS_INFO_TYPE_BUFF,
         .duration = 3,
+        .battle_status.def = 3,
         .img = GFX_DebuffMinibox_Defense,
         .on_draw = PutUnitDanceRingBuffIcon,
     },
@@ -65,6 +69,7 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
         .desc = 0x55A,
         .type = STATUS_INFO_TYPE_BUFF,
         .duration = 3,
+        .battle_status.crit = 15,
         .img = GFX_DebuffMinibox_Crit,
         .on_draw = PutUnitDanceRingBuffIcon,
     },
@@ -74,6 +79,7 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
         .desc = 0x55B,
         .type = STATUS_INFO_TYPE_BUFF,
         .duration = 3,
+        .battle_status.avo = 15,
         .img = GFX_DebuffMinibox_Aviod,
         .on_draw = PutUnitDanceRingBuffIcon,
     },
@@ -94,6 +100,7 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
         .type = STATUS_INFO_TYPE_DEBUFF,
         .duration = 3,
         .img = GFX_DebuffMinibox_Petrify,
+        .efx_config = {EFX_DEBUFF_LOWLOW, 0x10, 0x10, 0x10},
     },
 
     [MEW_UNIT_STATUS_12] = {
@@ -108,5 +115,8 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
         .desc = 0,
         .type = STATUS_INFO_TYPE_DEBUFF,
         .duration = 3,
+        .efx_config = {EFX_DEBUFF_LOWLOW, 0x10, 0x10, 0x10},
     },
 };
+
+FEB_IDENTIFIER(gDebuffInfos);

@@ -32,17 +32,33 @@ enum DEBUFF_INFO_TYPE {
     STATUS_INFO_TYPE_BUFF = 2,
 };
 
+enum DEBUFF_INFO_EFX_SPEED {
+    EFX_DEBUFF_LOWLOW,
+    EFX_DEBUFF_LOW,
+    EFX_DEBUFF_NORMAL,
+    EFX_DEBUFF_FAST,
+};
+
 struct DebuffInfo {
     u16 name, desc;
     const u8 * img;
     void (* on_draw)(struct Unit * unit);
 
     u8 type;
-
     u8 duration;
 
-    s8 pow, mag, skl, spd, def, res, lck, mov;
-    s8 atk, bdef, hit, avo, crit, silencer, dodge;
+    struct {
+        u8 speed;
+        u8 r, g, b;
+    } efx_config;
+
+    struct {
+        s8 pow, mag, skl, spd, def, res, lck, mov;
+    } unit_status;
+
+    struct {
+        s8 atk, def, hit, avo, crit, silencer, dodge;
+    } battle_status;
 };
 
 extern const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX];
