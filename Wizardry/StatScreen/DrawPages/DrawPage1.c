@@ -324,7 +324,7 @@ STATIC_DECLAR void DrawPage1ValueCommon(void)
     if (gStatScreen.unit->statusIndex != UNIT_STATUS_NONE)
     {
         PutNumberSmall(
-            gBmFrameTmap0 + TILEMAP_INDEX(0xF, 0xB),
+            gBmFrameTmap0 + TILEMAP_INDEX(0x10, 0xB),
             0, unit->statusDuration);
     }
 }
@@ -432,7 +432,7 @@ STATIC_DECLAR void DrawPage1Affin(void)
             TILEREF(0, STATSCREEN_BGPAL_EXTICONS));
 
         PutDrawText(
-            &gStatScreen.text[STATSCREEN_TEXT_BSRANGE],
+            &gStatScreen.text[STATSCREEN_TEXT_ITEM1],
             gBmFrameTmap0 + TILEMAP_INDEX(0xE, 0x7),
             TEXT_COLOR_SYSTEM_GOLD,
             0, 0,

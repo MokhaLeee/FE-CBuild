@@ -12,6 +12,6 @@ If unit takes no action[NL]
 except Wait, grants Avo +15%[X]
 
 ## MSG_SKILL_AlertStancePlus
-Alert Stance+:[NL]
+AlertStance+:[NL]
 If unit takes no action[NL]
 except Wait, grants Avo +30%[X]
