@@ -48,7 +48,7 @@ int SpdGetterSkills(int status, struct Unit * unit)
         status += 5;
 
     if (SkillTester(unit, SID_RuinedBladePlus))
-        status -= 5;
+        status += 5;
 
     return status;
 }

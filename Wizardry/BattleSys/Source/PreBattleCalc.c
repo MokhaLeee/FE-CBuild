@@ -90,6 +90,15 @@ STATIC_DECLAR void PreBattleCalcEnd(struct BattleUnit * attacker, struct BattleU
     if (attacker->battleDodgeRate < 0)
         attacker->battleDodgeRate = 0;
 
+    /* Some special effects */
+
+    /* RuinedBladePlus cannot crit attack */
+    if (SkillTester(&attacker->unit, SID_RuinedBladePlus))
+    {
+        attacker->battleCritRate = 0;
+        attacker->battleSilencerRate = 0;
+    }
+
     /* If defender cannot get silencer */
     if (UNIT_CATTRIBUTES(&defender->unit) & CA_NEGATE_LETHALITY)
         attacker->battleSilencerRate = 0;

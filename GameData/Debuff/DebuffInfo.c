@@ -133,6 +133,7 @@ const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX] = {
         .efx_config = {EFX_DEBUFF_NORMAL, 0x0, 0x0, 0x8},
         .unit_status.mov = -127,
         .img = GFX_DebuffMinibox_Gravity,
+        .cannot_move = true,
     },
     [NEW_UNIT_STATUS_WEAKEN] = {
         .name = MSG_DEBUFF_WEAKEN_NAME,
