@@ -99,6 +99,7 @@ enum SkillIndex {
 
     /* Post action */
     SID_Canto,
+    SID_CantoPlus,
     SID_AlertStance,
     SID_AlertStancePlus,
 

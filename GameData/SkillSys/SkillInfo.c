@@ -319,6 +319,10 @@ const struct SkillInfo gSkillInfos[0x100] = {
         .msg  = MSG_SKILL_Canto,
         .icon = GFX_SkillIcon_Canto,
     },
+    [SID_CantoPlus] = {
+        .msg  = MSG_SKILL_CantoPlus,
+        .icon = GFX_SkillIcon_CantoPlus,
+    },
     [SID_AlertStance] = {
         .msg  = MSG_SKILL_AlertStance,
         .icon = GFX_SkillIcon_AlertStance,

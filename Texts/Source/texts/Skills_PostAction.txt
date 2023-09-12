@@ -2,6 +2,10 @@
 Canto:[NL]
 Unit can move again[X]
 
+## MSG_SKILL_CantoPlus
+Canto:[NL]
+Unit can move again after combat[X]
+
 ## MSG_SKILL_AlertStance
 Alert Stance:[NL]
 If unit takes no action[NL]

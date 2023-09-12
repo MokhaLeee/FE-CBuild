@@ -12,20 +12,27 @@
 
 STATIC_DECLAR bool CheckCanto(void)
 {
+    bool canto, cantop;
+
     if (gActiveUnit->state & (US_DEAD | US_HAS_MOVED | US_BIT16))
         return false;
 
-    if (!SkillTester(gActiveUnit, SID_Canto))
+    canto  = SkillTester(gActiveUnit, SID_Canto);
+    cantop = SkillTester(gActiveUnit, SID_CantoPlus);
+
+    if (!canto && !cantop)
         return false;
 
     switch (gActionData.unitActionType) {
-        case UNIT_ACTION_WAIT:
+    case UNIT_ACTION_WAIT:
+        return false;
 
-/*
-        case UNIT_ACTION_COMBAT:
-        case UNIT_ACTION_STAFF:
- */
+    case UNIT_ACTION_COMBAT:
+    case UNIT_ACTION_STAFF:
+        if (!cantop)
             return false;
+
+        break;
     }
 
     if (MovGetter(gActiveUnit) <= gActionData.moveCount)
