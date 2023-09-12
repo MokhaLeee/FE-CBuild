@@ -25,7 +25,7 @@ STATIC_DECLAR void InitBattleUnitVanilla(struct BattleUnit * bu, struct Unit * u
     bu->unit.lck = GetUnitLuck(unit);
     bu->unit.res = GetUnitResistance(unit);
     bu->unit.conBonus = UNIT_CON(unit);
-    bu->unit.movBonus = UNIT_MOV(unit);
+    bu->unit.movBonus = MovGetter(unit);
 
     bu->levelPrevious = bu->unit.level;
     bu->expPrevious = bu->unit.exp;

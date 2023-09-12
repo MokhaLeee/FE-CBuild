@@ -16,6 +16,7 @@ ALIGN 4
 #include "source/MiscGetter.lyn.event"
 
 #include "source/InjectHPGetters.event"
+#include "source/InjectMovGetters.event"
 
 #include "source/StatusGetterExample.lyn.event"
 

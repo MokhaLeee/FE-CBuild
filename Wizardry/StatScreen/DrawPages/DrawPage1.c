@@ -276,8 +276,8 @@ STATIC_DECLAR void DrawPage1ValueCommon(void)
     struct Unit * unit = gStatScreen.unit;
 
     DrawStatWithBarRework(7, 0xD, 0x1,
-                    UNIT_MOV(unit),
-                    UNIT_MOV(unit),
+                    MovGetter(unit),
+                    MovGetter(unit),
                     UNIT_MOV_MAX(unit));
 
     DrawStatWithBarRework(8, 0xD, 0x3,
