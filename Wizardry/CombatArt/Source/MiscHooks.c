@@ -5,6 +5,7 @@
 
 #include "common-chax.h"
 #include "combat-art.h"
+#include "constants/combat-arts.h"
 
 bool CanUnitPlayCombatArt(struct Unit * unit, u16 item)
 {
@@ -36,16 +37,36 @@ int WeaponRangeGetterCombatArt(int range, struct Unit * unit, u16 item)
 void PreBattleCalcCombatArt(struct BattleUnit * bu, struct BattleUnit * defender)
 {
     u8 cid = GetCombatArtInForce(&bu->unit);
+    const struct CombatArtInfo * info;
+    struct Unit * unit;
 
-    if (COMBART_VALID(cid))
+    if (!COMBART_VALID(cid))
+        return;
+
+    info = gCombatArtInfos + cid;
+    unit = GetUnit(bu->unit.index);
+
+    bu->battleAttack       += info->battle_status.atk;
+    bu->battleDefense      += info->battle_status.def;
+    bu->battleHitRate      += info->battle_status.hit;
+    bu->battleAvoidRate    += info->battle_status.avo;
+    bu->battleSilencerRate += info->battle_status.silencer;
+    bu->battleDodgeRate    += info->battle_status.dodge;
+
+    if (info->external_calc)
     {
-        const struct CombatArtInfo * info = gCombatArtInfos + cid;
+        switch (cid) {
+        case CID_FrozenLance:
+            bu->battleAttack += GetUnitSkill(unit);
+            break;
 
-        bu->battleAttack       += info->battle_status.atk;
-        bu->battleDefense      += info->battle_status.def;
-        bu->battleHitRate      += info->battle_status.hit;
-        bu->battleAvoidRate    += info->battle_status.avo;
-        bu->battleSilencerRate += info->battle_status.silencer;
-        bu->battleDodgeRate    += info->battle_status.dodge;
+        case CID_Vengeance:
+            bu->battleAttack += GetUnitMaxHp(unit) - GetUnitCurrentHp(unit);
+            break;
+
+        case CID_LightningAxe:
+            bu->battleAttack += GetUnitResistance(unit);
+            break;
+        };
     }
 }
