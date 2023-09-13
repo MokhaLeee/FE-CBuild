@@ -79,7 +79,7 @@ void TickActiveFactionTurn(void)
         int _duration = GetUnitStatusDuration(unit);                \
         if (0 != _status && _duration != 0)                         \
         {                                                           \
-            if (unit->statusIndex != UNIT_STATUS_RECOVER)           \
+            if (_status != UNIT_STATUS_RECOVER)                     \
                 TryTickUnitStatusDuration(unit);                    \
             if (GetUnitStatusDuration(unit) == 0)                   \
                 AddTarget(unit->xPos, unit->yPos, unit->index, 0);  \

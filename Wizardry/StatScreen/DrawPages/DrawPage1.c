@@ -13,6 +13,7 @@
 #include "strmag.h"
 #include "lvup.h"
 #include "bwl.h"
+#include "debuff.h"
 #include "constants/texts.h"
 
 extern struct Font * gActiveFont;
@@ -305,7 +306,8 @@ STATIC_DECLAR void DrawPage1ValueCommon(void)
         GetUnitRescueName(unit));
 
     // displaying unit status name and turns
-    if (unit->statusIndex == UNIT_STATUS_NONE)
+    // if (unit->statusIndex == UNIT_STATUS_NONE)
+    if (GetUnitStatusIndex(unit) == UNIT_STATUS_NONE)
     {
         Text_InsertDrawString(
             &gStatScreen.text[STATSCREEN_TEXT_STATUS],
@@ -321,11 +323,14 @@ STATIC_DECLAR void DrawPage1ValueCommon(void)
     }
 
     // display turns
-    if (gStatScreen.unit->statusIndex != UNIT_STATUS_NONE)
+    // if (gStatScreen.unit->statusIndex != UNIT_STATUS_NONE)
+    if (GetUnitStatusIndex(gStatScreen.unit) != UNIT_STATUS_NONE)
     {
         PutNumberSmall(
             gBmFrameTmap0 + TILEMAP_INDEX(0x10, 0xB),
-            0, unit->statusDuration);
+            0,
+            // unit->statusDuration);
+            GetUnitStatusDuration(unit));
     }
 }
 
