@@ -8,6 +8,7 @@
 #include "strmag.h"
 #include "battle-system.h"
 #include "status-getter.h"
+#include "combat-art.h"
 #include "constants/skills.h"
 
 STATIC_DECLAR void InitBattleUnitVanilla(struct BattleUnit * bu, struct Unit * unit)
@@ -110,4 +111,5 @@ void UpdateUnitFromBattle(struct Unit * unit, struct BattleUnit * bu)
     UpdateUnitFromBattleVanilla(unit, bu);
 
     UNIT_MAG(unit) += BU_CHG_MAG(bu);
+    ResetSkillLists();
 }
