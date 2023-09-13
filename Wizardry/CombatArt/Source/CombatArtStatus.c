@@ -8,6 +8,7 @@
 struct CombatArtStatus {
     u8 cid;
     s8 uid;
+    bool hitted;
     u8 _pad_[0x10 - 0x3];
 };
 
@@ -29,6 +30,16 @@ void RegisterCombatArtStatus(struct Unit * unit, u8 cid)
 {
     sCombatArtStatus.uid = unit->index;
     sCombatArtStatus.cid = cid;
+}
+
+void RegisterCombatArtHitted(void)
+{
+    sCombatArtStatus.hitted = true;
+}
+
+bool IsCombatArtHitted(void)
+{
+    return sCombatArtStatus.hitted;
 }
 
 void ResetCombatArtStatus(void)

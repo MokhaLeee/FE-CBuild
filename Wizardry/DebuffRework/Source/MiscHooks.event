@@ -36,9 +36,11 @@ PUSH
     BYTE 0x3F
     PROTECT $2B578 $2B600
 
+/*
     ORG $2B664 // BattleGenerateHitEffects
     BYTE 0x3F
     PROTECT $2B600 $2B83C
+*/
 
     ORG $2C88C // BattleInitTargetCanCounter
     BYTE 0x3F

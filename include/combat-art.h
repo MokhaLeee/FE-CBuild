@@ -38,6 +38,8 @@ extern const struct CombatArtInfo gCombatArtInfos[0x100];
 /* Combat-art status */
 u8 GetCombatArtInForce(struct Unit * unit);
 void RegisterCombatArtStatus(struct Unit * unit, u8 cid);
+void RegisterCombatArtHitted(void);
+bool IsCombatArtHitted(void);
 void ResetCombatArtStatus(void);
 
 /* Combat-art list */
