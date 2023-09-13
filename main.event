@@ -24,3 +24,7 @@ ORG FreeSpaceFont
 
 MESSAGE Fonts size (CURRENTOFFSET - FreeSpaceFont) max FreeSpaceFontSize
 ASSERT (FreeSpaceFont + FreeSpaceFontSize - CURRENTOFFSET)
+
+/* Install Events */
+ORG $01000000
+#include "Events/Events.event"

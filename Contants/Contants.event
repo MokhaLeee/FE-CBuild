@@ -14,15 +14,9 @@ ALIGN 4
 #include "EfxAnim/EfxAnim.event"
 
 ALIGN 4
-#include "Maps/Maps.event"
-
-ALIGN 4
 #include "Portrait/Portrait.event"
 
 ALIGN 4
 #include "Gfx/Gfx.event"
-
-ALIGN 4
-#include "Events/Events.event"
 
 #endif

@@ -1,6 +1,9 @@
 #ifndef EVENTS_INSTALLED
 #define EVENTS_INSTALLED
 
+ALIGN 4
+#include "Maps/Maps.event"
+
 {
     #include "Prologue/Prologue.event"
 }
