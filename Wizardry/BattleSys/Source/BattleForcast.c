@@ -9,26 +9,6 @@
 #include "common-chax.h"
 #include "battle-system.h"
 
-struct BattleForecastProc {
-    /* 00 */ PROC_HEADER;
-
-    /* 2C */ int unk_2C;
-    /* 30 */ s8 x;
-    /* 31 */ s8 y;
-    /* 32 */ u8 frameKind;
-    /* 33 */ s8 ready;
-    /* 34 */ s8 needContentUpdate;
-    /* 35 */ s8 side; // -1 is left, +1 is right
-    /* 36 */ s8 unk_36;
-    /* 38 */ struct Text unitNameTextA;
-    /* 40 */ struct Text unitNameTextB;
-    /* 48 */ struct Text itemNameText;
-    /* 50 */ s8 hitCountA;
-    /* 51 */ s8 hitCountB;
-    /* 52 */ s8 isEffectiveA;
-    /* 53 */ s8 isEffectiveB;
-};
-
 extern const u8 Gfx_BKSEL[12][0x80];
 
 /* LynJump */

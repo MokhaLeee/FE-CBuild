@@ -21,12 +21,12 @@
 
 extern const struct SelectInfo gSelectInfo_0859D3F8;
 
-extern int sSelectedComatArtIndex;
+extern s8 sSelectedComatArtIndex;
 
 STATIC_DECLAR int GetNextCombatArtIndexInTargetSelLeft(int old)
 {
     struct CombatArtList * list = GetCombatArtList(gActiveUnit);
-    int wtype = gCombatArtInfos[list->cid[old]].wtype;
+    int wtype = GetItemType(gActiveUnit->items[0]);
     int new = old - 1;
 
     if (new < 0)
@@ -40,19 +40,18 @@ STATIC_DECLAR int GetNextCombatArtIndexInTargetSelLeft(int old)
         if (wtype == gCombatArtInfos[list->cid[new]].wtype)
             break;
     }
+
+    Debugf("wtype %d, old %d, new %d", wtype, old, new);
     return new + 1;
 }
 
 STATIC_DECLAR int GetNextCombatArtIndexInTargetSelRight(int old)
 {
     struct CombatArtList * list = GetCombatArtList(gActiveUnit);
-    int wtype = gCombatArtInfos[list->cid[old]].wtype;
+    int wtype = GetItemType(gActiveUnit->items[0]);
     int new = old + 1;
 
-    if (new >= list->amt)
-        new = 0;
-
-    for (new = old + 1; new != old; new++)
+    for (; new != old; new++)
     {
         if (new >= list->amt)
             return 0;
@@ -60,7 +59,19 @@ STATIC_DECLAR int GetNextCombatArtIndexInTargetSelRight(int old)
         if (wtype == gCombatArtInfos[list->cid[new]].wtype)
             break;
     }
+    Debugf("wtype %d, old %d, new %d", wtype, old, new);
     return new + 1;
+}
+
+u8 GetCombatArtByTargetSelIndex(void)
+{
+    struct CombatArtList * calist = GetCombatArtList(gActiveUnit);
+
+    /* 0 as default seemed as not use combat-art */
+    if (sSelectedComatArtIndex == 0)
+        return 0;
+
+    return calist->cid[sSelectedComatArtIndex - 1];
 }
 
 STATIC_DECLAR void RegisterCombatArtStatusInTargetSel(int sel_index)
@@ -94,7 +105,7 @@ STATIC_DECLAR bool TargetSelectionRework_HandleCombatArt(struct SelectTargetProc
 
     if (DPAD_LEFT & repeated)
     {
-        new = GetNextCombatArtIndexInTargetSelLeft(sSelectedComatArtIndex);
+        new = GetNextCombatArtIndexInTargetSelLeft(sSelectedComatArtIndex - 1);
         while (new != sSelectedComatArtIndex)
         {
             RegisterCombatArtStatusInTargetSel(new);
@@ -102,12 +113,12 @@ STATIC_DECLAR bool TargetSelectionRework_HandleCombatArt(struct SelectTargetProc
             if (IsItemCoveringRangeRework(weapon, RECT_DISTANCE(unit->xPos, unit->yPos, cur->x, cur->y), unit))
                 goto update_combat_art;
 
-            new = GetNextCombatArtIndexInTargetSelLeft(sSelectedComatArtIndex);
+            new = GetNextCombatArtIndexInTargetSelLeft(new - 1);
         }
     }
     else if (DPAD_RIGHT & repeated)
     {
-        new = GetNextCombatArtIndexInTargetSelRight(sSelectedComatArtIndex);
+        new = GetNextCombatArtIndexInTargetSelRight(sSelectedComatArtIndex - 1);
         while (new != sSelectedComatArtIndex)
         {
             RegisterCombatArtStatusInTargetSel(new);
@@ -115,7 +126,7 @@ STATIC_DECLAR bool TargetSelectionRework_HandleCombatArt(struct SelectTargetProc
             if (IsItemCoveringRangeRework(weapon, RECT_DISTANCE(unit->xPos, unit->yPos, cur->x, cur->y), unit))
                 goto update_combat_art;
 
-            new = GetNextCombatArtIndexInTargetSelRight(sSelectedComatArtIndex);
+            new = GetNextCombatArtIndexInTargetSelRight(new - 1);
         }
     }
     /* We did not find new art, register vanilla */
@@ -269,4 +280,9 @@ u8 UnknownMenu_Selected(struct MenuProc * menu, struct MenuItemProc * menuItem)
     MakeTargetListForWeapon(gActiveUnit, gActiveUnit->items[0]);
     NewTargetSelectionRework(&gSelectInfo_0859D3F8);
     return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_ENDFACE;
+}
+
+bool CombatArtSelectTargetExist(void)
+{
+    return !!Proc_Find(ProcScr_TargetSelectionRework);
 }

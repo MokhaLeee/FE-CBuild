@@ -1,0 +1,34 @@
+// Standard draw
+ALIGN 4
+Img_BkselObjArrow:
+    #incbin "Gfx_BKSEL/Img_ArrowBKSEL.4bpp.lz"
+
+ALIGN 4
+Pal_BkselObjArrow:
+    #incbin "Gfx_BKSEL/Img_ArrowBKSEL.gbapal"
+
+// Tsa window:
+ALIGN 4
+Tsa_BkselDetailedScreen:
+    #incbin "Gfx_BKSEL/BkselDetailedScreen.tsa"
+
+ALIGN 4
+Tsa_BkselStandardScreen:
+    #incbin "Gfx_BKSEL/BkselStandardScreen.tsa"
+
+PUSH
+    // Null Bksel Item Name
+    ORG $36628
+    SHORT $4770
+
+    // Give "No Combat Art" a longer length
+    ORG $36DEA
+    SHORT $210C
+
+    // Reset TSA
+    ORG $36B08
+    POIN Tsa_BkselDetailedScreen
+
+    ORG $368A0
+    POIN Tsa_BkselStandardScreen
+POP

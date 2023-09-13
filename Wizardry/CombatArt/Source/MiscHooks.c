@@ -1,7 +1,12 @@
 #include "global.h"
 #include "bmunit.h"
 #include "bmitem.h"
+#include "hardware.h"
 #include "bmbattle.h"
+#include "uimenu.h"
+#include "bmmenu.h"
+#include "playerphase.h"
+#include "bksel.h"
 
 #include "common-chax.h"
 #include "combat-art.h"
@@ -69,4 +74,22 @@ void PreBattleCalcCombatArt(struct BattleUnit * bu, struct BattleUnit * defender
             break;
         };
     }
+}
+
+STATIC_DECLAR int SelectTargetInfoOnEndVanilla(void)
+{
+    BG_Fill(gBG2TilemapBuffer, 0);
+    BG_EnableSyncByMask(BG2_SYNC_BIT);
+
+    HideMoveRangeGraphics();
+    CloseBattleForecast();
+    return 0;
+}
+
+/* LynJump */
+int sub_8022F10(void)
+{
+    ResetCombatArtList();
+    ResetCombatArtStatus();
+    return SelectTargetInfoOnEndVanilla();
 }

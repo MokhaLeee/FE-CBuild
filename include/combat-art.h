@@ -66,6 +66,10 @@ struct CombatArtList {
 struct CombatArtList * GetCombatArtList(struct Unit * unit);
 void ResetCombatArtList(void);
 
+/* TargetSel & BKSEL */
+bool CombatArtSelectTargetExist(void);
+u8 GetCombatArtByTargetSelIndex(void);
+
 /* Misc */
 bool CanUnitPlayCombatArt(struct Unit * unit, u16 item);
 int WeaponRangeGetterCombatArt(int range, struct Unit * unit, u16 item);
