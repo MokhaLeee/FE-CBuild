@@ -25,3 +25,4 @@ ALIGN 4
 #include "HpBar/HpBar.event"
 
 #include "CommonLib/map.lyn.event"
+#include "CommonLib/math.lyn.event"
