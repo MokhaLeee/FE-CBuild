@@ -21,62 +21,106 @@
 
 extern const struct SelectInfo gSelectInfo_0859D3F8;
 
-STATIC_DECLAR void EquipUnitItemSlotRework(struct Unit * unit, int slot)
+extern int sSelectedComatArtIndex;
+
+STATIC_DECLAR int GetNextCombatArtIndex(struct Unit * unit, int old, int direction)
 {
-    int i, total = 0;
-    u16 itemsTmp[UNIT_ITEM_COUNT] = {0};
+    struct CombatArtList * list = GetCombatArtList(unit);
+    int wtype = gCombatArtInfos[list->cid[old]].wtype;
+    int new;
 
-    // Item cpy
-    for(i = 0; i < UNIT_ITEM_COUNT; ++i)
-        if(0 != unit->items[i])
-            itemsTmp[total++] = unit->items[i];
+    if (direction == POS_L)
+    {
+        /* Left */
+        for (new = old - 1; new != old; new--)
+        {
+            if (new < 0)
+                new = list->amt - 1;
 
-    // Reset
-    for(i = 0; i < total; ++i)
-        unit->items[i] = i < total - slot
-            ? itemsTmp[slot + i]
-            : itemsTmp[i - (total - slot)];
+            if (wtype == gCombatArtInfos[list->cid[new]].wtype)
+                break;
+        }
+        return new;
+    }
+    else
+    {
+        /* Right */
+        for (new = old + 1; new != old; new++)
+        {
+            if (new >= list->amt)
+                new = 0;
+
+            if (wtype == gCombatArtInfos[list->cid[new]].wtype)
+                break;
+        }
+        return new;
+    }
 }
 
-STATIC_DECLAR bool TargetSelectionRework_HandleWeanponChange(struct SelectTargetProc * proc)
+STATIC_DECLAR bool TargetSelectionRework_HandleCombatArt(struct SelectTargetProc * proc)
 {
-    int i;
+    int i, new;
     s8 uid_pre;
-    struct SelectTarget * it, * current = proc->currentTarget;
+    u16 repeated;
+    struct SelectTarget * it, * cur = proc->currentTarget;
+    struct Unit * unit = gActiveUnit;
+    u16 weapon = unit->items[0];
+    struct CombatArtList * calist = GetCombatArtList(unit);
 
-    if (DPAD_LEFT & gKeyStatusPtr->repeatedKeys) {
-        for (i = 1; i < UNIT_ITEM_COUNT; i++)
-            if (CanUnitUseWeapon(gActiveUnit, gActiveUnit->items[i]) &&
-                IsItemCoveringRangeRework(gActiveUnit->items[i], RECT_DISTANCE(gActiveUnit->xPos, gActiveUnit->yPos, current->x, current->y), gActiveUnit))
-                    goto got_weapon;
+    /* We directly judge the first item! */
+    if (!CanUnitPlayCombatArt(unit, weapon))
+        return false;
+
+    repeated = gKeyStatusPtr->repeatedKeys;
+
+    if (DPAD_LEFT & repeated)
+    {
+        new = GetNextCombatArtIndex(unit, sSelectedComatArtIndex, POS_L);
+        while (new != sSelectedComatArtIndex)
+        {
+            RegisterCombatArtStatus(unit, calist->cid[new]);
+
+            if (IsItemCoveringRangeRework(weapon, RECT_DISTANCE(unit->xPos, unit->yPos, cur->x, cur->y), unit))
+                goto update_combat_art;
+
+            new = GetNextCombatArtIndex(unit, sSelectedComatArtIndex, POS_L);
+        }
     }
+    else
+    {
+        new = GetNextCombatArtIndex(unit, sSelectedComatArtIndex, POS_R);
+        while (new != sSelectedComatArtIndex)
+        {
+            RegisterCombatArtStatus(unit, calist->cid[new]);
 
-    if (DPAD_RIGHT & gKeyStatusPtr->repeatedKeys) {
-        for (i = UNIT_ITEM_COUNT - 1; i >= 1; i--)
-            if (CanUnitUseWeapon(gActiveUnit, gActiveUnit->items[i]) &&
-                IsItemCoveringRangeRework(gActiveUnit->items[i], RECT_DISTANCE(gActiveUnit->xPos, gActiveUnit->yPos, current->x, current->y), gActiveUnit))
-                    goto got_weapon;
+            if (IsItemCoveringRangeRework(weapon, RECT_DISTANCE(unit->xPos, unit->yPos, cur->x, cur->y), unit))
+                goto update_combat_art;
+
+            new = GetNextCombatArtIndex(unit, sSelectedComatArtIndex, POS_R);
+        }
     }
-
+    /* We did not find new art, register vanilla */
+    RegisterCombatArtStatus(unit, calist->cid[sSelectedComatArtIndex]);
     return false;
 
-got_weapon:
-    EquipUnitItemSlotRework(gActiveUnit, i);
+update_combat_art:
+    sSelectedComatArtIndex = new;
 
     BmMapFill(gBmMapMovement, -1);
     BmMapFill(gBmMapRange, 0);
-    GenerateUnitStandingReachRange(gActiveUnit, GetUnitWeaponReachBits(gActiveUnit, 0));
-    DisplayMoveRangeGraphics(0b10);
+    GenerateUnitStandingReachRange(unit, GetUnitWeaponReachBits(unit, 0));
+    DisplayMoveRangeGraphics(MOVLIMITV_RMAP_RED);
 
-    uid_pre = current->uid;
-    MakeTargetListForWeapon(gActiveUnit, gActiveUnit->items[0]);
+    uid_pre = proc->currentTarget->uid;
+    MakeTargetListForWeapon(unit, weapon);
 
     /**
      * Here we assume MakeTargetListForWeapon() must result equals to (IsItemCoveringRange() && CanUnitUseWeapon()) 
-     * which may cause BUG if you rewrite weapon-range hack by yourself.
      */
-    for (it = GetLinkedTargets(), i = 0; i < GetSelectTargetCount(); i++, it = it->next) {
-        if (uid_pre == it->uid) {
+    for (it = GetLinkedTargets(), i = 0; i < GetSelectTargetCount(); i++, it = it->next)
+    {
+        if (uid_pre == it->uid)
+        {
             proc->currentTarget = it;
             break;
         }
@@ -96,7 +140,7 @@ STATIC_DECLAR void TargetSelectionRework_HandleMoveInput(struct SelectTargetProc
 {
     struct SelectTarget * current = proc->currentTarget;
 
-    if (TargetSelectionRework_HandleWeanponChange(proc))
+    if (TargetSelectionRework_HandleCombatArt(proc))
         return;
 
     if ((DPAD_LEFT | DPAD_UP) & gKeyStatusPtr->repeatedKeys)
@@ -174,6 +218,8 @@ STATIC_DECLAR ProcPtr NewTargetSelectionRework(const struct SelectInfo * selectI
 
     LockGame();
     proc = Proc_Start(ProcScr_TargetSelectionRework, PROC_TREE_3);
+
+    sSelectedComatArtIndex = 0;
 
     proc->flags = TARGETSELECTION_FLAG_GAMELOCK;
     proc->selectRoutines = selectInfo;

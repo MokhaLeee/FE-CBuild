@@ -24,8 +24,9 @@ SET_DATA gBattleTemporaryFlag, sEfxSkillRoundData + 4 * 0x21
 SET_DATA gBattleGlobalFlag, gBattleTemporaryFlag + 4
 SET_DATA sCombatArtStatus, gBattleGlobalFlag + 4
 SET_DATA sCombatArtList, sCombatArtStatus + 0x10
+SET_DATA sSelectedComatArtIndex, sCombatArtList + 0x8
 
-SET_DATA FreeRamSpaceTail, sCombatArtList + 0x8
+SET_DATA FreeRamSpaceTail, sSelectedComatArtIndex + 0x4
 
 /* IconDisplay */
 SET_DATA gIconReSts, 0x02026A90 @ DrawnIconLookupTable

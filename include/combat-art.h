@@ -38,8 +38,6 @@ extern const struct CombatArtInfo gCombatArtInfos[0x100];
 /* Combat-art status */
 u8 GetCombatArtInForce(struct Unit * unit);
 void RegisterCombatArtStatus(struct Unit * unit, u8 cid);
-void EnableCombatArtEffect(struct Unit * unit);
-void DisableCombatArtEffect(struct Unit * unit);
 void ResetCombatArtStatus(void);
 
 /* Combat-art list */
@@ -54,4 +52,5 @@ struct CombatArtList * GetCombatArtList(struct Unit * unit);
 void ResetCombatArtList(void);
 
 /* Misc */
+bool CanUnitPlayCombatArt(struct Unit * unit, u16 item);
 int WeaponRangeGetterCombatArt(int range, struct Unit * unit, u16 item);
