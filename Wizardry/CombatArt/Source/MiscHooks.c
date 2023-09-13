@@ -91,5 +91,6 @@ int sub_8022F10(void)
 {
     ResetCombatArtList();
     ResetCombatArtStatus();
+    EndGreenText();
     return SelectTargetInfoOnEndVanilla();
 }

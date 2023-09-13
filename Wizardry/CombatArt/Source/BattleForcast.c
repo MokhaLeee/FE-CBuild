@@ -106,6 +106,7 @@ void BattleForecast_InitRework(struct BattleForecastProc * proc)
 {
     /* Vanilla */
     BattleForecast_Init(proc);
+    StartGreenText(proc);
 
     if (CanUnitPlayCombatArt(gActiveUnit, gActiveUnit->items[0]))
     {
