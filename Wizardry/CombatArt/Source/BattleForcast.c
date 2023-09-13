@@ -37,7 +37,7 @@ enum CombatArtBKSELfxConfig {
 STATIC_DECLAR void BKSELfxUpdateAoeSprits(struct BattleForecastProc * proc)
 {
     const u8 Y_SYNC_OFFs[] = {0, 1, 2, 3, 2, 1};
-    const u8 Y_SYNC_TIMEs[] = {0, 1, 1, 1, 2};
+    const u8 Y_SYNC_TIMEs[] = {0, 0, 1, 2, 2};
     const s8 X_TILEs[] = {-16, 0, 0, 0, 16};
     const s8 Y_TILEs[] = {0, 16, 0, -16, 0};
 

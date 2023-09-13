@@ -168,7 +168,7 @@ void DisplayUnitEffectRange(struct Unit * unit)
             else
             {
                 GenerateUnitCompleteAttackRange(gActiveUnit);
-                movelimitv_flag = MOVLIMITV_RMAP_GREEN | MOVLIMITV_RMAP_RED;
+                movelimitv_flag = MOVLIMITV_MMAP_BLUE | MOVLIMITV_RMAP_RED;
             }
             break;
 
