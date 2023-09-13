@@ -2,6 +2,8 @@
 
 #include "global.h"
 
+#define COMBART_VALID(cid) (((cid) > 0) && ((cid) < 0xFF))
+
 struct CombatArtInfo {
     const u8 * icon;
     u16 name, desc;
@@ -33,11 +35,23 @@ struct CombatArtInfo {
 
 extern const struct CombatArtInfo gCombatArtInfos[0x100];
 
-struct CombatArtStatus {
-    bool valid;
-    u8 cid;
+/* Combat-art status */
+u8 GetCombatArtInForce(struct Unit * unit);
+void RegisterCombatArtStatus(struct Unit * unit, u8 cid);
+void EnableCombatArtEffect(struct Unit * unit);
+void DisableCombatArtEffect(struct Unit * unit);
+void ResetCombatArtStatus(void);
+
+/* Combat-art list */
+#define COMBART_LIST_MAX_AMT 6
+struct CombatArtList {
     s8 uid;
-    u8 _pad_[0x10 - 0x3];
+    u8 amt;
+    u8 cid[COMBART_LIST_MAX_AMT];
 };
 
-extern struct CombatArtStatus gCombatArtStatus; /* EWRAM data */
+struct CombatArtList * GetCombatArtList(struct Unit * unit);
+void ResetCombatArtList(void);
+
+/* Misc */
+int WeaponRangeGetterCombatArt(int range, struct Unit * unit, u16 item);

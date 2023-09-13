@@ -32,7 +32,7 @@ void StartGame(void)
 #endif
 
     gBattleGlobalFlag = 0;
-    CpuFastFill16(0, &gCombatArtStatus, sizeof(gCombatArtStatus));
+    ResetCombatArtStatus();
 
     /* External hooks */
     for (it = gGameInitHookTable; *it; it++)

@@ -20,4 +20,6 @@
 
 #include "Debuff/DebuffInfo.lyn.event"
 
+#include "CombatArt/CombatArtInfo.lyn.event"
+
 #endif

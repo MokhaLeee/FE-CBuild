@@ -23,6 +23,7 @@ ALIGN 4
 #include "Lvup/Lvup.event"
 #include "MoveLimitViewHack/MoveLimitViewHack.lyn.event"
 #include "HpBar/HpBar.event"
+#include "CombatArt/CombatArt.event"
 
 #include "CommonLib/map.lyn.event"
 #include "CommonLib/math.lyn.event"

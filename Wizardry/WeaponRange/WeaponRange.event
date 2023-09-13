@@ -12,7 +12,7 @@
 
 ALIGN 4
 gWeaponRangeGetters:
-    POIN WeaponRangeGetterSkills
+    POIN WeaponRangeGetterSkills WeaponRangeGetterCombatArt
     POIN StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc StatusGetterPadFunc
     POIN StatusGetterCheckCpas
     WORD 0
