@@ -23,38 +23,55 @@ extern const struct SelectInfo gSelectInfo_0859D3F8;
 
 extern int sSelectedComatArtIndex;
 
-STATIC_DECLAR int GetNextCombatArtIndex(struct Unit * unit, int old, int direction)
+STATIC_DECLAR int GetNextCombatArtIndexInTargetSelLeft(int old)
 {
-    struct CombatArtList * list = GetCombatArtList(unit);
+    struct CombatArtList * list = GetCombatArtList(gActiveUnit);
     int wtype = gCombatArtInfos[list->cid[old]].wtype;
-    int new;
+    int new = old - 1;
 
-    if (direction == POS_L)
+    if (new < 0)
+        new = list->amt - 1;
+
+    for (; new != old; new--)
     {
-        /* Left */
-        for (new = old - 1; new != old; new--)
-        {
-            if (new < 0)
-                new = list->amt - 1;
+        if (new < 0)
+            return 0;
 
-            if (wtype == gCombatArtInfos[list->cid[new]].wtype)
-                break;
-        }
-        return new;
+        if (wtype == gCombatArtInfos[list->cid[new]].wtype)
+            break;
     }
+    return new + 1;
+}
+
+STATIC_DECLAR int GetNextCombatArtIndexInTargetSelRight(int old)
+{
+    struct CombatArtList * list = GetCombatArtList(gActiveUnit);
+    int wtype = gCombatArtInfos[list->cid[old]].wtype;
+    int new = old + 1;
+
+    if (new >= list->amt)
+        new = 0;
+
+    for (new = old + 1; new != old; new++)
+    {
+        if (new >= list->amt)
+            return 0;
+
+        if (wtype == gCombatArtInfos[list->cid[new]].wtype)
+            break;
+    }
+    return new + 1;
+}
+
+STATIC_DECLAR void RegisterCombatArtStatusInTargetSel(int sel_index)
+{
+    struct CombatArtList * calist = GetCombatArtList(gActiveUnit);
+
+    /* 0 as default seemed as not use combat-art */
+    if (sel_index == 0)
+        RegisterCombatArtStatus(gActiveUnit, 0);
     else
-    {
-        /* Right */
-        for (new = old + 1; new != old; new++)
-        {
-            if (new >= list->amt)
-                new = 0;
-
-            if (wtype == gCombatArtInfos[list->cid[new]].wtype)
-                break;
-        }
-        return new;
-    }
+        RegisterCombatArtStatus(gActiveUnit, calist->cid[sel_index - 1]);
 }
 
 STATIC_DECLAR bool TargetSelectionRework_HandleCombatArt(struct SelectTargetProc * proc)
@@ -65,42 +82,44 @@ STATIC_DECLAR bool TargetSelectionRework_HandleCombatArt(struct SelectTargetProc
     struct SelectTarget * it, * cur = proc->currentTarget;
     struct Unit * unit = gActiveUnit;
     u16 weapon = unit->items[0];
-    struct CombatArtList * calist = GetCombatArtList(unit);
+
+    repeated = gKeyStatusPtr->repeatedKeys;
+
+    if (!(repeated & (DPAD_LEFT | DPAD_RIGHT)))
+        return false;
 
     /* We directly judge the first item! */
     if (!CanUnitPlayCombatArt(unit, weapon))
         return false;
 
-    repeated = gKeyStatusPtr->repeatedKeys;
-
     if (DPAD_LEFT & repeated)
     {
-        new = GetNextCombatArtIndex(unit, sSelectedComatArtIndex, POS_L);
+        new = GetNextCombatArtIndexInTargetSelLeft(sSelectedComatArtIndex);
         while (new != sSelectedComatArtIndex)
         {
-            RegisterCombatArtStatus(unit, calist->cid[new]);
+            RegisterCombatArtStatusInTargetSel(new);
 
             if (IsItemCoveringRangeRework(weapon, RECT_DISTANCE(unit->xPos, unit->yPos, cur->x, cur->y), unit))
                 goto update_combat_art;
 
-            new = GetNextCombatArtIndex(unit, sSelectedComatArtIndex, POS_L);
+            new = GetNextCombatArtIndexInTargetSelLeft(sSelectedComatArtIndex);
         }
     }
-    else
+    else if (DPAD_RIGHT & repeated)
     {
-        new = GetNextCombatArtIndex(unit, sSelectedComatArtIndex, POS_R);
+        new = GetNextCombatArtIndexInTargetSelRight(sSelectedComatArtIndex);
         while (new != sSelectedComatArtIndex)
         {
-            RegisterCombatArtStatus(unit, calist->cid[new]);
+            RegisterCombatArtStatusInTargetSel(new);
 
             if (IsItemCoveringRangeRework(weapon, RECT_DISTANCE(unit->xPos, unit->yPos, cur->x, cur->y), unit))
                 goto update_combat_art;
 
-            new = GetNextCombatArtIndex(unit, sSelectedComatArtIndex, POS_R);
+            new = GetNextCombatArtIndexInTargetSelRight(sSelectedComatArtIndex);
         }
     }
     /* We did not find new art, register vanilla */
-    RegisterCombatArtStatus(unit, calist->cid[sSelectedComatArtIndex]);
+    RegisterCombatArtStatusInTargetSel(sSelectedComatArtIndex);
     return false;
 
 update_combat_art:

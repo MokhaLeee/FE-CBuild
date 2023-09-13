@@ -5,6 +5,7 @@
 #include "Source/CombatArtStatus.lyn.event"
 #include "Source/SelectTarget.lyn.event"
 #include "Source/BattleForcast.lyn.event"
+#include "Source/PostActionHooks.lyn.event"
 #include "Source/MiscHooks.lyn.event"
 
 #endif /* COMBAT_ART_INSTALLED */

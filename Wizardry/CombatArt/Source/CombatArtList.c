@@ -17,10 +17,10 @@ struct CombatArtList * GetCombatArtList(struct Unit * unit)
         /* Todo */
         sCombatArtList.amt = 5;
         sCombatArtList.cid[0] = CID_Grounder;
-        sCombatArtList.cid[0] = CID_Hexblade;
-        sCombatArtList.cid[0] = CID_TempestLance;
-        sCombatArtList.cid[0] = CID_FrozenLance;
-        sCombatArtList.cid[0] = CID_EncloserPlus;
+        sCombatArtList.cid[1] = CID_Hexblade;
+        sCombatArtList.cid[2] = CID_TempestLance;
+        sCombatArtList.cid[3] = CID_FrozenLance;
+        sCombatArtList.cid[4] = CID_EncloserPlus;
     }
     return &sCombatArtList;
 }
