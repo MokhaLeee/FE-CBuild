@@ -57,10 +57,10 @@ enum CombatArtIndex {
     CID_BreakShotPlus,      /* √ */
     CID_WaningShot,         /* √ */
     CID_WaningShotPlus,     /* √ */
-    CID_PointBlankVolley,   /* √ */
+    CID_PointBlankVolley,
     CID_WardArrow,
     CID_WardArrowPlus,
-    CID_HuntersVolley,
+    CID_HuntersVolley,      /* √ */
 };
 
 #endif /* CONFIG_COMBAT_ARTS_INSTALLED */

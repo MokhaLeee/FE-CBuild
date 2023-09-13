@@ -11,10 +11,10 @@ struct CombatArtInfo {
     u8 wtype;
     s8 range_bonus;
     s16 cost;
-    s16 mt;
-    s16 hit;
-    s16 avo;
-    s16 crit;
+
+    struct {
+        s8 atk, def, hit, avo, crit, silencer, dodge;
+    } battle_status;
 
     /* flags */
     u32 external_calc : 1;
@@ -54,3 +54,4 @@ void ResetCombatArtList(void);
 /* Misc */
 bool CanUnitPlayCombatArt(struct Unit * unit, u16 item);
 int WeaponRangeGetterCombatArt(int range, struct Unit * unit, u16 item);
+void PreBattleCalcCombatArt(struct BattleUnit * bu, struct BattleUnit * defender);

@@ -6,6 +6,7 @@
 #include "skill-system.h"
 #include "strmag.h"
 #include "debuff.h"
+#include "combat-art.h"
 #include "constants/skills.h"
 
 typedef void (* PreBattleCalcFunc) (struct BattleUnit * buA, struct BattleUnit * buB);
@@ -325,6 +326,7 @@ STATIC_DECLAR const PreBattleCalcFunc PreBattleCalcFuncs[] = {
     PreBattleCalcWeaponTriangle,
     PreBattleCalcSkills,
     PreBattleCalcDebuffs,
+    PreBattleCalcCombatArt,
 
     PreBattlePostCalcSkills,
     PreBattleCalcEnd,

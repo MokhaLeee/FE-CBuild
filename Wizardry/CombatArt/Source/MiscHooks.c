@@ -31,3 +31,21 @@ int WeaponRangeGetterCombatArt(int range, struct Unit * unit, u16 item)
     }
     return range;
 }
+
+/* Pre-battle calc */
+void PreBattleCalcCombatArt(struct BattleUnit * bu, struct BattleUnit * defender)
+{
+    u8 cid = GetCombatArtInForce(&bu->unit);
+
+    if (COMBART_VALID(cid))
+    {
+        const struct CombatArtInfo * info = gCombatArtInfos + cid;
+
+        bu->battleAttack       += info->battle_status.atk;
+        bu->battleDefense      += info->battle_status.def;
+        bu->battleHitRate      += info->battle_status.hit;
+        bu->battleAvoidRate    += info->battle_status.avo;
+        bu->battleSilencerRate += info->battle_status.silencer;
+        bu->battleDodgeRate    += info->battle_status.dodge;
+    }
+}

@@ -52,8 +52,8 @@ Waning Shot+[X]
 ## MSG_COMART_DESC_WaningShotPlus
 Enimy and adjacent units Atk-5[X]
 
-## MSG_COMART_NAME_PointBlankVolley
-P-B Volley[X]
+## MSG_COMART_NAME_HuntersVolley
+Hunter's Volley[X]
 
-## MSG_COMART_DESC_PointBlankVolley
+## MSG_COMART_DESC_HuntersVolley
 Twice consecutive hits[X]
