@@ -66,7 +66,7 @@ PUSH
     BYTE 0x3F
     PROTECT $290E4 $290FC
 
-    ORG $24CAE // TalkCommandUsability
+    ORG $23CAE // TalkCommandUsability
     BYTE 0x3F
     PROTECT $23C80 $23CC4
 
