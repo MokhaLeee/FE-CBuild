@@ -83,12 +83,12 @@ bool IsUnitEffectiveAgainst(struct Unit * actor, struct Unit * target)
         }
     }
 
+    if (!list)
+        return false;
+
     for (i = 0; list[i]; i++)
         if (list[i] == jid)
             goto check_null_effective;
-
-    if (!list)
-        return false;
 
     return false;
 
