@@ -25,7 +25,7 @@ struct CombatArtInfo {
     u32 effective_dragon : 1;
     u32 effective_monster : 1;
     u32 effective_all : 1;
-    u32 doubel_attack : 1;
+    u32 double_attack : 1;
     u32 debuff_gravity : 1;
     u32 debuff_def : 1;
     u32 debuff_res : 1;
@@ -34,6 +34,19 @@ struct CombatArtInfo {
 };
 
 extern const struct CombatArtInfo gCombatArtInfos[0x100];
+
+static inline u16 GetCombatArtName(u8 cid)
+{
+    return gCombatArtInfos[cid].name;
+}
+
+static inline u16 GetCombatArtDesc(u8 cid)
+{
+    if (0 == gCombatArtInfos[cid].desc)
+        return gCombatArtInfos[cid].name;
+
+    return gCombatArtInfos[cid].desc;
+}
 
 /* Combat-art status */
 u8 GetCombatArtInForce(struct Unit * unit);

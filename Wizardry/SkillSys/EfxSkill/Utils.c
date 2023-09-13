@@ -44,6 +44,12 @@ void RegisterTargetEfxSkill(int round, const u8 sid)
     }
 }
 
+void RegisterEfxSkillCombatArt(int round, const u8 cid)
+{
+    /* Todo */
+    return;
+}
+
 u8 GetActorEfxSkill(int round)
 {
     if (round < NEW_BATTLE_HIT_MAX)

@@ -9,6 +9,7 @@
 #include "skill-system.h"
 #include "efx-skill.h"
 #include "battle-system.h"
+#include "combat-art.h"
 #include "constants/skills.h"
 
 enum {
@@ -58,6 +59,14 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * tar
 
     if (GetItemIndex(actor->weapon) == ITEM_MONSTER_STONE)
         return false;
+
+    /* Check combat-art */
+    if (&gBattleActor == actor)
+    {
+        u8 cid = GetCombatArtInForce(&actor->unit);
+        if (COMBART_VALID(cid) && gCombatArtInfos[cid].double_attack)
+            return true;
+    }
 
     if (&gBattleActor == actor)
     {
@@ -187,6 +196,14 @@ void BattleUnwind(void)
         else if (NOP_ATTACK == config[i])
         {
             break;
+        }
+
+        /* Combat art first */
+        if (i == 0)
+        {
+            int cid = GetCombatArtInForce(&gBattleActor.unit);
+            if (COMBART_VALID(cid))
+                RegisterEfxSkillCombatArt(GetBattleHitRound(old), cid);
         }
 
         if (i != 0 && config[i - 1] == config[i])

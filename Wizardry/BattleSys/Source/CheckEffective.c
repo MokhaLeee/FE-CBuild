@@ -2,10 +2,12 @@
 #include "bmunit.h"
 #include "bmbattle.h"
 #include "bmitem.h"
+#include "constants/items.h"
 
 #include "common-chax.h"
 #include "battle-system.h"
 #include "skill-system.h"
+#include "combat-art.h"
 #include "constants/skills.h"
 
 STATIC_DECLAR bool CheckUnitNullEffective(struct Unit * unit)
@@ -55,10 +57,39 @@ check_null_effective:
 /* LynJump */
 bool IsUnitEffectiveAgainst(struct Unit * actor, struct Unit * target)
 {
-    if (0)
+    const u8 * list = NULL;
+    int i, jid = UNIT_CLASS_ID(target);
+
+    /* Check combat-art */
+    if (actor->index == gBattleActor.unit.index)
     {
-        goto check_null_effective;
+        int cid = GetCombatArtInForce(actor);
+        if (COMBART_VALID(cid))
+        {
+            const struct CombatArtInfo * info = gCombatArtInfos + cid;
+            if (info->effective_all)
+                return true;
+
+            if (info->effective_dragon)
+                list = GetItemEffectiveness(ITEM_ELIXIR);
+            else if (info->effective_monster)
+                list = GetItemEffectiveness(ITEM_LIGHT_IVALDI);
+            else if (info->effective_armor)
+                list = GetItemEffectiveness(ITEM_AXE_HAMMER);
+            else if (info->effective_fly)
+                list = GetItemEffectiveness(ITEM_BOW_IRON);
+            else if (info->effective_ride)
+                list = GetItemEffectiveness(ITEM_SWORD_ZANBATO);
+        }
     }
+
+    for (i = 0; list[i]; i++)
+        if (list[i] == jid)
+            goto check_null_effective;
+
+    if (!list)
+        return false;
+
     return false;
 
 check_null_effective:

@@ -70,7 +70,7 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
         .cost = 2,
         .battle_status.atk = 2,
         .battle_status.crit = 5,
-        .doubel_attack = true,
+        .double_attack = true,
     },
     [CID_FrozenLance] = {
         .name = MSG_COMART_NAME_FrozenLance,
@@ -244,7 +244,7 @@ const struct CombatArtInfo gCombatArtInfos[0x100] = {
         .battle_status.atk = 1,
         .battle_status.hit = 15,
         .battle_status.crit = 10,
-        .doubel_attack = true,
+        .double_attack = true,
     },
 };
 
