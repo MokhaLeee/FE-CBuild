@@ -333,91 +333,91 @@ const struct SkillInfo gSkillInfos[0x100] = {
     },
     [SID_COMBAT_Grounder] = {
         .msg  = MSG_SKILL_COMBAT_Grounder,
-        .icon = GFX_SkillIcon_WIP,
+        .icon = GFX_CombatArtIcon_SwordArtAtk,
     },
     [SID_COMBAT_BaneOfMonsters] = {
         .msg  = MSG_SKILL_COMBAT_BaneOfMonsters,
-        .icon = GFX_SkillIcon_WIP,
+        .icon = GFX_CombatArtIcon_SwordArtAtk,
     },
     [SID_COMBAT_Hexblade] = {
         .msg  = MSG_SKILL_COMBAT_Hexblade,
-        .icon = GFX_SkillIcon_WIP,
+        .icon = GFX_CombatArtIcon_SwordArtMag,
     },
     [SID_COMBAT_FoudroyantStrike] = {
         .msg  = MSG_SKILL_COMBAT_FoudroyantStrike,
-        .icon = GFX_SkillIcon_WIP,
+        .icon = GFX_CombatArtIcon_SwordArtCrit,
     },
     [SID_COMBAT_TempestLance] = {
         .msg  = MSG_SKILL_COMBAT_TempestLance,
-        .icon = GFX_SkillIcon_WIP,
+        .icon = GFX_CombatArtIcon_LanceArtAtk,
     },
     [SID_COMBAT_SwiftStrikes] = {
         .msg  = MSG_SKILL_COMBAT_SwiftStrikes,
-        .icon = GFX_SkillIcon_WIP,
+        .icon = GFX_CombatArtIcon_LanceArtAtk,
     },
     [SID_COMBAT_FrozenLance] = {
         .msg  = MSG_SKILL_COMBAT_FrozenLance,
-        .icon = GFX_SkillIcon_WIP,
+        .icon = GFX_CombatArtIcon_LanceArtMag,
     },
     [SID_COMBAT_Vengeance] = {
         .msg  = MSG_SKILL_COMBAT_Vengeance,
-        .icon = GFX_SkillIcon_WIP,
+        .icon = GFX_CombatArtIcon_LanceArtCrit,
     },
     [SID_COMBAT_HelmSplitter] = {
         .msg  = MSG_SKILL_COMBAT_HelmSplitter,
-        .icon = GFX_SkillIcon_WIP,
+        .icon = GFX_CombatArtIcon_AxeArtAtk,
     },
     [SID_COMBAT_LightningAxe] = {
         .msg  = MSG_SKILL_COMBAT_LightningAxe,
-        .icon = GFX_SkillIcon_WIP,
+        .icon = GFX_CombatArtIcon_AxeArtMag,
     },
     [SID_COMBAT_WarMasterStrike] = {
         .msg  = MSG_SKILL_COMBAT_WarMasterStrike,
-        .icon = GFX_SkillIcon_WIP,
+        .icon = GFX_CombatArtIcon_AxeArtCrit,
     },
     [SID_COMBAT_CurvedShot] = {
         .msg  = MSG_SKILL_COMBAT_CurvedShot,
-        .icon = GFX_SkillIcon_WIP,
+        .icon = GFX_CombatArtIcon_BowArtAtk,
     },
     [SID_COMBAT_Deadeye] = {
         .msg  = MSG_SKILL_COMBAT_Deadeye,
-        .icon = GFX_SkillIcon_WIP,
+        .icon = GFX_CombatArtIcon_BowArtAtk,
     },
     [SID_COMBAT_Encloser] = {
         .msg  = MSG_SKILL_COMBAT_Encloser,
-        .icon = GFX_SkillIcon_WIP,
+        .icon = GFX_CombatArtIcon_BowArtDebuff,
     },
     [SID_COMBAT_EncloserPlus] = {
         .msg  = MSG_SKILL_COMBAT_EncloserPlus,
-        .icon = GFX_SkillIcon_WIP,
+        .icon = GFX_CombatArtIcon_BowArtDebuff,
     },
     [SID_COMBAT_MonsterBlast] = {
         .msg  = MSG_SKILL_COMBAT_MonsterBlast,
-        .icon = GFX_SkillIcon_WIP,
+        .icon = GFX_CombatArtIcon_BowArtCrit,
     },
     [SID_COMBAT_SchismShot] = {
         .msg  = MSG_SKILL_COMBAT_SchismShot,
-        .icon = GFX_SkillIcon_WIP,
+        .icon = GFX_CombatArtIcon_BowArtCrit,
     },
     [SID_COMBAT_BreakShot] = {
         .msg  = MSG_SKILL_COMBAT_BreakShot,
-        .icon = GFX_SkillIcon_WIP,
+        .icon = GFX_CombatArtIcon_BowArtDebuff,
     },
     [SID_COMBAT_BreakShotPlus] = {
         .msg  = MSG_SKILL_COMBAT_BreakShotPlus,
-        .icon = GFX_SkillIcon_WIP,
+        .icon = GFX_CombatArtIcon_BowArtDebuff,
     },
     [SID_COMBAT_WaningShot] = {
         .msg  = MSG_SKILL_COMBAT_WaningShot,
-        .icon = GFX_SkillIcon_WIP,
+        .icon = GFX_CombatArtIcon_BowArtDebuff,
     },
     [SID_COMBAT_WaningShotPlus] = {
         .msg  = MSG_SKILL_COMBAT_WaningShotPlus,
-        .icon = GFX_SkillIcon_WIP,
+        .icon = GFX_CombatArtIcon_BowArtDebuff,
     },
     [SID_COMBAT_HuntersVolley] = {
         .msg  = MSG_SKILL_COMBAT_HuntersVolley,
-        .icon = GFX_SkillIcon_WIP,
+        .icon = GFX_CombatArtIcon_BowArtAtk,
     },
 };
 

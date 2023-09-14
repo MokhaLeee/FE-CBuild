@@ -5,6 +5,7 @@
 #include "common-chax.h"
 #include "strmag.h"
 #include "lvup.h"
+#include "bwl.h"
 
 STATIC_DECLAR void ApplyUnitPromotionVanilla(struct Unit * unit, u8 classId)
 {
@@ -95,6 +96,7 @@ void GenerateBattleUnitStatGainsComparativelyVanilla(struct BattleUnit * bu, str
 /* LynJump */
 void ApplyUnitPromotion(struct Unit * unit, u8 jid)
 {
+    NewBwlRecordHiddenLevel(unit);
     ApplyUnitPromotionVanilla(unit, jid);
 
     /* Hooks */

@@ -10,13 +10,14 @@
 struct NewBwl {
     /* vanilla */
     u32 battleAmt : 12;
-    u32 winAmt    : 12;
+    u32 winAmt    : 11;
     u32 lossAmt   : 8;
+    u32 levelGain : 9;
 
     /* bwl support */
     u8 supports[UNIT_SUPPORT_MAX_COUNT];
 
-    u8 _pad_[0x10 - 0x0B];
+    u8 _pad_[0x10 - 0x0C];
 
 } BITPACKED;
 
@@ -39,3 +40,6 @@ static inline struct NewBwl * GetNewBwl(u8 pid)
 
     return entry + (pid - 1);
 }
+
+void NewBwlRecordHiddenLevel(struct Unit * unit);
+int GetUnitRecorededLevel(struct Unit * unit);
