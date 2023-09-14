@@ -71,6 +71,19 @@ struct CombatArtList {
 struct CombatArtList * GetCombatArtList(struct Unit * unit);
 void ResetCombatArtList(void);
 
+struct CombatArtRomTable {
+    u8 cid_sword[8];
+    u8 cid_lance[8];
+    u8 cid_axe[8];
+    u8 cid_bow[8];
+};
+
+extern const struct CombatArtRomTable gCombatArtRomPTable[0x100];
+extern const struct CombatArtRomTable gCombatArtRomJTable[0x100];
+extern const struct CombatArtRomTable gCombatArtDefaultTable;
+extern const u8 gCombatArtWeaponTable[0x100];
+extern const u8 gCombatArtSkillTable[0x100];
+
 /* TargetSel & BKSEL */
 bool CombatArtSelectTargetExist(void);
 u8 GetCombatArtByTargetSelIndex(void);

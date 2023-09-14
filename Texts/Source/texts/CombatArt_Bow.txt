@@ -1,5 +1,5 @@
 ## MSG_COMART_NAME_CurvedShot
-Curved Shot[X]
+Curve Shot[X]
 
 ## MSG_COMART_NAME_Deadeye
 Dead Eye[X]
@@ -17,7 +17,7 @@ Encloser+[X]
 Enimy and adjacent units cannot move[X]
 
 ## MSG_COMART_NAME_MonsterBlast
-Monster Blast[X]
+M-Blast[X]
 
 ## MSG_COMART_DESC_MonsterBlast
 Effective against monsters[X]
@@ -53,7 +53,7 @@ Waning Shot+[X]
 Enimy and adjacent units Atk-5[X]
 
 ## MSG_COMART_NAME_HuntersVolley
-Hunter's Volley[X]
+H-Volley[X]
 
 ## MSG_COMART_DESC_HuntersVolley
 Twice consecutive hits[X]

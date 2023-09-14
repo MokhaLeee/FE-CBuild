@@ -311,3 +311,7 @@ clean:
 	rm -f $(CLEAN_FILES)
 	rm -rf $(CLEAN_DIRS)
 	@echo "All cleaned .."
+
+clean_wizardry:
+	rm -f $(CLEAN_FILES)
+	rm -rf $(CLEAN_DIRS)

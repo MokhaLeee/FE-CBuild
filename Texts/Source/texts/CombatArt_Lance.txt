@@ -1,14 +1,14 @@
 ## MSG_COMART_NAME_TempestLance
-Tempest Lance[X]
+Tempest[X]
 
 ## MSG_COMART_NAME_SwiftStrikes
-Swift Strikes[X]
+Swift Strike[X]
 
 ## MSG_COMART_DESC_SwiftStrikes
 Twice consecutive hits[X]
 
 ## MSG_COMART_NAME_FrozenLance
-Frozen Lance[X]
+Frozen[X]
 
 ## MSG_COMART_DESC_FrozenLance
 Magic attack, damage + SKL bonus[X]

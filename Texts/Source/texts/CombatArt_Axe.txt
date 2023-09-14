@@ -1,17 +1,17 @@
 ## MSG_COMART_NAME_HelmSplitter
-Helm Splitter[X]
+Helm Split[X]
 
 ## MSG_COMART_DESC_HelmSplitter
 Effective against Armored enemies[X]
 
 ## MSG_COMART_NAME_LightningAxe
-Lightning Axe[X]
+Lightning[X]
 
 ## MSG_COMART_DESC_LightningAxe
 Magic attack + actor's Res[X]
 
 ## MSG_COMART_NAME_WarMasterStrike
-War-Master Strike[X]
+W-M Strike[X]
 
 ## MSG_COMART_DESC_WarMasterStrike
 Effective against all foes[X]

@@ -22,5 +22,8 @@
 
 #include "CombatArt/CombatArtInfo.lyn.event"
 #include "CombatArt/EfxCombatArtAnim.lyn.event"
+#include "CombatArt/CombatArtSkill.lyn.event"
+#include "CombatArt/CombatArtWeapon.lyn.event"
+#include "CombatArt/RomTables.lyn.event"
 
 #endif

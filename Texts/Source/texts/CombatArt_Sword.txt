@@ -5,7 +5,7 @@ Grounder[X]
 Effective against Flying enemies[X]
 
 ## MSG_COMART_NAME_BaneOfMonsters
-Bane Of Monsters[X]
+B-Monster[X]
 
 ## MSG_COMART_DESC_BaneOfMonsters
 Effective against monsters[X]
@@ -17,7 +17,7 @@ Hexblade[X]
 Magic attack[X]
 
 ## MSG_COMART_NAME_FoudroyantStrike
-Foudroyant Strike[X]
+Foudroyant[X]
 
 ## MSG_COMART_DESC_FoudroyantStrike
 Effective against Armored enemies[X]
