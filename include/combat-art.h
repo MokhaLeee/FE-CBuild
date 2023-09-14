@@ -1,8 +1,11 @@
 #pragma once
 
 #include "global.h"
+#include "common-chax.h"
+#include "skill-system.h"
 
 #define COMBART_VALID(cid) (((cid) > 0) && ((cid) < 0xFF))
+#define COMBART_ICON(cid) ((2 << 8) + (cid))
 
 struct CombatArtInfo {
     const u8 * icon;
@@ -70,7 +73,17 @@ void ResetCombatArtList(void);
 bool CombatArtSelectTargetExist(void);
 u8 GetCombatArtByTargetSelIndex(void);
 
+/* EfxSkill */
+extern const struct SkillAnimInfo gEfxCombatArtAnimInfos[0x100];
+
+int GetEfxCombatArtIndex(const u8 cid);
+int GetEfxCombatArtPriority(const u8 cid);
+int GetEfxCombatArtSfx(const u8 cid);
+void RegisterEfxSkillCombatArt(int round, const u8 cid);
+u8 GetEfxCombatArt(int round);
+
 /* Misc */
 bool CanUnitPlayCombatArt(struct Unit * unit, u16 item);
+const u8 * GetCombatArtIcon(const u8 cid);
 int WeaponRangeGetterCombatArt(int range, struct Unit * unit, u16 item);
 void PreBattleCalcCombatArt(struct BattleUnit * bu, struct BattleUnit * defender);

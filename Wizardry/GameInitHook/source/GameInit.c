@@ -4,6 +4,7 @@
 #include "bmio.h"
 #include "hardware.h"
 
+#include "common-chax.h"
 #include "debug-kit.h"
 #include "combat-art.h"
 #include "battle-system.h"

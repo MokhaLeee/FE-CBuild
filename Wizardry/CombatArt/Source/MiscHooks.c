@@ -10,6 +10,7 @@
 
 #include "common-chax.h"
 #include "combat-art.h"
+#include "constants/gfx.h"
 #include "constants/combat-arts.h"
 
 bool CanUnitPlayCombatArt(struct Unit * unit, u16 item)
@@ -22,6 +23,33 @@ bool CanUnitPlayCombatArt(struct Unit * unit, u16 item)
             return true;
 
     return false;
+}
+
+/* Icon Getter */
+const u8 * GetCombatArtIcon(const u8 cid)
+{
+    u8 const * const default_icons[] = {
+        [ITYPE_SWORD] = GFX_CombatArtIcon_SwordArtAtk,
+        [ITYPE_LANCE] = GFX_CombatArtIcon_LanceArtAtk,
+        [ITYPE_AXE]   = GFX_CombatArtIcon_AxeArtAtk,
+        [ITYPE_BOW]   = GFX_CombatArtIcon_BowArtAtk,
+    };
+
+    if (COMBART_VALID(cid))
+    {
+        const struct CombatArtInfo * info = gCombatArtInfos + cid;
+        if (info->icon)
+            return info->icon;
+
+        switch (info->wtype) {
+        case ITYPE_SWORD:
+        case ITYPE_LANCE:
+        case ITYPE_AXE:
+        case ITYPE_BOW:
+            return default_icons[info->wtype];
+        }
+    }
+    return NULL;
 }
 
 /* Weapon range getter */

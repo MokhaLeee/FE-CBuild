@@ -5,7 +5,7 @@
 #include "common-chax.h"
 #include "icon-rework.h"
 
-STATIC_DECLAR const u8 * GetIconGfx(u32 icon)
+const u8 * GetIconGfx(u32 icon)
 {
     if (ICON_SHEET(icon) < ICON_SHEET_AMT)
         return IconGetters[ICON_SHEET(icon)](ICON_INDEX(icon));

@@ -5,7 +5,10 @@
 
 enum EfxSkillIndex {
     EFX_SKILL_DEFAULT = 0x1,
+    EFX_COMBAT_DEFAULT,
     EFX_SKILL_MOKHA,
+    EFX_SKILL_AETHER,
+    EFX_SKILL_DRAGON_FANG,
 
     EFX_SKILL_MAX
 };

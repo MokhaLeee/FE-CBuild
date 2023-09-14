@@ -5,10 +5,12 @@
 
 #include "skill-system.h"
 #include "efx-skill.h"
+#include "combat-art.h"
 
 struct ProcEkrSkill {
     PROC_HEADER;
     struct Anim * anim;
+    u8 cid;
     u8 sid_atk;
     u8 sid_def;
 };
@@ -92,6 +94,8 @@ STATIC_DECLAR void NewEkrSkill(struct Anim * anim)
     proc->anim = anim;
 
     round = anim->nextRoundId - 1;
+
+    proc->cid = GetEfxCombatArt(round);
     proc->sid_atk = GetActorEfxSkill(round);
     proc->sid_def = GetTargetEfxSkill(round);
 

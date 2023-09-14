@@ -9,3 +9,15 @@ EfxSkillVanilla:
 ALIGN 4
 EfxSkillMokha:
     #include "Source/EfxSkillMokha/EfxSkillMokha.efx.event"
+
+ALIGN 4
+EfxSkillAether:
+    #include "Source/Aether/Skill.efx.event"
+
+ALIGN 4
+EfxSkillCombat:
+    #include "Source/Combat/ClassChangAnim.efx.event"
+
+ALIGN 4
+EfxSkillDragonFang:
+    #include "Source/DragonFang/Skill.efx.event"

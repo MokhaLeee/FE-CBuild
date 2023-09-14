@@ -8,6 +8,7 @@
 #include "common-chax.h"
 #include "skill-system.h"
 #include "efx-skill.h"
+#include "combat-art.h"
 #include "constants/efx-skills.h"
 
 struct ProcEfxSkillRework {
@@ -24,7 +25,12 @@ struct ProcEfxSkillRework {
 
 STATIC_DECLAR void EfxSkillOnInit(struct ProcEfxSkillRework * proc)
 {
-    return;
+    NewEfxSkillBox(proc->anim, proc->sid);
+}
+
+STATIC_DECLAR void EfxCombatArtOnInit(struct ProcEfxSkillRework * proc)
+{
+    NewEfxCombatArtBox(proc->anim, proc->sid);
 }
 
 STATIC_DECLAR void EfxSkillMain(struct ProcEfxSkillRework * proc)
@@ -65,7 +71,17 @@ STATIC_DECLAR const struct ProcCmd ProcScr_EfxSkill[] = {
     PROC_REPEAT(EfxSkillMain),
     PROC_CALL(EfxSkillOnEnd),
     PROC_SLEEP(0x10),
-    // PROC_WHILE(EfxSkillBoxExists),
+    PROC_WHILE(EfxSkillBoxExists),
+    PROC_END
+};
+
+STATIC_DECLAR const struct ProcCmd ProcScr_EfxCombatArt[] = {
+    PROC_NAME("EfxCombatArt"),
+    PROC_CALL(EfxCombatArtOnInit),
+    PROC_REPEAT(EfxSkillMain),
+    PROC_CALL(EfxSkillOnEnd),
+    PROC_SLEEP(0x10),
+    PROC_WHILE(EfxSkillBoxExists),
     PROC_END
 };
 
@@ -105,7 +121,43 @@ void NewEfxSkill(struct Anim * anim, int sid)
     }
 }
 
+void NewEfxCombatArt(struct Anim * anim, int cid)
+{
+    u16 sfx;
+    struct ProcEfxSkillRework * proc;
+    u8 aid = GetEfxCombatArtIndex(cid);
+    const struct EfxAnimConf * conf = GetEfxSkillConf(aid);
+
+    Debugf("cid %#x, aid %#x, conf %p", sid, aid, conf);
+
+    if (!(COMBART_VALID(cid)) || !IS_ROM_DATA(conf))
+        return;
+
+    proc = Proc_Start(ProcScr_EfxCombatArt, PROC_TREE_3);
+    proc->timer = 0;
+    proc->frame = 0;
+    proc->anim = anim;
+    proc->sid = cid;
+
+    proc->imgs = conf->imgs;
+    proc->pals = conf->pals;
+    proc->tsas = conf->tsas;
+    proc->frames = conf->frame_confs;
+
+    sfx = GetEfxCombatArtSfx(cid);
+    if (sfx != 0)
+        PlaySFX(sfx, 0x100, anim->xPosition, 0x1);
+
+    if (gEkrDistanceType != EKR_DISTANCE_CLOSE)
+    {
+        if (GetAnimPosition(anim) == EKR_POS_L)
+            BG_SetPosition(BG_1, 0x28, 0);
+        else
+            BG_SetPosition(BG_1, 0xE8, 0);
+    }
+}
+
 bool EfxSkillExists(void)
 {
-    return !!Proc_Find(ProcScr_EfxSkill);
+    return !!Proc_Find(ProcScr_EfxSkill) || !!Proc_Find(ProcScr_EfxCombatArt);
 }

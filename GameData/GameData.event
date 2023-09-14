@@ -21,5 +21,6 @@
 #include "Debuff/DebuffInfo.lyn.event"
 
 #include "CombatArt/CombatArtInfo.lyn.event"
+#include "CombatArt/EfxCombatArtAnim.lyn.event"
 
 #endif
