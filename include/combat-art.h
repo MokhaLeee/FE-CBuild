@@ -2,6 +2,7 @@
 
 #include "global.h"
 #include "uimenu.h"
+#include "uiselecttarget.h"
 
 #include "common-chax.h"
 #include "skill-system.h"
@@ -85,6 +86,7 @@ extern const u8 gCombatArtWeaponTable[0x100];
 extern const u8 gCombatArtSkillTable[0x100];
 
 /* TargetSel & BKSEL */
+ProcPtr NewTargetSelectionRework(const struct SelectInfo * selectInfo);
 bool CombatArtSelectTargetExist(void);
 u8 GetCombatArtByTargetSelIndex(void);
 

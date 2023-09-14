@@ -74,7 +74,9 @@ STATIC_DECLAR u8 CombatArtItemSelEffect(struct MenuProc * menu, struct MenuItemP
     ClearBg0Bg1();
 
     MakeTargetListForWeapon(gActiveUnit, gActiveUnit->items[0]);
-    NewTargetSelection(&gSelectInfoCombatArt);
+
+    // NewTargetSelection(&gSelectInfoCombatArt);
+    NewTargetSelectionRework(&gSelectInfoCombatArt);
 
     return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_ENDFACE;
 }
@@ -99,8 +101,6 @@ STATIC_DECLAR int CombatArtItemSelHover(struct MenuProc * menu, struct MenuItemP
 
 STATIC_DECLAR int CombatArtItemSelUnhover(struct MenuProc * menu, struct MenuItemProc * menuItem)
 {
-    ResetCombatArtStatus();
-
     if (!(menu->state & MENU_STATE_ENDING))
         HideMoveRangeGraphics();
 

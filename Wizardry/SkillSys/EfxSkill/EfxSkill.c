@@ -128,7 +128,7 @@ void NewEfxCombatArt(struct Anim * anim, int cid)
     u8 aid = GetEfxCombatArtIndex(cid);
     const struct EfxAnimConf * conf = GetEfxSkillConf(aid);
 
-    Debugf("cid %#x, aid %#x, conf %p", sid, aid, conf);
+    Debugf("cid %#x, aid %#x, conf %p", cid, aid, conf);
 
     if (!(COMBART_VALID(cid)) || !IS_ROM_DATA(conf))
         return;

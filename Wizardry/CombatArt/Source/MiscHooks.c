@@ -122,21 +122,10 @@ void PreBattleCalcCombatArt(struct BattleUnit * bu, struct BattleUnit * defender
     }
 }
 
-STATIC_DECLAR int SelectTargetInfoOnEndVanilla(void)
-{
-    BG_Fill(gBG2TilemapBuffer, 0);
-    BG_EnableSyncByMask(BG2_SYNC_BIT);
-
-    HideMoveRangeGraphics();
-    CloseBattleForecast();
-    return 0;
-}
-
 /* LynJump */
-int sub_8022F10(void)
+void sub_8022E54(void)
 {
-    /* SelectTarget on end */
+    /* During reload from B pressed in select-target */
     ResetCombatArtStatus();
-    EndGreenText();
-    return SelectTargetInfoOnEndVanilla();
+    UnitActionMenu_Attack(NULL, NULL);
 }

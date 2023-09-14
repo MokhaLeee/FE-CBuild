@@ -14,7 +14,7 @@
 void ForEachUnitInRange(void(* func)(struct Unit * unit));
 void AddUnitToTargetListIfNotAllied(struct Unit * unit);
 
-void ExecCombatArtEffectAnim(ProcPtr proc)
+STATIC_DECLAR void ExecCombatArtEffectAnim(ProcPtr proc)
 {
     int i;
     struct Unit * unit = gActiveUnit;
@@ -22,7 +22,7 @@ void ExecCombatArtEffectAnim(ProcPtr proc)
     u8 cid = GetCombatArtInForce(unit);
     const struct CombatArtInfo * info;
 
-    if (!COMBART_VALID(cid) || IsCombatArtHitted() || !UNIT_IS_VALID(target))
+    if (!COMBART_VALID(cid) || !IsCombatArtHitted() || !UNIT_IS_VALID(target))
     {
         Proc_End(proc);
         return;
@@ -52,8 +52,9 @@ void ExecCombatArtEffectAnim(ProcPtr proc)
 
     for (i = 0; i < GetSelectTargetCount(); i++)
     {
-        struct Unit * tunit = GetUnit(GetTarget(i)->uid);
-        CallMapAnim_HeavyGravity(proc, tunit->xPos, tunit->yPos);
+        struct SelectTarget * starget = GetTarget(i);
+        struct Unit * tunit = GetUnit(starget->uid);
+        CallMapAnim_HeavyGravity(proc, starget->x, starget->y);
 
         if (info->double_attack)
             SetUnitStatusExt(tunit, NEW_UNIT_STATUS_WEAKEN, 1);
@@ -70,8 +71,8 @@ void ExecCombatArtEffectAnim(ProcPtr proc)
 
 STATIC_DECLAR const struct ProcCmd ProcScr_CombatArtPostActionEffect[] = {
     PROC_NAME("CombatArtPostActionEffect"),
-    PROC_CALL(ExecCombatArtEffectAnim),
     PROC_YIELD,
+    PROC_CALL(ExecCombatArtEffectAnim),
     PROC_WHILE(MapAnimHeavyGravityExists),
     PROC_END
 };

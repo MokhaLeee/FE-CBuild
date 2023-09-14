@@ -13,6 +13,7 @@
 #include "uimenu.h"
 #include "bmidoten.h"
 #include "face.h"
+#include "bksel.h"
 #include "playerphase.h"
 
 #include "common-chax.h"
@@ -242,14 +243,20 @@ PROC_LABEL(0),
     PROC_END,
 };
 
-STATIC_DECLAR ProcPtr NewTargetSelectionRework(const struct SelectInfo * selectInfo)
+ProcPtr NewTargetSelectionRework(const struct SelectInfo * selectInfo)
 {
+    int i, cid;
+    struct CombatArtList * list = GetCombatArtList(gActiveUnit);
     struct SelectTargetProc * proc;
 
     LockGame();
     proc = Proc_Start(ProcScr_TargetSelectionRework, PROC_TREE_3);
 
     sSelectedComatArtIndex = 0;
+    cid = GetCombatArtInForce(gActiveUnit);
+    for (i = 0; i < list->amt; i++)
+        if (cid == list->cid[i])
+            sSelectedComatArtIndex = i + 1;
 
     proc->flags = TARGETSELECTION_FLAG_GAMELOCK;
     proc->selectRoutines = selectInfo;
@@ -285,4 +292,22 @@ u8 UnknownMenu_Selected(struct MenuProc * menu, struct MenuItemProc * menuItem)
 bool CombatArtSelectTargetExist(void)
 {
     return !!Proc_Find(ProcScr_TargetSelectionRework);
+}
+
+STATIC_DECLAR int SelectTargetInfoOnEndVanilla(void)
+{
+    BG_Fill(gBG2TilemapBuffer, 0);
+    BG_EnableSyncByMask(BG2_SYNC_BIT);
+
+    HideMoveRangeGraphics();
+    CloseBattleForecast();
+    return 0;
+}
+
+/* LynJump */
+int sub_8022F10(void)
+{
+    /* SelectTarget on end */   
+    EndGreenText();
+    return SelectTargetInfoOnEndVanilla();
 }

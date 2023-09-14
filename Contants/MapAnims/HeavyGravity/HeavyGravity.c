@@ -31,8 +31,8 @@ STATIC_DECLAR void HeavyGravitySubAnimMain(struct HeavyGravityProc2 * proc)
         1,
         (proc->ix + 0x200) & 0x1FF,
         (proc->iy + 0x0FD) & 0x0FF,
-         gObject_16x8,
-         OAM2_PAL(0) + OAM2_CHR(GRAVITYFX_VRAMOFF / 0x20) + OAM2_LAYER(0x1)
+        gObject_16x8,
+        OAM2_PAL(0) + OAM2_CHR(GRAVITYFX_VRAMOFF / 0x20) + OAM2_LAYER(0x1)
     );
 
     proc->iy++;
@@ -72,14 +72,9 @@ STATIC_DECLAR void HeavyGravityExecSubAnim(struct HeavyGravityProc * proc)
         Proc_Break(proc);
 }
 
-STATIC_DECLAR int HeavyGravityMovCam(struct HeavyGravityProc * proc)
-{
-    return EnsureCameraOntoPosition(proc, proc->x, proc->y);
-}
-
 STATIC_DECLAR const struct ProcCmd ProcScr_MapAnimHeavyGravity[] = {
     PROC_NAME("MapAnimHeavyGravity"),
-    PROC_CALL_2(HeavyGravityMovCam),
+    PROC_YIELD,
     PROC_REPEAT(HeavyGravityExecSubAnim),
     PROC_WHILE(HeavyGravitySubAnimExists),
     PROC_END,
@@ -89,15 +84,11 @@ void CallMapAnim_HeavyGravity(ProcPtr parent, int x, int y)
 {
     struct HeavyGravityProc * proc;
 
-    if (x < -16 || x > DISPLAY_WIDTH)
-        return;
-
-    if (y < -16 || y > DISPLAY_HEIGHT)
-        return;
+    Debugf("x %d, y %d", x, y);
 
     proc = Proc_Start(ProcScr_MapAnimHeavyGravity, parent);
     proc->x = x;
-    proc->x = x;
+    proc->y = y;
     proc->timer = 0;
 
     Decompress(Img_HeavyGravity, OBJ_VRAM0 + GRAVITYFX_VRAMOFF);

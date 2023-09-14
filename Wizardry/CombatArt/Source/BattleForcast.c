@@ -53,7 +53,7 @@ STATIC_DECLAR void BKSELfxUpdateAoeSprits(struct BattleForecastProc * proc)
         int iy = gBattleTarget.unit.yPos * 16 - gBmSt.camera.y + Y_TILEs[i];
 
         if(ix > 0xF0 || iy > 0xA0)
-                continue;
+            continue;
 
         PutSprite(
             0,
