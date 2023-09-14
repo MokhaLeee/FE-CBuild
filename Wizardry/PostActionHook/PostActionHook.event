@@ -15,6 +15,7 @@
 ALIGN 4
 gPostActionFuncs:
     POIN PostActionBattleActorSelfHurt PostActionBattleTargetSelfHurt
+    POIN PostActionCombatArtEffect
     POIN PostActionAlertStance
     POIN PostActionPadFunc PostActionPadFunc PostActionPadFunc PostActionPadFunc
     WORD 0

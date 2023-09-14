@@ -19,4 +19,7 @@ ALIGN 4
 ALIGN 4
 #include "Gfx/Gfx.event"
 
+ALIGN 4
+#include "MapAnims/MapAnims.event"
+
 #endif

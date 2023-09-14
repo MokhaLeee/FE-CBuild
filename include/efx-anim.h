@@ -8,3 +8,6 @@ struct EfxAnimConf {
     u16 const * const * tsas;
     u16 const * const * pals;
 };
+
+extern const struct EfxAnimConf EfxSkillVanilla, EfxSkillMokha, EfxSkillAether;
+extern const struct EfxAnimConf EfxSkillCombat, EfxSkillDragonFang;

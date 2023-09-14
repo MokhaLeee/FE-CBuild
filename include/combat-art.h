@@ -98,3 +98,4 @@ u8 GetBestRangeBonusCid(struct Unit * unit, u16 item);
 const u8 * GetCombatArtIcon(const u8 cid);
 int WeaponRangeGetterCombatArt(int range, struct Unit * unit, u16 item);
 void PreBattleCalcCombatArt(struct BattleUnit * bu, struct BattleUnit * defender);
+void PostActionCombatArtEffect(ProcPtr parent);

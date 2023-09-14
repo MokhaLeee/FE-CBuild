@@ -6,9 +6,6 @@
 #include "constants/skills.h"
 #include "constants/efx-skills.h"
 
-extern const struct EfxAnimConf EfxSkillVanilla, EfxSkillMokha, EfxSkillAether;
-extern const struct EfxAnimConf EfxSkillCombat, EfxSkillDragonFang;
-
 struct EfxAnimConf const * const gEfxSkillAnims[0x100] = {
     [EFX_SKILL_DEFAULT] = &EfxSkillVanilla,
     [EFX_COMBAT_DEFAULT] = &EfxSkillCombat,
