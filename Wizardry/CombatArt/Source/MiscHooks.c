@@ -25,6 +25,24 @@ bool CanUnitPlayCombatArt(struct Unit * unit, u16 item)
     return false;
 }
 
+/* Support for menu */
+u8 GetBestRangeBonusCid(struct Unit * unit, u16 item)
+{
+    u8 ret = 0;
+    int i, wtype = GetItemType(item);
+    struct CombatArtList * list = GetCombatArtList(unit);
+
+    for (i = 0; i < list->amt; i++)
+    {
+        if (gCombatArtInfos[list->cid[i]].wtype != wtype)
+            continue;
+
+        if (gCombatArtInfos[list->cid[i]].range_bonus > gCombatArtInfos[ret].range_bonus)
+            ret = list->cid[i];
+    }
+    return ret;
+}
+
 /* Icon Getter */
 const u8 * GetCombatArtIcon(const u8 cid)
 {
@@ -117,7 +135,7 @@ STATIC_DECLAR int SelectTargetInfoOnEndVanilla(void)
 /* LynJump */
 int sub_8022F10(void)
 {
-    ResetCombatArtList();
+    /* SelectTarget on end */
     ResetCombatArtStatus();
     EndGreenText();
     return SelectTargetInfoOnEndVanilla();

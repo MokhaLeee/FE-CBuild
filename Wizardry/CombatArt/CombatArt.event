@@ -10,6 +10,10 @@
 #include "Source/EfxCombatArtAnim.lyn.event"
 #include "Source/BKSELfx.event"
 
+#include "CombatArtMenu/ActionMenu.lyn.event"
+#include "CombatArtMenu/ItemSelectMenu.lyn.event"
+#include "CombatArtMenu/SelectTarget.lyn.event"
+
 PUSH
     ORG $59E544
     POIN BattleForecast_InitRework

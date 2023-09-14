@@ -1,6 +1,8 @@
 #pragma once
 
 #include "global.h"
+#include "uimenu.h"
+
 #include "common-chax.h"
 #include "skill-system.h"
 
@@ -82,8 +84,17 @@ int GetEfxCombatArtSfx(const u8 cid);
 void RegisterEfxSkillCombatArt(int round, const u8 cid);
 u8 GetEfxCombatArt(int round);
 
+/* Menu */
+u8 CombatArtActionCommandUsability(const struct MenuItemDef * def, int number);
+u8 CombatArtActionCommandEffect(struct MenuProc * menu, struct MenuItemProc * menuItem);
+int CombatArtActionCommandHover(struct MenuProc * menu, struct MenuItemProc * menuItem);
+int CombatArtActionCommandUnhover(struct MenuProc * menu, struct MenuItemProc * menuItem);
+extern const struct MenuDef gCombatArtItemMenuDef;
+extern const struct SelectInfo gSelectInfoCombatArt;
+
 /* Misc */
 bool CanUnitPlayCombatArt(struct Unit * unit, u16 item);
+u8 GetBestRangeBonusCid(struct Unit * unit, u16 item);
 const u8 * GetCombatArtIcon(const u8 cid);
 int WeaponRangeGetterCombatArt(int range, struct Unit * unit, u16 item);
 void PreBattleCalcCombatArt(struct BattleUnit * bu, struct BattleUnit * defender);
