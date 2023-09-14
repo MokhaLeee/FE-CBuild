@@ -24,6 +24,7 @@ ALIGN 4
 #include "MoveLimitViewHack/MoveLimitViewHack.lyn.event"
 #include "HpBar/HpBar.event"
 #include "CombatArt/CombatArt.event"
+#include "UnitMenu/UnitMenu.event"
 
 #include "CommonLib/map.lyn.event"
 #include "CommonLib/math.lyn.event"
