@@ -1,8 +1,8 @@
 # ZH
 Glyph/Mokha补充字库/font.fontall.txt
+Glyph/fe8u/font.fontall.txt
 Glyph/fe7cn/font.fontall.txt
 Glyph/fe8cn/font.fontall.txt
-Glyph/fe8u/font.fontall.txt
 Glyph/GBA火纹中文字库/一级道具字体/font.fontall.txt
 Glyph/GBA火纹中文字库/一级对话字体/font.fontall.txt
 Glyph/标点符号/道具标点/font.fontall.txt
