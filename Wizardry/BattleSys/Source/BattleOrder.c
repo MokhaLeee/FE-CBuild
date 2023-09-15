@@ -78,27 +78,27 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * tar
             if ((GetUnitCurrentHp(real_target) * 2) > HpMaxGetter(real_target))
                 return false;
 
-        gBattleTemporaryFlag &= ~TMP_DOUBLE_LION_ORDER_FLAG;
+        gBattleTemporaryFlag.order_dobule_lion = false;
 
         if (SkillTester(real_actor, SID_DoubleLion))
         {
             if (GetUnitCurrentHp(real_actor) == HpMaxGetter(real_actor))
             {
-                gBattleGlobalFlag |= BATTLE_DOUBLE_LION_POST_ACTION_FLAG;
-                gBattleTemporaryFlag |= TMP_DOUBLE_LION_ORDER_FLAG;
+                gBattleActorGlobalFlag.skill_activated_double_lion = true;
+                gBattleTemporaryFlag.order_dobule_lion = true;
                 return true;
             }
         }
     }
     else if (&gBattleTarget == actor)
     {
-        gBattleTemporaryFlag &= ~TMP_QUICK_RIPOSTE_ORDER_FLAG;
+        gBattleTemporaryFlag.order_quick_riposte = false;
 
         if (SkillTester(real_actor, SID_QuickRiposte))
         {
             if ((GetUnitCurrentHp(real_target) * 2) > HpMaxGetter(real_target))
             {
-                gBattleTemporaryFlag |= TMP_QUICK_RIPOSTE_ORDER_FLAG;
+                gBattleTemporaryFlag.order_quick_riposte = true;
                 return true;
             }
         }
@@ -114,13 +114,13 @@ STATIC_DECLAR bool CheckDesperationOrder(void)
 {
     struct Unit * actor = GetUnit(gBattleActor.unit.index);
 
-    gBattleTemporaryFlag &= ~TMP_DESPERATION_ORDER_FLAG;
+    gBattleTemporaryFlag.order_desperation = false;
 
     if (SkillTester(actor, SID_Desperation))
     {
         if ((GetUnitCurrentHp(actor) * 2) < HpMaxGetter(actor))
         {
-            gBattleTemporaryFlag |= TMP_DESPERATION_ORDER_FLAG;
+            gBattleTemporaryFlag.order_desperation = true;
             return true;
         }
     }
@@ -131,13 +131,13 @@ STATIC_DECLAR bool CheckVantageOrder(void)
 {
     struct Unit * target = GetUnit(gBattleTarget.unit.index);
 
-    gBattleTemporaryFlag &= ~TMP_VANTAGE_ORDER_FLAG;
+    gBattleTemporaryFlag.order_vantage = false;
 
     if (SkillTester(target, SID_Vantage))
     {
         if ((GetUnitCurrentHp(target) * 2) < HpMaxGetter(target))
         {
-            gBattleTemporaryFlag |= TMP_VANTAGE_ORDER_FLAG;
+            gBattleTemporaryFlag.order_vantage = true;
             return true;
         }
     }
@@ -159,14 +159,14 @@ void BattleUnwind(void)
     gBattleHitIterator->info |= BATTLE_HIT_INFO_BEGIN;
 
     /**
-     * gBattleGlobalFlag should not clear in battle routine
+     * BattleGlobalFlag should not clear in battle routine
      * because combat art flag is configured in pre-combat.
      * It is cleared in:
      *  a). post action
      *  b). game init
      */
 
-    // gBattleGlobalFlag = 0;
+    // ClearBattleGlobalFlags();
 
     if (CheckDesperationOrder())
         round_mask |= UNWIND_DESPERA;
@@ -216,7 +216,7 @@ void BattleUnwind(void)
         /* Vantage */
         if (i == 0 && (round_mask & UNWIND_VANTAGE))
         {
-            if (gBattleTemporaryFlag & TMP_VANTAGE_ORDER_FLAG)
+            if (gBattleTemporaryFlag.order_vantage)
                 RegisterActorEfxSkill(GetBattleHitRound(old), SID_Vantage);
         }
 
@@ -225,7 +225,7 @@ void BattleUnwind(void)
         {
             if (config[0] == ACT_ATTACK && config[1] == ACT_ATTACK && config[2] == TAR_ATTACK)
             {
-                if (gBattleTemporaryFlag & TMP_DESPERATION_ORDER_FLAG)
+                if (gBattleTemporaryFlag.order_desperation)
                     RegisterActorEfxSkill(GetBattleHitRound(old), SID_Desperation);
             }
         }
@@ -233,14 +233,14 @@ void BattleUnwind(void)
         /* Target double attack */
         if (target_count > 1 && config[i] == TAR_ATTACK)
         {
-            if (gBattleTemporaryFlag & TMP_QUICK_RIPOSTE_ORDER_FLAG)
+            if (gBattleTemporaryFlag.order_quick_riposte)
                 RegisterActorEfxSkill(GetBattleHitRound(old), SID_QuickRiposte);
         }
 
         /* Actor double attack */
         if (actor_count > 1 && config[i] == ACT_ATTACK)
         {
-            if (gBattleTemporaryFlag & TMP_DOUBLE_LION_ORDER_FLAG)
+            if (gBattleTemporaryFlag.order_dobule_lion)
                 RegisterActorEfxSkill(GetBattleHitRound(old), SID_DoubleLion);
         }
 
@@ -267,7 +267,7 @@ bool BattleGenerateRoundHits(struct BattleUnit * attacker, struct BattleUnit * d
         gBattleHitIterator->attributes |= attrs;
 
         /* RuinedBladePlus */
-        if (i == 1 && (gBattleTemporaryFlag & TMP_RUINED_BLADE_PLUS_ORDER_FLAG))
+        if (i == 1 && gBattleTemporaryFlag.order_ruined_blade_plus)
             RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_RuinedBladePlus);
 
         if (BattleGenerateHit(attacker, defender))
@@ -308,14 +308,14 @@ int GetBattleUnitHitCount(struct BattleUnit * actor)
 {
     int result = 1;
 
-    gBattleTemporaryFlag &= ~TMP_RUINED_BLADE_PLUS_ORDER_FLAG;
+    gBattleTemporaryFlag.order_ruined_blade_plus = false;
 
     if (BattleCheckBraveEffect(actor))
         result = result + 1;
 
     if (SkillTester(&actor->unit, SID_RuinedBladePlus))
     {
-        gBattleTemporaryFlag |= TMP_RUINED_BLADE_PLUS_ORDER_FLAG;
+        gBattleTemporaryFlag.order_ruined_blade_plus = true;
         result = result + 1;
     }
     return result;

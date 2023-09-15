@@ -34,21 +34,21 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * tar
 int CalcBattleRealDamage(struct BattleUnit * attacker, struct BattleUnit * defender);
 
 /* Flags in .data section */
-enum BattleStaticFlags {
-    TMP_VANTAGE_ORDER_FLAG = 1 << 0x00,
-    TMP_DESPERATION_ORDER_FLAG = 1 << 0x01,
-    TMP_QUICK_RIPOSTE_ORDER_FLAG = 1 << 0x02,
-    TMP_DOUBLE_LION_ORDER_FLAG = 1 << 0x03,
-    TMP_RUINED_BLADE_PLUS_ORDER_FLAG = 1 << 0x04,
-};
+extern struct {
+    u32 order_vantage : 1;
+    u32 order_desperation : 1;
+    u32 order_quick_riposte : 1;
+    u32 order_dobule_lion : 1;
+    u32 order_ruined_blade_plus : 1;
+} gBattleTemporaryFlag;
 
-extern u32 gBattleTemporaryFlag;
+extern struct BattleGlobalFlags {
+    u32 skill_activated_double_lion : 1;
+    u32 skill_activated_ather : 1;
+    u32 skill_activated_astra : 1;
+} gBattleActorGlobalFlag, gBattleTargetGlobalFlag;
 
-enum BattleGlobalFlags {
-    BATTLE_DOUBLE_LION_POST_ACTION_FLAG = 1 << 0x00,
-};
-
-extern u32 gBattleGlobalFlag;
+void ClearBattleGlobalFlags(void);
 
 /* Port from decomp, need update c-lib later */
 struct BattleForecastProc {

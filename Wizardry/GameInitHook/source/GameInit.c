@@ -32,7 +32,7 @@ void StartGame(void)
     LogInit();
 #endif
 
-    gBattleGlobalFlag = 0;
+    ClearBattleGlobalFlags();
     ResetCombatArtStatus();
 
     /* External hooks */

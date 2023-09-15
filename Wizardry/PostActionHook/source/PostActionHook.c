@@ -58,7 +58,7 @@ STATIC_DECLAR void PostActionExecHooks(struct ProcPostAction * proc)
 post_action_done:
 
     /* Some other proc-free routine */
-    gBattleGlobalFlag = 0;
+    ClearBattleGlobalFlags();
     ResetCombatArtStatus();
     ResetSkillLists();
     ResetCombatArtList();
