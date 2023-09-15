@@ -40,11 +40,12 @@ extern struct {
     u32 order_quick_riposte : 1;
     u32 order_dobule_lion : 1;
     u32 order_ruined_blade_plus : 1;
+    u32 order_astra : 1;
+    u32 order_adept : 1;
 } gBattleTemporaryFlag;
 
 extern struct BattleGlobalFlags {
     u32 skill_activated_double_lion : 1;
-    u32 skill_activated_ather : 1;
     u32 skill_activated_astra : 1;
 } gBattleActorGlobalFlag, gBattleTargetGlobalFlag;
 

@@ -70,6 +70,13 @@ struct SkillAnimInfo {
     u16 sfx;
 };
 
+enum SkillAnimPriorityConfig {
+    EFX_PRIORITY_LOW = 0x1,
+    EFX_PRIORITY_NORMAL,
+    EFX_PRIORITY_HIGH,
+    EFX_PRIORITY_HIGHHIGH,
+};
+
 extern const struct SkillAnimInfo gSkillAnimInfos[0x100];
 
 int GetEfxSkillIndex(const u8 sid);

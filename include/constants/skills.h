@@ -69,6 +69,8 @@ enum SkillIndex {
     SID_QuickRiposte,
     SID_WaryFighter,
     SID_DoubleLion,
+    SID_Astra, /* +4 hits with half damage (speed * 2%) */
+    SID_Adept, /* +1 hit if full HP */
 
     /* Blow skills */
     SID_BlowDarting,

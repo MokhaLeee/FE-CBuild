@@ -19,37 +19,47 @@ FEB_IDENTIFIER(gEfxSkillAnims);
 const struct SkillAnimInfo gSkillAnimInfos[0x100] = {
     [SID_RuinedBlade] = {
         .aid = EFX_SKILL_DEFAULT,
-        .priority = 0x1,
+        .priority = EFX_PRIORITY_LOW,
         .sfx = 0x3D1,
     },
     [SID_RuinedBladePlus] = {
         .aid = EFX_SKILL_MOKHA,
-        .priority = 0x1,
+        .priority = EFX_PRIORITY_LOW,
         .sfx = 0x3D1,
     },
     [SID_Vantage] = {
         .aid = EFX_SKILL_DEFAULT,
-        .priority = 0x10,
+        .priority = EFX_PRIORITY_NORMAL,
         .sfx = 0x3D1,
     },
     [SID_Desperation] = {
         .aid = EFX_SKILL_DEFAULT,
-        .priority = 0x10,
+        .priority = EFX_PRIORITY_NORMAL,
         .sfx = 0x3D1,
     },
     [SID_QuickRiposte] = {
         .aid = EFX_SKILL_DEFAULT,
-        .priority = 0x10,
+        .priority = EFX_PRIORITY_NORMAL,
         .sfx = 0x3D1,
     },
     [SID_WaryFighter] = {
         .aid = EFX_SKILL_DEFAULT,
-        .priority = 0x10,
+        .priority = EFX_PRIORITY_NORMAL,
         .sfx = 0x3D1,
     },
     [SID_DoubleLion] = {
         .aid = EFX_SKILL_DEFAULT,
-        .priority = 0x10,
+        .priority = EFX_PRIORITY_NORMAL,
+        .sfx = 0x3D1,
+    },
+    [SID_Astra] = {
+        .aid = EFX_SKILL_DEFAULT,
+        .priority = EFX_PRIORITY_HIGH,
+        .sfx = 0x3D1,
+    },
+    [SID_Adept] = {
+        .aid = EFX_SKILL_DEFAULT,
+        .priority = EFX_PRIORITY_NORMAL,
         .sfx = 0x3D1,
     },
 };

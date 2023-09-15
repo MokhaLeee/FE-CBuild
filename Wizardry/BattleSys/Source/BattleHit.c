@@ -73,6 +73,11 @@ void BattleGenerateHitAttributes(struct BattleUnit * attacker, struct BattleUnit
         }
     }
 
+    /* SID_Astra may half the damage */
+    if (attacker == &gBattleActor)
+        if (SkillTester(unit, SID_Astra) && gBattleActorGlobalFlag.skill_activated_astra)
+            gBattleStats.damage = gBattleStats.damage / 2;
+
     /* Minus zero */
     if (gBattleStats.damage < 0)
         gBattleStats.damage = 0;

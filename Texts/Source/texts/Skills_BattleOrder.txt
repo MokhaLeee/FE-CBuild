@@ -22,3 +22,11 @@ if unit's HP >50%[X]
 Double Lion:[NL]
 If unit attacks with full HP,[NL]
 enjoys Brave effect and lose 1 HP[X]
+
+## MSG_SKILL_Astra
+Astra:[NL]
+Battle +4 hit but damage is halved[X]
+
+## MSG_SKILL_Adept
+Adept:[NL]
+Battle +1 hit if full HP[X]

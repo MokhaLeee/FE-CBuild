@@ -264,11 +264,18 @@ bool BattleGenerateRoundHits(struct BattleUnit * attacker, struct BattleUnit * d
 
     for (i = 0; i < count; ++i)
     {
+        int round = GetBattleHitRound(gBattleHitIterator);
         gBattleHitIterator->attributes |= attrs;
 
         /* RuinedBladePlus */
         if (i == 1 && gBattleTemporaryFlag.order_ruined_blade_plus)
-            RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_RuinedBladePlus);
+            RegisterActorEfxSkill(round, SID_RuinedBladePlus);
+
+        if (i == 1 && gBattleTemporaryFlag.order_adept)
+            RegisterActorEfxSkill(round, SID_Adept);
+
+        if (i == 2 && gBattleTemporaryFlag.order_astra)
+            RegisterActorEfxSkill(round, SID_Astra);
 
         if (BattleGenerateHit(attacker, defender))
             return true;
@@ -307,15 +314,28 @@ bool BattleGetFollowUpOrder(struct BattleUnit ** outAttacker, struct BattleUnit 
 int GetBattleUnitHitCount(struct BattleUnit * actor)
 {
     int result = 1;
+    struct Unit * unit = GetUnit(actor->unit.index);
 
     gBattleTemporaryFlag.order_ruined_blade_plus = false;
+    gBattleTemporaryFlag.order_astra = false;
 
     if (BattleCheckBraveEffect(actor))
         result = result + 1;
 
-    if (SkillTester(&actor->unit, SID_RuinedBladePlus))
+    if (SkillTester(unit, SID_RuinedBladePlus))
     {
         gBattleTemporaryFlag.order_ruined_blade_plus = true;
+        result = result + 1;
+    }
+    if (SkillTester(unit, SID_Astra) && BattleRoll2RN(GetUnitSpeed(unit) * 2, true))
+    {
+        gBattleTemporaryFlag.order_astra = true;
+        gBattleActorGlobalFlag.skill_activated_astra = true;
+        result = result + 4;
+    }
+    if (SkillTester(unit, SID_Adept) && unit->curHP == unit->maxHP)
+    {
+        gBattleTemporaryFlag.order_adept = true;
         result = result + 1;
     }
     return result;

@@ -231,6 +231,14 @@ const struct SkillInfo gSkillInfos[0x100] = {
         .msg  = MSG_SKILL_DoubleLion,
         .icon = GFX_SkillIcon_DoubleLion,
     },
+    [SID_Astra] = {
+        .msg  = MSG_SKILL_Astra,
+        .icon = GFX_SkillIcon_Astra,
+    },
+    [SID_Adept] = {
+        .msg  = MSG_SKILL_Adept,
+        .icon = GFX_SkillIcon_WIP,
+    },
     [SID_BlowDarting] = {
         .msg  = MSG_SKILL_BlowDarting,
         .icon = GFX_SkillIcon_BlowDarting,
