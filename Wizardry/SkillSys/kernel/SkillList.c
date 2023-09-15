@@ -43,9 +43,9 @@ struct SkillList * GetUnitSkillList(struct Unit * unit)
         Debugf("Generate skill for %#x, next %d", UNIT_CHAR_ID(unit), sSkillListNext);
 
         if (unit->index == gBattleActor.unit.index)
-            list = &sSkillLists[3];
+            list = &sSkillLists[2];
         else if (unit->index == gBattleTarget.unit.index)
-            list = &sSkillLists[4];
+            list = &sSkillLists[3];
         else
         {
             list = &sSkillLists[sSkillListNext];

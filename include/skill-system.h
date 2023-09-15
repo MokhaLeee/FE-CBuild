@@ -31,6 +31,7 @@ struct SkillList {
     s8 uid;
     u8 amt;
     u8 sid[SKILL_LIST_MAX_AMT];
+    u8 _pad_[0x20 - SKILL_LIST_MAX_AMT - 2];
 };
 
 struct SkillList * GetUnitSkillList(struct Unit * unit);
