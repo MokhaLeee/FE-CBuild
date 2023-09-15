@@ -2,11 +2,16 @@
 #define CONFIG_INSTALLED
 
 /* FreeSpace definitions */
-#define FreeSpace 0xB2A604
-#define FreeSpaceSize 0xD59FC
+#define FreeSpaceMagic 0xB2A504
+#define FreeSpaceMagicSize 0xC
+
+#define FreeSpace 0xB2A610
+#define FreeSpaceSize 0xD59F0
 
 #define FreeSpaceFont 0xEFB2E0
 #define FreeSpaceFontSize 0xE4D20
+
+#define FreeSpaceEvent 0x1000000
 
 /* If unset, CHAX may run faster without any debug info */
 #define CONFIG_USE_DEBUG 1

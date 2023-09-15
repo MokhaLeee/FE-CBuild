@@ -8,23 +8,30 @@
 
 ORG FreeSpace
 
-/* Include before tools helper */
-#include "Texts/Texts.event"
+    /* Include before tools helper */
+    #include "Texts/Texts.event"
 
-#include "Wizardry/Wizardry.event"
-#include "Contants/Contants.event"
-#include "GameData/GameData.event"
+    #include "Wizardry/Wizardry.event"
+    #include "Contants/Contants.event"
+    #include "GameData/GameData.event"
 
 MESSAGE Main size (CURRENTOFFSET - FreeSpace) max FreeSpaceSize
 ASSERT (FreeSpace + FreeSpaceSize - CURRENTOFFSET)
 
 /* Install Fonts */
 ORG FreeSpaceFont
-#include "Fonts/Fonts.event"
+
+    #include "Fonts/Fonts.event"
 
 MESSAGE Fonts size (CURRENTOFFSET - FreeSpaceFont) max FreeSpaceFontSize
 ASSERT (FreeSpaceFont + FreeSpaceFontSize - CURRENTOFFSET)
 
+ORG FreeSpaceMagic
+
+    /* "MOKHA BUILD CHAX" */
+    BYTE $4D $4F $4B $48 $41 $20 $42 $55 $49 $4C $44 $20 $43 $48 $41 $58
+
 /* Install Events */
-ORG $01000000
-#include "Events/Events.event"
+ORG FreeSpaceEvent
+
+    #include "Events/Events.event"
