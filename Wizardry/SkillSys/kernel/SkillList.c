@@ -19,16 +19,9 @@ struct SkillList * GetUnitSkillList(struct Unit * unit)
     int i;
     struct SkillList * list = NULL;
 
-    if (unit->index == sSkillLists[0].uid)
-    {
-        list = &sSkillLists[0];
-        sSkillListNext = 1;
-    }
-    else if (unit->index == sSkillLists[1].uid)
-    {
-        list = &sSkillLists[1];
-        sSkillListNext = 0;
-    }
+    for (i = 3; i >= 0; i--)
+        if (unit->index == sSkillLists[i].uid)
+            list = sSkillLists + i;
 
     if (!list)
     {
