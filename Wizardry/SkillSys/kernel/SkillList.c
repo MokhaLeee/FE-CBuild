@@ -6,7 +6,13 @@
 #include "skill-system.h"
 
 extern u32 sSkillListNext;
-extern struct SkillList sSkillLists[2];
+
+/**
+ * 0 & 1: generic usage
+ * 2: battle actor
+ * 3: battle target
+ */
+extern struct SkillList sSkillLists[4];
 
 struct SkillList * GetUnitSkillList(struct Unit * unit)
 {
@@ -27,12 +33,14 @@ struct SkillList * GetUnitSkillList(struct Unit * unit)
     if (!list)
     {
         if (unit->index == gBattleActor.unit.index)
-            sSkillListNext = 0;
+            list = &sSkillLists[3];
         else if (unit->index == gBattleTarget.unit.index)
-            sSkillListNext = 1;
-
-        list = &sSkillLists[sSkillListNext];
-        sSkillListNext = !sSkillListNext;
+            list = &sSkillLists[4];
+        else
+        {
+            list = &sSkillLists[sSkillListNext];
+            sSkillListNext = !sSkillListNext;
+        }
 
         list->uid = unit->index;
         list->amt = 0;

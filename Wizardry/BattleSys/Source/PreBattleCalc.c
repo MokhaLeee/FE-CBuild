@@ -1,6 +1,7 @@
 #include "global.h"
 #include "bmunit.h"
 #include "bmbattle.h"
+#include "bmphase.h"
 
 #include "common-chax.h"
 #include "skill-system.h"
@@ -312,6 +313,64 @@ STATIC_DECLAR void PreBattlePostCalcSkills(struct BattleUnit * attacker, struct 
     }
 }
 
+STATIC_DECLAR void PreBattlePostCalcRangeDebuffs(struct BattleUnit * attacker, struct BattleUnit * defender)
+{
+    const struct Vec2 vec_range1[4] = {
+                  { 0, -1},
+        {-1,  0},           { 1,  0},
+                  { 0,  1},
+    };
+
+    const struct Vec2 vec_range2[12] = {
+                            { 0, -2},
+                  {-1, -1}, { 0, -1}, { 1, -1},
+        {-2,  0}, {-1,  0},           { 1,  0}, { 2,  0},
+                  {-1,  1}, { 0,  1}, { 1,  1},
+                            { 0,  2}
+    };
+
+    u32 i, _x, _y;
+    struct Unit * unit;
+
+    for (i = 0; i < 4; i++)
+    {
+        _x = attacker->unit.xPos + vec_range1[i].x;
+        _y = attacker->unit.yPos + vec_range1[i].y;
+
+        unit = GetUnitAtPosition(_x, _y);
+        if (!unit)
+            continue;
+
+        if (AreUnitsAllied(attacker->unit.index, unit->index))
+        {
+            /* Buffs */
+        }
+        else
+        {
+            /* Debuff */
+        }
+    }
+
+    for (i = 0; i < 12; i++)
+    {
+        _x = attacker->unit.xPos + vec_range2[i].x;
+        _y = attacker->unit.yPos + vec_range2[i].y;
+
+        unit = GetUnitAtPosition(_x, _y);
+        if (!unit)
+            continue;
+
+        if (AreUnitsAllied(attacker->unit.index, unit->index))
+        {
+            /* Buffs */
+        }
+        else
+        {
+            /* Debuff */
+        }
+    }
+}
+
 STATIC_DECLAR void PreBattleCalcSilencerRate(struct BattleUnit * attacker, struct BattleUnit * defender)
 {
     if (UNIT_CATTRIBUTES(&defender->unit) & CA_BOSS)
@@ -327,6 +386,7 @@ STATIC_DECLAR const PreBattleCalcFunc PreBattleCalcFuncs[] = {
     PreBattleCalcSkills,
     PreBattleCalcDebuffs,
     PreBattleCalcCombatArt,
+    PreBattlePostCalcRangeDebuffs,
 
     PreBattlePostCalcSkills,
     PreBattleCalcEnd,
