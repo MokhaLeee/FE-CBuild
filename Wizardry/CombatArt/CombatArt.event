@@ -4,11 +4,11 @@
 #include "Source/CombatArtList.lyn.event"
 #include "Source/CombatArtStatus.lyn.event"
 #include "Source/SelectTarget.lyn.event"
-#include "Source/BattleForcast.lyn.event"
 #include "Source/PostActionHooks.lyn.event"
 #include "Source/MiscHooks.lyn.event"
 #include "Source/EfxCombatArtAnim.lyn.event"
-#include "Source/BKSELfx.event"
+
+#include "BKSELfx/BKSELfx.event"
 
 #include "CombatArtMenu/ActionMenu.lyn.event"
 #include "CombatArtMenu/ItemSelectMenu.lyn.event"

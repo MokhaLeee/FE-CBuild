@@ -1,3 +1,5 @@
+#include "Source/BattleForcast.lyn.event"
+
 // Standard draw
 ALIGN 4
 Img_BkselObjArrow:
