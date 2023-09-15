@@ -16,7 +16,7 @@ const struct MenuItemDef gUnitActionMenuItemsRework[] = {
 
     /* Combat Art */
     {
-        "戰技",
+        "　戰技",
         MSG_COMBATART_UM_NAME,
         MSG_COMBATART_UM_DESC,
         TEXT_COLOR_SYSTEM_WHITE,
