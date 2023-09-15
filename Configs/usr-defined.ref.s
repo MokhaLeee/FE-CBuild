@@ -28,8 +28,8 @@ SET_DATA sCombatArtStatus, gBattleTargetGlobalFlag + 8
 SET_DATA sCombatArtList, sCombatArtStatus + 0x10
 SET_DATA sSelectedComatArtIndex, sCombatArtList + 0x8
 SET_DATA sCombatArtBKSELfxTimer, sSelectedComatArtIndex + 0x1
-
-SET_DATA FreeRamSpaceTail, sCombatArtBKSELfxTimer + 0x2
+SET_DATA sHelpBoxType, sCombatArtBKSELfxTimer + 0x2
+SET_DATA FreeRamSpaceTail, sHelpBoxType + 0x4
 
 /* IconDisplay */
 SET_DATA gIconReSts, 0x02026A90 @ DrawnIconLookupTable

@@ -8,3 +8,6 @@ but null double attack.[X]
 
 ## MSG_COMBATART_BKSEL_NO_ARTS
 Without Art[X]
+
+## MSG_COMBATART_BKSEL_HB_Cost
+Cost[X]

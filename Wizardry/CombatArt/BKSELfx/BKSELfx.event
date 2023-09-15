@@ -1,4 +1,6 @@
 #include "Source/BattleForcast.lyn.event"
+#include "Source/BkselHelpBox.lyn.event"
+#include "Source/RText.lyn.event"
 
 // Standard draw
 ALIGN 4

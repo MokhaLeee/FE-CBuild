@@ -90,6 +90,10 @@ ProcPtr NewTargetSelectionRework(const struct SelectInfo * selectInfo);
 bool CombatArtSelectTargetExist(void);
 u8 GetCombatArtByTargetSelIndex(void);
 
+/* HelpBox related */
+void DrawHelpBoxCombatArtBkselLabels(void);
+void DrawHelpBoxCombatArtBkselStats(void);
+
 /* EfxSkill */
 extern const struct SkillAnimInfo gEfxCombatArtAnimInfos[0x100];
 
