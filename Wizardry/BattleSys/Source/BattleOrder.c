@@ -48,6 +48,7 @@ static const u8 BattleUnwindConfig[14][4] = {
 /* This function should also be called by BKSEL, so non static */
 bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * target)
 {
+    u8 cid;
     struct Unit * real_actor = GetUnit(gBattleActor.unit.index);
     struct Unit * real_target = GetUnit(gBattleTarget.unit.index);
 
@@ -61,11 +62,14 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * tar
         return false;
 
     /* Check combat-art */
-    if (&gBattleActor == actor)
+    cid = GetCombatArtInForce(&actor->unit);
+
+    if (&gBattleActor == actor && COMBART_VALID(cid))
     {
-        u8 cid = GetCombatArtInForce(&actor->unit);
-        if (COMBART_VALID(cid) && gCombatArtInfos[cid].double_attack)
+        if (gCombatArtInfos[cid].double_attack)
             return true;
+
+        return false;
     }
 
     if (&gBattleActor == actor)
