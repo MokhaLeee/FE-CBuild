@@ -28,11 +28,4 @@ PUSH
     // Give "No Combat Art" a longer length
     ORG $36DEA
     SHORT $210C
-
-    // Reset TSA
-    ORG $36B08
-    POIN Tsa_BkselDetailedScreen
-
-    ORG $368A0
-    POIN Tsa_BkselStandardScreen
 POP

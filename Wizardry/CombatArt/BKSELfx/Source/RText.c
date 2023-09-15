@@ -15,6 +15,9 @@ static DECL_INFO RText_E_0544, RText_E_055C, RText_E_0573, RText_E_055D, RText_E
 DECL_INFO * const RTextCombatBkselStandard = &RText_S_CombatArt;
 DECL_INFO * const RTextCombatBkselExtended = &RText_E_CombatArt;
 
+DECL_INFO * const RTextCombatBkselStandardNoArts = &RText_S_0544;
+DECL_INFO * const RTextCombatBkselExtendedNoArts = &RText_E_0544;
+
 STATIC_DECLAR void HbPopuplate_CombatArtBKSEL(struct HelpBoxProc * proc)
 {
     int cid = GetCombatArtInForce(gActiveUnit);

@@ -15,11 +15,15 @@
 extern s8 sCombatArtBKSELfxTimer;
 extern const u16 Img_BkselObjArrow[];
 extern const u16 Pal_BkselObjArrow[];
+extern u16 Tsa_BkselDetailedScreen[];
+extern u16 Tsa_BkselStandardScreen[];
 
 /* Port from decomp */
 void InitBattleForecastBattleStats(struct BattleForecastProc * proc);
 void DrawBattleForecastContentsStandard(struct BattleForecastProc * proc);
 void DrawBattleForecastContentsExtended(struct BattleForecastProc * proc);
+extern u16 gTSA_BattleForecastStandard[];
+extern u16 gTSA_BattleForecastExtended[];
 
 enum CombatArtBKSELfxConfig {
     // Real VRAM Offset to uncompress: OBJ_VRAM0 + OBJ_MOKHA_VRAMOFF
@@ -121,6 +125,22 @@ void BattleForecast_InitRework(struct BattleForecastProc * proc)
     }
 }
 
+STATIC_DECLAR void DrawBattleForecastContentsStandardRework(struct BattleForecastProc * proc)
+{
+    DrawBattleForecastContentsStandard(proc);
+
+    if (CanUnitPlayCombatArt(gActiveUnit, gActiveUnit->items[0]))
+        CallARM_FillTileRect(gUnknown_0200422C, Tsa_BkselStandardScreen, 0x1000);
+}
+
+STATIC_DECLAR void DrawBattleForecastContentsExtendedRework(struct BattleForecastProc * proc)
+{
+    DrawBattleForecastContentsExtended(proc);
+
+    if (CanUnitPlayCombatArt(gActiveUnit, gActiveUnit->items[0]))
+        CallARM_FillTileRect(gUnknown_0200422C, Tsa_BkselDetailedScreen, 0x1000);
+}
+
 STATIC_DECLAR void DrawBattleForecastContentsVanilla(struct BattleForecastProc * proc)
 {
     proc->unk_2C = 0;
@@ -129,12 +149,12 @@ STATIC_DECLAR void DrawBattleForecastContentsVanilla(struct BattleForecastProc *
     switch (proc->frameKind) {
     case 1:
         InitBattleForecastBattleStats(proc);
-        DrawBattleForecastContentsStandard(proc);
+        DrawBattleForecastContentsStandardRework(proc);
         break;
 
     case 2:
         InitBattleForecastBattleStats(proc);
-        DrawBattleForecastContentsExtended(proc);
+        DrawBattleForecastContentsExtendedRework(proc);
         break;
     }
 }

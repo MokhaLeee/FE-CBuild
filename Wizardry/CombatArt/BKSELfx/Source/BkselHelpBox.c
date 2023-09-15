@@ -12,7 +12,7 @@
 #include "constants/texts.h"
 
 extern DECL_INFO * const RTextCombatBkselStandard, * const RTextCombatBkselExtended;
-
+extern DECL_INFO * const RTextCombatBkselStandardNoArts, * const RTextCombatBkselExtendedNoArts;
 /* LynJump */
 int StartBattleForecastHelpBox(ProcPtr parent)
 {
@@ -34,11 +34,17 @@ int StartBattleForecastHelpBox(ProcPtr parent)
 
     switch (proc->frameKind) {
     case 1:
-        StartMovingHelpBoxExt(RTextCombatBkselStandard, parent, x, 0);
+        if (CanUnitPlayCombatArt(gActiveUnit, gActiveUnit->items[0]))
+            StartMovingHelpBoxExt(RTextCombatBkselStandard, parent, x, 0);
+        else
+            StartMovingHelpBoxExt(RTextCombatBkselStandardNoArts, parent, x, 0);
         break;
 
     case 2:
-        StartMovingHelpBoxExt(RTextCombatBkselExtended, parent, x, 0);
+        if (CanUnitPlayCombatArt(gActiveUnit, gActiveUnit->items[0]))
+            StartMovingHelpBoxExt(RTextCombatBkselExtended, parent, x, 0);
+        else
+            StartMovingHelpBoxExt(RTextCombatBkselExtendedNoArts, parent, x, 0);
         break;
     }
     return 0;
