@@ -10,7 +10,7 @@
 
 void StartStatusHealEffect(struct Unit * unit, ProcPtr proc);
 
-void PostActionAlertStance(ProcPtr parent)
+bool PostActionAlertStance(ProcPtr parent)
 {
     struct Unit * unit = gActiveUnit;
 
@@ -21,7 +21,7 @@ void PostActionAlertStance(ProcPtr parent)
             SetUnitStatus(unit, NEW_UNIT_STATUS_AVOID_PLUS);
             MU_EndAll();
             StartStatusHealEffect(unit, parent);
-            return;
+            return true;
         }
 
         if (SkillTester(unit, SID_AlertStance))
@@ -29,7 +29,8 @@ void PostActionAlertStance(ProcPtr parent)
             SetUnitStatus(unit, NEW_UNIT_STATUS_AVOID);
             MU_EndAll();
             StartStatusHealEffect(unit, parent);
-            return;
+            return true;
         }
     }
+    return false;
 }

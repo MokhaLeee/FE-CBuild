@@ -22,22 +22,7 @@ STATIC_DECLAR void ExecCombatArtEffectAnim(ProcPtr proc)
     u8 cid = GetCombatArtInForce(unit);
     const struct CombatArtInfo * info;
 
-    if (!COMBART_VALID(cid) || !IsCombatArtHitted() || !UNIT_IS_VALID(target))
-    {
-        Proc_End(proc);
-        return;
-    }
-
     info = gCombatArtInfos + cid;
-
-    if (!info->debuff_gravity &&
-        !info->debuff_def &&
-        !info->debuff_res &&
-        !info->debuff_weaken)
-    {
-        Proc_End(proc);
-        return;
-    }
 
     BmMapFill(gBmMapMovement, -1);
     BmMapFill(gBmMapRange, 0);
@@ -77,7 +62,24 @@ STATIC_DECLAR const struct ProcCmd ProcScr_CombatArtPostActionEffect[] = {
     PROC_END
 };
 
-void PostActionCombatArtEffect(ProcPtr parent)
+bool PostActionCombatArtEffect(ProcPtr parent)
 {
+    struct Unit * unit = gActiveUnit;
+    struct Unit * target = GetUnit(gActionData.targetIndex);
+    u8 cid = GetCombatArtInForce(unit);
+    const struct CombatArtInfo * info;
+
+    if (!COMBART_VALID(cid) || !IsCombatArtHitted() || !UNIT_IS_VALID(target))
+        return false;
+
+    info = gCombatArtInfos + cid;
+
+    if (!info->debuff_gravity &&
+        !info->debuff_def &&
+        !info->debuff_res &&
+        !info->debuff_weaken)
+        return false;
+
     Proc_StartBlocking(ProcScr_CombatArtPostActionEffect, parent);
+    return true;
 }

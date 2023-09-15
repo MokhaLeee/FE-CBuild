@@ -12,13 +12,13 @@ struct ProcPostAction {
     int index;
 };
 
-typedef void (* PostActionFunc_t)(struct ProcPostAction * proc);
+typedef bool (* PostActionFunc_t)(struct ProcPostAction * proc);
 extern const PostActionFunc_t gPostActionFuncs[];
 
-void PostActionExecHooks(struct ProcPostAction * proc);
-void PostActionExecVanilla(struct ProcPostAction * proc);
+STATIC_DECLAR void PostActionExecHooks(struct ProcPostAction * proc);
+STATIC_DECLAR void PostActionExecVanilla(struct ProcPostAction * proc);
 
-const struct ProcCmd ProcScr_PostActionHook[] = {
+STATIC_DECLAR const struct ProcCmd ProcScr_PostActionHook[] = {
     PROC_YIELD,
 
 PROC_LABEL(1),
@@ -39,35 +39,42 @@ void PostActionHook(ProcPtr parent)
     proc->index = 0;
 }
 
-void PostActionExecHooks(struct ProcPostAction * proc)
+STATIC_DECLAR void PostActionExecHooks(struct ProcPostAction * proc)
 {
-    PostActionFunc_t it = gPostActionFuncs[proc->index++];
+    int ret;
+    PostActionFunc_t it;
 
-    if (it)
+    while (1)
     {
-        it(proc);
-        return;
+        it = gPostActionFuncs[proc->index++];
+        if (!it)
+            goto post_action_done;
+
+        ret = it(proc);
+        if (ret != false)
+            return;
     }
+
+post_action_done:
 
     /* Some other proc-free routine */
     gBattleGlobalFlag = 0;
     ResetCombatArtStatus();
     ResetSkillLists();
-    ResetCombatArtStatus();
     ResetCombatArtList();
 
     Proc_Goto(proc, 2);
 }
 
-void PostActionExecVanilla(struct ProcPostAction * proc)
+STATIC_DECLAR void PostActionExecVanilla(struct ProcPostAction * proc)
 {
     /* Vanilla function at the hack entry */
     HandlePostActionTraps(proc);
 }
 
-void PostActionPadFunc(struct ProcPostAction * proc)
+bool PostActionPadFunc(struct ProcPostAction * proc)
 {
-    return;
+    return false;
 }
 
 /* CHAX hooks */

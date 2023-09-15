@@ -56,7 +56,7 @@ STATIC_DECLAR void PostActionSelfHurtCommon(ProcPtr parent, struct Unit * unit, 
     BeginUnitCritDamageAnim(unit, damage);
 }
 
-void PostActionBattleActorSelfHurt(ProcPtr parent)
+bool PostActionBattleActorSelfHurt(ProcPtr parent)
 {
     struct Unit * unit = gActiveUnit;
     int damage = 0;
@@ -76,13 +76,17 @@ void PostActionBattleActorSelfHurt(ProcPtr parent)
         break;
     };
 
+    if (damage == 0)
+        return false;
+
     if (damage >= GetUnitCurrentHp(unit))
         damage = GetUnitCurrentHp(unit) - 1;
 
     PostActionSelfHurtCommon(parent, unit, damage);
+    return true;
 }
 
-void PostActionBattleTargetSelfHurt(ProcPtr parent)
+bool PostActionBattleTargetSelfHurt(ProcPtr parent)
 {
     struct Unit * unit = GetUnit(gActionData.targetIndex);
 
@@ -100,8 +104,12 @@ void PostActionBattleTargetSelfHurt(ProcPtr parent)
         break;
     };
 
+    if (damage == 0)
+        return false;
+
     if (damage >= GetUnitCurrentHp(unit))
         damage = GetUnitCurrentHp(unit) - 1;
 
     PostActionSelfHurtCommon(parent, unit, damage);
+    return true;
 }
