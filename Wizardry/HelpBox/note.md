@@ -19,3 +19,7 @@ struct HelpBox8A01650Proc：
 
 需要用户 DIY 的策略
 info->populate 配置 msg 与 sHelpBoxType
+
+
+StartHelpBoxExt
+HelpBox_OnLoop

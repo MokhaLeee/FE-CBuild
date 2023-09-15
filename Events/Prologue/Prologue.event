@@ -17,7 +17,7 @@ POIN BeginningScene EndingScene
 PlayerUnits:
 UNIT Eirika Mage_F Eirika Level(10,Ally,False) [4, 3] 0x0 0x0 0x0 0x1 [GuidingRing, Fire, EnergyRing, ITEM_MAG_BOOSTER] NoAI
 UNIT Seth Paladin Eirika Level(1,Ally,False) [4, 4] 0x0 0x0 0x0 0x1 [SilverLance,SteelSword] NoAI
-UNIT Innes Sage Eirika Level(1,Ally,False) [5, 3] 0x0 0x0 0x0 0x1 [Fire,BraveBow] NoAI
+UNIT Innes Sniper Eirika Level(1,Ally,False) [5, 3] 0x0 0x0 0x0 0x1 [Fire,BraveBow] NoAI
 UNIT Lute DemonKing Eirika Level(1,Ally,False) [5, 4] 0x0 0x0 0x0 0x1 [SilverBow,DemonLight] NoAI
 UNIT
 

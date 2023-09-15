@@ -2,6 +2,7 @@
 #include "fontgrp.h"
 #include "statscreen.h"
 #include "soundwrapper.h"
+#include "bmitem.h"
 
 #include "common-chax.h"
 #include "help-box.h"
@@ -94,7 +95,7 @@ void sub_8089F58(struct HelpBox8A01650Proc * proc)
         if (NEW_HB_COMBAT_ART_BKSEL == sHelpBoxType)
         {
             DrawHelpBoxCombatArtBkselLabels();
-            proc->unk_64 = 1;
+            proc->unk_64 = 2;
         }
     }
 
@@ -132,4 +133,84 @@ void sub_8089FCC(struct HelpBox8A01650Proc * proc)
 
     SetTextFont(0);
     Proc_Break(proc);
+}
+
+/* LynJump */
+int sub_808A454(int item) {
+
+    if (sHelpBoxType == 0)
+    {
+        /* Vanilla */
+        if (item == (u16)-2)
+            return 3;
+
+        if (GetItemAttributes(item) & IA_LOCK_3)
+            return 0;
+
+        if (GetItemAttributes(item) & IA_WEAPON)
+            return 1;
+
+        if (GetItemAttributes(item) & IA_STAFF)
+            return 2;
+    }
+    else
+    {
+        /* Hack here */
+        if (NEW_HB_COMBAT_ART_BKSEL == sHelpBoxType)
+            return 2;
+    }
+
+    return 0;
+}
+
+/* LynJump */
+void ApplyHelpBoxContentSize(struct HelpBoxProc* proc, int width, int height)
+{
+    width = 0xF0 & (width + 15); // align to 16 pixel multiple
+
+    if (sHelpBoxType == 0)
+    {
+        /* Vanilla */
+        switch (GetHelpBoxItemInfoKind(proc->item)) {
+        case 1: // weapon
+            if (width < 0x90)
+                width = 0x90;
+
+            if (GetStringTextLen(GetStringFromIndex(proc->mid)) > 8)
+                height += 0x20;
+            else
+                height += 0x10;
+
+            break;
+        
+        case 2: // staff
+            if (width < 0x60)
+                width = 0x60;
+
+            height += 0x10;
+            break;
+
+        case 3: // save stuff
+            width = 0x80;
+            height += 0x10;
+            break;
+        }
+    }
+    else
+    {
+        /* Hack here */
+        if (NEW_HB_COMBAT_ART_BKSEL == sHelpBoxType)
+        {
+            if (width < 0x90)
+                width = 0x90;
+
+            if (GetStringTextLen(GetStringFromIndex(proc->mid)) > 8)
+                height += 0x20;
+            else
+                height += 0x10;
+        }
+    }
+
+    proc->wBoxFinal = width;
+    proc->hBoxFinal = height;
 }

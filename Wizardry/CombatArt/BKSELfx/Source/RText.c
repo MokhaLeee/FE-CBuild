@@ -12,19 +12,21 @@
 static DECL_INFO RText_S_0544, RText_S_0571, RText_S_055D, RText_S_055F, RText_S_CombatArt;
 static DECL_INFO RText_E_0544, RText_E_055C, RText_E_0573, RText_E_055D, RText_E_055F, RText_E_0572, RText_E_CombatArt;
 
-DECL_INFO * const RTextCombatBkselStandard = &RText_S_0544;
-DECL_INFO * const RTextCombatBkselExtended = &RText_E_0544;
+DECL_INFO * const RTextCombatBkselStandard = &RText_S_CombatArt;
+DECL_INFO * const RTextCombatBkselExtended = &RText_E_CombatArt;
 
 STATIC_DECLAR void HbPopuplate_CombatArtBKSEL(struct HelpBoxProc * proc)
 {
     int cid = GetCombatArtInForce(gActiveUnit);
-    proc->mid = gCombatArtInfos[cid].desc;
+    proc->mid = GetCombatArtDesc(cid);
 
+    gPlaySt.cfgTextSpeed = 2;
     sHelpBoxType = NEW_HB_COMBAT_ART_BKSEL;
 }
 
 STATIC_DECLAR void HbPopuplate_NotCombatArtBKSEL(struct HelpBoxProc * proc)
 {
+    gPlaySt.cfgTextSpeed = 1;
     sHelpBoxType = 0;
 }
 
@@ -72,7 +74,7 @@ static DECL_INFO RText_S_055F = {
 
 static DECL_INFO RText_S_CombatArt = {
     &RText_S_055F, &RText_S_0544, NULL, NULL,
-    56, 88, 0,
+    28, 104, 0,
     HbRedirect_CombatArtBKSEL, HbPopuplate_CombatArtBKSEL
 };
 
@@ -115,6 +117,6 @@ static DECL_INFO RText_E_0572 = {
 
 static DECL_INFO RText_E_CombatArt = {
     &RText_E_0572, &RText_E_0544, NULL, NULL,
-    56, 120, 0,
+    28, 136, 0,
     HbRedirect_CombatArtBKSEL, HbPopuplate_CombatArtBKSEL
 };
