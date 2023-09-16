@@ -2,10 +2,10 @@
 #define CONFIG_INSTALLED
 
 /* FreeSpace definitions */
-#define FreeSpaceMagic 0xB2A504
+#define FreeSpaceMagic 0xB2A604
 #define FreeSpaceMagicSize 0xC
 
-#define FreeSpace 0xB2A610
+#define FreeSpace 0xB2A624
 #define FreeSpaceSize 0xD59F0
 
 #define FreeSpaceFont 0xEFB2E0
