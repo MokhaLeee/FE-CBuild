@@ -315,27 +315,56 @@ STATIC_DECLAR void PreBattlePostCalcSkills(struct BattleUnit * attacker, struct 
 
 STATIC_DECLAR void PreBattlePostCalcRangeDebuffs(struct BattleUnit * attacker, struct BattleUnit * defender)
 {
-    const struct Vec2 vec_range1[4] = {
-                  { 0, -1},
-        {-1,  0},           { 1,  0},
-                  { 0,  1},
+    const struct Vec2 vec_range[24] = {
+                                      { 0, -3},
+                            {-1, -2}, { 0, -2}, { 1, -1},
+                  {-2, -1}, {-1, -1}, { 0, -1}, { 1, -1}, { 2, -1},
+        {-3,  0}, {-2,  0}, {-1,  0},           { 1,  0}, { 2,  0}, { 3,  0},
+                  {-2,  1}, {-1,  1}, { 0,  1}, { 1,  1}, { 2,  1},
+                            {-1,  2}, { 0,  2}, { 1,  2},
+                                      { 0,  3}
     };
 
-    const struct Vec2 vec_range2[12] = {
-                            { 0, -2},
-                  {-1, -1}, { 0, -1}, { 1, -1},
-        {-2,  0}, {-1,  0},           { 1,  0}, { 2,  0},
-                  {-1,  1}, { 0,  1}, { 1,  1},
-                            { 0,  2}
+    const u8 range1[24] = {
+                 0,
+              0, 0, 0,
+           0, 0, 1, 0, 0,
+        0, 0, 1,    1, 0, 0,
+           0, 0, 1, 0, 0,
+              0, 0, 0,
+                 0
+    };
+
+    const u8 range2[24] = {
+                 0,
+              0, 1, 0,
+           0, 1, 1, 1, 0,
+        0, 1, 1,    1, 1, 0,
+           0, 1, 1, 1, 0,
+              0, 1, 0,
+                 0
+    };
+
+    const u8 range3[24] = {
+                 1,
+              1, 1, 1,
+           1, 1, 1, 1, 1,
+        1, 1, 1,    1, 1, 1,
+           1, 1, 1, 1, 1,
+              1, 1, 1,
+                 1
     };
 
     u32 i, _x, _y;
     struct Unit * unit;
 
-    for (i = 0; i < 4; i++)
+    int allies_range3 = 0;
+    int enmies_range3 = 0;
+
+    for (i = 0; i < 24; i++)
     {
-        _x = attacker->unit.xPos + vec_range1[i].x;
-        _y = attacker->unit.yPos + vec_range1[i].y;
+        _x = attacker->unit.xPos + vec_range[i].x;
+        _y = attacker->unit.yPos + vec_range[i].y;
 
         unit = GetUnitAtPosition(_x, _y);
         if (!unit)
@@ -344,30 +373,60 @@ STATIC_DECLAR void PreBattlePostCalcRangeDebuffs(struct BattleUnit * attacker, s
         if (AreUnitsAllied(attacker->unit.index, unit->index))
         {
             /* Buffs */
+            if (SkillTester(unit, SID_Bond) && range3[i] == 1)
+            {
+                attacker->battleHitRate += 10;
+                attacker->battleAttack  += 2;
+            }
+
+            if (range3[i])
+                allies_range3++;
         }
         else
         {
             /* Debuff */
+            if (SkillTester(unit, SID_Anathema) && range3[i] == 1)
+            {
+                attacker->battleAvoidRate -= 10;
+                attacker->battleDodgeRate -= 10;
+            }
+
+            if (SkillTester(unit, SID_Intimidate) && range2[i] == 1)
+                attacker->battleAvoidRate -= 10;
+
+            if (SkillTester(unit, SID_Hex) && range1[i] == 1)
+                attacker->battleAvoidRate -= 10;
+
+            if (range3[i])
+                enmies_range3++;
         }
     }
 
-    for (i = 0; i < 12; i++)
+    if (allies_range3 != 0)
     {
-        _x = attacker->unit.xPos + vec_range2[i].x;
-        _y = attacker->unit.yPos + vec_range2[i].y;
-
-        unit = GetUnitAtPosition(_x, _y);
-        if (!unit)
-            continue;
-
-        if (AreUnitsAllied(attacker->unit.index, unit->index))
+        /* Todo */
+    }
+    else
+    {
+        if (SkillTester(unit, SID_Tantivy))
         {
-            /* Buffs */
+            attacker->battleHitRate += 10;
+            attacker->battleAvoidRate += 10;
         }
-        else
+
+        if (SkillTester(unit, SID_Focus))
         {
-            /* Debuff */
+            attacker->battleCritRate += 10;
         }
+    }
+
+    if (enmies_range3 != 0)
+    {
+        /* Todo */
+    }
+    else
+    {
+        /* Todo */
     }
 }
 

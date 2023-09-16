@@ -336,8 +336,32 @@ const struct SkillInfo gSkillInfos[0x100] = {
         .icon = GFX_SkillIcon_AlertStance,
     },
     [SID_AlertStancePlus] = {
-        .msg  = MSG_SKILL_AlertStancePlus,
+        .msg  = MSG_SKILL_Anathema,
         .icon = GFX_SkillIcon_AlertStancePlus,
+    },
+    [SID_Anathema] = {
+        .msg  = MSG_SKILL_AlertStancePlus,
+        .icon = GFX_SkillIcon_Anathema,
+    },
+    [SID_Bond] = {
+        .msg  = MSG_SKILL_Bond,
+        .icon = GFX_SkillIcon_Bond,
+    },
+    [SID_Intimidate] = {
+        .msg  = MSG_SKILL_Intimidate,
+        .icon = GFX_SkillIcon_Intimidate,
+    },
+    [SID_Tantivy] = {
+        .msg  = MSG_SKILL_Tantivy,
+        .icon = GFX_SkillIcon_Tantivy,
+    },
+    [SID_Focus] = {
+        .msg  = MSG_SKILL_Focus,
+        .icon = GFX_SkillIcon_Focus,
+    },
+    [SID_Hex] = {
+        .msg  = MSG_SKILL_Hex,
+        .icon = GFX_SkillIcon_Hex,
     },
     [SID_COMBAT_Grounder] = {
         .msg  = MSG_SKILL_COMBAT_Grounder,

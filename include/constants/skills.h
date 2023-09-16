@@ -105,6 +105,14 @@ enum SkillIndex {
     SID_AlertStance,
     SID_AlertStancePlus,
 
+    /* Range debuff */
+    SID_Anathema,
+    SID_Bond,
+    SID_Intimidate,
+    SID_Tantivy,
+    SID_Focus,
+    SID_Hex,
+
     /* Combat-art skill */
     SID_COMBAT_Grounder,
     SID_COMBAT_BaneOfMonsters,
