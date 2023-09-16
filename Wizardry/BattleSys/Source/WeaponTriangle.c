@@ -12,6 +12,24 @@ void PreBattleCalcWeaponTriangle(struct BattleUnit * attacker, struct BattleUnit
 {
     struct Unit * unit = GetUnit(attacker->unit.index);
     const struct WeaponTriangleConf * it;
+    const struct WeaponTriangleItemConf * item_conf = &gWeaponTriangleItemConf[ITEM_INDEX(attacker->weaponBefore)];
+
+    if (item_conf->wtype == defender->weaponType)
+    {
+        attacker->battleAttack       += item_conf->battle_status.atk;
+        attacker->battleDefense      += item_conf->battle_status.def;
+        attacker->battleHitRate      += item_conf->battle_status.hit;
+        attacker->battleAvoidRate    += item_conf->battle_status.avo;
+        attacker->battleCritRate     += item_conf->battle_status.crit;
+        attacker->battleDodgeRate    += item_conf->battle_status.dodge;
+        attacker->battleSilencerRate += item_conf->battle_status.silencer;
+
+        /* Just for UI */
+        attacker->wTriangleHitBonus = +1;
+        attacker->wTriangleDmgBonus = +1;
+        defender->wTriangleHitBonus = -1;
+        defender->wTriangleDmgBonus = -1;
+    }
 
     for (it = gpWeaponTriangleConfs; it->wtype_a != it->wtype_b; it++)
     {

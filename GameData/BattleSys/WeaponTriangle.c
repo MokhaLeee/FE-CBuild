@@ -1,5 +1,6 @@
 #include "global.h"
 #include "bmitem.h"
+#include "constants/items.h"
 
 #include "common-chax.h"
 #include "battle-system.h"
@@ -34,3 +35,27 @@ static const struct WeaponTriangleConf sWeaponTriangleConfs[] = {
 
 struct WeaponTriangleConf const * const gpWeaponTriangleConfs = sWeaponTriangleConfs;
 FEB_IDENTIFIER(gpWeaponTriangleConfs);
+
+const struct WeaponTriangleItemConf gWeaponTriangleItemConf[0x100] = {
+    [ITEM_SWORD_LANCEREAVER] = {
+        .wtype = ITYPE_LANCE,
+        .battle_status.atk = 3,
+        .battle_status.avo = 15,
+    },
+    [ITEM_LANCE_AXEREAVER] = {
+        .wtype = ITYPE_AXE,
+        .battle_status.atk = 3,
+        .battle_status.def = 3,
+    },
+    [ITEM_AXE_SWORDREAVER] = {
+        .wtype = ITYPE_SWORD,
+        .battle_status.atk = 3,
+        .battle_status.hit = 10,
+    },
+    [ITEM_AXE_SWORDSLAYER] = {
+        .wtype = ITYPE_SWORD,
+        .battle_status.atk = 3,
+        .battle_status.hit = 15,
+    }
+};
+FEB_IDENTIFIER(gWeaponTriangleItemConf);
