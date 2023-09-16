@@ -25,12 +25,12 @@ struct ProcEfxSkillRework {
 
 STATIC_DECLAR void EfxSkillOnInit(struct ProcEfxSkillRework * proc)
 {
-    NewEfxSkillBox(proc->anim, proc->sid);
+    NewEfxSkillBox(proc->anim, GetSkillDesc(proc->sid), GetSkillIcon(proc->sid));
 }
 
 STATIC_DECLAR void EfxCombatArtOnInit(struct ProcEfxSkillRework * proc)
 {
-    NewEfxCombatArtBox(proc->anim, proc->sid);
+    NewEfxSkillBox(proc->anim, GetCombatArtName(proc->sid), GetCombatArtIcon(proc->sid));
 }
 
 STATIC_DECLAR void EfxSkillMain(struct ProcEfxSkillRework * proc)

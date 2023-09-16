@@ -61,12 +61,18 @@ STATIC_DECLAR void EkrSkillOnEnd(struct ProcEkrSkill * proc)
 
 STATIC_DECLAR void NewEfxSkillForAttacker(struct ProcEkrSkill * proc)
 {
-    if (SKILL_VALID(proc->sid_atk))
+    if (COMBART_VALID(proc->cid))
+        NewEfxCombatArt(proc->anim, proc->cid);
+    else if (SKILL_VALID(proc->sid_atk))
         NewEfxSkill(proc->anim, proc->sid_atk);
 }
 
 STATIC_DECLAR void NewEfxSkillForDefener(struct ProcEkrSkill * proc)
 {
+    /* For now, far-far anim is not supported */
+    if (gEkrDistanceType == EKR_DISTANCE_FARFAR)
+        return;
+
     if (SKILL_VALID(proc->sid_def))
         NewEfxSkill(GetAnimAnotherSide(proc->anim), proc->sid_def);
 }

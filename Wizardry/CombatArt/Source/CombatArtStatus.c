@@ -1,6 +1,7 @@
 #include "global.h"
 #include "bmunit.h"
 #include "bmbattle.h"
+#include "agb_sram.h"
 
 #include "common-chax.h"
 #include "combat-art.h"
@@ -45,4 +46,32 @@ bool IsCombatArtHitted(void)
 void ResetCombatArtStatus(void)
 {
     CpuFastFill16(0, &sCombatArtStatus, sizeof(sCombatArtStatus));
+}
+
+void SaveCombatArtStatus(u8 * dst, const u32 size)
+{
+    if (size < sizeof(sCombatArtStatus))
+    {
+        Errorf("CombatArt status no enough spaces! %d", size);
+        return;
+    }
+
+    WriteAndVerifySramFast(
+        &sCombatArtStatus,
+        dst,
+        sizeof(sCombatArtStatus));
+}
+
+void LoadCombatArtStatus(u8 * src, const u32 size)
+{
+    if (size < sizeof(sCombatArtStatus))
+    {
+        Errorf("CombatArt status no enough spaces! %d", size);
+        return;
+    }
+
+    ReadSramFast(
+        src,
+        &sCombatArtStatus,
+        sizeof(sCombatArtStatus));
 }

@@ -60,6 +60,8 @@ void RegisterCombatArtStatus(struct Unit * unit, u8 cid);
 void RegisterCombatArtHitted(void);
 bool IsCombatArtHitted(void);
 void ResetCombatArtStatus(void);
+void SaveCombatArtStatus(u8 * dst, const u32 size);
+void LoadCombatArtStatus(u8 * src, const u32 size);
 
 /* Combat-art list */
 #define COMBART_LIST_MAX_AMT 6

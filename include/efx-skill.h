@@ -8,8 +8,7 @@ void NewEfxCombatArt(struct Anim * anim, int cid);
 bool EfxSkillExists(void);
 
 /* Efx skill box */
-void NewEfxSkillBox(struct Anim * anim, int sid);
-void NewEfxCombatArtBox(struct Anim * anim, int cid);
+void NewEfxSkillBox(struct Anim * anim, int msg, const u8 * icon);
 bool EfxSkillBoxExists(void);
 
 /* Utils */
