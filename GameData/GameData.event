@@ -26,4 +26,6 @@
 #include "CombatArt/CombatArtWeapon.lyn.event"
 #include "CombatArt/RomTables.lyn.event"
 
+#include "HiddenLevel/HiddenLevel.lyn.event"
+
 #endif

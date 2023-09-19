@@ -25,3 +25,12 @@ int GetUnitHiddenLevel(struct Unit * unit)
 
     return 0;
 }
+
+void UnitHiddenLevelPreLoad(struct Unit * unit)
+{
+    struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(unit));
+    if (!bwl)
+        return;
+
+    bwl->levelGain = gClassPreLoadHiddenLevel[UNIT_CLASS_ID(unit)];
+}

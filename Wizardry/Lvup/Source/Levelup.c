@@ -7,6 +7,7 @@
 #include "strmag.h"
 #include "lvup.h"
 #include "rn.h"
+#include "bwl.h"
 #include "skill-system.h"
 
 #ifdef CONFIG_LVUP_RAND_C
@@ -104,7 +105,8 @@ void CheckBattleUnitLevelUp(struct BattleUnit * bu)
                 bu->unit.exp = UNIT_EXP_DISABLED;
             }
         }
-        else if (bu->unit.level == UNIT_LEVEL_MAX_RE)
+        else if (UNIT_LEVEL_MAX_RE == bu->unit.level ||
+                 UNIT_RECORDED_LEVEL_MAX == (bu->unit.level + GetUnitHiddenLevel(&bu->unit)))
         {
             bu->expGain -= bu->unit.exp;
             bu->unit.exp = UNIT_EXP_DISABLED;
