@@ -29,7 +29,9 @@ SET_DATA sCombatArtList, sCombatArtStatus + 0x10
 SET_DATA sSelectedComatArtIndex, sCombatArtList + 0x8
 SET_DATA sCombatArtBKSELfxTimer, sSelectedComatArtIndex + 0x1
 SET_DATA sHelpBoxType, sCombatArtBKSELfxTimer + 0x3
-SET_DATA FreeRamSpaceTail, sHelpBoxType + 0x4
+SET_DATA sRandSeedsC, sHelpBoxType + 0x4
+SET_DATA sRandBackup, sRandSeedsC + 0x8
+SET_DATA FreeRamSpaceTail, sRandBackup + 0x8
 
 /* IconDisplay */
 SET_DATA gIconReSts, 0x02026A90 @ DrawnIconLookupTable

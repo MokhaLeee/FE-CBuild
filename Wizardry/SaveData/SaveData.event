@@ -80,8 +80,9 @@ gEmsSusChunks:
     /* 51 * 0x20 */
     EmsChunk($1E50, $0660, SaveUnitLearnedSkillLists, LoadUnitLearnedSkillLists)
     EmsChunk($24B0, 0x20, SaveCombatArtStatus, LoadCombatArtStatus)
+    EmsChunk($24D0, 0x08, SaveRandC, LoadRandC)
 
-    /* Free: $24F0 ~ $3258 */
+    /* Free: $24D8 ~ $3258 */
     EmsChunkEnd
 
 #endif

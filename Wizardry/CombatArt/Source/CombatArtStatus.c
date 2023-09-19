@@ -52,7 +52,7 @@ void SaveCombatArtStatus(u8 * dst, const u32 size)
 {
     if (size < sizeof(sCombatArtStatus))
     {
-        Errorf("CombatArt status no enough spaces! %d", size);
+        Errorf("ENOMEM: %#x", size);
         return;
     }
 
@@ -66,7 +66,7 @@ void LoadCombatArtStatus(u8 * src, const u32 size)
 {
     if (size < sizeof(sCombatArtStatus))
     {
-        Errorf("CombatArt status no enough spaces! %d", size);
+        Errorf("ENOMEM: %#x", size);
         return;
     }
 
