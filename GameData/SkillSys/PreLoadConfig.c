@@ -5,7 +5,7 @@
 #include "skill-system.h"
 #include "constants/skills.h"
 
-const struct SkillPreloadConf gSkillPreloadPData[0x100] = {
+const struct SkillPreloadPConf gSkillPreloadPData[0x100] = {
     [CHARACTER_EIRIKA] = {
         .skills = {
             [0] = SID_SpdBonus,
@@ -16,7 +16,7 @@ const struct SkillPreloadConf gSkillPreloadPData[0x100] = {
 
 FEB_IDENTIFIER(gSkillPData);
 
-const struct SkillPreloadConf gSkillPreloadJData[0x100] = {
+const struct SkillPreloadJConf gSkillPreloadJData[0x100] = {
     [CLASS_ASSASSIN] = {
         .skills = {
             [0]  = SID_Lethality,

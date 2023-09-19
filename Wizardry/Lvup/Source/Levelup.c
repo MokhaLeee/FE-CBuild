@@ -7,6 +7,7 @@
 #include "strmag.h"
 #include "lvup.h"
 #include "rn.h"
+#include "skill-system.h"
 
 #ifdef CONFIG_LVUP_RAND_C
 STATIC_DECLAR int GetStatIncreaseRandC(int growth, int amount)
@@ -109,6 +110,7 @@ void CheckBattleUnitLevelUp(struct BattleUnit * bu)
             bu->unit.exp = UNIT_EXP_DISABLED;
         }
 
+        TryAddSkillLvup(GetUnitFromCharIdAndFaction(UNIT_CHAR_ID(&bu->unit), FACTION_BLUE), bu->unit.level);
         UnitLvupCore(bu, bonus);
     }
 }

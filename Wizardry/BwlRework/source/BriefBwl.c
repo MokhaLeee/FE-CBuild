@@ -197,28 +197,3 @@ void DisplayBwl(void)
 {
     return;
 }
-
-void NewBwlRecordHiddenLevel(struct Unit * unit)
-{
-    int level;
-    struct NewBwl * bwl;
-    bwl = GetNewBwl(UNIT_CHAR_ID(unit));
-    if (!bwl)
-        return;
-
-    level = unit->level + bwl->levelGain;
-    if (level > 127)
-        level = 127;
-
-    bwl->levelGain = 127;
-}
-
-int GetUnitRecorededLevel(struct Unit * unit)
-{
-    int level = unit->level;
-    struct NewBwl * bwl = GetNewBwl(UNIT_CHAR_ID(unit));
-    if (bwl)
-        level += bwl->levelGain;
-
-    return level;
-}

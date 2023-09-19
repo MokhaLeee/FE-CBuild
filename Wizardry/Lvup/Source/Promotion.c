@@ -6,6 +6,7 @@
 #include "strmag.h"
 #include "lvup.h"
 #include "bwl.h"
+#include "skill-system.h"
 
 STATIC_DECLAR void ApplyUnitPromotionVanilla(struct Unit * unit, u8 classId)
 {
@@ -98,6 +99,7 @@ void ApplyUnitPromotion(struct Unit * unit, u8 jid)
 {
     NewBwlRecordHiddenLevel(unit);
     ApplyUnitPromotionVanilla(unit, jid);
+    TryAddSkillPromotion(unit, jid);
 
     /* Hooks */
     UNIT_MAG(unit) += GetClassChgMagicBonus(jid);

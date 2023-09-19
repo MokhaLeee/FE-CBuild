@@ -42,4 +42,4 @@ static inline struct NewBwl * GetNewBwl(u8 pid)
 }
 
 void NewBwlRecordHiddenLevel(struct Unit * unit);
-int GetUnitRecorededLevel(struct Unit * unit);
+int GetUnitHiddenLevel(struct Unit * unit);

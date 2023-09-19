@@ -55,13 +55,12 @@ void ResetPrepEquipSkillList(void);
 struct PrepEquipSkillList * GetPrepEquipSkillList(struct Unit * unit);
 
 /* Game data */
-#define SKILL_ROM_DATA_AMT 5
-struct SkillPreloadConf {
-    /* Unit can learn 5 skills on lv0/5/10/15/20 */
-    u8 skills[SKILL_ROM_DATA_AMT * (UNIT_RECORDED_LEVEL_MAX / 5 + 1)];
-};
+#define SKILL_ROM_DATA_AMT 5 /* Unit can learn 5 skills on lv0/5/10/15/20 */
+struct SkillPreloadJConf { u8 skills[SKILL_ROM_DATA_AMT * (UNIT_LEVEL_MAX_RE / 5 + 1)];};
+struct SkillPreloadPConf { u8 skills[SKILL_ROM_DATA_AMT * (UNIT_RECORDED_LEVEL_MAX / 5 + 1)];};
 
-extern const struct SkillPreloadConf gSkillPreloadPData[0x100], gSkillPreloadJData[0x100];
+extern const struct SkillPreloadJConf gSkillPreloadJData[0x100];
+extern const struct SkillPreloadPConf gSkillPreloadPData[0x100];
 
 extern const u8 gConstSkillPTable[0x100];
 extern const u8 gConstSkillJTable[0x100];
@@ -101,6 +100,8 @@ void UnitAutoLoadSkills(struct Unit * unit);
 bool CanRemoveSkill(struct Unit * unit, const u8 sid);
 int RemoveSkill(struct Unit * unit, const u8 sid);
 int AddSkill(struct Unit * unit, const u8 sid);
+void TryAddSkillLvup(struct Unit * unit, int level);
+void TryAddSkillPromotion(struct Unit * unit, int jid);
 
 /* MiscSkillEffects */
 u8 DanceCommandUsabilityRework(const struct MenuItemDef * def, int number);

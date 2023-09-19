@@ -3,5 +3,6 @@
 
 #include "source/BriefBwl.lyn.event"
 #include "source/BwlSupport.lyn.event"
+#include "source/BwlHiddenLevel.lyn.event"
 
 #endif
