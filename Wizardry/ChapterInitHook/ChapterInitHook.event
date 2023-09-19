@@ -1,0 +1,11 @@
+#ifndef CHAPTER_INIT_HOOK_INSTALLED
+#define CHAPTER_INIT_HOOK_INSTALLED
+
+PUSH
+    ORG $59A224
+    POIN ChapterInitHook
+POP
+
+#include "Source/ChapterInit.lyn.event"
+
+#endif /* CHAPTER_INIT_HOOK_INSTALLED */

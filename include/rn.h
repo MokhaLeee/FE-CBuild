@@ -1,5 +1,7 @@
 #pragma once
 
+#include "global.h"
+
 void InitRandC(void);
 bool Roll1RandC(int threshold, int amount);
 bool Roll2RandC(int threshold, int amount);
