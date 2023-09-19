@@ -119,6 +119,13 @@ enum SkillIndex {
     SID_ShadePlus,  /* Avoid to be a target */
     SID_Provoke,    /* More likely to be attacked */
 
+    /* Menu skills */
+    SID_Dance,
+    SID_LockTouch,
+    SID_Summon,
+    SID_Supply,
+    SID_Steal,
+
     /* Combat-art skill */
     SID_COMBAT_Grounder,
     SID_COMBAT_BaneOfMonsters,

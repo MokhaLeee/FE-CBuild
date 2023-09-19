@@ -379,6 +379,26 @@ const struct SkillInfo gSkillInfos[0x100] = {
         .msg  = MSG_SKILL_Provoke,
         .icon = GFX_SkillIcon_Provoke,
     },
+    [SID_Dance] = {
+        .msg  = MSG_SKILL_Dance,
+        .icon = GFX_SkillIcon_Dance,
+    },
+    [SID_LockTouch] = {
+        .msg  = MSG_SKILL_LockTouch,
+        .icon = GFX_SkillIcon_LockTouch,
+    },
+    [SID_Summon] = {
+        .msg  = MSG_SKILL_Summon,
+        .icon = GFX_SkillIcon_Summon,
+    },
+    [SID_Supply] = {
+        .msg  = MSG_SKILL_Supply,
+        .icon = GFX_SkillIcon_Supply,
+    },
+    [SID_Steal] = {
+        .msg  = MSG_SKILL_Steal,
+        .icon = GFX_SkillIcon_Steal,
+    },
     [SID_COMBAT_Grounder] = {
         .msg  = MSG_SKILL_COMBAT_Grounder,
         .icon = GFX_CombatArtIcon_SwordArtAtk,

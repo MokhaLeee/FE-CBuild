@@ -2,6 +2,7 @@
 
 #include "global.h"
 #include "bmunit.h"
+#include "uimenu.h"
 
 #include "common-chax.h"
 #include "efx-anim.h"
@@ -100,3 +101,10 @@ void UnitAutoLoadSkills(struct Unit * unit);
 bool CanRemoveSkill(struct Unit * unit, const u8 sid);
 int RemoveSkill(struct Unit * unit, const u8 sid);
 int AddSkill(struct Unit * unit, const u8 sid);
+
+/* MiscSkillEffects */
+u8 DanceCommandUsabilityRework(const struct MenuItemDef * def, int number);
+u8 StealCommandUsabilityRework(const struct MenuItemDef * def, int number);
+u8 SupplyUsabilityRework(const struct MenuItemDef * def, int number);
+u8 PickCommandUsabilityRework(const struct MenuItemDef * def, int number);
+u8 SummonCommandUsabilityRework(const struct MenuItemDef * def, int number);
