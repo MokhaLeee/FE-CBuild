@@ -347,6 +347,10 @@ const struct SkillInfo gSkillInfos[0x100] = {
         .msg  = MSG_SKILL_Bond,
         .icon = GFX_SkillIcon_Bond,
     },
+    [SID_Charm] = {
+        .msg  = MSG_SKILL_Charm,
+        .icon = GFX_SkillIcon_Charm,
+    },
     [SID_Intimidate] = {
         .msg  = MSG_SKILL_Intimidate,
         .icon = GFX_SkillIcon_Intimidate,

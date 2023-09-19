@@ -379,6 +379,9 @@ STATIC_DECLAR void PreBattlePostCalcRangeDebuffs(struct BattleUnit * attacker, s
                 attacker->battleAttack  += 2;
             }
 
+            if (SkillTester(unit, SID_Charm) && range2[i] == 1)
+                attacker->battleAttack  += 3;
+
             if (range3[i])
                 allies_range3++;
         }

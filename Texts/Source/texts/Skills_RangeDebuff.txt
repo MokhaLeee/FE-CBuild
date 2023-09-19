@@ -27,3 +27,7 @@ no allies within 3 tiles.[X]
 Hex:[NL]
 -15 avoid to all[NL]
 adjacent enemies.[X]
+
+## MSG_SKILL_Charm
+Charm: Allies within 2[N]
+tiles deal +3 attack.[X]

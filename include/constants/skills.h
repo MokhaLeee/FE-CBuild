@@ -108,6 +108,7 @@ enum SkillIndex {
     /* Range debuff */
     SID_Anathema,
     SID_Bond,
+    SID_Charm,
     SID_Intimidate,
     SID_Tantivy,
     SID_Focus,
