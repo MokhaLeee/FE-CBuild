@@ -29,5 +29,5 @@ Hex:[NL]
 adjacent enemies.[X]
 
 ## MSG_SKILL_Charm
-Charm: Allies within 2[N]
+Charm: Allies within 2[NL]
 tiles deal +3 attack.[X]

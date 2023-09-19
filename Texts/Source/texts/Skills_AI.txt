@@ -7,5 +7,5 @@ Shade+: Enemies won't[NL]
 target this unit.[X]
 
 ## MSG_SKILL_Provoke
-Provoke: Enemies are more[N]
+Provoke: Enemies are more[NL]
 likely to target this unit.[X]

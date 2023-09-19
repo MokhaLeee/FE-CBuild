@@ -17,5 +17,5 @@ Supply:[NL]
 Unit has Supply[X]
 
 ## MSG_SKILL_Steal
-Steal:[NL]]
+Steal:[NL]
 Unit can steal items[X]
