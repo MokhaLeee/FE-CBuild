@@ -14,13 +14,12 @@
 #include "bmidoten.h"
 #include "face.h"
 #include "bksel.h"
+#include "menu_def.h"
 #include "playerphase.h"
 
 #include "common-chax.h"
 #include "weapon-range.h"
 #include "combat-art.h"
-
-extern const struct SelectInfo gSelectInfo_0859D3F8;
 
 extern s8 sSelectedComatArtIndex;
 
@@ -285,7 +284,7 @@ u8 UnknownMenu_Selected(struct MenuProc * menu, struct MenuItemProc * menuItem)
 
     ClearBg0Bg1();
     MakeTargetListForWeapon(gActiveUnit, gActiveUnit->items[0]);
-    NewTargetSelectionRework(&gSelectInfo_0859D3F8);
+    NewTargetSelectionRework(&gSelectInfo_Attack);
     return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_ENDFACE;
 }
 

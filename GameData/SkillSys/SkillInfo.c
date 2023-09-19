@@ -363,6 +363,18 @@ const struct SkillInfo gSkillInfos[0x100] = {
         .msg  = MSG_SKILL_Hex,
         .icon = GFX_SkillIcon_Hex,
     },
+    [SID_Shade] = {
+        .msg  = MSG_SKILL_Shade,
+        .icon = GFX_SkillIcon_Shade,
+    },
+    [SID_ShadePlus] = {
+        .msg  = MSG_SKILL_ShadePlus,
+        .icon = GFX_SkillIcon_ShadePlus,
+    },
+    [SID_Provoke] = {
+        .msg  = MSG_SKILL_Provoke,
+        .icon = GFX_SkillIcon_Provoke,
+    },
     [SID_COMBAT_Grounder] = {
         .msg  = MSG_SKILL_COMBAT_Grounder,
         .icon = GFX_CombatArtIcon_SwordArtAtk,

@@ -8,6 +8,7 @@
 #include "event.h"
 #include "icon.h"
 #include "face.h"
+#include "bmmenu.h"
 #include "fontgrp.h"
 #include "hardware.h"
 #include "constants/classes.h"
@@ -15,19 +16,14 @@
 #include "common-chax.h"
 #include "combat-art.h"
 
-int sub_8022F10(void);
-int sub_8022E8C(ProcPtr proc, struct SelectTarget * target);
-u8 sub_8022DF0(ProcPtr proc, struct SelectTarget * target);
-void sub_8022E38(void);
-
 STATIC_DECLAR u8 CombatSelectTargetOnCancel(ProcPtr proc, struct SelectTarget * target);
 STATIC_DECLAR const struct ProcCmd ProcScr_PostCombatArtSelectTarget[];
 
 const struct SelectInfo gSelectInfoCombatArt = {
     .onInit = (void *)NewBattleForecast,
-    .onEnd = (void *)sub_8022F10,
-    .onSwitchIn = (void *)sub_8022E8C,
-    .onSelect = sub_8022DF0,
+    .onEnd = (void *)AttackMapSelect_End,
+    .onSwitchIn = AttackMapSelect_SwitchIn,
+    .onSelect = AttackMapSelect_Select,
     .onCancel = CombatSelectTargetOnCancel,
     .onHelp = (void *)StartBattleForecastHelpBox,
 };

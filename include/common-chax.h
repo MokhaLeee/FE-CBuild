@@ -13,6 +13,9 @@
 /* Add a magic for FEB PATCH to auto find the pointer */
 #define FEB_IDENTIFIER(PTR) const char FEB_##PTR##_Identifier[] = #PTR
 
+/* Add an identifier so that we can figure out where we hacked inside C */
+#define CHAX_IDENTIFIER 1
+
 /* Set static declaration as a macro for debug purpose */
 #if CONFIG_USE_DEBUG
 #define STATIC_DECLAR

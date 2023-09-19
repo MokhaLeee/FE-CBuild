@@ -113,6 +113,11 @@ enum SkillIndex {
     SID_Focus,
     SID_Hex,
 
+    /* AI skills */
+    SID_Shade,      /* Less likely to be attacked */
+    SID_ShadePlus,  /* Avoid to be a target */
+    SID_Provoke,    /* More likely to be attacked */
+
     /* Combat-art skill */
     SID_COMBAT_Grounder,
     SID_COMBAT_BaneOfMonsters,
