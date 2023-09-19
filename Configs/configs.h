@@ -19,7 +19,10 @@
 /* Icon sheet amount */
 #define ICON_SHEET_AMT 4
 
-/* If uncomment, CHAX may not verify on FESKILL magic work in SRAM */
+/* If comment, CHAX may not verify on FESKILL magic work in SRAM */
 #define CONFIG_VERIFY_SKILLSYS_SRAM
+
+/* If uncomment, unit may judge on stat-increase by 3DS style random system */
+#define CONFIG_LVUP_RAND_C
 
 #endif /* CONFIG_INSTALLED */
