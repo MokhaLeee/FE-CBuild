@@ -1,7 +1,2 @@
-#ifndef AI_STAFF_INSTALLED
-#define AI_STAFF_INSTALLED
-
 #include "Source/AiSkills.lyn.event"
 #include "Source/LynJump.event"
-
-#endif

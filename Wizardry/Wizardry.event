@@ -26,7 +26,6 @@ ALIGN 4
 #include "CombatArt/CombatArt.event"
 #include "UnitMenu/UnitMenu.event"
 #include "HelpBox/HelpBox.event"
-#include "AI/AI.event"
 #include "RN/RandNumberC.lyn.event"
 #include "ChapterInitHook/ChapterInitHook.event"
 
