@@ -107,12 +107,28 @@ void PreBattleCalcCombatArt(struct BattleUnit * bu, struct BattleUnit * defender
     if (info->external_calc)
     {
         switch (cid) {
+        case CID_Soulblade:
+            bu->battleAttack += GetUnitResistance(unit);
+            break;
+
+        case CID_FinesseBlade:
+            bu->battleAttack += GetUnitSkill(unit);
+            break;
+
         case CID_FrozenLance:
             bu->battleAttack += GetUnitSkill(unit);
             break;
 
+        case CID_LanceJab:
+            bu->battleAttack += GetUnitSpeed(unit);
+            break;
+
         case CID_Vengeance:
             bu->battleAttack += GetUnitMaxHp(unit) - GetUnitCurrentHp(unit);
+            break;
+
+        case CID_ArmoredStrike:
+            bu->battleAttack += GetUnitDefense(unit);
             break;
 
         case CID_LightningAxe:

@@ -3,17 +3,17 @@
 
 enum CombatArtIndex {
     /* Sword arts */
-    CID_WrathStrike,
+    CID_WrathStrike,        /* √ */
     CID_Grounder,           /* √ */
-    CID_Soulblade,
+    CID_Soulblade,          /* √ */
     CID_BaneOfMonsters,     /* √ */
-    CID_Sunder,
+    CID_Sunder,             /* √ */
     CID_Hexblade,           /* √ */
-    CID_HazeSlice,
-    CID_FinesseBlade,
+    CID_HazeSlice,          /* √ */
+    CID_FinesseBlade,       /* √ */
     CID_Windsweep,
     CID_SwordDance,
-    CID_Assassinate,
+    CID_Assassinate,        /* √ */
     CID_Subdue,
     CID_FoudroyantStrike,   /* √ */
     CID_SublimeHeaven,
@@ -22,28 +22,28 @@ enum CombatArtIndex {
 
     /* Lance arts */
     CID_TempestLance,       /* √ */
-    CID_Knightkneeler,
-    CID_ShatterSlash,
-    CID_MonsterPiercer,
+    CID_Knightkneeler,      /* √ */
+    CID_ShatterSlash,       /* √ */
+    CID_MonsterPiercer,     /* √ */
     CID_HitAndRun,
     CID_SwiftStrikes,       /* √ */
     CID_FrozenLance,        /* √ */
     CID_GlowingEmber,
     CID_Vengeance,          /* √ */
-    CID_LanceJab,
+    CID_LanceJab,           /* √ */
 
     /* Axe arts */
-    CID_Smash,
+    CID_Smash,              /* √ */
     CID_HelmSplitter,       /* √ */
-    CID_MonsterBreaker,
-    CID_FocusedStrike,
-    CID_WildAbandon,
-    CID_Spike,
-    CID_DiamondAxe,
+    CID_MonsterBreaker,     /* √ */
+    CID_FocusedStrike,      /* √ */
+    CID_WildAbandon,        /* √ */
+    CID_Spike,              /* √ */
+    CID_DiamondAxe,         /* √ */
     CID_LightningAxe,       /* √ */
-    CID_ArmoredStrike,
+    CID_ArmoredStrike,      /* √ */
     CID_WarMasterStrike,    /* √ */
-    CID_FlickeringFlower,
+    CID_FlickeringFlower,   /* √ */
 
     /* Bow arts */
     CID_CurvedShot,         /* √ */
