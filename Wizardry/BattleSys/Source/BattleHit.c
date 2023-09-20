@@ -185,6 +185,7 @@ void BattleGenerateHitEffects(struct BattleUnit * attacker, struct BattleUnit * 
 
     if (!(gBattleHitIterator->attributes & BATTLE_HIT_ATTR_MISS) || attacker->weaponAttributes & (IA_UNCOUNTERABLE | IA_MAGIC))
     {
+#ifdef CHAX_IDENTIFIER
         /* Check on combat-art */
         int cost = 1;
         if (attacker == &gBattleActor)
@@ -202,7 +203,9 @@ void BattleGenerateHitEffects(struct BattleUnit * attacker, struct BattleUnit * 
             if (!weapon)
                 break;
         }
-
+#else
+        attacker->weapon = GetItemAfterUse(attacker->weapon);
+#endif
         if (!attacker->weapon)
             attacker->weaponBroke = TRUE;
     }
