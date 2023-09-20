@@ -7,11 +7,11 @@ Canto:[NL]
 Unit can move again after combat[X]
 
 ## MSG_SKILL_AlertStance
-Alert Stance:[NL]
+A-Stance:[NL]
 If unit takes no action[NL]
 except Wait, grants Avo +15%[X]
 
 ## MSG_SKILL_AlertStancePlus
-AlertStance+:[NL]
+A-Stance+:[NL]
 If unit takes no action[NL]
 except Wait, grants Avo +30%[X]

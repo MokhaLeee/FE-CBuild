@@ -23,6 +23,9 @@ STATIC_DECLAR bool CheckUnitNullEffective(struct Unit * unit)
         return true;
 
     /* Check unit */
+    if (SkillTester(unit, SID_Nullify))
+        return true;
+
     return false;
 }
 
@@ -82,6 +85,13 @@ bool IsUnitEffectiveAgainst(struct Unit * actor, struct Unit * target)
                 list = GetItemEffectiveness(ITEM_SWORD_ZANBATO);
         }
     }
+
+    /* Check skills */
+    if (SkillTester(actor, SID_Slayer))
+        list = GetItemEffectiveness(ITEM_LIGHT_IVALDI);
+
+    if (SkillTester(actor, SID_Skybreaker))
+        list = GetItemEffectiveness(ITEM_BOW_IRON);
 
     if (!list)
         return false;

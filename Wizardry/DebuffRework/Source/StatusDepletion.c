@@ -47,7 +47,7 @@ void TickActiveFactionTurn(void)
 
     for (i = gPlaySt.faction + 1; i < gPlaySt.faction + 0x40; ++i)
     {
-        struct Unit* unit = GetUnit(i);
+        struct Unit * unit = GetUnit(i);
 
         if (!UNIT_IS_VALID(unit))
             continue;

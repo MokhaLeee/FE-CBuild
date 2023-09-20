@@ -99,6 +99,22 @@ const struct SkillInfo gSkillInfos[0x100] = {
         .msg  = MSG_SKILL_LifeAndDeath,
         .icon = GFX_SkillIcon_LifeAndDeath,
     },
+    [SID_Nullify] = {
+        .msg  = MSG_SKILL_Nullify,
+        .icon = GFX_SkillIcon_Nullify,
+    },
+    [SID_Slayer] = {
+        .msg  = MSG_SKILL_Slayer,
+        .icon = GFX_SkillIcon_Slayer,
+    },
+    [SID_Skybreaker] = {
+        .msg  = MSG_SKILL_Skybreaker,
+        .icon = GFX_SkillIcon_Skybreaker,
+    },
+    [SID_Resourceful] = {
+        .msg  = MSG_SKILL_Resourceful,
+        .icon = GFX_SkillIcon_Resourceful,
+    },
     [SID_Lethality] = {
         .msg  = MSG_SKILL_Lethality,
         .icon = GFX_SkillIcon_Lethality,
@@ -367,6 +383,22 @@ const struct SkillInfo gSkillInfos[0x100] = {
         .msg  = MSG_SKILL_Hex,
         .icon = GFX_SkillIcon_Hex,
     },
+    [SID_Infiltrator] = {
+        .msg  = MSG_SKILL_Infiltrator,
+        .icon = GFX_SkillIcon_Infiltrator,
+    },
+    [SID_Inspiration] = {
+        .msg  = MSG_SKILL_Inspiration,
+        .icon = GFX_SkillIcon_Inspiration,
+    },
+    [SID_DivinelyInspiring] = {
+        .msg  = MSG_SKILL_DivinelyInspiring,
+        .icon = GFX_SkillIcon_DivinelyInspiring,
+    },
+    [SID_VoiceOfPeace] = {
+        .msg  = MSG_SKILL_VoiceOfPeace,
+        .icon = GFX_SkillIcon_VoiceOfPeace,
+    },
     [SID_Shade] = {
         .msg  = MSG_SKILL_Shade,
         .icon = GFX_SkillIcon_Shade,
@@ -398,6 +430,22 @@ const struct SkillInfo gSkillInfos[0x100] = {
     [SID_Steal] = {
         .msg  = MSG_SKILL_Steal,
         .icon = GFX_SkillIcon_Steal,
+    },
+    [SID_Blossom] = {
+        .msg  = MSG_SKILL_Blossom,
+        .icon = GFX_SkillIcon_Blossom,
+    },
+    [SID_Paragon] = {
+        .msg  = MSG_SKILL_Paragon,
+        .icon = GFX_SkillIcon_Paragon,
+    },
+    [SID_VoidCurse] = {
+        .msg  = MSG_SKILL_VoidCurse,
+        .icon = GFX_SkillIcon_VoidCurse,
+    },
+    [SID_Aptitude] = {
+        .msg  = MSG_SKILL_Aptitude,
+        .icon = GFX_SkillIcon_Aptitude,
     },
     [SID_COMBAT_Grounder] = {
         .msg  = MSG_SKILL_COMBAT_Grounder,

@@ -23,7 +23,9 @@ Raises magic.[X]
 #include texts/Skills_StatusGetter.txt
 #include texts/Skills_BattleStatus.txt
 #include texts/Skills_WeaponTriangle.txt
+#include texts/Skills_Lvup.txt
 #include texts/Skills_BattleOrder.txt
+#include texts/Skills_BattleEffective.txt
 #include texts/Skills_Blow.txt
 #include texts/Skills_Stance.txt
 #include texts/Skills_WeaponRange.txt

@@ -19,10 +19,13 @@ void ComputeBattleUnitAttack(struct BattleUnit * attacker, struct BattleUnit * d
     int status;
     status = GetItemMight(attacker->weapon);
 
-    if (IsUnitEffectiveAgainst(&attacker->unit, &defender->unit))
-        status = status * 3;
-    else if (IsItemEffectiveAgainst(attacker->weapon, &defender->unit))
-        status = status * 3;
+    if (IsUnitEffectiveAgainst(&attacker->unit, &defender->unit) || IsItemEffectiveAgainst(attacker->weapon, &defender->unit))
+    {
+        status = status * 2;
+
+        if (SkillTester(&attacker->unit, SID_Resourceful))
+            status = status * 2;
+    }
 
     if (IsMagicAttack(attacker))
         status = status + UNIT_MAG(&attacker->unit);
@@ -361,6 +364,8 @@ STATIC_DECLAR void PreBattlePostCalcRangeDebuffs(struct BattleUnit * attacker, s
     int allies_range3 = 0;
     int enmies_range3 = 0;
 
+    int enmies_range2 = 0;
+
     for (i = 0; i < 24; i++)
     {
         _x = attacker->unit.xPos + vec_range[i].x;
@@ -382,6 +387,18 @@ STATIC_DECLAR void PreBattlePostCalcRangeDebuffs(struct BattleUnit * attacker, s
             if (SkillTester(unit, SID_Charm) && range2[i] == 1)
                 attacker->battleAttack  += 3;
 
+            if (SkillTester(unit, SID_Inspiration) && range2[i] == 1)
+            {
+                attacker->battleAttack += 2;
+                attacker->battleDefense += 2;
+            }
+
+            if (SkillTester(unit, SID_DivinelyInspiring) && range1[i] == 1)
+            {
+                attacker->battleAttack += 3;
+                attacker->battleDefense += 1;
+            }
+
             if (range3[i])
                 allies_range3++;
         }
@@ -400,10 +417,18 @@ STATIC_DECLAR void PreBattlePostCalcRangeDebuffs(struct BattleUnit * attacker, s
             if (SkillTester(unit, SID_Hex) && range1[i] == 1)
                 attacker->battleAvoidRate -= 10;
 
+            if (SkillTester(unit, SID_VoiceOfPeace) && range2[i] == 1)
+                attacker->battleAttack -= 2;
+
+            if (range2[i])
+                enmies_range2++;
+
             if (range3[i])
                 enmies_range3++;
         }
     }
+
+    unit = GetUnit(attacker->unit.index);
 
     if (allies_range3 != 0)
     {
@@ -430,6 +455,15 @@ STATIC_DECLAR void PreBattlePostCalcRangeDebuffs(struct BattleUnit * attacker, s
     else
     {
         /* Todo */
+    }
+
+    if (enmies_range2 >= 2)
+    {
+        if (SkillTester(unit, SID_Infiltrator))
+        {
+            attacker->battleAttack += 3;
+            attacker->battleHitRate += 15;
+        }
     }
 }
 

@@ -9,6 +9,7 @@
 #include "Source/BattleOrder.lyn.event"
 #include "Source/BattleWeapon.lyn.event"
 #include "Source/CheckEffective.lyn.event"
+#include "Source/BattleExp.lyn.event"
 #include "Source/Misc.lyn.event"
 
 #include "BattleHitExpasion/BattleHitExpa.lyn.event"

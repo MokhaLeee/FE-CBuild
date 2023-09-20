@@ -31,3 +31,20 @@ adjacent enemies.[X]
 ## MSG_SKILL_Charm
 Charm: Allies within 2[NL]
 tiles deal +3 attack.[X]
+
+## MSG_SKILL_Infiltrator
+Infilt: If within 2 spaces[NL]
+of two or more enemies, gain +3[NL]
+damage and +15% hit.[X]
+
+## MSG_SKILL_Inspiration
+Inspir: Allies within 2 tiles[NL]
+deal +2 damage and receive -2 damage.[X]
+
+## MSG_SKILL_DivinelyInspiring
+D-Inspir: Adjacent allies[NL]
+deal +3 damage and receive -1 damage.[X]
+
+## MSG_SKILL_VoiceOfPeace
+V-Peace: Enemies within[NL]
+2 tiles deal -2 damage.[X]

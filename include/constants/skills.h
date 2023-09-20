@@ -31,6 +31,12 @@ enum SkillIndex {
     SID_FortressRes,
     SID_LifeAndDeath,
 
+    /* Battle effective */
+    SID_Nullify,
+    SID_Slayer,
+    SID_Skybreaker,
+    SID_Resourceful,
+
     /* Battle status skills */
     SID_Lethality,
     SID_Crit,
@@ -113,6 +119,10 @@ enum SkillIndex {
     SID_Tantivy,
     SID_Focus,
     SID_Hex,
+    SID_Infiltrator,
+    SID_Inspiration,
+    SID_DivinelyInspiring,
+    SID_VoiceOfPeace,
 
     /* AI skills */
     SID_Shade,      /* Less likely to be attacked */
@@ -125,6 +135,12 @@ enum SkillIndex {
     SID_Summon,
     SID_Supply,
     SID_Steal,
+
+    /* Lvup skills */
+    SID_Blossom,
+    SID_Paragon,
+    SID_VoidCurse,
+    SID_Aptitude,
 
     /* Combat-art skill */
     SID_COMBAT_Grounder,
