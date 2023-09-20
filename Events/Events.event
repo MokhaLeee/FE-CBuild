@@ -3,6 +3,8 @@
 
 ALIGN 4
 #include "Maps/Maps.event"
+#include "WorldMapEvents/WorldMapPrologue.event"
+#include "WorldMapEvents/WorldMap2Prologue.event"
 
 {
     #include "Prologue/Prologue.event"
