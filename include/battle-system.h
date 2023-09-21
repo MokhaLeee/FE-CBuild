@@ -82,3 +82,6 @@ struct BattleForecastProc {
 };
 
 void BattleForecast_Init(struct BattleForecastProc * proc);
+
+/* Battle skill act */
+bool TruAutoActSkill(struct BattleUnit * actor, struct BattleUnit * target);

@@ -52,13 +52,23 @@ const struct SkillAnimInfo gSkillAnimInfos[0x100] = {
         .priority = EFX_PRIORITY_NORMAL,
         .sfx = 0x3D1,
     },
+    [SID_Adept] = {
+        .aid = EFX_SKILL_DEFAULT,
+        .priority = EFX_PRIORITY_NORMAL,
+        .sfx = 0x3D1,
+    },
     [SID_Astra] = {
         .aid = EFX_SKILL_DEFAULT,
         .priority = EFX_PRIORITY_HIGH,
         .sfx = 0x3D1,
     },
-    [SID_Adept] = {
-        .aid = EFX_SKILL_DEFAULT,
+    [SID_Aegis] = {
+        .aid = EFX_SKILL_AETHER,
+        .priority = EFX_PRIORITY_NORMAL,
+        .sfx = 0x3D1,
+    },
+    [SID_Pavise] = {
+        .aid = EFX_SKILL_AETHER,
         .priority = EFX_PRIORITY_NORMAL,
         .sfx = 0x3D1,
     },

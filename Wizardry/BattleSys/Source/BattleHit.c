@@ -85,6 +85,33 @@ void BattleGenerateHitAttributes(struct BattleUnit * attacker, struct BattleUnit
     /* Real damage */
     gBattleStats.damage += CalcBattleRealDamage(attacker, defender);
 
+    if (gBattleStats.damage > 0)
+    {
+        struct Unit * _tmpunit = GetUnit(defender->unit.index);
+        if (IsMagicAttack(attacker))
+        {
+            if (SkillTester(&defender->unit, SID_Aegis))
+            {
+                if (TruAutoActSkill(attacker, defender) || BattleRoll2RN(GetUnitSkill(_tmpunit), false))
+                {
+                    RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Aegis);
+                    gBattleStats.damage = 0;
+                }
+            }
+        }
+        else
+        {
+            if (SkillTester(&defender->unit, SID_Pavise))
+            {
+                if (TruAutoActSkill(attacker, defender) || BattleRoll2RN(GetUnitSkill(_tmpunit), false))
+                {
+                    RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Pavise);
+                    gBattleStats.damage = 0;
+                }
+            }
+        }
+    }
+
     /* Post calc */
     if (gBattleStats.damage > BATTLE_MAX_DAMAGE)
         gBattleStats.damage = BATTLE_MAX_DAMAGE;

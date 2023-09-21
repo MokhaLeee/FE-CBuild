@@ -1,0 +1,9 @@
+## MSG_SKILL_Aegis
+Aegis:[NL]
+Nullify a magic attack.[NL]
+(Skill % activation)[X]
+
+## MSG_SKILL_Pavise
+Pavise:[NL]
+Nullify a physical attack.[NL]
+(Skill % activation)[X]
