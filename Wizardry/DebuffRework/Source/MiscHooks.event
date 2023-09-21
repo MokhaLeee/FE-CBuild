@@ -101,9 +101,11 @@ PUSH
     BYTE 0x3F
     PROTECT $25644 $256F0
 
+/*
     ORG $259A0 // MakeTerrainHealTargetList
     BYTE 0x3F
     PROTECT $25904 $259EC
+*/
 
     ORG $25A22 // MakePoisonDamageTargetList
     BYTE 0x3F

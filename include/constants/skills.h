@@ -111,6 +111,9 @@ enum SkillIndex {
     SID_AlertStance,
     SID_AlertStancePlus,
 
+    /* Pre-phase */
+    SID_Renewal,
+
     /* Range debuff */
     SID_Anathema,
     SID_Bond,
