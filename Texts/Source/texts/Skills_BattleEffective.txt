@@ -7,9 +7,9 @@ Slayer: Deal effective damage[NL]
 to monster units.[X]
 
 ## MSG_SKILL_Skybreaker
-Skybreaker: Deal effective[NL]
+Sky-K: Deal effective[NL]
 damage to flying units.[X]
 
 ## MSG_SKILL_Resourceful
-Resourceful: Double bonus[NL]
+Resourc: Double bonus[NL]
 effectiveness multipliers.[X]

@@ -74,11 +74,15 @@ STATIC_DECLAR void NewEfxSkillForDefener(struct ProcEkrSkill * proc)
         return;
 
     if (SKILL_VALID(proc->sid_def))
+    {
+        Debugf("sid %d", proc->sid_def);
         NewEfxSkill(GetAnimAnotherSide(proc->anim), proc->sid_def);
+    }
 }
 
 STATIC_DECLAR const struct ProcCmd ProcScr_EkrSkill[] = {
     PROC_NAME("EkrSkill"),
+    PROC_YIELD,
     PROC_CALL(EkrSkillOnInit),
     PROC_YIELD,
     PROC_CALL(NewEfxSkillForAttacker),

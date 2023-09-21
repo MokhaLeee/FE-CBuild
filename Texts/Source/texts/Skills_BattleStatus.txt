@@ -8,7 +8,7 @@ Crit: [NL]
 Crit rate +15%[X]
 
 ## MSG_SKILL_WatchfulEye
-Watchful Eye: [NL]
+W-Eye: [NL]
 Hit rate +20%[X]
 
 ## MSG_SKILL_CritSword

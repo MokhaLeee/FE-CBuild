@@ -25,6 +25,7 @@ struct ProcEfxSkillRework {
 
 STATIC_DECLAR void EfxSkillOnInit(struct ProcEfxSkillRework * proc)
 {
+    Debugf("sid %d, desc %d, icon %p", proc->sid, GetSkillDesc(proc->sid), GetSkillIcon(proc->sid));
     NewEfxSkillBox(proc->anim, GetSkillDesc(proc->sid), GetSkillIcon(proc->sid));
 }
 
@@ -67,6 +68,7 @@ STATIC_DECLAR void EfxSkillOnEnd(struct ProcEfxSkillRework * proc)
 
 STATIC_DECLAR const struct ProcCmd ProcScr_EfxSkill[] = {
     PROC_NAME("EfxSkill"),
+    PROC_YIELD,
     PROC_CALL(EfxSkillOnInit),
     PROC_REPEAT(EfxSkillMain),
     PROC_CALL(EfxSkillOnEnd),
@@ -77,6 +79,7 @@ STATIC_DECLAR const struct ProcCmd ProcScr_EfxSkill[] = {
 
 STATIC_DECLAR const struct ProcCmd ProcScr_EfxCombatArt[] = {
     PROC_NAME("EfxCombatArt"),
+    PROC_YIELD,
     PROC_CALL(EfxCombatArtOnInit),
     PROC_REPEAT(EfxSkillMain),
     PROC_CALL(EfxSkillOnEnd),

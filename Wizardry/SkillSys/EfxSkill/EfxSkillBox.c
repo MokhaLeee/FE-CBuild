@@ -43,9 +43,9 @@ STATIC_DECLAR void EfxSkillBoxOnDraw(struct ProcEfxskillbox * proc)
     animbox->yPosition = 0x60 - 0x3;
 
     if (GetAnimPosition(proc->anim) == EKR_POS_L)
-        animbox->xPosition = 0xE0;
-    else
         animbox->xPosition = 0x00;
+    else
+        animbox->xPosition = 0xE0;
 }
 
 STATIC_DECLAR void EfxSkillBoxIdle(struct ProcEfxskillbox * proc)

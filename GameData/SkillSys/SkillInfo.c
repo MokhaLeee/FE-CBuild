@@ -364,11 +364,15 @@ const struct SkillInfo gSkillInfos[0x100] = {
         .icon = GFX_SkillIcon_AlertStance,
     },
     [SID_AlertStancePlus] = {
-        .msg  = MSG_SKILL_Anathema,
+        .msg  = MSG_SKILL_AlertStancePlus,
         .icon = GFX_SkillIcon_AlertStancePlus,
     },
+    [SID_Renewal] = {
+        .msg  = MSG_SKILL_Renewal,
+        .icon = GFX_SkillIcon_Renewal,
+    },
     [SID_Anathema] = {
-        .msg  = MSG_SKILL_AlertStancePlus,
+        .msg  = MSG_SKILL_Anathema,
         .icon = GFX_SkillIcon_Anathema,
     },
     [SID_Bond] = {

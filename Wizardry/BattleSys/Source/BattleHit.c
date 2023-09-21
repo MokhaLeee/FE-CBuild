@@ -263,7 +263,7 @@ bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defende
             struct Unit * _tmpunit = GetUnit(defender->unit.index);
             if (TryAutoActSkill(attacker, defender) || Roll2RN(GetUnitLuck(_tmpunit) / 2))
             {
-                RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Pavise);
+                RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Bane);
 
                 gBattleStats.damage = gBattleStats.damage - 1;
                 gBattleHitIterator->hpChange = gBattleStats.damage;

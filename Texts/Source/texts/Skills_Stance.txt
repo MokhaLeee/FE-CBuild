@@ -1,49 +1,49 @@
 ## MSG_SKILL_StanceBracing
-Stance Bracing:[NL]
+S-Bracing:[NL]
 Grants Def and Res +4[NL]
 if attacked[X]
 
 ## MSG_SKILL_StanceDarting
-Stance Darting:[NL]
+S-Darting:[NL]
 Grants AS +6[NL]
 if attacked[X]
 
 ## MSG_SKILL_StanceFierce
-Stance Fierce:[NL]
+S-Fierce:[NL]
 Grants Atk +6[NL]
 if attacked[X]
 
 ## MSG_SKILL_StanceKestrel
-Stance Kestrel:[NL]
+S-Kestrel:[NL]
 Grants Atk and AS +4[NL]
 if attacked[X]
 
 ## MSG_SKILL_StanceMirror
-Stance Mirror:[NL]
+S-Mirror:[NL]
 Grants Atk and Res +4[NL]
 if attacked[X]
 
 ## MSG_SKILL_StanceReady
-Stance Ready:[NL]
+S-Ready:[NL]
 Grants AS and Def +4[NL]
 if attacked[X]
 
 ## MSG_SKILL_StanceSteady
-Stance Steady:[NL]
+S-Steady:[NL]
 Grants Def +6[NL]
 if attacked[X]
 
 ## MSG_SKILL_StanceSturdy
-Stance Sturdy:[NL]
+S-Sturdy:[NL]
 Grants Atk and Def +4[NL]
 if attacked[X]
 
 ## MSG_SKILL_StanceSwift
-Stance Swift:[NL]
+S-Swift:[NL]
 Grants AS and Res +4[NL]
 if attacked[X]
 
 ## MSG_SKILL_StanceWarding
-Stance Warding:[NL]
+S-Warding:[NL]
 Grants Res +6[NL]
 if attacked[X]
