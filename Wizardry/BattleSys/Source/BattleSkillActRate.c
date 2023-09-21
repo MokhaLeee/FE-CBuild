@@ -9,5 +9,5 @@
 
 bool TryAutoActSkill(struct BattleUnit * actor, struct BattleUnit * target)
 {
-    return false;
+    return true;
 }
