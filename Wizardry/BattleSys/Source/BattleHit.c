@@ -1,4 +1,5 @@
 #include "global.h"
+#include "rng.h"
 #include "bmunit.h"
 #include "bmbattle.h"
 
@@ -92,7 +93,7 @@ void BattleGenerateHitAttributes(struct BattleUnit * attacker, struct BattleUnit
         {
             if (SkillTester(&defender->unit, SID_Aegis))
             {
-                if (TruAutoActSkill(attacker, defender) || BattleRoll2RN(GetUnitSkill(_tmpunit), false))
+                if (TryAutoActSkill(attacker, defender) || BattleRoll2RN(GetUnitSkill(_tmpunit), false))
                 {
                     RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Aegis);
                     gBattleStats.damage = 0;
@@ -103,7 +104,7 @@ void BattleGenerateHitAttributes(struct BattleUnit * attacker, struct BattleUnit
         {
             if (SkillTester(&defender->unit, SID_Pavise))
             {
-                if (TruAutoActSkill(attacker, defender) || BattleRoll2RN(GetUnitSkill(_tmpunit), false))
+                if (TryAutoActSkill(attacker, defender) || BattleRoll2RN(GetUnitSkill(_tmpunit), false))
                 {
                     RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Pavise);
                     gBattleStats.damage = 0;
@@ -236,4 +237,58 @@ void BattleGenerateHitEffects(struct BattleUnit * attacker, struct BattleUnit * 
         if (!attacker->weapon)
             attacker->weaponBroke = TRUE;
     }
+}
+
+/* LynJump */
+bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defender)
+{
+    if (attacker == &gBattleTarget)
+        gBattleHitIterator->info |= BATTLE_HIT_INFO_RETALIATION;
+
+    BattleUpdateBattleStats(attacker, defender);
+
+    BattleGenerateHitTriangleAttack(attacker, defender);
+    BattleGenerateHitAttributes(attacker, defender);
+    BattleGenerateHitEffects(attacker, defender);
+
+    if (attacker->unit.curHP == 0 || defender->unit.curHP == 0)
+    {
+        attacker->wexpMultiplier++;
+
+        gBattleHitIterator->info |= BATTLE_HIT_INFO_FINISHES;
+
+#if CHAX_IDENTIFIER
+        if (defender->unit.curHP == 0 &&  SkillTester(&defender->unit, SID_Bane))
+        {
+            struct Unit * _tmpunit = GetUnit(defender->unit.index);
+            if (TryAutoActSkill(attacker, defender) || Roll2RN(GetUnitLuck(_tmpunit) / 2))
+            {
+                RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Pavise);
+
+                gBattleStats.damage = gBattleStats.damage - 1;
+                gBattleHitIterator->hpChange = gBattleStats.damage;
+                defender->unit.curHP = 1;
+
+                gBattleHitIterator->info |= BATTLE_HIT_INFO_FINISHES;
+                gBattleHitIterator++;
+                return true;
+            }
+        }
+#endif
+
+        if (gBattleTarget.unit.curHP == 0)
+            gBattleHitIterator->info |= BATTLE_HIT_INFO_KILLS_TARGET;
+
+        gBattleHitIterator++;
+        return true;
+    }
+    else if (defender->statusOut == UNIT_STATUS_PETRIFY || defender->statusOut == UNIT_STATUS_13)
+    {
+        gBattleHitIterator->info |= BATTLE_HIT_INFO_FINISHES;
+        gBattleHitIterator++;
+        return true;
+    }
+
+    gBattleHitIterator++;
+    return false;
 }

@@ -263,6 +263,10 @@ const struct SkillInfo gSkillInfos[0x100] = {
         .msg  = MSG_SKILL_Pavise,
         .icon = GFX_SkillIcon_Pavise,
     },
+    [SID_Bane] = {
+        .msg  = MSG_SKILL_Bane,
+        .icon = GFX_SkillIcon_Bane,
+    },
     [SID_BlowDarting] = {
         .msg  = MSG_SKILL_BlowDarting,
         .icon = GFX_SkillIcon_BlowDarting,

@@ -72,6 +72,11 @@ const struct SkillAnimInfo gSkillAnimInfos[0x100] = {
         .priority = EFX_PRIORITY_NORMAL,
         .sfx = 0x3D1,
     },
+    [SID_Bane] = {
+        .aid = EFX_SKILL_AETHER,
+        .priority = EFX_PRIORITY_NORMAL,
+        .sfx = 0x3D1,
+    },
 };
 
 FEB_IDENTIFIER(gSkillAnimInfos);

@@ -81,6 +81,7 @@ enum SkillIndex {
     SID_Astra, /* +4 hits with half damage (speed * 2%) */
     SID_Aegis,
     SID_Pavise,
+    SID_Bane,
     // SID_Aether,
 
     /* Blow skills */

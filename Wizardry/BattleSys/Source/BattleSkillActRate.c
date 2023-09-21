@@ -7,7 +7,7 @@
 #include "battle-system.h"
 #include "constants/skills.h"
 
-bool TruAutoActSkill(struct BattleUnit * actor, struct BattleUnit * target)
+bool TryAutoActSkill(struct BattleUnit * actor, struct BattleUnit * target)
 {
     return false;
 }
