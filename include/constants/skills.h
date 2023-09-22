@@ -84,7 +84,9 @@ enum SkillIndex {
     SID_Bane,
     SID_Aether,
     SID_Corona,
+    SID_Luna,
     SID_Flare,
+    SID_Foresight,
 
     /* Blow skills */
     SID_BlowDarting,

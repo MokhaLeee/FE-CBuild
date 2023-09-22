@@ -23,7 +23,17 @@ Corona:[NL]
 Negate enemy resistance.[NL]
 (Skill% activation)[X]
 
+## MSG_SKILL_Luna
+Luna:[NL]
+Negates enemy defenses.[NL]
+(Skill % activation)[X]
+
 ## MSG_SKILL_Flare
 Flare:[NL]
 Halve enemy resistance.[NL]
 (Skill% activation)[X]
+
+## MSG_SKILL_Foresight
+Foresight: Avoid the damage[NL]
+from enemy Critical Hits and[NL]
+Skill Activations.[X]

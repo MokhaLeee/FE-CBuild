@@ -14,6 +14,10 @@ STATIC_DECLAR bool TryAutoActSkill(struct BattleUnit * actor, struct BattleUnit 
 
 bool CheckBattleSkillActivte(struct BattleUnit * actor, struct BattleUnit * target, int sid, int rate)
 {
+    /* Check skill Foresight */
+    if (SkillTester(&target->unit, SID_Foresight))
+        return false;
+
     if (SkillTester(&actor->unit, sid))
         if (TryAutoActSkill(actor, target) || BattleRoll2RN(rate, false))
             return true;

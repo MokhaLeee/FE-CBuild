@@ -65,10 +65,21 @@ void BattleGenerateHitAttributes(struct BattleUnit * attacker, struct BattleUnit
         defense = defense / 2;
     }
 
-    if (CheckBattleSkillActivte(attacker, defender, SID_Corona, GetUnitSkill(GetUnit(attacker->unit.index))))
+    if (IsMagicAttack(attacker))
     {
-        RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Corona);
-        defense = 0;
+        if (CheckBattleSkillActivte(attacker, defender, SID_Corona, GetUnitSkill(GetUnit(attacker->unit.index))))
+        {
+            RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Corona);
+            defense = 0;
+        }
+    }
+    else
+    {
+        if (CheckBattleSkillActivte(attacker, defender, SID_Luna, GetUnitSkill(GetUnit(attacker->unit.index))))
+        {
+            RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Luna);
+            defense = 0;
+        }
     }
 
     gBattleStats.damage = attack - defense;
@@ -76,7 +87,7 @@ void BattleGenerateHitAttributes(struct BattleUnit * attacker, struct BattleUnit
     if (SkillTester(unit, SID_FlashingBladePlus))
         gBattleStats.damage += 3;
 
-    if (BattleRoll1RN(gBattleStats.critRate, FALSE) == TRUE)
+    if (BattleRoll1RN(gBattleStats.critRate, FALSE) == TRUE && !SkillTester(&defender->unit, SID_Foresight))
     {
         if (BattleRoll1RN(gBattleStats.silencerRate, FALSE))
         {

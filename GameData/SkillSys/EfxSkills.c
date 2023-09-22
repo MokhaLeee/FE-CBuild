@@ -87,6 +87,11 @@ const struct SkillAnimInfo gSkillAnimInfos[0x100] = {
         .priority = EFX_PRIORITY_NORMAL,
         .sfx = 0x3D1,
     },
+    [SID_Luna] = {
+        .aid = EFX_SKILL_AETHER,
+        .priority = EFX_PRIORITY_NORMAL,
+        .sfx = 0x3D1,
+    },
     [SID_Flare] = {
         .aid = EFX_SKILL_AETHER,
         .priority = EFX_PRIORITY_NORMAL,
