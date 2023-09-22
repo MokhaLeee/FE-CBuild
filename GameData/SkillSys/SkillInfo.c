@@ -707,6 +707,20 @@ const struct SkillInfo gSkillInfos[0x100] = {
     },
 #endif
 
+#if (MAX_SKILL_NUM != SID_SavageBlow)
+    [SID_SavageBlow] = {
+        .msg  = MSG_SKILL_SavageBlow,
+        .icon = GFX_SkillIcon_SavageBlow,
+    },
+#endif
+
+#if (MAX_SKILL_NUM != SID_BreathOfLife)
+    [SID_BreathOfLife] = {
+        .msg  = MSG_SKILL_BreathOfLife,
+        .icon = GFX_SkillIcon_BreathOfLife,
+    },
+#endif
+
 #if (MAX_SKILL_NUM != SID_Renewal)
     [SID_Renewal] = {
         .msg  = MSG_SKILL_Renewal,

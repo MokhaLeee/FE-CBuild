@@ -127,6 +127,8 @@ enum SkillIndex {
     SID_AlertStance,
     SID_AlertStancePlus,
     SID_Galeforce,
+    SID_SavageBlow,
+    SID_BreathOfLife,
 
     /* Pre-phase */
     SID_Renewal,

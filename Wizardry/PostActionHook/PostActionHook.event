@@ -6,6 +6,8 @@
 #include "UsrFuncs/SelfHurt.lyn.event"
 #include "UsrFuncs/AlertStance.lyn.event"
 #include "UsrFuncs/Galeforce.lyn.event"
+#include "UsrFuncs/SavageBlow.lyn.event"
+#include "UsrFuncs/BreathOfLife.lyn.event"
 
 /**
  * Since Canto is a post-action skill,
@@ -17,7 +19,7 @@
 ALIGN 4
 gPostActionFuncs:
     POIN PostActionBattleActorSelfHurt PostActionBattleTargetSelfHurt
-    POIN PostActionCombatArtEffect
+    POIN PostActionCombatArtEffect PostActionSkillSavageBlow PostActionSkillBreathOfLife
     POIN PostActionAlertStance
     POIN PostActionGaleForce
     POIN PostActionPadFunc PostActionPadFunc PostActionPadFunc PostActionPadFunc
