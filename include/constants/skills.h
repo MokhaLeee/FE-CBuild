@@ -83,6 +83,8 @@ enum SkillIndex {
     SID_Pavise,
     SID_Bane,
     SID_Aether,
+    SID_Corona,
+    SID_Flare,
 
     /* Blow skills */
     SID_BlowDarting,

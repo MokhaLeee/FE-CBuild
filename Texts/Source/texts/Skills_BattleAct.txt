@@ -15,5 +15,15 @@ Bane: Leave the opponent at[NL]
 
 ## MSG_SKILL_Aether
 Aether:Negate 80 %[NL]
-defenses and absorb HP.[N]
+defenses and absorb HP.[NL]
 (Skill/2 % activation)[X]
+
+## MSG_SKILL_Corona
+Corona:[NL]
+Negate enemy resistance.[NL]
+(Skill% activation)[X]
+
+## MSG_SKILL_Flare
+Flare:[NL]
+Halve enemy resistance.[NL]
+(Skill% activation)[X]

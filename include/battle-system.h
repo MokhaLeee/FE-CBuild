@@ -84,4 +84,4 @@ struct BattleForecastProc {
 void BattleForecast_Init(struct BattleForecastProc * proc);
 
 /* Battle skill act */
-bool TryAutoActSkill(struct BattleUnit * actor, struct BattleUnit * target);
+bool CheckBattleSkillActivte(struct BattleUnit * actor, struct BattleUnit * target, int sid, int rate);

@@ -271,6 +271,14 @@ const struct SkillInfo gSkillInfos[0x100] = {
         .msg  = MSG_SKILL_Aether,
         .icon = GFX_SkillIcon_Aether,
     },
+    [SID_Corona] = {
+        .msg  = MSG_SKILL_Corona,
+        .icon = GFX_SkillIcon_Corona,
+    },
+    [SID_Flare] = {
+        .msg  = MSG_SKILL_Flare,
+        .icon = GFX_SkillIcon_Flare,
+    },
     [SID_BlowDarting] = {
         .msg  = MSG_SKILL_BlowDarting,
         .icon = GFX_SkillIcon_BlowDarting,

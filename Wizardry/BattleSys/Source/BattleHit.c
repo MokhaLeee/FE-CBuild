@@ -14,15 +14,10 @@
 
 STATIC_DECLAR bool CheckSkillHpDrain(struct BattleUnit * attacker, struct BattleUnit * defender)
 {
-    struct Unit * unit = GetUnit(attacker->unit.index);
-
-    if (SkillTester(unit, SID_Aether))
+    if (CheckBattleSkillActivte(attacker, defender, SID_Aether, GetUnitSkill(GetUnit(attacker->unit.index))))
     {
-        if (TryAutoActSkill(attacker, defender) || BattleRoll2RN(GetUnitSkill(unit), false))
-        {
-            RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Aether);
-            return true;
-        }
+        RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Aether);
+        return true;
     }
     return false;
 }
@@ -63,6 +58,18 @@ void BattleGenerateHitAttributes(struct BattleUnit * attacker, struct BattleUnit
 
     attack = gBattleStats.attack;
     defense = gBattleStats.defense;
+
+    if (CheckBattleSkillActivte(attacker, defender, SID_Flare, GetUnitSkill(GetUnit(attacker->unit.index))))
+    {
+        RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Flare);
+        defense = defense / 2;
+    }
+
+    if (CheckBattleSkillActivte(attacker, defender, SID_Corona, GetUnitSkill(GetUnit(attacker->unit.index))))
+    {
+        RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Corona);
+        defense = 0;
+    }
 
     gBattleStats.damage = attack - defense;
 
@@ -106,24 +113,18 @@ void BattleGenerateHitAttributes(struct BattleUnit * attacker, struct BattleUnit
         struct Unit * _tmpunit = GetUnit(defender->unit.index);
         if (IsMagicAttack(attacker))
         {
-            if (SkillTester(&defender->unit, SID_Aegis))
+            if (CheckBattleSkillActivte(defender, attacker, SID_Aegis, GetUnitSkill(_tmpunit)))
             {
-                if (TryAutoActSkill(attacker, defender) || BattleRoll2RN(GetUnitSkill(_tmpunit), false))
-                {
-                    RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Aegis);
-                    gBattleStats.damage = 0;
-                }
+                RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Aegis);
+                gBattleStats.damage = 0;
             }
         }
         else
         {
-            if (SkillTester(&defender->unit, SID_Pavise))
+            if (CheckBattleSkillActivte(defender, attacker, SID_Pavise, GetUnitSkill(_tmpunit)))
             {
-                if (TryAutoActSkill(attacker, defender) || BattleRoll2RN(GetUnitSkill(_tmpunit), false))
-                {
-                    RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Pavise);
-                    gBattleStats.damage = 0;
-                }
+                RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Pavise);
+                gBattleStats.damage = 0;
             }
         }
     }
@@ -277,10 +278,9 @@ bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defende
         gBattleHitIterator->info |= BATTLE_HIT_INFO_FINISHES;
 
 #if CHAX_IDENTIFIER
-        if (defender->unit.curHP == 0 &&  SkillTester(&defender->unit, SID_Bane))
+        if (defender->unit.curHP == 0)
         {
-            struct Unit * _tmpunit = GetUnit(defender->unit.index);
-            if (TryAutoActSkill(attacker, defender) || Roll2RN(GetUnitLuck(_tmpunit) / 2))
+            if (CheckBattleSkillActivte(defender, attacker, SID_Bane, GetUnitLuck(GetUnit(defender->unit.index))))
             {
                 RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Bane);
 
