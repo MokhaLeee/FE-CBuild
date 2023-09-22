@@ -82,7 +82,7 @@ enum SkillIndex {
     SID_Aegis,
     SID_Pavise,
     SID_Bane,
-    // SID_Aether,
+    SID_Aether,
 
     /* Blow skills */
     SID_BlowDarting,

@@ -12,3 +12,8 @@ Nullify a physical attack.[NL]
 Bane: Leave the opponent at[NL]
 1 HP if the attack would kill.[NL]
 (Skill/2 % activation)[X]
+
+## MSG_SKILL_Aether
+Aether:Negate 80 %[NL]
+defenses and absorb HP.[N]
+(Skill/2 % activation)[X]

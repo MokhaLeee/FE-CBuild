@@ -12,6 +12,21 @@
 #include "combat-art.h"
 #include "constants/skills.h"
 
+STATIC_DECLAR bool CheckSkillHpDrain(struct BattleUnit * attacker, struct BattleUnit * defender)
+{
+    struct Unit * unit = GetUnit(attacker->unit.index);
+
+    if (SkillTester(unit, SID_Aether))
+    {
+        if (TryAutoActSkill(attacker, defender) || BattleRoll2RN(GetUnitSkill(unit), false))
+        {
+            RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Aether);
+            return true;
+        }
+    }
+    return false;
+}
+
 int CalcBattleRealDamage(struct BattleUnit * attacker, struct BattleUnit * defender)
 {
     struct Unit * unit = GetUnit(attacker->unit.index);
@@ -171,7 +186,11 @@ void BattleGenerateHitEffects(struct BattleUnit * attacker, struct BattleUnit * 
                 defender->unit.curHP = 0;
         }
 
+#ifdef CHAX_IDENTIFIER
+        if (GetItemWeaponEffect(attacker->weapon) == WPN_EFFECT_HPDRAIN || CheckSkillHpDrain(attacker, defender))
+#else
         if (GetItemWeaponEffect(attacker->weapon) == WPN_EFFECT_HPDRAIN)
+#endif
         {
             if (attacker->unit.maxHP < (attacker->unit.curHP + gBattleStats.damage))
                 attacker->unit.curHP = attacker->unit.maxHP;
