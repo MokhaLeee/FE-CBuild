@@ -1,11 +1,13 @@
 #ifndef CONFIG_SKILLS_INSTALLED
 #define CONFIG_SKILLS_INSTALLED
 
+#include "skill-system.h"
+
 enum SkillIndex {
     SID_DEFAULT = 0x0,
 
     /* Unit status skills */
-    SID_HpBonus,
+    // SID_HpBonus,
     SID_StrBonus,
     SID_MagBonus,
     SID_SklBonus,
@@ -185,6 +187,10 @@ enum SkillIndex {
     SID_COMBAT_HuntersVolley,
 
     SID_MAX
+};
+
+enum AbandonedSkills {
+    SID_HpBonus = MAX_SKILL_NUM,
 };
 
 #endif
