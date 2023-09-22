@@ -1,0 +1,18 @@
+#ifndef BANIM_HACK_INSTALLED
+#define BANIM_HACK_INSTALLED
+
+#include "Source/C01.lyn.event"
+#include "Source/C07.lyn.event"
+
+/*
+ * mov r0, r7
+ * blh /routine
+ * ldr r0, =0x080596CC + 1
+ * bx r0
+ */
+#define InjectBanimCmd(index, routine) "ALIGN 4; PUSH; ORG ($58C44 + 4 * index); POIN CURRENTOFFSET | 1; POP; WORD $B4081C38 $469E4B02 $BC08F800 $47004801; POIN routine; WORD $80596CD"
+
+InjectBanimCmd(0x1, Banim_C01)
+InjectBanimCmd(0x7, Banim_C07)
+
+#endif /* BANIM_HACK_INSTALLED */

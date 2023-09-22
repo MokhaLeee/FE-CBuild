@@ -7,6 +7,7 @@ ALIGN 4
 #include "DebuffRework/DebuffRework.event"
 #include "WeaponRange/WeaponRange.event"
 
+#include "BanimHack/BanimHack.event"
 #include "PostActionHook/PostActionHook.event"
 #include "ItemSys/ItemSys.event"
 #include "StrMagSplit/StrMagSplit.event"

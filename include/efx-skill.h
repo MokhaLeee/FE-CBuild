@@ -3,6 +3,7 @@
 #include "global.h"
 #include "proc.h"
 
+void NewEkrSkill(struct Anim * anim);
 void NewEfxSkill(struct Anim * anim, int sid);
 void NewEfxCombatArt(struct Anim * anim, int cid);
 bool EfxSkillExists(void);

@@ -95,7 +95,8 @@ STATIC_DECLAR const struct ProcCmd ProcScr_EkrSkill[] = {
     PROC_END
 };
 
-STATIC_DECLAR void NewEkrSkill(struct Anim * anim)
+/* Called from BanimHack */
+void NewEkrSkill(struct Anim * anim)
 {
     int round;
     struct ProcEkrSkill * proc;
@@ -110,25 +111,4 @@ STATIC_DECLAR void NewEkrSkill(struct Anim * anim)
     proc->sid_def = GetTargetEfxSkill(round);
 
     EfxSkillSetAnimState(anim);
-}
-
-void BanimEkrSkillHandler(struct Anim * anim)
-{
-    if (!(anim->state3 & ANIM_BIT3_BLOCKING))
-    {
-        anim->state3 |= ANIM_BIT3_BLOCKING;
-
-        if (GetAISLayerId(anim) == 0)
-            NewEkrSkill(anim);
-    }
-
-    if (anim->state3 & ANIM_BIT3_BLOCKING)
-    {
-        if (anim->state3 & ANIM_BIT3_BLOCKEND)
-        {
-            anim->state3 &= ~ANIM_BIT3_BLOCKING;
-            anim->state3 &= ~ANIM_BIT3_BLOCKEND;
-            anim->pScrCurrent = anim->pScrCurrent + 1;
-        }
-    }
 }
