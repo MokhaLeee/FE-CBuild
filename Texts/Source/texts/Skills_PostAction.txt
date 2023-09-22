@@ -15,3 +15,8 @@ except Wait, grants Avo +15%[X]
 A-Stance+:[NL]
 If unit takes no action[NL]
 except Wait, grants Avo +30%[X]
+
+## MSG_SKILL_Galeforce
+Galeforce: Move again after[NL]
+attacking and defeating an enemy.[NL]
+(Skill% activation)[X]

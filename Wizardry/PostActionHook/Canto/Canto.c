@@ -4,11 +4,18 @@
 #include "bmunit.h"
 #include "proc.h"
 #include "mu.h"
+#include "bm.h"
+#include "rng.h"
+#include "ev_triggercheck.h"
+#include "bmudisp.h"
 
 #include "common-chax.h"
 #include "status-getter.h"
+#include "battle-system.h"
 #include "skill-system.h"
 #include "constants/skills.h"
+
+extern u8 gPostActionGaleforceFlag;
 
 STATIC_DECLAR bool CheckCanto(void)
 {
@@ -67,4 +74,59 @@ bool TryMakeCantoUnit(ProcPtr proc)
         Proc_Goto(proc, 1);
 
     return true;
+}
+
+/* LynJump */
+void PlayerPhase_FinishAction(ProcPtr proc)
+{
+    if (gPlaySt.chapterVisionRange != 0)
+    {
+        RenderBmMapOnBg2();
+        MoveActiveUnit(gActionData.xMove, gActionData.yMove);
+        RefreshEntityBmMaps();
+        RenderBmMap();
+        NewBMXFADE(0);
+        RefreshUnitSprites();
+    }
+    else
+    {
+        MoveActiveUnit(gActionData.xMove, gActionData.yMove);
+        RefreshEntityBmMaps();
+        RenderBmMap();
+    }
+
+    SetCursorMapPosition(gActiveUnit->xPos, gActiveUnit->yPos);
+
+    gPlaySt.xCursor = gBmSt.playerCursor.x;
+    gPlaySt.yCursor = gBmSt.playerCursor.y;
+
+#if CHAX_IDENTIFIER
+    if (gPostActionGaleforceFlag != 0)
+    {
+        gActiveUnit->state &= ~(US_UNSELECTABLE | US_CANTOING);
+    }
+    else if (TryMakeCantoUnit(proc))
+    {
+        HideUnitSprite(gActiveUnit);
+        return;
+    }
+#else
+    if (TryMakeCantoUnit(proc))
+    {
+        HideUnitSprite(gActiveUnit);
+        return;
+    }
+#endif
+
+    if (ShouldCallEndEvent())
+    {
+        MU_EndAll();
+        RefreshEntityBmMaps();
+        RenderBmMap();
+        RefreshUnitSprites();
+        MaybeCallEndEvent_();
+        Proc_Goto(proc, 8);
+        return;
+    }
+    MU_EndAll();
 }

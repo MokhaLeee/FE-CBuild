@@ -403,6 +403,10 @@ const struct SkillInfo gSkillInfos[0x100] = {
         .msg  = MSG_SKILL_AlertStancePlus,
         .icon = GFX_SkillIcon_AlertStancePlus,
     },
+    [SID_Galeforce] = {
+        .msg  = MSG_SKILL_Galeforce,
+        .icon = GFX_SkillIcon_Galeforce,
+    },
     [SID_Renewal] = {
         .msg  = MSG_SKILL_Renewal,
         .icon = GFX_SkillIcon_Renewal,

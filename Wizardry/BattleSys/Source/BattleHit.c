@@ -315,7 +315,15 @@ bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defende
 #endif
 
         if (gBattleTarget.unit.curHP == 0)
+        {
+#if CHAX_IDENTIFIER
+            gBattleActorGlobalFlag.enimy_defeated = true;
+
+            if (CheckBattleSkillActivte(&gBattleActor, &gBattleTarget, SID_Galeforce, GetUnitSkill(GetUnit(gBattleActor.unit.index))))
+                gBattleActorGlobalFlag.skill_activated_galeforce = true;
+#endif
             gBattleHitIterator->info |= BATTLE_HIT_INFO_KILLS_TARGET;
+        }
 
         gBattleHitIterator++;
         return true;

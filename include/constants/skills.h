@@ -124,6 +124,7 @@ enum SkillIndex {
     SID_CantoPlus,
     SID_AlertStance,
     SID_AlertStancePlus,
+    SID_Galeforce,
 
     /* Pre-phase */
     SID_Renewal,
