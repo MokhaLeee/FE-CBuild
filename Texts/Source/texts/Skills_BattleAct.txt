@@ -37,3 +37,13 @@ Halve enemy resistance.[NL]
 Foresight: Avoid the damage[NL]
 from enemy Critical Hits and[NL]
 Skill Activations.[X]
+
+## MSG_SKILL_Sol
+Sol:[NL]
+Restore damage dealt as HP.[NL]
+(Skill % activation)[X]
+
+## MSG_SKILL_DragonFang
+DragonFang:[NL]
+1.5x damage.[NL]
+(Skill% activation)[X]

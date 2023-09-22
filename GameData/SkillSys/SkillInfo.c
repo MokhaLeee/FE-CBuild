@@ -207,6 +207,14 @@ const struct SkillInfo gSkillInfos[0x100] = {
         .msg  = MSG_SKILL_SorceryBlade,
         .icon = GFX_SkillIcon_SorceryBlade,
     },
+    [SID_Fortune] = {
+        .msg  = MSG_SKILL_Fortune,
+        .icon = GFX_SkillIcon_Fortune,
+    },
+    [SID_BlueFlame] = {
+        .msg  = MSG_SKILL_BlueFlame,
+        .icon = GFX_SkillIcon_BlueFlame,
+    },
     [SID_SwordBreaker] = {
         .msg  = MSG_SKILL_SwordBreaker,
         .icon = GFX_SkillIcon_SwordBreaker,
@@ -282,6 +290,14 @@ const struct SkillInfo gSkillInfos[0x100] = {
     [SID_Flare] = {
         .msg  = MSG_SKILL_Flare,
         .icon = GFX_SkillIcon_Flare,
+    },
+    [SID_Sol] = {
+        .msg  = MSG_SKILL_Sol,
+        .icon = GFX_SkillIcon_Sol,
+    },
+    [SID_DragonFang] = {
+        .msg  = MSG_SKILL_DragonFang,
+        .icon = GFX_SkillIcon_DragonFang,
     },
     [SID_Foresight] = {
         .msg  = MSG_SKILL_Foresight,

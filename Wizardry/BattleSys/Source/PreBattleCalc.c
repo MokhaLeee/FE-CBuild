@@ -314,6 +314,9 @@ STATIC_DECLAR void PreBattlePostCalcSkills(struct BattleUnit * attacker, struct 
         if (SkillTester(unit, SID_FlashingBladePlus))
             attacker->battleCritRate += 25;
     }
+
+    if (SkillTester(unit, SID_BlueFlame))
+        attacker->battleAttack += 2;
 }
 
 STATIC_DECLAR void PreBattlePostCalcRangeDebuffs(struct BattleUnit * attacker, struct BattleUnit * defender)
@@ -365,6 +368,7 @@ STATIC_DECLAR void PreBattlePostCalcRangeDebuffs(struct BattleUnit * attacker, s
     int enmies_range3 = 0;
 
     int enmies_range2 = 0;
+    int allies_range1 = 0;
 
     for (i = 0; i < 24; i++)
     {
@@ -401,6 +405,9 @@ STATIC_DECLAR void PreBattlePostCalcRangeDebuffs(struct BattleUnit * attacker, s
 
             if (range3[i])
                 allies_range3++;
+
+            if (range1[i])
+                allies_range1++;
         }
         else
         {
@@ -464,6 +471,12 @@ STATIC_DECLAR void PreBattlePostCalcRangeDebuffs(struct BattleUnit * attacker, s
             attacker->battleAttack += 3;
             attacker->battleHitRate += 15;
         }
+    }
+
+    if (allies_range1 > 0)
+    {
+        if (SkillTester(&attacker->unit, SID_BlueFlame))
+            attacker->battleAttack += 2;
     }
 }
 

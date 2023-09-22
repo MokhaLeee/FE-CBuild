@@ -61,6 +61,8 @@ enum SkillIndex {
     SID_FlashingBladePlus,
     SID_LunaAttack,
     SID_SorceryBlade,
+    SID_Fortune,
+    SID_BlueFlame,
 
     /* Weapon triangle */
     SID_SwordBreaker,
@@ -86,6 +88,8 @@ enum SkillIndex {
     SID_Corona,
     SID_Luna,
     SID_Flare,
+    SID_Sol,
+    SID_DragonFang,
     SID_Foresight,
 
     /* Blow skills */

@@ -108,3 +108,13 @@ as foe's Def x25%[X]
 Sorcery Blade: [NL]
 Target defense is calculated as[NL]
 lower value of Def or Res[X]
+
+## MSG_SKILL_Fortune
+Fortune:[NL]
+This unit[NL]
+cannot be crit.[X]
+
+## MSG_SKILL_BlueFlame
+Blue Flame: Attack +2 to this[N]
+unit. When adjacent to an ally[N]
+with this skill, gain Attack +2.[X]

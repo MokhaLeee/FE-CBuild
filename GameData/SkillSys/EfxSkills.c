@@ -97,6 +97,16 @@ const struct SkillAnimInfo gSkillAnimInfos[0x100] = {
         .priority = EFX_PRIORITY_NORMAL,
         .sfx = 0x3D1,
     },
+    [SID_Sol] = {
+        .aid = EFX_SKILL_AETHER,
+        .priority = EFX_PRIORITY_NORMAL,
+        .sfx = 0x3D1,
+    },
+    [SID_DragonFang] = {
+        .aid = EFX_SKILL_DRAGON_FANG,
+        .priority = EFX_PRIORITY_NORMAL,
+        .sfx = 0x3D1,
+    },
 };
 
 FEB_IDENTIFIER(gSkillAnimInfos);

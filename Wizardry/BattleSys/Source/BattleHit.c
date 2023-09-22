@@ -19,6 +19,11 @@ STATIC_DECLAR bool CheckSkillHpDrain(struct BattleUnit * attacker, struct Battle
         RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Aether);
         return true;
     }
+    if (CheckBattleSkillActivte(attacker, defender, SID_Sol, GetUnitSkill(GetUnit(attacker->unit.index))))
+    {
+        RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Sol);
+        return true;
+    }
     return false;
 }
 
@@ -87,7 +92,10 @@ void BattleGenerateHitAttributes(struct BattleUnit * attacker, struct BattleUnit
     if (SkillTester(unit, SID_FlashingBladePlus))
         gBattleStats.damage += 3;
 
-    if (BattleRoll1RN(gBattleStats.critRate, FALSE) == TRUE && !SkillTester(&defender->unit, SID_Foresight))
+    if (SkillTester(unit, SID_DragonFang))
+        gBattleStats.damage = gBattleStats.damage * 3 / 2;
+
+    if (BattleRoll1RN(gBattleStats.critRate, FALSE) == TRUE && !SkillTester(&defender->unit, SID_Foresight) && !SkillTester(&defender->unit, SID_Fortune))
     {
         if (BattleRoll1RN(gBattleStats.silencerRate, FALSE))
         {
