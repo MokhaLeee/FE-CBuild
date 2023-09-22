@@ -515,3 +515,18 @@ void ComputeBattleUnitSilencerRate(struct BattleUnit * attacker, struct BattleUn
 {
     return;
 }
+
+/* LynJump */
+void ComputeBattleUnitEffectiveHitRate(struct BattleUnit * attacker, struct BattleUnit * defender)
+{
+    attacker->battleEffectiveHitRate = attacker->battleHitRate - defender->battleAvoidRate;
+
+    /* Distance +2, hit rate -20% */
+    attacker->battleEffectiveHitRate -= Div(gBattleStats.range, 2) * 20;
+
+    if (attacker->battleEffectiveHitRate > 100)
+        attacker->battleEffectiveHitRate = 100;
+
+    if (attacker->battleEffectiveHitRate < 0)
+        attacker->battleEffectiveHitRate = 0;
+}
