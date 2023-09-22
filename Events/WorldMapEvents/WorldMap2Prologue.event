@@ -50,4 +50,7 @@ PUSH
     EVBIT_MODIFY 0x1
     SKIPWN
     ENDA
+
+    ORG $09E00
+    SHORT $4770
 POP
