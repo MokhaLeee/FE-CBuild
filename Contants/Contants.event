@@ -22,4 +22,7 @@ ALIGN 4
 ALIGN 4
 #include "MapAnims/MapAnims.event"
 
+ALIGN 4
+#include "Sounds/Sounds.event"
+
 #endif

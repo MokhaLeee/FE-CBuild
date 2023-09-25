@@ -1,0 +1,34 @@
+#ifndef SOUNDS_INSTALLED
+#define SOUNDS_INSTALLED
+
+#include "SoundDefinitions.h"
+#include "DrumFix.event"
+#include "16Track_12Sounds.event"
+
+PUSH
+    ORG $1001860
+    #incbin "Bin/CustomPiano.bin"
+POP
+
+ALIGN 4
+MESSAGE CURRENTOFFSET
+voicegroup000:
+    #incbin "Bin/FE8_native_instrument_map_revised.bin"
+    // #incbin "Bin/NIMapCustomPiano.bin"
+
+#ifndef SongTableOffset
+    #define SongTableOffset 0x224470
+    #define SongTable(index,SongPointer,Group) "PUSH; ORG SongTableOffset+(8*index); POIN SongPointer; SHORT Group Group; POP"
+#endif
+
+{
+    SongTable(0x1, EdgeOfDawn, SG_MAP_MUSIC)
+    #include "Songs/FE16_Edge_of_Dawn_Sme.lyn.event"
+}
+
+{
+    SongTable(0x2, song3C, SG_MAP_MUSIC)
+    #include "Songs/FE16_A_Funeral_of_Flowers_Thunder_MrGreen3339.lyn.event"
+}
+
+#endif /* SOUNDS_INSTALLED */
