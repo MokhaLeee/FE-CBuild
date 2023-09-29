@@ -1,0 +1,169 @@
+#ifndef CHAPTER_ASSET_DEFINITIONS
+#define CHAPTER_ASSET_DEFINITIONS
+
+#define AssetMountainsObj         $01
+#define AssetMountainsPal         $02
+#define AssetMountainsConfig      $03
+#define AssetCh00Map              $04
+#define AssetWaterAnims           $05
+#define AssetCh00MapChanges       $06 // Unused
+#define AssetCh00Data             $07
+#define AssetCh01Map              $08
+#define AssetCh01MapChanges       $09
+#define AssetCh01Data             $0A
+#define AssetCh02Map              $0B
+#define AssetCh02MapChanges       $0C
+#define AssetCh02Data             $0D
+#define AssetVillageObj           $0E
+#define AssetVillagePal           $0F
+#define AssetVillageConfig        $10
+#define AssetCh03Map              $11
+#define AssetVillageAnims         $12
+#define AssetCh03MapChanges       $13
+#define AssetCh03Data             $14
+#define AssetCh04Map              $15
+#define AssetCh04MapChanges       $16
+#define AssetCh04Data             $17
+#define AssetCastleObj            $18
+#define AssetCastlePal            $19
+#define AssetCastleConfig         $1A
+//                                $1B // vanilla 5x map
+#define AssetCastleAnims          $1C
+//                                $1D // vanilla 5x map changes
+//                                $1E // vanilla 5x data
+#define AssetCh05Map              $1F
+#define AssetCh05MapChanges       $20 // Unused
+#define AssetCh05Data             $21
+#define AssetCh06Map              $22
+#define AssetCh06MapChanges       $23
+#define AssetCh06Data             $24
+#define AssetCh07Map              $25
+#define AssetCh07MapChanges       $26
+#define AssetCh07Data             $27
+#define AssetCh08Map              $28
+#define AssetCh08MapChanges       $29
+#define AssetCh08Data             $2A
+#define AssetCh09Map              $2B
+#define AssetCh09MapChanges       $2C
+#define AssetCh09Data             $2D
+#define AssetPlainsObj            $2E
+#define AssetPlainsPal            $2F
+#define AssetPlainsConfig         $30
+#define AssetCh10Map              $31
+#define AssetCh10MapChanges       $32 // Unused
+#define AssetCh10Data             $33
+#define AssetPlainsPal2           $34 // Looks the same as $2F? Apparently FoW palette is different
+#define AssetCh12Map              $35
+#define AssetCh12MapChanges       $36
+#define AssetCh12Data             $37
+#define AssetMountainsPalGreen    $38
+#define AssetCh13Map              $39
+#define AssetCh13MapChanges       $3A
+#define AssetCh13Data             $3B
+#define AssetFortObj              $3C
+#define AssetFortPal              $3D
+#define AssetFortConfig           $3E
+#define AssetCh14Map              $3F
+#define AssetCh14MapChanges       $40 // Unused
+#define AssetCh14Data             $41
+#define AssetDesertObj            $42
+#define AssetDesertPal            $43
+#define AssetDesertConfig         $44
+#define AssetCh15Map              $45
+#define AssetCh15MapChanges       $46
+#define AssetCh15Data             $47
+#define AssetCastlePalWithOutside $48
+#define AssetCh16Map              $49
+#define AssetCh16MapChanges       $4A
+#define AssetCh16Data             $4B
+#define AssetMountainsPalSwamp    $4C
+#define AssetCh17Map              $4D
+#define AssetCh17MapChanges       $4E
+#define AssetCh17Data             $4F
+#define AssetVolcanoObj           $50
+#define AssetVolcanoPal           $51
+#define AssetVolcanoConfig        $52
+#define AssetCh18Map              $55
+#define AssetVolcanoPalAnims      $54
+#define AssetCh18MapChanges       $55 // Unused
+#define AssetCh18Data             $56
+#define AssetCastlePalDarkBlue    $57
+#define AssetCh19Map              $58
+#define AssetCh19MapChanges       $59 // Unused
+#define AssetCh19Data             $5A
+#define AssetMountainsPalPoison   $5B
+#define AssetCh20Map              $5C
+#define AssetCh20MapChanges       $5D
+#define AssetCh20Data             $5E
+#define AssetDemonTempleObj       $5F
+#define AssetDemonTemplePal       $60
+#define AssetDemonTempleConfig    $61
+#define AssetCh21Map              $62
+#define AssetCh21MapChanges       $63 // Unused
+#define AssetCh21Data             $64
+#define AssetCh22Map              $65
+#define AssetCh22MapChanges       $66 // Unused
+#define AssetCh22Data             $67
+#define AssetFortPalRedHiContrast $68
+#define AssetCh23Map              $69
+#define AssetCh23MapChanges       $6A
+#define AssetCh23Data             $6B
+#define AssetShrineObj            $6C
+#define AssetShrinePal            $6D
+#define AssetShrineConfig         $6E
+#define AssetCh24Map              $6F
+#define AssetCh24MapChanges       $70
+#define AssetCh24Data             $71
+#define AssetVillagePalOcean      $72 // TODO: check why water is darker
+#define AssetCh26Map              $73
+#define AssetCh26MapChanges       $74
+#define AssetCh26Data             $75
+#define AssetCh27Map              $76
+#define AssetCh27MapChanges       $77
+#define AssetCh27Data             $78
+#define AssetInteriorObj          $79
+#define AssetInteriorPal          $7A
+#define AssetInteriorConfig       $7B
+#define AssetCh28Map              $7C
+#define AssetInteriorAnims        $7D
+#define AssetCh28MapChanges       $7E // Unused
+#define AssetCh28Data             $7F
+//                                $80 // vanilla eph ch15 data
+//                                $81 // vanilla eph ch16 data
+//                                $82 // vanilla eph ch17 data
+//                                $83 // vanilla eph ch18 data
+//                                $84 // vanilla eph ch19 data
+//                                $85 // vanilla eph ch20 data
+#define AssetCh29Data             $86
+#define AssetCh30Data             $87
+#define AssetTempleObj            $88
+#define AssetTemplePal            $89
+#define AssetTempleConfig         $8A
+#define AssetMountainsPalCh24     $8B // vanilla valni 1 map
+#define AssetShrinePalSnow        $8C // vanilla valni 1 map changes
+#define AssetShrineConfigSnow     $8D // vanilla valni 1 data
+#define AssetCh29Map              $8E // vanilla valni 2 map
+#define AssetCh29MapChanges       $8F // vanilla valni 2 map changes
+
+#define AssetShrinePalDark        $A3
+
+#define AssetCastlePalSepia       $B9
+
+#define AssetCh30Map              $CA // vanilla interesting map
+#define AssetCh30MapChanges       $CB // vanilla interesting data
+#define AssetCastlePalCh25        $CC // vanilla debug map
+
+#define AssetFortPalRed           $CE
+#define AssetCh11Map              $CF
+#define AssetCh11MapChanges       $D0 // Unused
+#define AssetCh11Data             $D1
+#define AssetCh25Map              $D2
+#define AssetVillageAnims2        $D3
+#define AssetCh25MapChanges       $D4
+#define AssetCh25Data             $D5
+
+#define AssetInteriorPalSepia     $E6
+
+#define AssetVillagePalSepia      $EA
+
+#endif // CHAPTER_ASSET_DEFINITIONS

@@ -1,0 +1,31 @@
+#ifndef COMMON_EVENTS
+#define COMMON_EVENTS
+
+// Vanilla callable events
+
+#define scStartPrepScreen      $591FD8 // args: -
+
+#define scNoSkipFadeOut        $591F40 // args: -
+#define scNoSkipFadeIn         $591F64 // args: -
+
+#define scLoadReinforcements   $9EE274 // args: s2 = pointer to UNITs
+
+#define scConvoClearBackground $9EE2E8 // args: -
+#define scConvoShowBackground  $9EE2E8 // args: s2 = background id
+#define scConvoShowTextWithBg  $9EE310 // args: s2 = background id, s3 = text id
+
+// Common events
+
+ALIGN 4
+NoTraps:
+	ENDTRAP
+
+ALIGN 4
+NoEventList:
+	END_MAIN
+
+ALIGN 4
+NoTutorialList:
+	WORD 0
+
+#endif // COMMON_EVENTS

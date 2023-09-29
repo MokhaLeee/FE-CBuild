@@ -115,6 +115,6 @@ This unit[NL]
 cannot be crit.[X]
 
 ## MSG_SKILL_BlueFlame
-Blue Flame: Attack +2 to this[N]
-unit. When adjacent to an ally[N]
+Blue Flame: Attack +2 to this[NL]
+unit. When adjacent to an ally[NL]
 with this skill, gain Attack +2.[X]

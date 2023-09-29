@@ -9,13 +9,7 @@ ALIGN 4
 #include "Hacks/PortraitHeight.lyn.event"
 
 HighPortraitFidLut:
-    BYTE $10    // Lute    
-    BYTE $19    // Amelia
-    BYTE $21    // Ewan
-    BYTE $23    // Dozla
-    BYTE $26    // Myrrh
-
-    BYTE Mug_Lysi
+    BYTE Mug_Lysi Mug_Dimi
 
     BYTE 0
 

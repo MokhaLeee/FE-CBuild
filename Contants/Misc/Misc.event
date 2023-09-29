@@ -1,0 +1,21 @@
+PUSH
+    ORG $AC188
+    // POIN NewDifficultyButtons
+
+    ORG $c5830
+    POIN NewTitleScroll
+
+    ORG $aac5ac
+    #incbin "Source/FE_Title.4bpp.lz"
+
+    ORG $aac58c //clearing dragon palette to only use 1 colour
+    BYTE $90 $42 $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A
+POP
+
+ALIGN 4
+NewDifficultyButtons:
+#incbin "Source/difficulty.4bpp.lz"
+
+ALIGN 4
+NewTitleScroll:
+#incbin "Source/TitleScroll.4bpp.lz"

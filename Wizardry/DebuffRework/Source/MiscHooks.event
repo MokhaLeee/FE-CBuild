@@ -233,9 +233,9 @@ PUSH
 
     // MMB_DrawStatusText
 
-    ORG $8D470 // DrawUnitDisplayHpOrStatus
+    ORG $8C470 // DrawUnitDisplayHpOrStatus
     BYTE 0x3F
-    ORG $8D536
+    ORG $8C536
     BYTE 0x3F
     PROTECT $8C45C $8C5D0
 

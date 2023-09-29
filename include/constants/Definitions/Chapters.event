@@ -1,0 +1,36 @@
+#ifndef CHAPTER_DEFINITIONS
+#define CHAPTER_DEFINITIONS
+
+#define ChPrologueId 0
+#define Ch1Id        1
+#define Ch2Id        2
+#define Ch3Id        3
+#define Ch4Id        4
+#define Ch5Id        6
+#define Ch6Id        7
+#define Ch7Id        8
+#define Ch8Id        9
+#define Ch9Id        10
+#define Ch10Id       11
+#define Ch11Id       61
+#define Ch12Id       12
+#define Ch13Id       13
+#define Ch14Id       14
+#define Ch15Id       15
+#define Ch16Id       16
+#define Ch17Id       17
+#define Ch18Id       18
+#define Ch19Id       19
+#define Ch20Id       20
+#define Ch21Id       21
+#define Ch22Id       22
+#define Ch23Id       23
+#define Ch24Id       24
+#define Ch25Id       62
+#define Ch26Id       25
+#define Ch27Id       26
+#define Ch28Id       27
+#define Ch29Id       34
+#define ChFinalId    35
+
+#endif // CHAPTER_DEFINITIONS

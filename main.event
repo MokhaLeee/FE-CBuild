@@ -4,7 +4,7 @@
 
 #include "Configs/configs.h"
 #include "include/macros.event"
-#include "include/constants/event-cmds.h"
+#include "include/Definitions.event"
 
 ORG FreeSpace
 
