@@ -23,13 +23,11 @@ STATIC_DECLAR void HbPopuplate_CombatArtBKSEL(struct HelpBoxProc * proc)
     int cid = GetCombatArtInForce(gActiveUnit);
     proc->mid = GetCombatArtDesc(cid);
 
-    gPlaySt.cfgTextSpeed = 2;
     sHelpBoxType = NEW_HB_COMBAT_ART_BKSEL;
 }
 
 STATIC_DECLAR void HbPopuplate_NotCombatArtBKSEL(struct HelpBoxProc * proc)
 {
-    gPlaySt.cfgTextSpeed = 1;
     sHelpBoxType = 0;
 }
 

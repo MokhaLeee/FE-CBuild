@@ -3,6 +3,7 @@
 #include "chapterdata.h"
 #include "bmudisp.h"
 #include "ctc.h"
+#include "worldmap.h"
 
 #include "common-chax.h"
 #include "debuff.h"
