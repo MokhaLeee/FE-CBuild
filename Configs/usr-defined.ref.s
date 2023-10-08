@@ -37,7 +37,11 @@ SET_DATA FreeRamSpaceTail, gPostActionGaleforceFlag + 0x4
 
 /* IconDisplay */
 SET_DATA gIconReSts, 0x02026A90 @ DrawnIconLookupTable
-/* Fall through */
+/**
+ * Fall through.
+ * Since there are enough space at here,
+ * so we use such space for battle rather than FreeRAMSpaceEntry lol
+ */
 SET_DATA gBattleHitArrayRe, 0x02026AD0   /* 4 * 0x21 */
 SET_DATA gAnimRoundDataRe, 0x02026B54    /* 4 * 0x21 */
 SET_DATA gEfxHpLutRe, 0x02026BD8         /* 4 * 0x21 */
