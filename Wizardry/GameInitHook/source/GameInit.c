@@ -12,6 +12,13 @@
 typedef void (* GameInitHookFunc_t)(void);
 extern const GameInitHookFunc_t gGameInitHookTable[];
 
+extern u8 * FreeRamSpaceEntry, * FreeRamSpaceTail;
+STATIC_DECLAR void FreeRamSpaceDetection(void)
+{
+    const int free_ram_space_size = 0x2028;
+    Assert((FreeRamSpaceTail - FreeRamSpaceEntry) < free_ram_space_size);
+}
+
 /* LynJump! */
 void StartGame(void)
 {
@@ -34,6 +41,7 @@ void StartGame(void)
 
     ClearBattleGlobalFlags();
     ResetCombatArtStatus();
+    FreeRamSpaceDetection();
 
     /* External hooks */
     for (it = gGameInitHookTable; *it; it++)
