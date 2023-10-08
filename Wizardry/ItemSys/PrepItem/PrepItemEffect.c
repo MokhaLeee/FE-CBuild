@@ -38,7 +38,7 @@ PrepItemEffectFunc_t const gPrepItemEffectFunc[0x100] = {
     [ITEM_BOOSTER_CON] = PrepItemEffect_StatBooster,
 };
 
-
+/* LynJump */
 void PrepItemUse_HandleItemEffect(struct ProcPrepItemUse * proc)
 {
     u16 item = proc->unit->items[proc->slot];

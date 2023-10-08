@@ -3,6 +3,7 @@
 
 #include "Source/bmudisp.lyn.event"
 #include "Source/HpBar.lyn.event"
+#include "Source/LynJump.event"
 
 ALIGN 4
 Img_HpBar:

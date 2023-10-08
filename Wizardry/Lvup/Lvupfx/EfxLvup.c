@@ -31,7 +31,7 @@ STATIC_DECLAR const struct EfxLvupInfo NewEfxLvupInfos[] = {
     {-1, -1, 0}
 };
 
-void EkrLvup_InitStatusTextVanilla(struct ProcEkrLevelup * proc)
+STATIC_DECLAR void EkrLvup_InitStatusTextVanilla(struct ProcEkrLevelup * proc)
 {
     int i;
     struct Text * th, * th_base = gTextEkrlvupValue;
@@ -67,6 +67,7 @@ void EkrLvup_InitStatusTextVanilla(struct ProcEkrLevelup * proc)
     PutText(th, TILEMAP_LOCATED(gBG2TilemapBuffer, 13, 7));
 }
 
+/* LynJump */
 void EkrLvup_InitStatusText(struct ProcEkrLevelup * proc)
 {
     int i;

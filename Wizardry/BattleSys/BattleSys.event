@@ -12,12 +12,13 @@
 #include "Source/BattleExp.lyn.event"
 #include "Source/BattleSkillActRate.lyn.event"
 #include "Source/Misc.lyn.event"
+#include "Source/LynJump.event"
 
 #include "BattleHitExpasion/BattleHitExpa.lyn.event"
 #include "BattleHitExpasion/RepointEfxHp.event"
 #include "BattleHitExpasion/RepointBattleHit.event"
 #include "BattleHitExpasion/RepointAnimRound.event"
-#include "Source/LynJump.event"
+#include "BattleHitExpasion/LynJump.event"
 
 ALIGN 4
 Gfx_BKSEL:

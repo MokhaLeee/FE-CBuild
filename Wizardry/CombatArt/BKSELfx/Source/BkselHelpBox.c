@@ -13,6 +13,7 @@
 
 extern DECL_INFO * const RTextCombatBkselStandard, * const RTextCombatBkselExtended;
 extern DECL_INFO * const RTextCombatBkselStandardNoArts, * const RTextCombatBkselExtendedNoArts;
+
 /* LynJump */
 int StartBattleForecastHelpBox(ProcPtr parent)
 {
