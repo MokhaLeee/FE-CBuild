@@ -4,7 +4,22 @@
 
 #include "common-chax.h"
 #include "skill-system.h"
+#include "bwl.h"
 #include "constants/skills.h"
+
+/* LynJump */
+int GetUnitExpLevel(struct Unit * unit)
+{
+    int base, bonus;
+    base = unit->level;
+
+    if (CheckHasBwl(UNIT_CHAR_ID(unit)))
+        bonus = GetUnitHiddenLevel(unit);
+    else
+        bonus = gClassPreLoadHiddenLevel[UNIT_CLASS_ID(unit)];
+
+    return base + bonus;
+}
 
 /* LynJump */
 int GetBattleUnitExpGain(struct BattleUnit * actor, struct BattleUnit * target)
