@@ -28,4 +28,6 @@
 
 #include "HiddenLevel/HiddenLevel.lyn.event"
 
+#include "Promote/ClassChgExpa.lyn.event"
+
 #endif

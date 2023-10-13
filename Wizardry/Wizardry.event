@@ -29,6 +29,7 @@ ALIGN 4
 #include "HelpBox/HelpBox.event"
 #include "RN/RandNumberC.lyn.event"
 #include "ChapterInitHook/ChapterInitHook.event"
+#include "ClassChgExpansion/ClassChgExpansion.event"
 
 #include "CommonLib/map.lyn.event"
 #include "CommonLib/math.lyn.event"
