@@ -29,5 +29,6 @@
 #include "HiddenLevel/HiddenLevel.lyn.event"
 
 #include "Promote/ClassChgExpa.lyn.event"
+#include "Promote/VanillaList.event"
 
 #endif
