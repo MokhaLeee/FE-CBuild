@@ -5,12 +5,6 @@
 
 Expand selectable classes during branched promotion to **SIX**
 
-<div align=center>
-
-![image](gfx/ClassChgExpansion.png)
-
-<div align=left>
-
 ## Custom Usage
 
 ### Vanila table
@@ -24,7 +18,7 @@ At the same time, there are two list for promotion expansion:
     A `0x100 * 4` linear table according to class index.
     You can config 4 additional class to promote.
 
-    You can also config this table by FEBuilder's patch, **./patches/PATCH_ClassChgExpandList.txt**
+    You can also config this table by FEBuilder's patch, **./patch/PATCH_ClassChgExpandList.txt**
 
 2. `gClassChgExpaMods`
 
@@ -35,16 +29,12 @@ At the same time, there are two list for promotion expansion:
     - The configed item is used for promotion
     - The configed event flag is set
 
-    You can config this table by FEBuilder's patch, **./patches/PATCH_ClassChgExpandModulearList.txt**
+    You can config this table by FEBuilder's patch, **./patch/PATCH_ClassChgExpandModulearList.txt**
 
 ### Trainees
 As for auto-promotion for trainee class, there is also a reworked table for configuration. `gpTraineesRe`, with two element `jid` and `level`.
 
     You can also config this table by FEBuilder's patch, **./patches/PATCH_ClassChgExpandTrainee.txt**
-
-## Custom Build
-
-If you want to modify on source code, please refer to [CHAX template](https://github.com/MokhaLeee/fe8-chax-template), note that the C-Lib use the [ver.2023.07.31](https://github.com/MokhaLeee/FE-CLib-Mokha/releases/tag/3.0).
 
 ## Wizardry notes
 
