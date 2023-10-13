@@ -30,9 +30,9 @@ void StartGame(void)
     SetInterrupt_LCDVBlank(OnVBlank);
 
     proc = Proc_Start(gProcScr_GameControl, PROC_TREE_3);
-    proc->nextAction = GAME_ACTION_0;
+    proc->nextAction = LGAMECTRL_GAME_INTRO_UI;
     proc->nextChapter = 0;
-    proc->unk_2B = 0;
+    proc->idle_status = 0;
 
     /* Internal hooks */
 #if CONFIG_USE_DEBUG

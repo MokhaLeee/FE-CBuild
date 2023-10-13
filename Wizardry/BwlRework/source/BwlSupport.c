@@ -121,7 +121,7 @@ s8 CanUnitSupportNow(struct Unit * unit, int num)
     int exp, maxExp;
     u8 * supp = GetUnitBwlSupports(UNIT_CHAR_ID(unit));
 
-    if (gPlaySt.chapterStateBits & PLAY_FLAG_7)
+    if (gPlaySt.chapterStateBits & PLAY_FLAG_EXTRA_MAP)
         return FALSE;
 
     if (gPlaySt.chapterStateBits & PLAY_FLAG_TUTORIAL)
