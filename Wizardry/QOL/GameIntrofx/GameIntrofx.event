@@ -1,4 +1,11 @@
 #ifndef GAME_INTROFX_INSTALLED
 #define GAME_INTROFX_INSTALLED
 
+/**
+ * Main idea
+ * 1. H-S screen should be replaced as a FEU or SkillSys LOGO.
+ * 2. H-S screen should can be skipped no more than SW-RST.
+ * 3. OpAnim could be canceled, but the intro anim of titlescreen should be reserved.
+ */
+
 #endif /* GAME_INTROFX_INSTALLED */

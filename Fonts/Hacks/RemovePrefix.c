@@ -1,7 +1,7 @@
 #include "global.h"
 #include <string.h>
 
-void PrependArticleToString(char * str, const char * insert_str, s8 c)
+void InsertPrefix(char * str, const char * insert_str, s8 c)
 {
     int len = strlen(str);
 
