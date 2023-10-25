@@ -385,7 +385,7 @@ STATIC_DECLAR void ProcPrepSkill2_EndMiscEffectForStatScreen(struct ProcPrepSkil
     sub_80AD2D4();
     EndPrepScreenHandCursor();
     EndHelpPromptSprite();
-    sub_80ACDDC();
+    EndUiSpinningArrows();
     EndMuralBackground_();
 
     EndPrepSkillObj();
