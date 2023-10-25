@@ -30,7 +30,7 @@ void StartGame(void)
     SetInterrupt_LCDVBlank(OnVBlank);
 
     proc = Proc_Start(gProcScr_GameControl, PROC_TREE_3);
-    proc->nextAction = LGAMECTRL_GAME_INTRO_UI;
+    proc->nextAction = GAME_ACTION_EVENT_RETURN;
     proc->nextChapter = 0;
     proc->idle_status = 0;
 
