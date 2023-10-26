@@ -1,5 +1,9 @@
 ALIGN 4
 
+#include "Common/EventExpansion/EventExpansion.event"
+#include "Core/DebuffRework/DebuffRework.event"
+#include "Core/WeaponRange/WeaponRange.event"
+
 #include "Common/GameInitHook/GameInitHook.event"
 #include "Common/DebugKit/DebugKit.event"
 #include "Common/BanimHack/BanimHack.event"
@@ -7,7 +11,6 @@ ALIGN 4
 #include "Common/ClassChgExpansion/ClassChgExpansion.event"
 #include "Common/CommonLib/map.lyn.event"
 #include "Common/CommonLib/math.lyn.event"
-#include "Common/EventExpansion/EventExpansion.event"
 #include "Common/RN/RandNumberC.lyn.event"
 #include "Common/MoveLimitViewHack/MoveLimitViewHack.lyn.event"
 #include "Common/IconDisplay/IconDisplay.event"
@@ -17,8 +20,6 @@ ALIGN 4
 #include "Common/ChapterInitHook/ChapterInitHook.event"
 #include "Common/BattleUnitHook/BattleUnitHook.event"
 
-#include "Core/DebuffRework/DebuffRework.event"
-#include "Core/WeaponRange/WeaponRange.event"
 #include "Core/ItemSys/ItemSys.event"
 #include "Core/StrMagSplit/StrMagSplit.event"
 #include "Core/UnitStatusGetter/UnitStatusGetter.event"
