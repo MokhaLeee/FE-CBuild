@@ -85,8 +85,11 @@ STATIC_DECLAR struct SkillList * GetExistingSkillList(struct Unit * unit)
 
         switch (i) {
         case 0:
+            sSkillListNext = 1;
+            break;
+
         case 1:
-            sSkillListNext = !i;
+            sSkillListNext = 0;
             break;
         }
         return &sSkillLists[i];
@@ -107,9 +110,17 @@ struct SkillList * GetUnitSkillList(struct Unit * unit)
         else
         {
             list = &sSkillLists[sSkillListNext];
-            sSkillListNext = !sSkillListNext;
-        }
 
+            switch (sSkillListNext) {
+            case 0:
+                sSkillListNext = 1;
+                break;
+
+            case 1:
+                sSkillListNext = 0;
+                break;
+            }
+        }
         GenerateSkillListExt(unit, list);
     }
     return list;
