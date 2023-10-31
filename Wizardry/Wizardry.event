@@ -32,3 +32,5 @@ ALIGN 4
 #include "Core/HpBar/HpBar.event"
 #include "Core/CombatArt/CombatArt.event"
 #include "Core/HelpBox/HelpBox.event"
+
+// #include "QOL/StatScreenfx/StatScreenfx.event"

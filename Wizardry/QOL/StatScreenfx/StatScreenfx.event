@@ -1,4 +1,18 @@
 #ifndef STATSCREENFX_INSTALLED
 #define STATSCREENFX_INSTALLED
 
+#include "Source/Statscreenfx.lyn.event"
+
+ALIGN 4
+TSA_StatscreenBG1:
+    #incbin "Data/StatscreenfxBG0.tsa.lz"
+
+TSA_StatscreenBG1_Uncompressed:
+    #incbin "Data/StatscreenfxBG0.tsa"
+
+PUSH
+    ORG $A009F4
+    POIN StatScreen_InitDisplayRework
+POP
+
 #endif /* STATSCREENFX_INSTALLED */
