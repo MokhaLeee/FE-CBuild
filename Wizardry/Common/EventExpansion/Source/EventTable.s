@@ -19,4 +19,4 @@ gEventLoCmdTableRe:
     .4byte Event38_ChangeActiveUnit, Event39_ChangeAiScript, Event3A_DisplayPopup, Event3B_DisplayCursor
     .4byte Event3C_, Event3D_, Event3E_PrepScreenCall, Event3F_
     .4byte Event40_, Event41_, Event42_, Event43_
-    .4byte Event44_, Event45_
+    .4byte Event44_BreakingSacredStone, Event45_

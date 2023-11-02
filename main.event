@@ -35,3 +35,5 @@ ORG FreeSpaceMagic
 ORG FreeSpaceEvent
 
     #include "Events/Events.event"
+
+// #include "debug.event"

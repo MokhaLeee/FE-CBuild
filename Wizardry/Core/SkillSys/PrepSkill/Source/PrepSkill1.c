@@ -9,6 +9,7 @@
 #include "soundwrapper.h"
 #include "statscreen.h"
 #include "icon.h"
+#include "sysutil.h"
 
 #include "common-chax.h"
 #include "skill-system.h"
@@ -61,9 +62,9 @@ STATIC_DECLAR void ProcPrepSkill1_InitScreen(struct ProcPrepSkill1 * proc)
 
     PrepUnit_InitSMS((ProcPtr)proc);
     StartParallelWorker(PrepUnit_DrawSMSAndObjs, proc);
-    ResetPrepScreenHandCursor(proc);
-    sub_80AD4A0(0x600, 0x1);
-    ShowPrepScreenHandCursor(
+    ResetSysHandCursor(proc);
+    DisplaySysHandCursorTextShadow(0x600, 0x1);
+    ShowSysHandCursor(
         (proc->list_num_cur % 2) * 56 + 0x70,
         (proc->list_num_cur / 2) * 16 + 0x18 - proc->yDiff_cur,
         0x7, 0x800);
@@ -71,12 +72,12 @@ STATIC_DECLAR void ProcPrepSkill1_InitScreen(struct ProcPrepSkill1 * proc)
     StartHelpPromptSprite(0x20, 0x8F, 9, proc);
     PrepUnit_DrawLeftUnitName(unit);
 
-    StartParallelFiniteLoop(PrepSkill1_DrawLeftSkillIcon, 0, (u32)proc);
+    StartParallelFiniteLoop(PrepSkill1_DrawLeftSkillIcon, 0, proc);
 
     for (i = 0; i < 6; i++)
         PrepUnit_DrawUnitListNames((ProcPtr)proc, proc->yDiff_cur / 0x10 + i);
 
-    StartParallelFiniteLoop(PrepSkill1_DrawRightTopBar, 0, (u32)proc);
+    StartParallelFiniteLoop(PrepSkill1_DrawRightTopBar, 0, proc);
 
     StartGreenText(proc);
     LoadHelpBoxGfx(BG_SCREEN_ADDR(0x29), 5);
@@ -160,9 +161,9 @@ STATIC_DECLAR void ProcPrepSkill1_Idle(struct ProcPrepSkill1 * proc)
         if (proc->list_num_pre == proc->list_num_cur)
             return;
 
-        StartParallelFiniteLoop(PrepSkill1_DrawLeftSkillIcon, 0, (u32)proc);
-        StartParallelFiniteLoop(PrepUnit_DrawLeftUnitNameCur, 0, (u32)proc);
-        StartParallelFiniteLoop(PrepSkill1_DrawRightTopBar, 0, (u32)proc);
+        StartParallelFiniteLoop(PrepSkill1_DrawLeftSkillIcon, 0, proc);
+        StartParallelFiniteLoop(PrepUnit_DrawLeftUnitNameCur, 0, proc);
+        StartParallelFiniteLoop(PrepSkill1_DrawRightTopBar, 0, proc);
         PlaySoundEffect(0x65);
     
         if (ShouldPrepUnitMenuScroll(proc))
@@ -172,12 +173,12 @@ STATIC_DECLAR void ProcPrepSkill1_Idle(struct ProcPrepSkill1 * proc)
             if (proc->list_num_cur > proc->list_num_pre)
                 PrepUnit_DrawUnitListNames(proc, proc->yDiff_cur / 16 + 6);
 
-            SetPrepScreenHandXPos((1 & proc->list_num_cur) * 56 + 0x70);
+            SetSysHandCursorXPos((1 & proc->list_num_cur) * 56 + 0x70);
         }
         else
         {
             proc->list_num_pre = proc->list_num_cur;
-            ShowPrepScreenHandCursor(
+            ShowSysHandCursor(
                 (1 & proc->list_num_pre) * 56 + 0x70,
                 (proc->list_num_pre >> 1) * 16 + 0x18 - proc->yDiff_cur,
                 0x7, 0x800

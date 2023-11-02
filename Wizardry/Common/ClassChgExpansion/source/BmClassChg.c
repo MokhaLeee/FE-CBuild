@@ -16,6 +16,7 @@
 #include "bmusemind.h"
 #include "bmarch.h"
 #include "classchg.h"
+#include "sysutil.h"
 #include "constants/characters.h"
 #include "constants/classes.h"
 #include "constants/items.h"

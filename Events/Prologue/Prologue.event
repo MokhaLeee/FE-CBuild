@@ -64,6 +64,8 @@ BeginningScene:
     LOAD1 1 EnemyUnits
     ENUN
 
+    PREP
+
     CALL scNoSkipFadeOut
 
     TEXTSTART

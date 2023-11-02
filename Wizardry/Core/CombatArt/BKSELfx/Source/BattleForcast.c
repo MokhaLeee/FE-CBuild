@@ -6,6 +6,7 @@
 #include "bmlib.h"
 #include "bmitem.h"
 #include "fontgrp.h"
+#include "sysutil.h"
 
 #include "common-chax.h"
 #include "combat-art.h"

@@ -1,0 +1,7 @@
+PUSH
+    /* HasConvoyAccess return true */
+    ORG 0x3161C
+    SHORT $2001 $4770
+POP
+
+MESSAGE ___DEBUG___
