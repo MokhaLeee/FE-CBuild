@@ -53,6 +53,6 @@ void DisplayPage2(void)
             text,
             gBmFrameTmap0 + TILEMAP_INDEX(10, 0x1 + 2 * i),
             TEXT_COLOR_SYSTEM_WHITE, 0, 0,
-            GetSkillName(list->sid[i]));
+            GetSkillNameStr(list->sid[i]));
     }
 }

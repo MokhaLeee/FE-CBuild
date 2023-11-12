@@ -19,19 +19,28 @@ const u8 * GetSkillIcon(const u8 sid)
     return icon;
 }
 
-u16 GetSkillDesc(const u8 sid)
+u16 GetSkillDescMsg(const u8 sid)
 {
     if (SKILL_VALID(sid))
-        return gSkillInfos[sid].msg;
+        return gSkillInfos[sid].desc;
 
     LogPrintf("%s: Try get invalid skill info: %#X", __func__, sid);
     return 0;
 }
 
-const char * GetSkillName(const u8 sid)
+const char * GetSkillDescStr(const u8 sid)
+{
+    u16 msg = GetSkillDescMsg(sid);
+    if (msg != 0)
+        return GetStringFromIndex(msg);
+
+    return NULL;
+}
+
+const char * GetSkillNameStrFormDesc(const u8 sid)
 {
     char * str, * it;
-    u16 msg = GetSkillDesc(sid);
+    u16 msg = GetSkillDescMsg(sid);
     if (msg == 0)
     {
         LogPrintf("%s: Get invalid desc: %#X", __func__, sid);
@@ -48,6 +57,14 @@ const char * GetSkillName(const u8 sid)
         }
     }
     return str;
+}
+
+const char * GetSkillNameStr(const u8 sid)
+{
+    if (SKILL_VALID(sid) && gSkillInfos[sid].name != 0)
+        return GetStringFromIndex(gSkillInfos[sid].name);
+
+    return GetSkillNameStrFormDesc(sid);
 }
 
 int GetEfxSkillIndex(const u8 sid)

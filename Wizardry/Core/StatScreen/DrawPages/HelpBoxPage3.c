@@ -14,7 +14,7 @@ static DECL_INFO RText_Name, RText_Class, RText_Level, RText_Exp, RText_Hp;
 STATIC_DECLAR void HbPopuplate_Skill(struct HelpBoxProc * proc)
 {
     struct SkillList * list = GetUnitSkillList(gStatScreen.unit);
-    proc->mid = GetSkillDesc(list->sid[proc->info->mid]);
+    proc->mid = GetSkillDescMsg(list->sid[proc->info->mid]);
 }
 
 STATIC_DECLAR void HbRedirect_Skill(struct HelpBoxProc * proc)

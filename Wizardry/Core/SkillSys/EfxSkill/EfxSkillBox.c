@@ -6,16 +6,20 @@
 #include "ekrbattle.h"
 
 #include "common-chax.h"
+#include "efx-skill.h"
 #include "icon-rework.h"
+#include "skill-system.h"
 #include "combat-art.h"
 
 struct ProcEfxskillbox {
     PROC_HEADER;
+    u8 sid;
     int timer;
     int msg;
     const u8 * icon;
     struct Anim * anim;
     struct Anim * animbox;
+    int skill_or_combatart;
 };
 
 #define ICON_OBJ_CHR 0x40
@@ -65,14 +69,24 @@ STATIC_DECLAR const struct ProcCmd ProcScr_EfxSkillBox[] = {
     PROC_END
 };
 
-void NewEfxSkillBox(struct Anim * anim, int msg, const u8 * icon)
+void NewEfxSkillBox(struct Anim * anim, int msg, const u8 * icon, u8 sid, int skill_or_combatart)
 {
     struct ProcEfxskillbox * proc;
     proc = Proc_Start(ProcScr_EfxSkillBox, PROC_TREE_3);
     proc->timer = 0;
     proc->anim = anim;
+    proc->sid = sid;
+    proc->skill_or_combatart = skill_or_combatart;
     proc->msg = msg;
     proc->icon = icon;
+
+    if (proc->icon == NULL)
+    {
+        if (skill_or_combatart == EFX_SKILL_BOX_SKILL)
+            proc->icon = GetSkillIcon(sid);
+        else
+            proc->icon = GetCombatArtIcon(sid);
+    }
 }
 
 bool EfxSkillBoxExists(void)

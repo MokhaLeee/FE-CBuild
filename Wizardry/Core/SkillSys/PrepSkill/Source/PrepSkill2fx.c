@@ -284,7 +284,7 @@ void PrepSkill2_DrawDrawSkillDesc(struct ProcPrepSkill2 * proc)
 
     TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, X, Y), 0x10, 0x6, 0);
 
-    str = GetStringFromIndex(GetSkillDesc(sid));
+    str = GetSkillDescStr(sid);
 
     for (i = 0; i < 3 && '\0' != *str; i++)
     {

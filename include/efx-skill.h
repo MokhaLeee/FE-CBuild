@@ -9,7 +9,12 @@ void NewEfxCombatArt(struct Anim * anim, int cid);
 bool EfxSkillExists(void);
 
 /* Efx skill box */
-void NewEfxSkillBox(struct Anim * anim, int msg, const u8 * icon);
+enum efx_skill_box_style {
+    EFX_SKILL_BOX_SKILL = 0,
+    EFX_SKILL_BOX_COMBATART = 1,
+};
+
+void NewEfxSkillBox(struct Anim * anim, int msg, const u8 * icon, u8 sid, int skill_or_combatart);
 bool EfxSkillBoxExists(void);
 
 /* Utils */
