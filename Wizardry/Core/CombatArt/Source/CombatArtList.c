@@ -24,9 +24,10 @@ STATIC_DECLAR void CalcCombatArtListExt(struct Unit * unit)
     /* Skill table */
     for (i = 1; i < 0xFF; i++)
     {
-        if (COMBART_VALID(gCombatArtSkillTable[i]))
+        cid = gCombatArtSkillTable[i];
+        if (COMBART_VALID(cid))
             if (SkillTester(unit, i))
-                tmp_list[i] = true;
+                tmp_list[cid] = true;
     }
 
     /* Weapon table */
