@@ -102,16 +102,16 @@ void EfxStatusUnitMain(struct ProcEfxStatusUnit * proc)
             if (GetAnimPosition(proc->anim) == EKR_POS_L)
                 EfxDecodeSplitedPalette(
                     PAL_OBJ(OBPAL_EFX_UNK_7),
-                    (s8 *)gUnknown_020222A8,
-                    (s8 *)&gUnknown_020222A8[0x30],
-                    (s16 *)&gUnknown_020222A8[0x180],
+                    (s8 *)gFadeComponents,
+                    (s8 *)&gFadeComponents[0x30],
+                    (s16 *)&gFadeComponents[0x180],
                     16, proc->red, 16);
             else
                 EfxDecodeSplitedPalette(
                     PAL_OBJ(OBPAL_EFX_UNK_9),
-                    (s8 *)gUnknown_02022308,
-                    (s8 *)&gUnknown_02022308[0x30],
-                    (s16 *)&gUnknown_02022308[0x2A0],
+                    (s8 *)gFadeComponents,
+                    (s8 *)&gFadeComponents[0x30],
+                    (s16 *)&gFadeComponents[0x2A0],
                     16, proc->red, 16);
 
             RefreshEntityBmMaps();

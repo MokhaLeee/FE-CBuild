@@ -563,9 +563,8 @@ void LoadBattleSpritesForBranchScreen(struct ProcPromoSel * proc)
 
             for (i = 0; i <= 6; i++)
             {
-                if (gUnknown_0895E0A4[i + (s16) r4 * 7] == (s16) r6)
-                {
-                    sp58 = gUnknown_0895EEA4[i + (s16) r4 * 7] - 1;
+                if (gAnimCharaPalConfig[(s16)r4][i] == (s16) r6) {
+                    sp58 = gAnimCharaPalIt[(s16)r4][i] - 1;
                     break;
                 }
             }

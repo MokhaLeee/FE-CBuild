@@ -74,7 +74,7 @@ int SramChecksum32(void * sram_src, int size)
         _size = sizeof(gGenericBuffer);
 
     ReadSramFast(sram_src, gGenericBuffer, _size);
-    return ComputeChecksum32((const u16*)gGenericBuffer, _size);
+    return ComputeChecksum32((const u32 *)gGenericBuffer, _size);
 }
 
 /* LynJump! */
