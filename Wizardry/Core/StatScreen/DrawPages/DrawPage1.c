@@ -362,7 +362,7 @@ STATIC_DECLAR void DrawPage1BattleAmt(void)
         TEXT_COLOR_SYSTEM_GOLD, 0, 0,
         GetStringFromIndex(MSG_MSS_BattleAmt));
 
-    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(0xC + sub_80AEBEC(amt), 0xD),
+    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(0xC + CountDigits(amt), 0xD),
         TEXT_COLOR_SYSTEM_BLUE, amt);
 
     DrawStatWithBarReworkExt(
@@ -402,15 +402,15 @@ STATIC_DECLAR void DrawPage1BWL(void)
         gBmFrameTmap0 + TILEMAP_INDEX(3, 0xF));
 
     // Display Battle Amt
-    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(3 + sub_80AEBEC(bwl->battleAmt), 0xF),
+    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(3 + CountDigits(bwl->battleAmt), 0xF),
         TEXT_COLOR_SYSTEM_BLUE, bwl->battleAmt);
 
     // Display Win Amt
-    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(7 + sub_80AEBEC(bwl->winAmt), 0xF),
+    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(7 + CountDigits(bwl->winAmt), 0xF),
         TEXT_COLOR_SYSTEM_BLUE, bwl->winAmt);
 
     // Display Loss Amt
-    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(11 + sub_80AEBEC(bwl->lossAmt), 0xF),
+    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(11 + CountDigits(bwl->lossAmt), 0xF),
         TEXT_COLOR_SYSTEM_BLUE, bwl->lossAmt);
 }
 
