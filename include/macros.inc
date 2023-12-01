@@ -58,3 +58,10 @@
     .type \name, object
     .set \name, \value
 .endm
+
+@ todo
+ANFMT_NOT_FORCESPRITE = 0x80000000
+ANIM_INS_TYPE_END     = 1
+.macro ANIMSCR_END
+    .4byte ANFMT_NOT_FORCESPRITE + ANFMT_INS_TYPE_END
+.endm

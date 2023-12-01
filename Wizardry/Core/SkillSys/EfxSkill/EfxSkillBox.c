@@ -2,6 +2,8 @@
 #include "icon.h"
 #include "ctc.h"
 #include "anime.h"
+#include "hardware.h"
+#include "fontgrp.h"
 #include "bmlib.h"
 #include "ekrbattle.h"
 
@@ -18,47 +20,118 @@ struct ProcEfxskillbox {
     int msg;
     const u8 * icon;
     struct Anim * anim;
-    struct Anim * animbox;
+    struct Anim * anim_icon, * anim_text, * anim_bg;
     int skill_or_combatart;
+    struct Text text;
 };
 
 #define ICON_OBJ_CHR 0x40
 #define ICON_OBJ_PAL 0x2
 
-STATIC_DECLAR const u32 instr_unit[6] = {
-    0x40000000, 0, 0, 1, 0, 0
-};
+#define TEXT_OBJ_CHR 0x42
+#define TEXT_OBJ_PAL 0xF
 
-STATIC_DECLAR const u32 anim_instr[2] = {
-    (u32)(instr_unit) + 1,
-    0x80000000
-};
+#define TEXT_BG_OBJ_CHR 0x00
+
+STATIC_DECLAR void DrawEfxSkillName(struct ProcEfxskillbox * proc)
+{
+    struct Font _font;
+    struct Text * text = &proc->text;
+    struct Font * font = &_font;
+    char * str;
+
+    ApplyPalette((u16 *)Pal_Text, 0x10 + TEXT_OBJ_PAL);
+
+    InitSpriteTextFont(font, OBJ_VRAM0 + TEXT_OBJ_CHR * 0x20, TEXT_OBJ_PAL);
+    InitSpriteText(text);
+    SetTextFont(font);
+    SetTextFontGlyphs(TEXT_GLYPHS_SYSTEM);
+    SpriteText_Clear(text);
+
+    if (proc->skill_or_combatart == EFX_SKILL_BOX_SKILL)
+        str = GetSkillNameStr(proc->sid);
+    else
+        str = GetStringFromIndex(GetCombatArtName(proc->sid));
+
+    Text_InsertDrawString(
+        text,
+        GetStringTextCenteredPos(0x30, str),
+        TEXT_COLOR_SYSTEM_WHITE,
+        str);
+
+    SetTextFont(NULL);
+}
 
 STATIC_DECLAR void EfxSkillBoxOnDraw(struct ProcEfxskillbox * proc)
 {
-    struct Anim * animbox;
+    struct Anim * anim;
 
     LoadIconPalette(0, 0x10 + ICON_OBJ_PAL);
     Copy2dChr(proc->icon, OBJ_VRAM0 + ICON_OBJ_CHR * 0x20, 2, 2);
 
-    animbox = AnimCreate(anim_instr, 0x96);
-    proc->animbox = animbox;
-    animbox->oam2Base = OAM2_PAL(ICON_OBJ_PAL) + OAM2_LAYER(0b01) + OAM2_CHR(ICON_OBJ_CHR);
-    animbox->yPosition = 0x60 - 0x3;
+    /* Icon */
+    if (GetAnimPosition(proc->anim) == EKR_POS_L)
+    {
+        anim = AnimCreate(AnimScr_EfxSkillBoxIconLeft, 0x95);
+        anim->xPosition = 0x30;
+    }
+    else
+    {
+        anim = AnimCreate(AnimScr_EfxSkillBoxIconRight, 0x95);
+        anim->xPosition = 0xF0;
+    }
+    anim->oam2Base = OAM2_PAL(ICON_OBJ_PAL) + OAM2_LAYER(0b01) + OAM2_CHR(ICON_OBJ_CHR);
+    anim->yPosition = 0x60 - 0x3;
+    proc->anim_icon = anim;
+
+    /* Name */
+    DrawEfxSkillName(proc);
 
     if (GetAnimPosition(proc->anim) == EKR_POS_L)
-        animbox->xPosition = 0x00;
+    {
+        anim = AnimCreate(AnimScr_EfxSkillBoxNameLeft, 0x95);
+        anim->xPosition = 0x00;
+    }
     else
-        animbox->xPosition = 0xE0;
+    {
+        anim = AnimCreate(AnimScr_EfxSkillBoxNameRight, 0x95);
+        anim->xPosition = 0x100;
+    }
+    anim->oam2Base = OAM2_PAL(TEXT_OBJ_PAL) + OAM2_LAYER(0b01) + OAM2_CHR(TEXT_OBJ_CHR);
+    anim->yPosition = 0x60 - 0x3;
+    proc->anim_text = anim;
+
+    /* Text BG */
+    Decompress(Img_EfxSkillBoxBG, gGenericBuffer);
+    Copy2dChr(gGenericBuffer, OBJ_VRAM0 + TEXT_BG_OBJ_CHR * 0x20, 6, 2);
+
+    if (GetAnimPosition(proc->anim) == EKR_POS_L)
+    {
+        anim = AnimCreate(AnimScr_EfxSkillBoxNameLeft, 0x95);
+        anim->xPosition = 0x00;
+    }
+    else
+    {
+        anim = AnimCreate(AnimScr_EfxSkillBoxNameRight, 0x95);
+        anim->xPosition = 0x100;
+    }
+    anim->oam2Base = OAM2_PAL(ICON_OBJ_PAL) + OAM2_LAYER(0b01) + OAM2_CHR(TEXT_BG_OBJ_CHR);
+    anim->yPosition = 0x60 - 0x3;
+    proc->anim_bg = anim;
 }
 
 STATIC_DECLAR void EfxSkillBoxIdle(struct ProcEfxskillbox * proc)
 {
-    if (++proc->timer > 0x30)
-    {
-        AnimDelete(proc->animbox);
-        Proc_Break(proc);
-    }
+    if (proc->anim_text && proc->anim_text->state != 0)
+        return;
+
+    if (proc->anim_icon && proc->anim_icon->state != 0)
+        return;
+
+    if (proc->anim_bg   && proc->anim_bg->state   != 0)
+        return;
+
+    Proc_Break(proc);
 }
 
 STATIC_DECLAR const struct ProcCmd ProcScr_EfxSkillBox[] = {

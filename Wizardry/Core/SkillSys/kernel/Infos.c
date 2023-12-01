@@ -28,7 +28,7 @@ u16 GetSkillDescMsg(const u8 sid)
     return 0;
 }
 
-const char * GetSkillDescStr(const u8 sid)
+char * GetSkillDescStr(const u8 sid)
 {
     u16 msg = GetSkillDescMsg(sid);
     if (msg != 0)
@@ -37,17 +37,9 @@ const char * GetSkillDescStr(const u8 sid)
     return NULL;
 }
 
-const char * GetSkillNameStrFormDesc(const u8 sid)
+char * SkillDescToName(char * str)
 {
-    char * str, * it;
-    u16 msg = GetSkillDescMsg(sid);
-    if (msg == 0)
-    {
-        LogPrintf("%s: Get invalid desc: %#X", __func__, sid);
-        return "W.I.P";
-    }
-
-    str = GetStringFromIndex(msg);
+    char * it;
     for (it = str; *it; ++it)
     {
         if (*it == ':')
@@ -59,7 +51,21 @@ const char * GetSkillNameStrFormDesc(const u8 sid)
     return str;
 }
 
-const char * GetSkillNameStr(const u8 sid)
+char * GetSkillNameStrFormDesc(const u8 sid)
+{
+    char * str;
+    u16 msg = GetSkillDescMsg(sid);
+    if (msg == 0)
+    {
+        LogPrintf("%s: Get invalid desc: %#X", __func__, sid);
+        return "W.I.P";
+    }
+
+    str = GetStringFromIndex(msg);
+    return SkillDescToName(str);
+}
+
+char * GetSkillNameStr(const u8 sid)
 {
     if (SKILL_VALID(sid) && gSkillInfos[sid].name != 0)
         return GetStringFromIndex(gSkillInfos[sid].name);

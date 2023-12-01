@@ -13,6 +13,11 @@
 #include "EfxSkill/EfxSkill.lyn.event"
 #include "EfxSkill/EfxSkillBox.lyn.event"
 #include "EfxSkill/Utils.lyn.event"
+#include "EfxSkill/data/EfxSkillBoxfx.lyn.event"
+
+ALIGN 4
+Img_EfxSkillBoxBG:
+    #incbin "EfxSkill/data/EfxSkillBoxBG.4bpp.lz"
 
 /* PrepSkill */
 #include "PrepSkill/PrepSkill.event"
