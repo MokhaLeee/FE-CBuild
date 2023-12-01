@@ -25,7 +25,7 @@ SET_DATA gBattleActorGlobalFlag, gBattleTemporaryFlag + 8
 SET_DATA gBattleTargetGlobalFlag, gBattleActorGlobalFlag + 8
 SET_DATA sCombatArtStatus, gBattleTargetGlobalFlag + 8
 SET_DATA sCombatArtList, sCombatArtStatus + 0x10
-SET_DATA sSelectedComatArtIndex, sCombatArtList + 0x8
+SET_DATA sSelectedComatArtIndex, sCombatArtList + 0x20
 SET_DATA sCombatArtBKSELfxTimer, sSelectedComatArtIndex + 0x1
 SET_DATA sHelpBoxType, sCombatArtBKSELfxTimer + 0x3
 SET_DATA sRandSeedsC, sHelpBoxType + 0x4
