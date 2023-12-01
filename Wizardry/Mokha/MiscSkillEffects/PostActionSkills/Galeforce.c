@@ -20,8 +20,8 @@ bool PostActionGaleForce(ProcPtr parent)
 
     gPostActionGaleforceFlag = false;
 
-    if (gActionData.unitActionType == UNIT_ACTION_COMBAT)
-    {
+    switch (gActionData.unitActionType) {
+    case UNIT_ACTION_COMBAT:
         if (SkillTester(unit, SID_Galeforce) && gBattleActorGlobalFlag.skill_activated_galeforce)
         {
             gPostActionGaleforceFlag = true;
@@ -29,6 +29,7 @@ bool PostActionGaleForce(ProcPtr parent)
             StartStatusHealEffect(unit, parent);
             return true;
         }
+        break;
     }
     return false;
 }
