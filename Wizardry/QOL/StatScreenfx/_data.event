@@ -1,0 +1,30 @@
+ALIGN 4
+#include "Source/StatScreenData.lyn.event"
+
+ALIGN 4
+Img_StatScreenUI:
+    #incbin "Source/Img_StatScreenUI.4bpp.lz"
+
+ALIGN 4
+Pal_StatScreenUI:
+    #incbin "Source/Img_StatScreenUI.gbapal"
+
+ALIGN 4
+Img_StatScreenRedUI:
+    #incbin "Source/Img_StatScreenUiRed.4bpp.lz"
+
+ALIGN 4
+Pal_StatScreenRedUI:
+    #incbin "Source/Img_StatScreenUiRed.gbapal"
+
+ALIGN 4
+Img_StatScreenMuAreaBg:
+    #incbin "Source/Img_StatScreenMuAreaBg.4bpp.lz"
+
+ALIGN 4
+Pal_StatScreenMuAreaBg:
+    #incbin "Source/Img_StatScreenMuAreaBg.gbapal"
+
+ALIGN 4
+Img_StatScreenPageStatusBg:
+    #incbin "Source/Img_StatScreenPageStatusBg.4bpp.lz"
