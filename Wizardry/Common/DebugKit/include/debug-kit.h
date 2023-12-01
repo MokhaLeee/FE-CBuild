@@ -6,9 +6,7 @@
 #include "mgba.h"
 #include "no-cash-gba.h"
 
-#define CONFIG_USE_DEBUG 1
-
-#if CONFIG_USE_DEBUG
+#ifdef CONFIG_USE_DEBUG
 
 static inline void LogInit(void)
 {
@@ -48,23 +46,23 @@ static inline void LogInit(void)
 #define LogDebugf(format, ...) { mgba_printf(MGBA_LOG_DEBUG, format, __VA_ARGS__); \
                             NoCashGBAPrintf("[DEBUG] "format, __VA_ARGS__); }
 
-#define Print(string) LogPrintf("%s:%d(%s): %s", __FILE__, __LINE__, __func__, string)
-#define Printf(format, ...) LogPrintf("%s:%d(%s): "format, __FILE__, __LINE__, __func__, __VA_ARGS__)
+#define Print(string) LogPrintf("(%s): %s", __func__, string)
+#define Printf(format, ...) LogPrintf("(%s): "format, __func__, __VA_ARGS__)
 
-#define Fatal(string) LogFatalf("%s:%d(%s): %s", __FILE__, __LINE__, __func__, string)
-#define Fatalf(format, ...) LogFatalf("%s:%d(%s): "format, __FILE__, __LINE__, __func__, __VA_ARGS__)
+#define Fatal(string) LogFatalf("(%s): %s", __func__, string)
+#define Fatalf(format, ...) LogFatalf("(%s): "format, __func__, __VA_ARGS__)
 
-#define Error(string) LogErrorf("%s:%d(%s): %s", __FILE__, __LINE__, __func__, string)
-#define Errorf(format, ...) LogErrorf("%s:%d(%s): "format, __FILE__, __LINE__, __func__, __VA_ARGS__)
+#define Error(string) LogErrorf("(%s): %s", __func__, string)
+#define Errorf(format, ...) LogErrorf("(%s): "format, __func__, __VA_ARGS__)
 
-#define Warn(string) LogWarnf("%s:%d(%s): %s", __FILE__, __LINE__, __func__, string)
-#define Warnf(format, ...) LogWarnf("%s:%d(%s): "format, __FILE__, __LINE__, __func__, __VA_ARGS__)
+#define Warn(string) LogWarnf("(%s): %s", __func__, string)
+#define Warnf(format, ...) LogWarnf("(%s): "format, __func__, __VA_ARGS__)
 
-#define Info(string) LogInfof("%s:%d(%s): %s", __FILE__, __LINE__, __func__, string)
-#define Infof(format, ...) LogInfof("%s:%d(%s): "format, __FILE__, __LINE__, __func__, __VA_ARGS__)
+#define Info(string) LogInfof("(%s): %s", __func__, string)
+#define Infof(format, ...) LogInfof("(%s): "format, __func__, __VA_ARGS__)
 
-#define Debug(string) LogDebugf("%s:%d(%s): %s", __FILE__, __LINE__, __func__, string)
-#define Debugf(format, ...) LogDebugf("%s:%d(%s): "format, __FILE__, __LINE__, __func__, __VA_ARGS__)
+#define Debug(string) LogDebugf("(%s): %s", __func__, string)
+#define Debugf(format, ...) LogDebugf("(%s): "format, __func__, __VA_ARGS__)
 
 #define Assert(condition) if (!(condition)) { Fatal("Assertion failed: " #condition); }
 

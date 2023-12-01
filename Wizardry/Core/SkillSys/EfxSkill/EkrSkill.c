@@ -110,5 +110,8 @@ void NewEkrSkill(struct Anim * anim)
     proc->sid_atk = GetActorEfxSkill(round);
     proc->sid_def = GetTargetEfxSkill(round);
 
+    Debugf("cid %#x, sid-atk %#x, sid-def %#x",
+        proc->cid, proc->sid_atk, proc->sid_def);
+
     EfxSkillSetAnimState(anim);
 }
