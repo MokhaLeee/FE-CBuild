@@ -4,6 +4,8 @@
 #include "bmunit.h"
 #include "bmbattle.h"
 #include "fontgrp.h"
+#include "bmarena.h"
+#include "bmarch.h"
 
 /* WTA bonus */
 struct WeaponTriangleConf {
@@ -87,3 +89,31 @@ void BattleForecast_Init(struct BattleForecastProc * proc);
 
 /* Battle skill act */
 bool CheckBattleSkillActivte(struct BattleUnit * actor, struct BattleUnit * target, int sid, int rate);
+
+static inline int GetItemFormSlot(struct Unit * unit, int slot)
+{
+    switch (slot) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+        return unit->items[slot];
+
+    case BU_ISLOT_5:
+        return gBmSt.um_tmp_item;
+
+    case BU_ISLOT_ARENA_PLAYER:
+        return gArenaState.playerWeapon;
+
+    case BU_ISLOT_ARENA_OPPONENT:
+        return gArenaState.opponentWeapon;
+
+    case BU_ISLOT_BALLISTA:
+        return GetBallistaItemAt(unit->xPos, unit->yPos);
+
+    case -1:
+    default:
+        return 0;
+    }
+}

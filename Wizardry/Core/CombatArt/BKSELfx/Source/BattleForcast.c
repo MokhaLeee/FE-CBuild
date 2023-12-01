@@ -113,7 +113,7 @@ void BattleForecast_InitRework(struct BattleForecastProc * proc)
     BattleForecast_Init(proc);
     StartGreenText(proc);
 
-    if (CanUnitPlayCombatArt(gActiveUnit, gActiveUnit->items[0]))
+    if (CanUnitPlayCombatArt(gActiveUnit, GetItemFormSlot(gActiveUnit, gActionData.itemSlotIndex)))
     {
         sCombatArtBKSELfxTimer = 0;
 
@@ -130,7 +130,7 @@ STATIC_DECLAR void DrawBattleForecastContentsStandardRework(struct BattleForecas
 {
     DrawBattleForecastContentsStandard(proc);
 
-    if (CanUnitPlayCombatArt(gActiveUnit, gActiveUnit->items[0]))
+    if (CanUnitPlayCombatArt(gActiveUnit, GetItemFormSlot(gActiveUnit, gActionData.itemSlotIndex)))
         CallARM_FillTileRect(gUnknown_0200422C, Tsa_BkselStandardScreen, 0x1000);
 }
 
@@ -138,7 +138,7 @@ STATIC_DECLAR void DrawBattleForecastContentsExtendedRework(struct BattleForecas
 {
     DrawBattleForecastContentsExtended(proc);
 
-    if (CanUnitPlayCombatArt(gActiveUnit, gActiveUnit->items[0]))
+    if (CanUnitPlayCombatArt(gActiveUnit, GetItemFormSlot(gActiveUnit, gActionData.itemSlotIndex)))
         CallARM_FillTileRect(gUnknown_0200422C, Tsa_BkselDetailedScreen, 0x1000);
 }
 
@@ -173,7 +173,7 @@ void DrawBattleForecastContents(struct BattleForecastProc * proc)
 
     ClearText(text);
 
-    if (!CanUnitPlayCombatArt(gActiveUnit, gActiveUnit->items[0]))
+    if (!CanUnitPlayCombatArt(gActiveUnit, GetItemFormSlot(gActiveUnit, gActionData.itemSlotIndex)))
     {
         /* If no arts, draw item name */
         str = GetItemName(gBattleTarget.weaponBefore);

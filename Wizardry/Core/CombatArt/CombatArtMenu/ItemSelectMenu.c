@@ -8,6 +8,7 @@
 #include "bmtarget.h"
 #include "uiutils.h"
 #include "bmidoten.h"
+#include "menuitempanel.h"
 #include "playerphase.h"
 
 #include "common-chax.h"

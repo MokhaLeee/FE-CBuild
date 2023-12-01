@@ -8,6 +8,7 @@
 #include "playerphase.h"
 #include "bmtarget.h"
 #include "bmmenu.h"
+#include "menuitempanel.h"
 #include "uiselecttarget.h"
 #include "constants/classes.h"
 

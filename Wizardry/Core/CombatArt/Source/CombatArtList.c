@@ -10,7 +10,7 @@
 
 extern struct CombatArtList sCombatArtList;
 
-STATIC_DECLAR void CalcCombatArtListExt(struct Unit * unit)
+STATIC_DECLAR void CalcCombatArtListExt(struct Unit * unit, u8 wtype)
 {
     int i;
     u8 cid;
@@ -102,20 +102,25 @@ STATIC_DECLAR void CalcCombatArtListExt(struct Unit * unit)
     sCombatArtList.amt = 0;
     for (i = 1; i < 0xFF; i++)
     {
+        if (tmp_list[i] == 0)
+            continue;
+
+        if (wtype != 0xFF && gCombatArtInfos[i].wtype != wtype)
+            continue;
+
+        sCombatArtList.cid[sCombatArtList.amt++] = i;
         if (sCombatArtList.amt >= COMBART_LIST_MAX_AMT)
             break;
-
-        if (tmp_list[i])
-            sCombatArtList.cid[sCombatArtList.amt++] = i;
     }
 }
 
-struct CombatArtList * GetCombatArtList(struct Unit * unit)
+struct CombatArtList * GetCombatArtList(struct Unit * unit, u8 wtype)
 {
-    if (unit->index != sCombatArtList.uid)
+    if (sCombatArtList.wtype != wtype || !JudgeUnitListHeader(unit, &sCombatArtList.ref))
     {
-        sCombatArtList.uid = unit->index;
-        CalcCombatArtListExt(unit);
+        CalcCombatArtListExt(unit, wtype);
+        WriteUnitListHeader(unit, &sCombatArtList.ref);
+        sCombatArtList.wtype = wtype;
     }
     return &sCombatArtList;
 }

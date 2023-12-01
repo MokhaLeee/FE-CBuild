@@ -15,9 +15,8 @@ SET_DATA FreeRamSpaceEntry, 0x02026E30
 
 SET_DATA sSkillListNext, FreeRamSpaceEntry + 0
 SET_DATA sSkillLists, sSkillListNext + 4
-SET_DATA sPrepEquipSkillList, sSkillLists + 0xA0
-SET_DATA sPrepEquipSkillListExt, sPrepEquipSkillList + 0x100
-SET_DATA sStatScreenPage1BarMax, sPrepEquipSkillListExt + 0x100
+SET_DATA sPrepEquipSkillList, sSkillLists + 0x100
+SET_DATA sStatScreenPage1BarMax, sPrepEquipSkillList + 0x120
 SET_DATA sLearnedSkillPLists, sStatScreenPage1BarMax + 0x4
 SET_DATA sEfxSkillRoundData, sLearnedSkillPLists + 0x46 * 0x20
 SET_DATA sEfxCombatArtRoundData, sEfxSkillRoundData + 4 * 0x21

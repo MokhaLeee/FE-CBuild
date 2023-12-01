@@ -11,6 +11,7 @@ ALIGN 4
 #include "Common/ClassChgExpansion/ClassChgExpansion.event"
 #include "Common/CommonLib/map.lyn.event"
 #include "Common/CommonLib/math.lyn.event"
+#include "Common/CommonLib/list-verify.lyn.event"
 #include "Common/RN/RandNumberC.lyn.event"
 #include "Common/MoveLimitViewHack/MoveLimitViewHack.lyn.event"
 #include "Common/IconDisplay/IconDisplay.event"

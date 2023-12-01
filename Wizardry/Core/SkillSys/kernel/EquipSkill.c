@@ -6,11 +6,11 @@
 #include "prep-skill.h"
 
 extern struct PrepEquipSkillList sPrepEquipSkillList;
-extern u8 sPrepEquipSkillListExt[MAX_SKILL_NUM + 1];
+#define sPrepEquipSkillListExt gGenericBuffer
 
 void ResetPrepEquipSkillList(void)
 {
-    CpuFill16(0, sPrepEquipSkillListExt, sizeof(sPrepEquipSkillListExt));
+    CpuFill16(0, sPrepEquipSkillListExt, 0x100);
     CpuFill16(0, &sPrepEquipSkillList,   sizeof(sPrepEquipSkillList));
 }
 
@@ -38,13 +38,14 @@ STATIC_DECLAR void UpdatePrepEquipSkillList(struct Unit * unit)
             RegisterToPrepEquipSkillListExt(i);
 
     SetupPrepEquipReal();
-    sPrepEquipSkillList.uid = unit->index;
 }
 
 struct PrepEquipSkillList * GetPrepEquipSkillList(struct Unit * unit)
 {
-    if (sPrepEquipSkillList.uid != unit->index)
+    if (!JudgeUnitListHeader(unit, &sPrepEquipSkillList.header))
+    {
         UpdatePrepEquipSkillList(unit);
-
+        WriteUnitListHeader(unit, &sPrepEquipSkillList.header);
+    }
     return &sPrepEquipSkillList;
 }

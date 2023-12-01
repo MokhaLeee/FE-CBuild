@@ -6,6 +6,7 @@
 
 #include "common-chax.h"
 #include "efx-anim.h"
+#include "list-verify.h"
 
 #define MAX_SKILL_NUM 0xFF
 #define SKILL_VALID(sid) ((sid > 0) && (sid < MAX_SKILL_NUM))
@@ -30,10 +31,9 @@ const char * GetSkillNameStr(const u8 sid);
 /* Judge list */
 #define SKILL_LIST_MAX_AMT 15
 struct SkillList {
-    s8 uid;
+    struct UnitListHeader header;
     u8 amt;
     u8 sid[SKILL_LIST_MAX_AMT];
-    u8 _pad_[0x20 - SKILL_LIST_MAX_AMT - 2];
 };
 
 struct SkillList * GetUnitSkillList(struct Unit * unit);
@@ -47,7 +47,7 @@ extern bool (* const SkillTester)(struct Unit * unit, const u8 sid);
 
 /* Prep equip skill list */
 struct PrepEquipSkillList {
-    s8 uid;
+    struct UnitListHeader header;
     u8 amt;
     u8 sid[0xFE];
 };

@@ -66,12 +66,13 @@ void LoadCombatArtStatus(u8 * src, const u32 size);
 /* Combat-art list */
 #define COMBART_LIST_MAX_AMT 6
 struct CombatArtList {
-    s8 uid;
+    struct UnitListHeader ref;
+    u8 wtype;
     u8 amt;
     u8 cid[COMBART_LIST_MAX_AMT];
 };
 
-struct CombatArtList * GetCombatArtList(struct Unit * unit);
+struct CombatArtList * GetCombatArtList(struct Unit * unit, u8 wtype);
 void ResetCombatArtList(void);
 
 struct CombatArtRomTable {

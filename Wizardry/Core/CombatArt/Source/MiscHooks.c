@@ -16,7 +16,7 @@
 bool CanUnitPlayCombatArt(struct Unit * unit, u16 item)
 {
     int i, wtype = GetItemType(item);
-    struct CombatArtList * list = GetCombatArtList(unit);
+    struct CombatArtList * list = GetCombatArtList(unit, wtype);
 
     for (i = 0; i < list->amt; i++)
         if (gCombatArtInfos[list->cid[i]].wtype == wtype)
@@ -30,7 +30,7 @@ u8 GetBestRangeBonusCid(struct Unit * unit, u16 item)
 {
     u8 ret = 0;
     int i, wtype = GetItemType(item);
-    struct CombatArtList * list = GetCombatArtList(unit);
+    struct CombatArtList * list = GetCombatArtList(unit, wtype);
 
     for (i = 0; i < list->amt; i++)
     {

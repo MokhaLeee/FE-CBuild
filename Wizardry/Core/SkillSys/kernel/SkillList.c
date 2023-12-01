@@ -8,11 +8,12 @@
 extern u32 sSkillListNext;
 
 /**
- * 0 & 1: generic usage
- * 2: battle actor
- * 3: battle target
+ * 0 - 4: generic usage
+ * 5: battle actor
+ * 6: battle target
  */
-extern struct SkillList sSkillLists[4];
+#define SKILL_LIST_AMT 7
+extern struct SkillList sSkillLists[SKILL_LIST_AMT];
 
 #if 0
 /**
@@ -57,10 +58,6 @@ STATIC_DECLAR void GenerateSkillListExt(struct Unit * unit, struct SkillList * l
 STATIC_DECLAR void GenerateSkillListExt(struct Unit * unit, struct SkillList * list)
 {
     int i;
-
-    list->uid = unit->index;
-    list->amt = 0;
-
     for (i = 1; i < MAX_SKILL_NUM; i++)
     {
         if (SkillTesterBasic(unit, i) == true)
@@ -72,23 +69,27 @@ STATIC_DECLAR void GenerateSkillListExt(struct Unit * unit, struct SkillList * l
                 break;
         }
     }
+    WriteUnitListHeader(unit, &list->header);
 }
 #endif
 
 STATIC_DECLAR struct SkillList * GetExistingSkillList(struct Unit * unit)
 {
     int i;
-    for (i = 0; i < 4; i++)
+    for (i = 0; i < SKILL_LIST_AMT; i++)
     {
-        if (unit->index != sSkillLists[i].uid)
+        if (!JudgeUnitListHeader(unit, &sSkillLists[i].header))
             continue;
 
         switch (i) {
         case 0:
-            sSkillListNext = 1;
+        case 1:
+        case 2:
+        case 3:
+            sSkillListNext = i + 1;
             break;
 
-        case 1:
+        case 4:
             sSkillListNext = 0;
             break;
         }
@@ -113,10 +114,13 @@ struct SkillList * GetUnitSkillList(struct Unit * unit)
 
             switch (sSkillListNext) {
             case 0:
-                sSkillListNext = 1;
+            case 1:
+            case 2:
+            case 3:
+                sSkillListNext = sSkillListNext + 1;
                 break;
 
-            case 1:
+            case 4:
                 sSkillListNext = 0;
                 break;
             }

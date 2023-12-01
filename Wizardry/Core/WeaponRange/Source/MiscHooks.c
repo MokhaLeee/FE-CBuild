@@ -10,6 +10,7 @@
 #include "cp_common.h"
 
 #include "common-chax.h"
+#include "battle-system.h"
 #include "status-getter.h"
 #include "weapon-range.h"
 
@@ -39,12 +40,18 @@ int GetUnitWeaponReachBits(struct Unit * unit, int slot)
 {
     int i, item, result = 0;
 
-    if (slot >= 0)
-        return GetItemReachBitsRework(unit->items[slot], unit);
+    switch (slot) {
+    case -1:
+        for (i = 0; (i < UNIT_ITEM_COUNT) && (item = unit->items[i]); ++i)
+            if (CanUnitUseWeapon(unit, item))
+                result |= GetItemReachBitsRework(item, unit);
+        break;
 
-    for (i = 0; (i < UNIT_ITEM_COUNT) && (item = unit->items[i]); ++i)
-        if (CanUnitUseWeapon(unit, item))
-            result |= GetItemReachBitsRework(item, unit);
+    default:
+        item = GetItemFormSlot(unit, slot);
+        result = GetItemReachBitsRework(item, unit);
+        break;
+    }
 
     return result;
 }
@@ -56,22 +63,24 @@ int GetUnitItemUseReachBits(struct Unit * unit, int slot)
     u16 item;
     u32 mask = 0;
 
-    if (slot >= 0)
-    {
-        item = unit->items[slot];
+    switch (slot) {
+    case -1:
+        for (i = 0; i < UNIT_ITEM_COUNT; i++)
+        {
+            item = unit->items[i];
 
-        if (!CanUnitUseItem(unit, item))
-            return REACH_NONE;
+            if (ITEM_INDEX(item) > 0 && CanUnitUseItem(unit, item))
+                mask |= GetItemReachBitsRework(item, unit);
+        }
+        break;
 
-        return GetItemReachBitsRework(item, unit);
-    }
+    default:
+        item = GetItemFormSlot(unit, slot);
+        mask = REACH_NONE;
+        if (CanUnitUseItem(unit, item))
+            mask = GetItemReachBitsRework(item, unit);
 
-    for (i = 0; i < UNIT_ITEM_COUNT; i++)
-    {
-        item = unit->items[i];
-
-        if (ITEM_INDEX(item) > 0 && CanUnitUseItem(unit, item))
-            mask |= GetItemReachBitsRework(item, unit);
+        break;
     }
     return mask;
 }

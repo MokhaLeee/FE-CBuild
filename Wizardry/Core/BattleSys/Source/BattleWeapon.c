@@ -34,7 +34,7 @@ STATIC_DECLAR void SetBattleUnitWeaponVanilla(struct BattleUnit * bu, int itemSl
 
     case BU_ISLOT_5:
         bu->weaponSlotIndex = 0xFF;
-        bu->weapon = gBmSt.itemUnk2C;
+        bu->weapon = gBmSt.um_tmp_item;
         break;
 
     case BU_ISLOT_ARENA_PLAYER:

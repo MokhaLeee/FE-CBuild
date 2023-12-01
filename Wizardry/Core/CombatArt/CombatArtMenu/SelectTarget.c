@@ -11,6 +11,7 @@
 #include "bmmenu.h"
 #include "fontgrp.h"
 #include "hardware.h"
+#include "menuitempanel.h"
 #include "constants/classes.h"
 
 #include "common-chax.h"

@@ -18,7 +18,7 @@ u8 DanceCommandUsabilityRework(const struct MenuItemDef * def, int number)
     if (!SkillTester(gActiveUnit, SID_Dance))
         return MENU_NOTSHOWN;
 
-    gBmSt.itemUnk2C = ITEM_DANCE;
+    gBmSt.um_tmp_item = ITEM_DANCE;
     return sub_80230F0(def);
 }
 
