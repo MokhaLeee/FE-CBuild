@@ -6,65 +6,64 @@
 #include "common-chax.h"
 #include "combat-art.h"
 
-struct CombatArtStatus {
-    u8 cid;
-    s8 uid;
-    bool hitted;
-    u8 _pad_[0x10 - 0x3];
-};
-
-extern struct CombatArtStatus sCombatArtStatus;
+extern struct CombatArtStatus gCombatArtStatus;
 
 /* Judge is combat-art effective */
 u8 GetCombatArtInForce(struct Unit * unit)
 {
-    if (sCombatArtStatus.uid != unit->index)
+    if (gCombatArtStatus.uid != unit->index)
         return 0;
 
-    if (!COMBART_VALID(sCombatArtStatus.cid))
+    if (!COMBART_VALID(gCombatArtStatus.cid))
         return 0;
 
-    return sCombatArtStatus.cid;
+    return gCombatArtStatus.cid;
 }
 
 void RegisterCombatArtStatus(struct Unit * unit, u8 cid)
 {
-    sCombatArtStatus.uid = unit->index;
-    sCombatArtStatus.cid = cid;
+    gCombatArtStatus.uid = unit->index;
+    gCombatArtStatus.cid = cid;
+}
+
+void RegisterCombatArtTargetPos(u8 x, u8 y)
+{
+    gCombatArtStatus.x = x;
+    gCombatArtStatus.y = y;
 }
 
 void RegisterCombatArtHitted(void)
 {
-    sCombatArtStatus.hitted = true;
+    gCombatArtStatus.hitted = true;
 }
 
 bool IsCombatArtHitted(void)
 {
-    return sCombatArtStatus.hitted;
+    return gCombatArtStatus.hitted;
 }
 
 void ResetCombatArtStatus(void)
 {
-    CpuFastFill16(0, &sCombatArtStatus, sizeof(sCombatArtStatus));
+    CpuFastFill16(0, &gCombatArtStatus, sizeof(gCombatArtStatus));
 }
 
 void SaveCombatArtStatus(u8 * dst, const u32 size)
 {
-    if (size < sizeof(sCombatArtStatus))
+    if (size < sizeof(gCombatArtStatus))
     {
         Errorf("ENOMEM: %#x", size);
         return;
     }
 
     WriteAndVerifySramFast(
-        &sCombatArtStatus,
+        &gCombatArtStatus,
         dst,
-        sizeof(sCombatArtStatus));
+        sizeof(gCombatArtStatus));
 }
 
 void LoadCombatArtStatus(u8 * src, const u32 size)
 {
-    if (size < sizeof(sCombatArtStatus))
+    if (size < sizeof(gCombatArtStatus))
     {
         Errorf("ENOMEM: %#x", size);
         return;
@@ -72,6 +71,6 @@ void LoadCombatArtStatus(u8 * src, const u32 size)
 
     ReadSramFast(
         src,
-        &sCombatArtStatus,
-        sizeof(sCombatArtStatus));
+        &gCombatArtStatus,
+        sizeof(gCombatArtStatus));
 }

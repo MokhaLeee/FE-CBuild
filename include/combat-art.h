@@ -55,9 +55,20 @@ static inline u16 GetCombatArtDesc(u8 cid)
 }
 
 /* Combat-art status */
+struct CombatArtStatus {
+    u8 cid;
+    s8 uid;
+    bool hitted;
+    u8 x, y;
+    u8 _pad_[0x10 - 0x8];
+};
+
+extern struct CombatArtStatus gCombatArtStatus;
+
 u8 GetCombatArtInForce(struct Unit * unit);
 void RegisterCombatArtStatus(struct Unit * unit, u8 cid);
 void RegisterCombatArtHitted(void);
+void RegisterCombatArtTargetPos(u8 x, u8 y);
 bool IsCombatArtHitted(void);
 void ResetCombatArtStatus(void);
 void SaveCombatArtStatus(u8 * dst, const u32 size);

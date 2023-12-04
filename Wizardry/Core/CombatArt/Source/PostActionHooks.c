@@ -10,6 +10,7 @@
 #include "combat-art.h"
 #include "debuff.h"
 #include "map-anims.h"
+#include "weapon-range.h"
 
 void ForEachUnitInRange(void(* func)(struct Unit * unit));
 void AddUnitToTargetListIfNotAllied(struct Unit * unit);
@@ -18,7 +19,6 @@ STATIC_DECLAR void ExecCombatArtEffectAnim(ProcPtr proc)
 {
     int i;
     struct Unit * unit = gActiveUnit;
-    struct Unit * target = GetUnit(gActionData.targetIndex);
     u8 cid = GetCombatArtInForce(unit);
     const struct CombatArtInfo * info;
 
@@ -28,9 +28,9 @@ STATIC_DECLAR void ExecCombatArtEffectAnim(ProcPtr proc)
     BmMapFill(gBmMapRange, 0);
 
     if (info->aoe_debuff)
-        GenerateUnitStandingReachRange(target, 0b11);
+        AddMap(gCombatArtStatus.x, gCombatArtStatus.y, 0b11, 1, 0);
     else
-        GenerateUnitStandingReachRange(target, 0b01);
+        AddMap(gCombatArtStatus.x, gCombatArtStatus.y, 0b01, 1, 0);
 
     InitTargets(unit->xPos, unit->yPos);
     ForEachUnitInRange(AddUnitToTargetListIfNotAllied);
@@ -39,6 +39,9 @@ STATIC_DECLAR void ExecCombatArtEffectAnim(ProcPtr proc)
     {
         struct SelectTarget * starget = GetTarget(i);
         struct Unit * tunit = GetUnit(starget->uid);
+        if (!UNIT_IS_VALID(tunit))
+            continue;
+
         CallMapAnim_HeavyGravity(proc, starget->x, starget->y);
 
         if (info->double_attack)
@@ -65,11 +68,10 @@ STATIC_DECLAR const struct ProcCmd ProcScr_CombatArtPostActionEffect[] = {
 bool PostActionCombatArtEffect(ProcPtr parent)
 {
     struct Unit * unit = gActiveUnit;
-    struct Unit * target = GetUnit(gActionData.targetIndex);
     u8 cid = GetCombatArtInForce(unit);
     const struct CombatArtInfo * info;
 
-    if (!COMBART_VALID(cid) || !IsCombatArtHitted() || !UNIT_IS_VALID(target))
+    if (!COMBART_VALID(cid) || !IsCombatArtHitted())
         return false;
 
     info = gCombatArtInfos + cid;

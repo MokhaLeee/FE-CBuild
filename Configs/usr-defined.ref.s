@@ -23,8 +23,8 @@ SET_DATA sEfxCombatArtRoundData, sEfxSkillRoundData + 4 * 0x21
 SET_DATA gBattleTemporaryFlag, sEfxCombatArtRoundData + 0x40
 SET_DATA gBattleActorGlobalFlag, gBattleTemporaryFlag + 8
 SET_DATA gBattleTargetGlobalFlag, gBattleActorGlobalFlag + 8
-SET_DATA sCombatArtStatus, gBattleTargetGlobalFlag + 8
-SET_DATA sCombatArtList, sCombatArtStatus + 0x10
+SET_DATA gCombatArtStatus, gBattleTargetGlobalFlag + 8
+SET_DATA sCombatArtList, gCombatArtStatus + 0x10
 SET_DATA sSelectedComatArtIndex, sCombatArtList + 0x20
 SET_DATA sCombatArtBKSELfxTimer, sSelectedComatArtIndex + 0x1
 SET_DATA sHelpBoxType, sCombatArtBKSELfxTimer + 0x3

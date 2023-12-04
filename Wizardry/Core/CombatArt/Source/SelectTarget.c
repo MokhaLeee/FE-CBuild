@@ -212,8 +212,13 @@ STATIC_DECLAR void TargetSelectionRework_Loop(struct SelectTargetProc * proc)
     action = TargetSelection_HandleSelectInput(proc);
 
     if ((TARGETSELECTION_ACTION_END & action) != 0)
+    {
+#if CHAX
+        RegisterCombatArtTargetPos(
+            proc->currentTarget->x, proc->currentTarget->y);
+#endif
         EndTargetSelection(proc);
-
+    }
     if ((TARGETSELECTION_ACTION_SE_6A & action) != 0)
         PlaySoundEffect(0x6A);
 
