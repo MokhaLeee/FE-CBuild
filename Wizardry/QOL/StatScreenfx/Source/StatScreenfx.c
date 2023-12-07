@@ -63,9 +63,9 @@ void PageNumCtrl_DisplayMuPlatform(struct StatScreenPageNameProc * proc)
 static void StatScreenDisplayBG1(int page)
 {
     if (UNIT_FACTION(gStatScreen.unit) == FACTION_BLUE)
-        CallARM_FillTileRect(_gBmFrameTmap2, TsaLut_StatScreenBgPlayer[page], TILEREF(0, 1));
+        CallARM_FillTileRect(gUiTmScratchB, TsaLut_StatScreenBgPlayer[page], TILEREF(0, 1));
     else
-        CallARM_FillTileRect(_gBmFrameTmap2, TsaLut_StatScreenBgNonePlayer[page], TILEREF(0, 1));
+        CallARM_FillTileRect(gUiTmScratchB, TsaLut_StatScreenBgNonePlayer[page], TILEREF(0, 1));
 }
 
 static void StatScreenNewCallBack(ProcPtr proc)
@@ -91,7 +91,7 @@ void StatScreen_InitDisplayRework(ProcPtr proc)
     /* Set right BG */
     StatScreenDisplayBG1(gStatScreen.page);
     TileMap_CopyRect(
-        _gBmFrameTmap2,
+        gUiTmScratchB,
         gBG1TilemapBuffer + 0 + TILEMAP_INDEX(12, 2),
         18, 18);
     BG_EnableSyncByMask(BG1_SYNC_BIT);
@@ -151,18 +151,18 @@ void PageSlide_OnLoopRework(struct StatScreenEffectProc* proc)
     }
 
     TileMap_CopyRect(
-        gBmFrameTmap0 + srcOff,
+        gUiTmScratchA + srcOff,
         gBG0TilemapBuffer + dstOff + TILEMAP_INDEX(12, 2),
         len, 18);
 
     TileMap_CopyRect(
-        gBmFrameTmap1 + srcOff,
+        gUiTmScratchC + srcOff,
         gBG2TilemapBuffer + dstOff + TILEMAP_INDEX(12, 2),
         len, 18);
 
 #if CHAX
     TileMap_CopyRect(
-        _gBmFrameTmap2 + srcOff,
+        gUiTmScratchB + srcOff,
         gBG1TilemapBuffer + dstOff + TILEMAP_INDEX(12, 2),
         len, 18);
 #endif
@@ -188,7 +188,7 @@ void UnitSlide_SetNewUnit(struct StatScreenEffectProc* proc)
     CallARM_FillTileRect(gBG1TilemapBuffer, Tsa_StatScreenBg1Left, TILEREF(0, 1));
     StatScreenDisplayBG1(gStatScreen.page);
     TileMap_CopyRect(
-        _gBmFrameTmap2,
+        gUiTmScratchB,
         gBG1TilemapBuffer + 0 + TILEMAP_INDEX(12, 2),
         18, 18);
 

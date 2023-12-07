@@ -7,6 +7,7 @@
 #include "bmitem.h"
 #include "fontgrp.h"
 #include "sysutil.h"
+#include "bksel.h"
 
 #include "common-chax.h"
 #include "combat-art.h"
@@ -18,13 +19,6 @@ extern const u16 Img_BkselObjArrow[];
 extern const u16 Pal_BkselObjArrow[];
 extern u16 Tsa_BkselDetailedScreen[];
 extern u16 Tsa_BkselStandardScreen[];
-
-/* Port from decomp */
-void InitBattleForecastBattleStats(struct BattleForecastProc * proc);
-void DrawBattleForecastContentsStandard(struct BattleForecastProc * proc);
-void DrawBattleForecastContentsExtended(struct BattleForecastProc * proc);
-extern u16 gTSA_BattleForecastStandard[];
-extern u16 gTSA_BattleForecastExtended[];
 
 enum CombatArtBKSELfxConfig {
     // Real VRAM Offset to uncompress: OBJ_VRAM0 + OBJ_MOKHA_VRAMOFF
@@ -131,7 +125,7 @@ STATIC_DECLAR void DrawBattleForecastContentsStandardRework(struct BattleForecas
     DrawBattleForecastContentsStandard(proc);
 
     if (CanUnitPlayCombatArt(gActiveUnit, GetItemFormSlot(gActiveUnit, gActionData.itemSlotIndex)))
-        CallARM_FillTileRect(gUnknown_0200422C, Tsa_BkselStandardScreen, 0x1000);
+        CallARM_FillTileRect(gUiTmScratchB, Tsa_BkselStandardScreen, 0x1000);
 }
 
 STATIC_DECLAR void DrawBattleForecastContentsExtendedRework(struct BattleForecastProc * proc)
@@ -139,7 +133,7 @@ STATIC_DECLAR void DrawBattleForecastContentsExtendedRework(struct BattleForecas
     DrawBattleForecastContentsExtended(proc);
 
     if (CanUnitPlayCombatArt(gActiveUnit, GetItemFormSlot(gActiveUnit, gActionData.itemSlotIndex)))
-        CallARM_FillTileRect(gUnknown_0200422C, Tsa_BkselDetailedScreen, 0x1000);
+        CallARM_FillTileRect(gUiTmScratchB, Tsa_BkselDetailedScreen, 0x1000);
 }
 
 STATIC_DECLAR void DrawBattleForecastContentsVanilla(struct BattleForecastProc * proc)
@@ -180,7 +174,7 @@ void DrawBattleForecastContents(struct BattleForecastProc * proc)
 
         PutDrawText(
             text,
-            TILEMAP_LOCATED(gBmFrameTmap0, 0x1, Y),
+            TILEMAP_LOCATED(gUiTmScratchA, 0x1, Y),
             TEXT_COLOR_SYSTEM_WHITE,
             GetStringTextCenteredPos(0x40, str),
             0, str
@@ -196,7 +190,7 @@ void DrawBattleForecastContents(struct BattleForecastProc * proc)
 
         PutDrawText(
             text,
-            TILEMAP_LOCATED(gBmFrameTmap0, 0x1, Y),
+            TILEMAP_LOCATED(gUiTmScratchA, 0x1, Y),
             TEXT_COLOR_SYSTEM_WHITE,
             GetStringTextCenteredPos(0x40, str),
             0, str
@@ -208,7 +202,7 @@ void DrawBattleForecastContents(struct BattleForecastProc * proc)
 
         PutDrawText(
             text,
-            TILEMAP_LOCATED(gBmFrameTmap0, 0x1, Y),
+            TILEMAP_LOCATED(gUiTmScratchA, 0x1, Y),
             TEXT_COLOR_SYSTEM_GREEN,
             GetStringTextCenteredPos(0x40, str),
             0, str

@@ -91,7 +91,7 @@ STATIC_DECLAR void DrawStatWithBarReworkExt(int num, int x, int y, int base, int
 
     DrawStatBarGfx(
         0x401 + num * 6, 6,
-        gBmFrameTmap1 + TILEMAP_INDEX(x - 2, y + 1),
+        gUiTmScratchC + TILEMAP_INDEX(x - 2, y + 1),
         TILEREF(0, STATSCREEN_BGPAL_6),
         max,
         base,
@@ -108,7 +108,7 @@ STATIC_DECLAR void DrawStatWithBarRework(int num, int x, int y, int base, int to
     int max_bar = sStatScreenPage1BarMax;
 
     PutNumberOrBlank(
-        gBmFrameTmap0 + TILEMAP_INDEX(x, y),
+        gUiTmScratchA + TILEMAP_INDEX(x, y),
         base == max
             ? TEXT_COLOR_SYSTEM_GREEN
             : TEXT_COLOR_SYSTEM_BLUE,
@@ -116,7 +116,7 @@ STATIC_DECLAR void DrawStatWithBarRework(int num, int x, int y, int base, int to
 
     PutNumberBonus(
         diff,
-        gBmFrameTmap0 + TILEMAP_INDEX(x + 1, y));
+        gUiTmScratchA + TILEMAP_INDEX(x + 1, y));
 
     DrawStatWithBarReworkExt(num, x, y, base, total, max, max_bar);
 }
@@ -127,7 +127,7 @@ STATIC_DECLAR void DrawPage1TextCommon(void)
 
     PutDrawTextRework(
         &gStatScreen.text[STATSCREEN_TEXT_POWLABEL],
-        gBmFrameTmap0 + TILEMAP_INDEX(0x1, 0x1),
+        gUiTmScratchA + TILEMAP_INDEX(0x1, 0x1),
         FACTION_BLUE == UNIT_FACTION(unit)
             ? GetTextColorFromGrowth(GetUnitPowGrowth(unit))
             : TEXT_COLOR_SYSTEM_GOLD,
@@ -136,7 +136,7 @@ STATIC_DECLAR void DrawPage1TextCommon(void)
 
     PutDrawTextRework(
         &gStatScreen.text[STATSCREEN_TEXT_ITEM0],
-        gBmFrameTmap0 + TILEMAP_INDEX(0x1, 0x3),
+        gUiTmScratchA + TILEMAP_INDEX(0x1, 0x3),
         FACTION_BLUE == UNIT_FACTION(unit)
             ? GetTextColorFromGrowth(GetUnitMagGrowth(unit))
             : TEXT_COLOR_SYSTEM_GOLD,
@@ -145,7 +145,7 @@ STATIC_DECLAR void DrawPage1TextCommon(void)
 
     PutDrawTextRework(
         &gStatScreen.text[STATSCREEN_TEXT_SKLLABEL],
-        gBmFrameTmap0 + TILEMAP_INDEX(0x1, 0x5),
+        gUiTmScratchA + TILEMAP_INDEX(0x1, 0x5),
         FACTION_BLUE == UNIT_FACTION(unit)
             ? GetTextColorFromGrowth(GetUnitSklGrowth(unit))
             : TEXT_COLOR_SYSTEM_GOLD,
@@ -154,7 +154,7 @@ STATIC_DECLAR void DrawPage1TextCommon(void)
 
     PutDrawTextRework(
         &gStatScreen.text[STATSCREEN_TEXT_SPDLABEL],
-        gBmFrameTmap0 + TILEMAP_INDEX(0x1, 0x7),
+        gUiTmScratchA + TILEMAP_INDEX(0x1, 0x7),
         FACTION_BLUE == UNIT_FACTION(unit)
             ? GetTextColorFromGrowth(GetUnitSpdGrowth(unit))
             : TEXT_COLOR_SYSTEM_GOLD,
@@ -163,7 +163,7 @@ STATIC_DECLAR void DrawPage1TextCommon(void)
 
     PutDrawTextRework(
         &gStatScreen.text[STATSCREEN_TEXT_LCKLABEL],
-        gBmFrameTmap0 + TILEMAP_INDEX(0x1, 0x9),
+        gUiTmScratchA + TILEMAP_INDEX(0x1, 0x9),
         FACTION_BLUE == UNIT_FACTION(unit)
             ? GetTextColorFromGrowth(GetUnitLckGrowth(unit))
             : TEXT_COLOR_SYSTEM_GOLD,
@@ -172,7 +172,7 @@ STATIC_DECLAR void DrawPage1TextCommon(void)
 
     PutDrawTextRework(
         &gStatScreen.text[STATSCREEN_TEXT_DEFLABEL],
-        gBmFrameTmap0 + TILEMAP_INDEX(0x1, 0xB),
+        gUiTmScratchA + TILEMAP_INDEX(0x1, 0xB),
         FACTION_BLUE == UNIT_FACTION(unit)
             ? GetTextColorFromGrowth(GetUnitDefGrowth(unit))
             : TEXT_COLOR_SYSTEM_GOLD,
@@ -181,7 +181,7 @@ STATIC_DECLAR void DrawPage1TextCommon(void)
 
     PutDrawTextRework(
         &gStatScreen.text[STATSCREEN_TEXT_RESLABEL],
-        gBmFrameTmap0 + TILEMAP_INDEX(0x1, 0xD),
+        gUiTmScratchA + TILEMAP_INDEX(0x1, 0xD),
         FACTION_BLUE == UNIT_FACTION(unit)
             ? GetTextColorFromGrowth(GetUnitResGrowth(unit))
             : TEXT_COLOR_SYSTEM_GOLD,
@@ -193,42 +193,42 @@ STATIC_DECLAR void DrawPage1TextCommon(void)
 
     PutDrawText(
         &gStatScreen.text[STATSCREEN_TEXT_MOVLABEL],
-        gBmFrameTmap0 + TILEMAP_INDEX(0x9, 0x1),
+        gUiTmScratchA + TILEMAP_INDEX(0x9, 0x1),
         TEXT_COLOR_SYSTEM_GOLD,
         0, 0,
         GetStringFromIndex(0x4F6)); // Mov
 
     PutDrawText(
         &gStatScreen.text[STATSCREEN_TEXT_CONLABEL],
-        gBmFrameTmap0 + TILEMAP_INDEX(0x9, 0x3),
+        gUiTmScratchA + TILEMAP_INDEX(0x9, 0x3),
         TEXT_COLOR_SYSTEM_GOLD,
         0, 0,
         GetStringFromIndex(0x4F7)); // Con
 
     PutDrawText(
         &gStatScreen.text[STATSCREEN_TEXT_AIDLABEL],
-        gBmFrameTmap0 + TILEMAP_INDEX(0x9, 0x5),
+        gUiTmScratchA + TILEMAP_INDEX(0x9, 0x5),
         TEXT_COLOR_SYSTEM_GOLD,
         0, 0,
         GetStringFromIndex(0x4F8)); // Aid
 
     PutDrawText(
         &gStatScreen.text[STATSCREEN_TEXT_SUPPORT4],
-        gBmFrameTmap0 + TILEMAP_INDEX(0x9, 0x7),
+        gUiTmScratchA + TILEMAP_INDEX(0x9, 0x7),
         TEXT_COLOR_SYSTEM_GOLD,
         0, 0,
         GetStringFromIndex(0x4F1)); // Affin
 
     PutDrawText(
         &gStatScreen.text[STATSCREEN_TEXT_RESCUENAME],
-        gBmFrameTmap0 + TILEMAP_INDEX(0x9, 0x9),
+        gUiTmScratchA + TILEMAP_INDEX(0x9, 0x9),
         TEXT_COLOR_SYSTEM_GOLD,
         0, 0,
         GetStringFromIndex(0x4F9)); // Trv
 
     PutDrawText(
         &gStatScreen.text[STATSCREEN_TEXT_STATUS],
-        gBmFrameTmap0 + TILEMAP_INDEX(0x9, 0xB),
+        gUiTmScratchA + TILEMAP_INDEX(0x9, 0xB),
         TEXT_COLOR_SYSTEM_GOLD,
         0, 0,
         GetStringFromIndex(0x4FA)); // Cond
@@ -290,12 +290,12 @@ STATIC_DECLAR void DrawPage1ValueCommon(void)
 
     // displaying unit aid
     PutNumberOrBlank(
-        gBmFrameTmap0 + TILEMAP_INDEX(0xD, 0x5),
+        gUiTmScratchA + TILEMAP_INDEX(0xD, 0x5),
         TEXT_COLOR_SYSTEM_BLUE,
         GetUnitAid(unit));
 
     // displaying unit aid icon
-    DrawIcon(gBmFrameTmap0 + TILEMAP_INDEX(0xE, 0x5),
+    DrawIcon(gUiTmScratchA + TILEMAP_INDEX(0xE, 0x5),
              GetUnitAidIconId(UNIT_CATTRIBUTES(unit)),
              TILEREF(0, STATSCREEN_BGPAL_EXTICONS));
 
@@ -327,7 +327,7 @@ STATIC_DECLAR void DrawPage1ValueCommon(void)
     if (GetUnitStatusIndex(gStatScreen.unit) != UNIT_STATUS_NONE)
     {
         PutNumberSmall(
-            gBmFrameTmap0 + TILEMAP_INDEX(0x10, 0xB),
+            gUiTmScratchA + TILEMAP_INDEX(0x10, 0xB),
             0,
             // unit->statusDuration);
             GetUnitStatusDuration(unit));
@@ -358,11 +358,11 @@ STATIC_DECLAR void DrawPage1BattleAmt(void)
 
     PutDrawText(
         &gStatScreen.text[STATSCREEN_TEXT_ITEM3],
-        gBmFrameTmap0 + TILEMAP_INDEX(0x9, 0xD),
+        gUiTmScratchA + TILEMAP_INDEX(0x9, 0xD),
         TEXT_COLOR_SYSTEM_GOLD, 0, 0,
         GetStringFromIndex(MSG_MSS_BattleAmt));
 
-    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(0xC + CountDigits(amt), 0xD),
+    PutNumber(gUiTmScratchA + TILEMAP_INDEX(0xC + CountDigits(amt), 0xD),
         TEXT_COLOR_SYSTEM_BLUE, amt);
 
     DrawStatWithBarReworkExt(
@@ -399,18 +399,18 @@ STATIC_DECLAR void DrawPage1BWL(void)
 
     // Display labels
     PutText(&gStatScreen.text[STATSCREEN_TEXT_BWL],
-        gBmFrameTmap0 + TILEMAP_INDEX(3, 0xF));
+        gUiTmScratchA + TILEMAP_INDEX(3, 0xF));
 
     // Display Battle Amt
-    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(3 + CountDigits(bwl->battleAmt), 0xF),
+    PutNumber(gUiTmScratchA + TILEMAP_INDEX(3 + CountDigits(bwl->battleAmt), 0xF),
         TEXT_COLOR_SYSTEM_BLUE, bwl->battleAmt);
 
     // Display Win Amt
-    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(7 + CountDigits(bwl->winAmt), 0xF),
+    PutNumber(gUiTmScratchA + TILEMAP_INDEX(7 + CountDigits(bwl->winAmt), 0xF),
         TEXT_COLOR_SYSTEM_BLUE, bwl->winAmt);
 
     // Display Loss Amt
-    PutNumber(gBmFrameTmap0 + TILEMAP_INDEX(11 + CountDigits(bwl->lossAmt), 0xF),
+    PutNumber(gUiTmScratchA + TILEMAP_INDEX(11 + CountDigits(bwl->lossAmt), 0xF),
         TEXT_COLOR_SYSTEM_BLUE, bwl->lossAmt);
 }
 
@@ -432,13 +432,13 @@ STATIC_DECLAR void DrawPage1Affin(void)
     if (affin)
     {
         DrawIcon(
-            gBmFrameTmap0 + TILEMAP_INDEX(0xC, 0x7),
+            gUiTmScratchA + TILEMAP_INDEX(0xC, 0x7),
             GetUnitAffinityIcon(unit),
             TILEREF(0, STATSCREEN_BGPAL_EXTICONS));
 
         PutDrawText(
             &gStatScreen.text[STATSCREEN_TEXT_ITEM1],
-            gBmFrameTmap0 + TILEMAP_INDEX(0xE, 0x7),
+            gUiTmScratchA + TILEMAP_INDEX(0xE, 0x7),
             TEXT_COLOR_SYSTEM_GOLD,
             0, 0,
             GetStringFromIndex(msg[affin]));

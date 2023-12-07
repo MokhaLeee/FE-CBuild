@@ -43,7 +43,7 @@ void DisplayPage2(void)
         if (i >= list->amt)
             break;
 
-        DrawIcon(gBmFrameTmap0 + TILEMAP_INDEX(8, 0x1 + 2 * i),
+        DrawIcon(gUiTmScratchA + TILEMAP_INDEX(8, 0x1 + 2 * i),
                  SKILL_ICON(list->sid[i]),
                  TILEREF(0, STATSCREEN_BGPAL_ITEMICONS));
 
@@ -51,7 +51,7 @@ void DisplayPage2(void)
 
         PutDrawText(
             text,
-            gBmFrameTmap0 + TILEMAP_INDEX(10, 0x1 + 2 * i),
+            gUiTmScratchA + TILEMAP_INDEX(10, 0x1 + 2 * i),
             TEXT_COLOR_SYSTEM_WHITE, 0, 0,
             GetSkillNameStr(list->sid[i]));
     }

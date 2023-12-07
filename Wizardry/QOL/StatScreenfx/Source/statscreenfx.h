@@ -3,8 +3,6 @@
 #include "global.h"
 #include "statscreen.h"
 
-#define _gBmFrameTmap2 (gBmFrameTmap0 + 0x280)
-
 enum {
     STATSCREEN_BG1_WIDTH  = 19,
     STATSCREEN_BG1_HEIGHT = 19,

@@ -5,6 +5,7 @@
 #include "bmitem.h"
 #include "fontgrp.h"
 #include "bmlib.h"
+#include "bksel.h"
 
 #include "common-chax.h"
 #include "battle-system.h"
@@ -12,7 +13,7 @@
 extern const u8 Gfx_BKSEL[12][0x80];
 
 /* LynJump */
-void BattleForecastHitCountUpdate(struct BattleUnit * bu, s8 * hitsCounter, int * usesCounter)
+void BattleForecastHitCountUpdate(struct BattleUnit * bu, u8 * hitsCounter, int * usesCounter)
 {
     int i;
     struct BattleUnit * target = (bu == &gBattleActor) ? &gBattleTarget : &gBattleActor;
@@ -39,7 +40,7 @@ void InitBattleForecastBattleStats(struct BattleForecastProc * proc)
 
     if ((gBattleActor.weapon != 0) || (gBattleActor.weaponBroke))
     {
-        BattleForecastHitCountUpdate(&gBattleActor, &proc->hitCountA, &usesA);
+        BattleForecastHitCountUpdate(&gBattleActor, (u8 *)&proc->hitCountA, &usesA);
 
         if (IsUnitEffectiveAgainst(&gBattleActor.unit, &gBattleTarget.unit))
             proc->isEffectiveA = true;
@@ -53,7 +54,7 @@ void InitBattleForecastBattleStats(struct BattleForecastProc * proc)
 
     if ((gBattleTarget.weapon != 0) || (gBattleTarget.weaponBroke))
     {
-        BattleForecastHitCountUpdate(&gBattleTarget, &proc->hitCountB, &usesB);
+        BattleForecastHitCountUpdate(&gBattleTarget, (u8 *)&proc->hitCountB, &usesB);
 
         if (IsUnitEffectiveAgainst(&gBattleTarget.unit, &gBattleActor.unit))
             proc->isEffectiveB = true;

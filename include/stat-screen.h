@@ -4,5 +4,5 @@
 
 #define STAT_BAR_MAX_INDENTIFIER 41
 
-typedef const struct HelpBoxInfo DECL_INFO;
-extern DECL_INFO * const RTextPageUnit, * const RTextPageSkill;
+typedef const struct HelpBoxInfo _DECL_INFO;
+extern _DECL_INFO * const RTextPageUnit, * const RTextPageSkill;

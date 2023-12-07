@@ -11,11 +11,11 @@
 #include "combat-art.h"
 #include "constants/texts.h"
 
-extern DECL_INFO * const RTextCombatBkselStandard, * const RTextCombatBkselExtended;
-extern DECL_INFO * const RTextCombatBkselStandardNoArts, * const RTextCombatBkselExtendedNoArts;
+extern _DECL_INFO * const RTextCombatBkselStandard, * const RTextCombatBkselExtended;
+extern _DECL_INFO * const RTextCombatBkselStandardNoArts, * const RTextCombatBkselExtendedNoArts;
 
 /* LynJump */
-int StartBattleForecastHelpBox(ProcPtr parent)
+u8 StartBattleForecastHelpBox(ProcPtr parent, struct SelectTarget * target)
 {
     int x;
 
