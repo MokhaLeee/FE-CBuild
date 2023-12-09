@@ -5,6 +5,7 @@
 #include "uimenu.h"
 #include "bmmind.h"
 #include "event.h"
+#include "bmmind.h"
 
 #include "debug-kit.h"
 #include "save-data.h"

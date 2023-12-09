@@ -6,6 +6,7 @@
 #include "bmmap.h"
 #include "proc.h"
 #include "bmidoten.h"
+#include "bmmind.h"
 
 #include "common-chax.h"
 #include "skill-system.h"

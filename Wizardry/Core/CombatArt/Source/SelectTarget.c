@@ -16,6 +16,7 @@
 #include "bksel.h"
 #include "menu_def.h"
 #include "playerphase.h"
+#include "bmmind.h"
 
 #include "common-chax.h"
 #include "battle-system.h"

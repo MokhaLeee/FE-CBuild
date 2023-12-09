@@ -4,6 +4,7 @@
 #include "mu.h"
 #include "proc.h"
 #include "bmudisp.h"
+#include "bmmind.h"
 
 #include "common-chax.h"
 #include "skill-system.h"

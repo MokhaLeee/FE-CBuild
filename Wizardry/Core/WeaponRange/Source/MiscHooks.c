@@ -8,6 +8,7 @@
 #include "bmarch.h"
 #include "bmphase.h"
 #include "cp_common.h"
+#include "bmmind.h"
 
 #include "common-chax.h"
 #include "battle-system.h"

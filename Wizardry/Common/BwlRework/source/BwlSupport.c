@@ -1,6 +1,7 @@
 #include "global.h"
 #include "bmunit.h"
 #include "bmsave.h"
+#include "bmmind.h"
 
 #include "bwl.h"
 

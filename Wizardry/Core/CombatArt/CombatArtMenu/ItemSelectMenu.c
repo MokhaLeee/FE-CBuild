@@ -10,6 +10,7 @@
 #include "bmidoten.h"
 #include "menuitempanel.h"
 #include "playerphase.h"
+#include "bmmind.h"
 
 #include "common-chax.h"
 #include "combat-art.h"

@@ -6,8 +6,9 @@
 #include "mu.h"
 #include "bm.h"
 #include "rng.h"
-#include "ev_triggercheck.h"
+#include "eventinfo.h"
 #include "bmudisp.h"
+#include "bmmind.h"
 
 #include "common-chax.h"
 #include "status-getter.h"

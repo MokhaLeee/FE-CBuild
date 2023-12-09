@@ -8,6 +8,7 @@
 #include "fontgrp.h"
 #include "sysutil.h"
 #include "bksel.h"
+#include "bmmind.h"
 
 #include "common-chax.h"
 #include "combat-art.h"
