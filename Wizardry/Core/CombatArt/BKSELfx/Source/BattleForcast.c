@@ -23,7 +23,7 @@ extern u16 Tsa_BkselStandardScreen[];
 
 enum CombatArtBKSELfxConfig {
     // Real VRAM Offset to uncompress: OBJ_VRAM0 + OBJ_MOKHA_VRAMOFF
-    OBJ_ARROW_VRAMOFF = 0x5320, 
+    OBJ_ARROW_VRAMOFF = 0x0320, 
 
     // Real Palette index: OBJ_ARROW_PAL + 0x10
     OBJ_ARROW_PAL = 0x3,
