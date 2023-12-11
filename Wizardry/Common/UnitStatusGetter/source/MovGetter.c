@@ -22,3 +22,11 @@ int _GetUnitMov(struct Unit * unit)
 
     return status;
 }
+
+int MovGetterSkills(int status, struct Unit * unit)
+{
+    if (SkillTester(unit, SID_LuckySeven) && (gPlaySt.chapterTurnNumber & 0x7) == LUCKY7_MOV)
+        status += 7;
+
+    return status;
+}

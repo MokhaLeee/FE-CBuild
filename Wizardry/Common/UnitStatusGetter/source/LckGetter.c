@@ -41,5 +41,8 @@ int LckGetterSkills(int status, struct Unit * unit)
     if (SkillTester(unit, SID_FuryPlus))
         status += 4;
 
+    if (SkillTester(unit, SID_LuckySeven) && (gPlaySt.chapterTurnNumber & 0x7) == LUCKY7_LCK)
+        status += 7;
+
     return status;
 }

@@ -168,6 +168,13 @@ const struct SkillInfo gSkillInfos[0x100] = {
     },
 #endif
 
+#if (MAX_SKILL_NUM != SID_LuckySeven)
+    [SID_LuckySeven] = {
+        .desc = MSG_SKILL_LuckySeven,
+        .icon = GFX_SkillIcon_LuckySeven,
+    },
+#endif
+
 #if (MAX_SKILL_NUM != SID_Nullify)
     [SID_Nullify] = {
         .desc = MSG_SKILL_Nullify,

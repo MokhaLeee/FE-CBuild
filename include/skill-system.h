@@ -112,3 +112,14 @@ u8 StealCommandUsabilityRework(const struct MenuItemDef * def, int number);
 u8 SupplyUsabilityRework(const struct MenuItemDef * def, int number);
 u8 PickCommandUsabilityRework(const struct MenuItemDef * def, int number);
 u8 SummonCommandUsabilityRework(const struct MenuItemDef * def, int number);
+
+enum skill_lucky_seven_idx {
+    LUCKY7_POW = 0,
+    LUCKY7_MAG,
+    LUCKY7_SKL,
+    LUCKY7_SPD,
+    LUCKY7_LCK,
+    LUCKY7_DEF,
+    LUCKY7_RES,
+    LUCKY7_MOV,
+};

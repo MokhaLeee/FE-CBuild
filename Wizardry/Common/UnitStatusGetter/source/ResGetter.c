@@ -44,5 +44,8 @@ int ResGetterSkills(int status, struct Unit * unit)
     if (SkillTester(unit, SID_FortressRes))
         status += 5;
 
+    if (SkillTester(unit, SID_LuckySeven) && (gPlaySt.chapterTurnNumber & 0x7) == LUCKY7_RES)
+        status += 7;
+
     return status;
 }

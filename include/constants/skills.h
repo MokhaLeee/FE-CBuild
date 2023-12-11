@@ -32,6 +32,7 @@ enum SkillIndex {
     SID_FortressDef,
     SID_FortressRes,
     SID_LifeAndDeath,
+    SID_LuckySeven,
 
     /* Battle effective */
     SID_Nullify,

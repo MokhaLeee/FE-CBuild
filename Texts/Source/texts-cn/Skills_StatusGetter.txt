@@ -98,3 +98,7 @@ HP+5: [NL]
 魔防觉醒: [NL]
 若角色HP低于25%，[NL]
 魔防+7[X]
+
+## MSG_SKILL_LuckySeven
+幸运七: [NL]
+不同回合获得不同属性加成[X]
