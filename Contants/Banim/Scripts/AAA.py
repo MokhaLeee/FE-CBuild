@@ -77,6 +77,9 @@ _2PALETTES = False
 # and will be split into smaller sprites.
 HALFSIZESHEETS = False
 
+# If PATCH_AutoGenLeftOAM is installed, then we need not to load _ltr
+LEFTOAM_NOLOAD = False
+
 # I like to see how hash collisions happen.
 HASHCOLLISIONS = 0
 IMGCOMPARISONCOUNT = 0
@@ -552,15 +555,20 @@ def main():
   global NOSPLITSPRITES
   global EMPTYTILEPER64
   global _2PALETTES
+  global LEFTOAM_NOLOAD
   
   parser = argparse.ArgumentParser(prog="AAA",
                                    description="Assembles an FEGBA battle animation script and frames into an EA-insertable file.")
   parser.add_argument('filename', help='Input battle anim script .txt file.')
+  parser.add_argument("--no-left-oam", action = 'store_true', help = "not load left oam (need PATCH_AutoGenLeftOAM installed)")
   args = parser.parse_args()
 
   if not os.path.isfile(args.filename):
     print("ERROR: Couldn't find input file: \"" + args.filename + "\".")
     exit()
+
+  if args.no_left_oam:
+    LEFTOAM_NOLOAD = True
 
   animName = args.filename[:-10]
   scriptFile = open(args.filename, "r")
@@ -747,7 +755,8 @@ def main():
 #ifndef AnimTableEntry
   #define AnimTableEntry(index) \"ORG ClassAnimTable + ((index) * 0x20)\"
 #endif"""
-  animEntry = """\n\nPUSH
+
+  animEntry_default = """\n\nPUSH
   AnimTableEntry({animName}) // CHANGE THIS TO THE SLOT YOU ARE REPLACING
   String("CoolAnim")
   WORD {settingBitfield}
@@ -755,6 +764,21 @@ def main():
   POIN Anim_{animName}_framedata
   POIN Anim_{animName}_rtl Anim_{animName}_ltr Anim_{animName}_pal
 POP"""
+
+  animEntry_noleftoam = """\n\nPUSH
+  AnimTableEntry({animName}) // CHANGE THIS TO THE SLOT YOU ARE REPLACING
+  String("CoolAnim")
+  WORD {settingBitfield}
+  POIN Anim_{animName}_sectiondata
+  POIN Anim_{animName}_framedata
+  POIN Anim_{animName}_rtl Anim_{animName}_rtl Anim_{animName}_pal
+POP"""
+
+  if not LEFTOAM_NOLOAD:
+    animEntry = animEntry_default
+  else:
+    animEntry = animEntry_noleftoam
+
   outputFile.write(defs)
   outputFile.write(animEntry.format(animName=animName, settingBitfield=str(settingBitfield)))
   
@@ -827,11 +851,13 @@ POP"""
     outputFile.write(b_to_EA(rtlOAMData))
   else:
     outputFile.write(b_to_EA(lzss.compress(rtlOAMData)))
-  outputFile.write("\n\nAnim_"+animName+"_ltr:\n")
-  if UNCOMPOAMDATA:
-    outputFile.write(b_to_EA(ltrOAMData))
-  else:
-    outputFile.write(b_to_EA(lzss.compress(ltrOAMData)))
+  
+  if not LEFTOAM_NOLOAD:
+    outputFile.write("\n\nAnim_"+animName+"_ltr:\n")
+    if UNCOMPOAMDATA:
+      outputFile.write(b_to_EA(ltrOAMData))
+    else:
+      outputFile.write(b_to_EA(lzss.compress(ltrOAMData)))
   
   # Sheets.
   for id, sheet in enumerate(sheets):

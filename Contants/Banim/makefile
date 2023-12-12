@@ -12,7 +12,8 @@ all: $(ALL_TARGET_BANIM)
 
 %.banim.event: %.banim.txt
 	@echo "[AAA]	$@"
-	@cd $(dir $<) && $(AAA) $(notdir $<) && cd $(build_dir)
+#	@cd $(dir $<) && $(AAA) $(notdir $<) && cd $(build_dir)
+	@cd $(dir $<) && $(AAA) $(notdir $<) --no-left-oam && cd $(build_dir)
 
 clean:
 	rm -f $(ALL_TARGET_BANIM)
