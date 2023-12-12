@@ -25,3 +25,5 @@ extern const u8 ZTSA_StatScreenPageLeft[];
 extern const u8  Img_StatScreenMuAreaBg[];
 extern const u16 Pal_StatScreenMuAreaBg[];
 extern const u16 Sprite_StatScreenMuAreaBackground[];
+extern const u8  Img_StatScreenScrollBG[];
+extern const u16 Pal_StatScreenScrollBG[];

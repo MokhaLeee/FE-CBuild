@@ -73,6 +73,16 @@ static void StatScreenNewCallBack(ProcPtr proc)
     EndMuralBackground();
 }
 
+static void StatScreen_InitDisplayScrollingBG(void)
+{
+    StartMuralBackground(NULL, (void *)VRAM + 0xB000, -1);
+#if 0
+    Decompress(Img_StatScreenScrollBG, (void *)0x0600B000);
+    ApplyPalettes(Pal_StatScreenScrollBG, 0xE, 2);
+#endif
+}
+
+
 void StatScreen_InitDisplayRework(ProcPtr proc)
 {
     StatScreen_InitDisplay(proc);
@@ -96,7 +106,9 @@ void StatScreen_InitDisplayRework(ProcPtr proc)
         18, 18);
     BG_EnableSyncByMask(BG1_SYNC_BIT);
 
-    StartMuralBackground(NULL, (void *)VRAM + 0xB000, -1);
+    /* scroll BG */
+    StatScreen_InitDisplayScrollingBG();
+
     Proc_SetEndCb(proc, StatScreenNewCallBack);
 }
 
