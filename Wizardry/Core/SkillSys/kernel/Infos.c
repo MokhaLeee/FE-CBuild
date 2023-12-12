@@ -84,23 +84,27 @@ int GetEfxSkillIndex(const u8 sid)
 
 int GetEfxSkillPriority(const u8 sid)
 {
-    if (SKILL_VALID(sid))
-        return gSkillAnimInfos[sid].priority;
+    u8 priority = gSkillAnimInfos[sid].priority;
+    if (priority == 0)
+        priority = EFX_PRIORITY_NORMAL;
 
-    LogPrintf("%s: Try get invalid skill info: %#X", __func__, sid);
-    return 0;
+    return priority;
 }
 
 int GetEfxSkillSfx(const u8 sid)
 {
-    if (SKILL_VALID(sid))
-        return gSkillAnimInfos[sid].sfx;
+    u16 sfx = gSkillAnimInfos[sid].sfx;
+    if (sfx == 0)
+        sfx = 0x3D1;
 
-    LogPrintf("%s: Try get invalid skill info: %#X", __func__, sid);
-    return 0;
+    return sfx;
 }
 
 const struct EfxAnimConf * GetEfxSkillConf(const u8 aid)
 {
-    return gEfxSkillAnims[aid];
+    struct EfxAnimConf const * conf = gEfxSkillAnims[aid];
+    if (!conf)
+        conf = &EfxSkillVanilla;
+
+    return conf;
 }

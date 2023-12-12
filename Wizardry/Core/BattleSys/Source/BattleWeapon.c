@@ -95,7 +95,7 @@ STATIC_DECLAR void SetBattleUnitWeaponVanilla(struct BattleUnit * bu, int itemSl
             }
         }
 
-#ifndef CHAX_IDENTIFIER
+#ifndef CHAX
         if (!IsItemCoveringRange(bu->weapon, gBattleStats.range) || bu->weaponSlotIndex == 0xFF)
         {
             bu->weapon = 0;

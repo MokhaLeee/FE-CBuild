@@ -89,7 +89,7 @@ s8 AiAttemptOffensiveAction(s8 (* isEnemy)(struct Unit * unit))
             if (unit->state & (US_HIDDEN | US_DEAD | US_RESCUED | US_BIT16))
                 continue;
 
-#if CHAX_IDENTIFIER
+#if CHAX
             /* Shade skill may make unit avoid to be target */
             if (SkillTester(unit, SID_Shade))
             {

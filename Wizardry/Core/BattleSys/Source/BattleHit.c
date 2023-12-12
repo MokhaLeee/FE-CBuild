@@ -206,7 +206,7 @@ void BattleGenerateHitEffects(struct BattleUnit * attacker, struct BattleUnit * 
                 defender->unit.curHP = 0;
         }
 
-#ifdef CHAX_IDENTIFIER
+#ifdef CHAX
         if (GetItemWeaponEffect(attacker->weapon) == WPN_EFFECT_HPDRAIN || CheckSkillHpDrain(attacker, defender))
 #else
         if (GetItemWeaponEffect(attacker->weapon) == WPN_EFFECT_HPDRAIN)
@@ -252,7 +252,7 @@ void BattleGenerateHitEffects(struct BattleUnit * attacker, struct BattleUnit * 
 
     if (!(gBattleHitIterator->attributes & BATTLE_HIT_ATTR_MISS) || attacker->weaponAttributes & (IA_UNCOUNTERABLE | IA_MAGIC))
     {
-#ifdef CHAX_IDENTIFIER
+#ifdef CHAX
         /* Check on combat-art */
         int cost = 1;
         if (attacker == &gBattleActor)
@@ -296,7 +296,7 @@ bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defende
 
         gBattleHitIterator->info |= BATTLE_HIT_INFO_FINISHES;
 
-#if CHAX_IDENTIFIER
+#if CHAX
         if (defender->unit.curHP == 0)
         {
             if (CheckBattleSkillActivte(defender, attacker, SID_Bane, GetUnitLuck(GetUnit(defender->unit.index))))
@@ -316,7 +316,7 @@ bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defende
 
         if (gBattleTarget.unit.curHP == 0)
         {
-#if CHAX_IDENTIFIER
+#if CHAX
             gBattleActorGlobalFlag.enimy_defeated = true;
 
             if (CheckBattleSkillActivte(&gBattleActor, &gBattleTarget, SID_Galeforce, GetUnitSkill(GetUnit(gBattleActor.unit.index))))

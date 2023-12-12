@@ -40,7 +40,7 @@ void ComputeBattleUnitSpecialWeaponStats(struct BattleUnit * attacker, struct Ba
         if (attacker->weaponAttributes & IA_NEGATE_DEFENSE)
             defender->battleDefense = 0;
 
-#ifdef CHAX_IDENTIFIER
+#ifdef CHAX
         if (GetUnitStatusIndex(&defender->unit) == UNIT_STATUS_PETRIFY || GetUnitStatusIndex(&defender->unit) == UNIT_STATUS_13)
 #else
         if (defender->unit.statusIndex == UNIT_STATUS_PETRIFY || defender->unit.statusIndex == UNIT_STATUS_13)

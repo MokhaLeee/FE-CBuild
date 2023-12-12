@@ -101,7 +101,7 @@ void PlayerPhase_FinishAction(ProcPtr proc)
     gPlaySt.xCursor = gBmSt.playerCursor.x;
     gPlaySt.yCursor = gBmSt.playerCursor.y;
 
-#if CHAX_IDENTIFIER
+#if CHAX
     if (gPostActionGaleforceFlag != 0)
     {
         gActiveUnit->state &= ~(US_UNSELECTABLE | US_CANTOING);

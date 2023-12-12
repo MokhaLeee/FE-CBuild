@@ -98,8 +98,6 @@ void StatScreen_InitDisplayRework(ProcPtr proc)
 
     StartMuralBackground(NULL, (void *)VRAM + 0xB000, -1);
     Proc_SetEndCb(proc, StatScreenNewCallBack);
-
-
 }
 
 void PageSlide_OnLoopRework(struct StatScreenEffectProc* proc)

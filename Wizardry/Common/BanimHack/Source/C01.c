@@ -131,7 +131,7 @@ void Banim_C01(struct Anim * anim)
     {
         if (CheckEkrHitDone() == true)
         {
-#if CHAX_IDENTIFIER
+#if CHAX
             UpdateHpDrainForEkrGauge(anim);
 #endif
             anim->state3 &= ~(ANIM_BIT3_TAKE_BACK_ENABLE |

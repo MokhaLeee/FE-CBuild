@@ -35,7 +35,7 @@ int GetBattleUnitExpGain(struct BattleUnit * actor, struct BattleUnit * target)
     result = GetUnitRoundExp(&actor->unit, &target->unit);
     result += GetUnitKillExpBonus(&actor->unit, &target->unit);
 
-#if CHAX_IDENTIFIER
+#if CHAX
     if (SkillTester(&actor->unit, SID_Blossom))
         result = result / 2;
 
@@ -53,7 +53,7 @@ int GetBattleUnitExpGain(struct BattleUnit * actor, struct BattleUnit * target)
     if (result < 1)
         result = 1;
 
-#if !CHAX_IDENTIFIER
+#if !CHAX
     ModifyUnitSpecialExp(&actor->unit, &target->unit, &result);
 #endif
 
