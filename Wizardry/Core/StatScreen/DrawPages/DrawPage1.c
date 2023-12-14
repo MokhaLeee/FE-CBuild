@@ -244,7 +244,7 @@ STATIC_DECLAR void DrawPage1ValueReal(void)
                     UNIT_POW_MAX(unit));
 
     DrawStatWithBarRework(1, 0x5, 0x3,
-                    unit->_u3A,
+                    UNIT_MAG(unit),
                     GetUnitMagic(unit),
                     GetUnitMaxMagic(unit));
 

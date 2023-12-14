@@ -58,20 +58,18 @@ TrapData:
 
 ALIGN 32
 BeginningScene:
+
+    FADU 16
+
     LOAD1 1 PlayerUnits
     LOAD1 1 EnemyUnits
     ENUN
 
-    PREP
+    // CALL scStartPrepScreen
 
-    CALL scNoSkipFadeOut
-
-    TEXTSTART
-
-    TEXTSHOW Ch0IntroTalk
-    TEXTEND
-
-    REMA
+    CAMERA Eirika
+    FlashCursor(Eirika, 60)
+    ConvoEvent(Ch0IntroTalk)
 
     EVT_ADD_SKILL(0x4A, Eirika)
 

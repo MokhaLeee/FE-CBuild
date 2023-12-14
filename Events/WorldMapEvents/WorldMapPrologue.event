@@ -31,7 +31,11 @@
     WorldMapPointerTable(0x39,WM_10)
 
     WM_1:
+    REMSPRITE 0
+    ASMC WmPrologueTacticianPreload
+    ASMC 0x48281 //name selection
     WorldMap1(0x0)
+
     WM_2:
     WorldMap1(0x2)
     WM_3:
@@ -86,3 +90,7 @@ PUSH
     ORG $2060ba
     BYTE 02 02
 POP
+
+#include "Source/WmPrologue.lyn.event"
+
+ALIGN 4

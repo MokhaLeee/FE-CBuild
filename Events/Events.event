@@ -3,6 +3,14 @@
 
 #include "CommonEvents.event"
 
+PUSH
+    /* Tactician name screen */
+    ORG $44800
+    BYTE 9 // max name length
+    ORG $482bA
+    BYTE 9 // max cursor position
+POP
+
 ALIGN 4
 #include "Maps/Maps.event"
 #include "WorldMapEvents/WorldMapPrologue.event"
