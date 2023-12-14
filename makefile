@@ -91,7 +91,7 @@ chax: $(FE8_CHX)
 $(FE8_CHX): $(MAIN) $(FE8_GBA) $(FE8_SYM) $(shell $(EA_DEP) $(MAIN) -I $(EA_DIR) --add-missings)
 	@echo "[GEN]	$@"
 	@cp -f $(FE8_GBA) $(FE8_CHX)
-	@$(EA) A FE8 -input:$(MAIN) -output:$(FE8_CHX) --nocash-sym || rm -f $(FE8_CHX)
+	@$(EA) A FE8 -werr -input:$(MAIN) -output:$(FE8_CHX) --nocash-sym || rm -f $(FE8_CHX)
 	@cat $(FE8_SYM) >> $(FE8_CHX:.gba=.sym)
 
 CLEAN_FILES += $(FE8_CHX)  $(FE8_CHX:.gba=.sym)
@@ -104,7 +104,7 @@ INC_DIRS := include $(LIB_DIR)/include
 INC_FLAG := $(foreach dir, $(INC_DIRS), -I $(dir))
 
 ARCH    := -mcpu=arm7tdmi -mthumb -mthumb-interwork
-CFLAGS  := $(ARCH) $(INC_FLAG) -Wall -Wextra -Wno-unused-parameter -O2 -mtune=arm7tdmi -mlong-calls
+CFLAGS  := $(ARCH) $(INC_FLAG) -Wall -Wextra -Werror -Wno-unused-parameter -O2 -mtune=arm7tdmi -mlong-calls
 ASFLAGS := $(ARCH) $(INC_FLAG)
 
 CDEPFLAGS = -MMD -MT "$*.o" -MT "$*.asm" -MF "$(CACHE_DIR)/$(notdir $*).d" -MP
