@@ -77,7 +77,8 @@ struct EmsPackedSusUnit {
     /* 24 */ u32 state;
     /* 28 */ u16 items[UNIT_ITEM_COUNT];
 
-    /* 32 */
+    /* 32 */ u8 _u3A;
+    /* 33 */ u8 _u3B;
 } BITPACKED;
 
-#define SIZE_OF_SUS_UNIT_PACK 0x32
+#define SIZE_OF_SUS_UNIT_PACK 0x34

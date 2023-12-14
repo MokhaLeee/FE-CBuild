@@ -180,6 +180,8 @@ static void NewPackSuspandUnit(struct Unit * src, struct EmsPackedSusUnit * dst)
         dst->pad.ai.ai_flag = src->aiFlags;
         dst->pad.ai.ai_config = src->ai3And4;
     }
+    dst->_u3A = src->_u3A;
+    dst->_u3B = src->_u3B;
 }
 
 static void NewUnpackSuspandUnit(struct EmsPackedSusUnit * src, struct Unit * dst)
@@ -235,6 +237,9 @@ static void NewUnpackSuspandUnit(struct EmsPackedSusUnit * src, struct Unit * ds
     }
 
     dst->state = src->state;
+
+    dst->_u3A = src->_u3A;
+    dst->_u3B = src->_u3B;
 
     for (i = 0; i < 0x5; i++)
         dst->items[i] = src->items[i];

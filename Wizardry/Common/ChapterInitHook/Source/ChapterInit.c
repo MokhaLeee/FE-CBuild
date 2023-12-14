@@ -2,14 +2,9 @@
 #include "bm.h"
 
 #include "common-chax.h"
-#include "rn.h"
 
 typedef void (* ChapterInitHookFunc)(ProcPtr);
-
-ChapterInitHookFunc const ChapterInitHooks[] = {
-    (ChapterInitHookFunc)InitRandC,
-    NULL,
-};
+extern ChapterInitHookFunc const ChapterInitHooks[];
 
 void ChapterInitHook(ProcPtr proc)
 {

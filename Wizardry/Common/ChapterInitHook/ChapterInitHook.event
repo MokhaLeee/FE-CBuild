@@ -8,4 +8,9 @@ POP
 
 #include "Source/ChapterInit.lyn.event"
 
+ALIGN 4
+ChapterInitHooks:
+    POIN InitRandC ResetUnitsExpaSus
+    WORD 0
+
 #endif /* CHAPTER_INIT_HOOK_INSTALLED */

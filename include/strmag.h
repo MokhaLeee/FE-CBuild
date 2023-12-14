@@ -8,7 +8,7 @@
 #include "common-chax.h"
 #include "status-getter.h"
 
-#define UNIT_MAG(unit) ((unit)->_u3A)
+#define UNIT_MAG(unit) ((unit)->_u47)
 #define BU_CHG_MAG(bu) (*((u8 *)(bu) + 0x7F))
 #define ITEM_MAG_BONUS(bonuses) *((const s8 *)bonuses + 9)
 

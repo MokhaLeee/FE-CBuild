@@ -73,16 +73,16 @@ gEmsSusChunks:
     EmsChunk($08CC, $0004, MSU_SaveEvtCounter, MSU_LoadEvtCounter)  /* Event slot counter */
     EmsChunk($08D0, $0000, MSU_SaveBonusClaim, MSU_LoadBonusClaimWIP)
 
-    EmsChunk($08D0, 51 * 0x32, MSU_SaveBlueUnits,  MSU_LoadBlueUnits)
-    EmsChunk($12C8, 51 * 0x32, MSU_SaveRedUnits,   MSU_LoadRedUnits)
-    EmsChunk($1CC0, 8  * 0x32, MSU_SaveGreenUnits, MSU_LoadGreenUnits)
+    EmsChunk($08D0, 51 * 0x34, MSU_SaveBlueUnits,  MSU_LoadBlueUnits)
+    EmsChunk($132C, 51 * 0x34, MSU_SaveRedUnits,   MSU_LoadRedUnits)
+    EmsChunk($1D88, 8  * 0x34, MSU_SaveGreenUnits, MSU_LoadGreenUnits)
 
     /* 51 * 0x20 */
-    EmsChunk($1E50, $0660, SaveUnitLearnedSkillLists, LoadUnitLearnedSkillLists)
-    EmsChunk($24B0, 0x20, SaveCombatArtStatus, LoadCombatArtStatus)
-    EmsChunk($24D0, 0x08, SaveRandC, LoadRandC)
+    EmsChunk($1F28, $0660, SaveUnitLearnedSkillLists, LoadUnitLearnedSkillLists)
+    EmsChunk($2588, 0x20, SaveCombatArtStatus, LoadCombatArtStatus)
+    EmsChunk($25A8, 0x08, SaveRandC, LoadRandC)
 
-    /* Free: $24D8 ~ $2CD0 */
+    /* Free: $25B0 ~ $2CD0 */
     EmsChunkEnd
 
 #endif
