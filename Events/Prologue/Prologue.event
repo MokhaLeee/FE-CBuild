@@ -29,8 +29,6 @@ EnemyUnits:
     UNIT CHAR_Ch0Generic Soldier CHAR_Ch0Boss Level(1, Enemy, 1) [13, 8]  0 0 0 0 [IronLance] NoAI
     UNIT CHAR_Ch0Generic Soldier CHAR_Ch0Boss Level(1, Enemy, 1) [15, 9]  0 0 0 0 [IronLance] NoAI
     UNIT CHAR_Ch0Generic Soldier CHAR_Ch0Boss Level(1, Enemy, 1) [2,  8]  0 0 0 0 [IronLance] NoAI
-    UNIT CHAR_Ch0Generic Fighter CHAR_Ch0Boss Level(1, Enemy, 1) [22, 11] 0 0 0 0 [IronAxe] NoAI
-    UNIT CHAR_Ch0Generic Fighter CHAR_Ch0Boss Level(1, Enemy, 1) [20, 3]  0 0 0 0 [IronAxe] NoAI
     UNIT CHAR_Ch0Generic Fighter CHAR_Ch0Boss Level(1, Enemy, 1) [15, 5]  0 0 0 0 [IronAxe] NoAI
     UNIT CHAR_Ch0Generic Fighter CHAR_Ch0Boss Level(1, Enemy, 1) [12, 6]  0 0 0 0 [IronAxe] NoAI
     UNIT CHAR_Ch0Generic Fighter CHAR_Ch0Boss Level(1, Enemy, 1) [7,  11] 0 0 0 0 [IronAxe] NoAI
