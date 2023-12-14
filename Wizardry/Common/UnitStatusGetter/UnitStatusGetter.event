@@ -24,6 +24,7 @@ gSklGetters:
 
 gSpdGetters:
     POIN SpdGetterWeaponBonus SpdGetterSkills SpdGetterDebuff
+    POIN SpdGetterLegendSkills
     POIN StatusGetterCheckCpas
     WORD 0
 
@@ -34,11 +35,13 @@ gLckGetters:
 
 gDefGetters:
     POIN DefGetterWeaponBonus DefGetterSkills DefGetterDebuff
+    POIN DefGetterLegendSkills
     POIN StatusGetterCheckCpas
     WORD 0
 
 gResGetters:
     POIN ResGetterWeaponBonus ResGetterSkills ResGetterDebuff
+    POIN ResGetterLegendSkills
     POIN StatusGetterCheckCpas
     WORD 0
 

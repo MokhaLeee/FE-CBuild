@@ -10,3 +10,6 @@
 #include "Misc/MenuSkills.lyn.event"
 #include "Misc/PrePhaseSkills.lyn.event"
 #include "Misc/LynJump.event"
+
+#include "LegendarySkills/JudgeLegend.lyn.event"
+#include "LegendarySkills/LegendEffect.lyn.event"

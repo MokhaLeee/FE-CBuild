@@ -455,6 +455,13 @@ const struct SkillInfo gSkillInfos[0x100] = {
     },
 #endif
 
+#if (MAX_SKILL_NUM != SID_Inori)
+    [SID_Inori] = {
+        .desc = MSG_SKILL_Inori,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
 #if (MAX_SKILL_NUM != SID_Astra)
     [SID_Astra] = {
         .desc = MSG_SKILL_Astra,
@@ -893,6 +900,41 @@ const struct SkillInfo gSkillInfos[0x100] = {
     [SID_Aptitude] = {
         .desc = MSG_SKILL_Aptitude,
         .icon = GFX_SkillIcon_Aptitude,
+    },
+#endif
+
+#if (MAX_SKILL_NUM != SID_LEGEND_InoriAtk)
+    [SID_LEGEND_InoriAtk] = {
+        .desc = MSG_SKILL_LEGEND_InoriAtk,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (MAX_SKILL_NUM != SID_LEGEND_InoriAvo)
+    [SID_LEGEND_InoriAvo] = {
+        .desc = MSG_SKILL_LEGEND_InoriAvo,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (MAX_SKILL_NUM != SID_LEGEND_InoriDef)
+    [SID_LEGEND_InoriDef] = {
+        .desc = MSG_SKILL_LEGEND_InoriDef,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (MAX_SKILL_NUM != SID_LEGEND_4)
+    [SID_LEGEND_4] = {
+        .desc = MSG_WIP,
+        .icon = GFX_SkillIcon_WIP,
+    },
+#endif
+
+#if (MAX_SKILL_NUM != SID_LEGEND_5)
+    [SID_LEGEND_5] = {
+        .desc = MSG_WIP,
+        .icon = GFX_SkillIcon_WIP,
     },
 #endif
 

@@ -493,6 +493,7 @@ STATIC_DECLAR const PreBattleCalcFunc PreBattleCalcFuncs[] = {
     PreBattleCalcSilencerRate,
     PreBattleCalcWeaponTriangle,
     PreBattleCalcSkills,
+    PreBattleCalcLegendSkills,
     PreBattleCalcDebuffs,
     PreBattleCalcCombatArt,
     PreBattlePostCalcRangeDebuffs,

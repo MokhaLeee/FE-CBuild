@@ -107,7 +107,7 @@ void TryAddSkillLvup(struct Unit * unit, int level);
 void TryAddSkillPromotion(struct Unit * unit, int jid);
 
 /**
- * MiscSkillEffects
+ * External MiscSkillEffects
  */
 u8 DanceCommandUsabilityRework(const struct MenuItemDef * def, int number);
 u8 StealCommandUsabilityRework(const struct MenuItemDef * def, int number);
@@ -129,4 +129,10 @@ enum skill_lucky_seven_idx {
 
 /* Legendary skill */
 extern u8 const * const gpLegendSkillPool;
-bool LegendSkillTester(struct Unit * unit);
+int TryActivateLegendSkill(struct Unit * unit, const u8 sid);
+bool SkillTesterLegendActivated(struct Unit * unit, const u8 sid);
+void PhaseSwitchUpdateLengendSkillStatus(void);
+void PreBattleCalcLegendSkills(struct BattleUnit * attacker, struct BattleUnit * defender);
+int SpdGetterLegendSkills(int status, struct Unit * unit);
+int DefGetterLegendSkills(int status, struct Unit * unit);
+int ResGetterLegendSkills(int status, struct Unit * unit);

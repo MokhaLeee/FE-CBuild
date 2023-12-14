@@ -17,7 +17,7 @@
 #define CHAX 1
 
 /* Set static declaration as a macro for debug purpose */
-#if CONFIG_USE_DEBUG
+#ifdef CONFIG_USE_DEBUG
 #define STATIC_DECLAR
 #else
 #define STATIC_DECLAR static

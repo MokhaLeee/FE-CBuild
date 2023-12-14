@@ -19,7 +19,7 @@ ASSERT (FreeSpaceMagic + FreeSpaceMagicSize - CURRENTOFFSET)
  */
 ORG FreeSpaceReloc
     #include "Reloc/Reloc.event"
-MESSAGE Reloc size (CURRENTOFFSET - FreeSpaceReloc) max FreeSpaceRelocSize
+MESSAGE FreeSpace__Reloc___ end at (CURRENTOFFSET) max (FreeSpaceReloc + FreeSpaceRelocSize)
 ASSERT (FreeSpaceReloc + FreeSpaceRelocSize - CURRENTOFFSET)
 
 /**
@@ -34,7 +34,7 @@ ASSERT (FreeSpaceReloc + FreeSpaceRelocSize - CURRENTOFFSET)
 ORG FreeSpaceWizardry
     #include "Wizardry/Wizardry.event"
     #include "Texts/Texts.event"
-MESSAGE Wizardry size (CURRENTOFFSET - FreeSpaceWizardry) max FreeSpaceWizardrySize
+MESSAGE FreeSpace_Wizardry_ end at (CURRENTOFFSET) max (FreeSpaceWizardry + FreeSpaceWizardrySize)
 ASSERT (FreeSpaceWizardry + FreeSpaceWizardrySize - CURRENTOFFSET)
 
 /**
@@ -42,13 +42,13 @@ ASSERT (FreeSpaceWizardry + FreeSpaceWizardrySize - CURRENTOFFSET)
  */
 ORG FreeSpaceFont
     #include "Fonts/Fonts.event"
-MESSAGE Fonts size (CURRENTOFFSET - FreeSpaceFont) max FreeSpaceFontSize
+MESSAGE FreeSpace__Fonts___ end at (CURRENTOFFSET) max (FreeSpaceFont + FreeSpaceFontSize)
 ASSERT (FreeSpaceFont + FreeSpaceFontSize - CURRENTOFFSET)
 
 ORG FreeSpaceAlloc
     #include "Events/Events.event"
     #include "Contants/Contants.event"
     #include "GameData/GameData.event"
-MESSAGE Allocated space end at CURRENTOFFSET
+MESSAGE FreeSpace_Allocated end at CURRENTOFFSET
 
 // #include "debug.event"

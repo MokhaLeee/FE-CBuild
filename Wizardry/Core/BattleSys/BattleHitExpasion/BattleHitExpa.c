@@ -7,11 +7,6 @@
 #include "efx-skill.h"
 #include "battle-system.h"
 
-int GetBattleHitRound(struct BattleHit * hit)
-{
-    return hit - gBattleHitArrayRe;
-}
-
 bool CheckBattleHitOverflow(void)
 {
     return (gBattleHitIterator - gBattleHitArrayRe) >= NEW_BATTLE_HIT_MAX;

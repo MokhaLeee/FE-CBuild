@@ -278,6 +278,57 @@ void BattleGenerateHitEffects(struct BattleUnit * attacker, struct BattleUnit * 
     }
 }
 
+STATIC_DECLAR bool InoriCheck(struct BattleUnit * attacker, struct BattleUnit * defender)
+{
+    int ret;
+    struct Unit * uact = GetUnit(attacker->unit.index);
+    struct Unit * utar = GetUnit(defender->unit.index);
+
+    if (CheckBattleSkillActivte(attacker, defender, SID_Bane, GetUnitSkill(uact)))
+    {
+        RegisterActorEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Bane);
+        return true;
+    }
+
+    if (CheckBattleSkillActivte(defender, attacker, SID_Inori, GetUnitLuck(utar)))
+    {
+        RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Inori);
+        return true;
+    }
+
+    if (CheckBattleSkillActivte(defender, attacker, SID_LEGEND_InoriAtk, 100))
+    {
+        ret = TryActivateLegendSkill(&defender->unit, SID_LEGEND_InoriAtk);
+        if (ret == 0)
+        {
+            RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_LEGEND_InoriAtk);
+            return true;
+        }
+    }
+
+    if (CheckBattleSkillActivte(defender, attacker, SID_LEGEND_InoriAvo, 100))
+    {
+        ret = TryActivateLegendSkill(&defender->unit, SID_LEGEND_InoriAvo);
+        if (ret == 0)
+        {
+            RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_LEGEND_InoriAvo);
+            return true;
+        }
+    }
+
+    if (CheckBattleSkillActivte(defender, attacker, SID_LEGEND_InoriDef, 100))
+    {
+        ret = TryActivateLegendSkill(&defender->unit, SID_LEGEND_InoriDef);
+        if (ret == 0)
+        {
+            RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_LEGEND_InoriDef);
+            return true;
+        }
+    }
+
+    return false;
+}
+
 /* LynJump */
 bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defender)
 {
@@ -299,10 +350,8 @@ bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defende
 #if CHAX
         if (defender->unit.curHP == 0)
         {
-            if (CheckBattleSkillActivte(defender, attacker, SID_Bane, GetUnitLuck(GetUnit(defender->unit.index))))
+            if (InoriCheck(attacker, defender))
             {
-                RegisterTargetEfxSkill(GetBattleHitRound(gBattleHitIterator), SID_Bane);
-
                 gBattleStats.damage = gBattleStats.damage - 1;
                 gBattleHitIterator->hpChange = gBattleStats.damage;
                 defender->unit.curHP = 1;

@@ -23,6 +23,9 @@
 #0xD4C MSG_FreeSpaceIndentifier
 .[X]
 
+## MSG_WIP
+W.I.P.[X]
+
 ## MSG_ItemName_DustVial
 魔法粉尘[X]
 
@@ -50,6 +53,7 @@
 #include texts-cn/Skills_RangeDebuff.txt
 #include texts-cn/Skills_AI.txt
 #include texts-cn/Skills_Menu.txt
+#include texts-cn/Skills_Legend.txt
 #include texts-cn/Skills_CombatArt.txt
 #include texts-cn/CombatArt.txt
 #include texts-cn/CombatArt_Sword.txt

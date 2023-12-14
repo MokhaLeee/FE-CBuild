@@ -4,6 +4,35 @@
 #include "common-chax.h"
 #include "unit-expa.h"
 
+void SetBitUES(struct Unit * unit, int bit)
+{
+    if (bit < 8)
+        unit->_u3A |= 1 << bit;
+
+    if (bit < 16)
+        unit->_u3B |= 1 << bit;
+}
+
+void ClearBitUES(struct Unit * unit, int bit)
+{
+    if (bit < 8)
+        unit->_u3A &= ~(1 << bit);
+
+    if (bit < 16)
+        unit->_u3B &= ~(1 << bit);
+}
+
+bool CheckBitUES(struct Unit * unit, int bit)
+{
+    if (bit < 8)
+        return !!(unit->_u3A & (1 << bit));
+
+    if (bit < 16)
+        return !!(unit->_u3B & (1 << bit));
+
+    return false;
+}
+
 void ResetUnitsExpaSus(void)
 {
     int i;

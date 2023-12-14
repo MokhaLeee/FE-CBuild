@@ -9,8 +9,8 @@
  */
 
 enum unit_expa_sus_bitfile_idx {
-    UNIT_EXPA_SUS_BIT_LEGENDARY_SKILL_USED,
-    UNIT_EXPA_SUS_BIT_LEGENDARY_SKILL_ACTIVE,
+    UES_BIT_LEGENDARY_SKILL_USED,
+    UES_BIT_LEGENDARY_SKILL_ACTIVE,
     UNIT_EXPA_SUS_BIT2,
     UNIT_EXPA_SUS_BIT3,
     UNIT_EXPA_SUS_BIT4,
@@ -26,36 +26,11 @@ enum unit_expa_sus_bitfile_idx {
     UNIT_EXPA_SUS_BIT14,
     UNIT_EXPA_SUS_BIT15,
 
-    UNIT_EXPA_SUS_BIT_MAX
+    UES_BIT_MAX
 };
 
+void SetBitUES(struct Unit * unit, int bit);
+void ClearBitUES(struct Unit * unit, int bit);
+bool CheckBitUES(struct Unit * unit, int bit);
+
 void ResetUnitsExpaSus(void);
-
-static inline void SetBit_UnitExpaSus(struct Unit * unit, int bit)
-{
-    if (bit < 8)
-        unit->_u3A |= 1 << bit;
-
-    if (bit < 16)
-        unit->_u3B |= 1 << bit;
-}
-
-static inline void ClearBit_UnitExpaSus(struct Unit * unit, int bit)
-{
-    if (bit < 8)
-        unit->_u3A &= ~(1 << bit);
-
-    if (bit < 16)
-        unit->_u3B &= ~(1 << bit);
-}
-
-static inline bool CheckBit_UnitExpaSus(struct Unit * unit, int bit)
-{
-    if (bit < 8)
-        return !!(unit->_u3A & (1 << bit));
-
-    if (bit < 16)
-        return !!(unit->_u3B & (1 << bit));
-
-    return false;
-}

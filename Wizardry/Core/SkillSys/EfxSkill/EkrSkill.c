@@ -113,7 +113,7 @@ void NewEkrSkill(struct Anim * anim)
     Debugf("cid %#x, sid-atk %#x, sid-def %#x",
         proc->cid, proc->sid_atk, proc->sid_def);
 
-#if (CONFIG_USE_DEBUG && CONFIG_DEBUG_EFXSKILL)
+#if defined(CONFIG_USE_DEBUG) && defined(CONFIG_DEBUG_EFXSKILL)
     proc->sid_atk = 1;
     proc->sid_def = 2;
 #endif

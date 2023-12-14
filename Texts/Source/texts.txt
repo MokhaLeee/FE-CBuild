@@ -7,6 +7,9 @@ Manage your units' skills[X]
 #0xD4C MSG_FreeSpaceIndentifier
 .[X]
 
+## MSG_WIP
+W.I.P.[X]
+
 ## MSG_ItemName_DustVial
 Dust Vial[X]
 
@@ -35,6 +38,7 @@ Raises magic.[X]
 #include texts/Skills_RangeDebuff.txt
 #include texts/Skills_AI.txt
 #include texts/Skills_Menu.txt
+#include texts/Skills_Legend.txt
 #include texts/Skills_CombatArt.txt
 #include texts/CombatArt.txt
 #include texts/CombatArt_Sword.txt

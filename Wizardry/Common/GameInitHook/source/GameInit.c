@@ -12,11 +12,14 @@
 typedef void (* GameInitHookFunc_t)(void);
 extern const GameInitHookFunc_t gGameInitHookTable[];
 
-extern u8 * FreeRamSpaceEntry, * FreeRamSpaceTail;
+extern u8 FreeRamSpaceEntry[], FreeRamSpaceTail[], FreeRamSpaceMax[];
+
 STATIC_DECLAR void FreeRamSpaceDetection(void)
 {
-    const int free_ram_space_size = 0x2028;
-    Assert((FreeRamSpaceTail - FreeRamSpaceEntry) < free_ram_space_size);
+    bool asseration = (&FreeRamSpaceTail[0] < &FreeRamSpaceMax[0]);
+
+    Assert(asseration);
+    if (!asseration) while(1);
 }
 
 /* LynJump! */
@@ -35,7 +38,7 @@ void StartGame(void)
     proc->idle_status = 0;
 
     /* Internal hooks */
-#if CONFIG_USE_DEBUG
+#ifdef CONFIG_USE_DEBUG
     LogInit();
 #endif
 

@@ -93,7 +93,7 @@ void UnitAutoLoadSkills(struct Unit * unit)
         level = level - 5;
     }
 
-#if CONFIG_USE_DEBUG
+#ifdef CONFIG_USE_DEBUG
 
     /* For debug, we enable unit learn all of skills */
     if (UNIT_FACTION(unit) == FACTION_BLUE)

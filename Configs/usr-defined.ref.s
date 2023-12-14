@@ -33,6 +33,7 @@ SET_DATA sRandBackup, sRandSeedsC + 0x8
 SET_DATA gPostActionGaleforceFlag, sRandBackup + 0x8
 
 SET_DATA FreeRamSpaceTail, gPostActionGaleforceFlag + 0x4
+SET_DATA FreeRamSpaceMax, FreeRamSpaceEntry + 0x2028
 
 /* IconDisplay */
 SET_DATA gIconReSts, 0x02026A90 @ DrawnIconLookupTable

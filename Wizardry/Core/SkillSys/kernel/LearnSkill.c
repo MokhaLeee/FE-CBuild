@@ -12,7 +12,7 @@ struct LearnedSkillList {
 
 extern struct LearnedSkillList sLearnedSkillPLists[NEW_BWL_ARRAY_NUM];
 
-#if CONFIG_USE_DEBUG
+#ifdef CONFIG_USE_DEBUG
 void * const Identifier_sLearnedSkillPLists = sLearnedSkillPLists;
 #endif
 

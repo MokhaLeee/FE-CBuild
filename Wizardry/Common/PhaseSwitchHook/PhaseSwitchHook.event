@@ -1,0 +1,11 @@
+#include "Source/PhaseSwitchHook.lyn.event"
+
+PUSH
+    ORG 0x59A2E0
+    PROC_CALL_ROUTINE(BmMain_StartPhaseRe)
+POP
+
+ALIGN 4
+gPhaseSwitchHooks:
+    POIN PhaseSwitchUpdateLengendSkillStatus
+    WORD 0

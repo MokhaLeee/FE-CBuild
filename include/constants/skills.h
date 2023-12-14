@@ -94,6 +94,7 @@ enum SkillIndex {
     SID_Sol,
     SID_DragonFang,
     SID_Foresight,
+    SID_Inori,
 
     /* Blow skills */
     SID_BlowDarting,
@@ -166,9 +167,9 @@ enum SkillIndex {
     SID_Aptitude,
 
     /* Legendary skill */
-    SID_LEGEND_1,
-    SID_LEGEND_2,
-    SID_LEGEND_3,
+    SID_LEGEND_InoriAtk,   /* Inori, then atk + 10, crit+100% */
+    SID_LEGEND_InoriAvo,   /* Inori, then speed + 10, Avoid + 100% */
+    SID_LEGEND_InoriDef,   /* Inori, then recover full HP, def/res + 10 */
     SID_LEGEND_4,
     SID_LEGEND_5,
 

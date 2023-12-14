@@ -103,6 +103,9 @@ void InitBattleUnit(struct BattleUnit * bu, struct Unit * unit)
 
     UNIT_MAG(&bu->unit) = MagGetter(unit);
     BU_CHG_MAG(bu) = 0;
+
+    bu->unit._u3A = unit->_u3A;
+    bu->unit._u3B = unit->_u3B;
 }
 
 /* LynJump */
@@ -111,5 +114,10 @@ void UpdateUnitFromBattle(struct Unit * unit, struct BattleUnit * bu)
     UpdateUnitFromBattleVanilla(unit, bu);
 
     UNIT_MAG(unit) += BU_CHG_MAG(bu);
+
+    /* Unit expa sus */
+    unit->_u3A = bu->unit._u3A;
+    unit->_u3B = bu->unit._u3B;
+
     ResetSkillLists();
 }

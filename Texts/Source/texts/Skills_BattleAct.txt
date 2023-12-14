@@ -47,3 +47,8 @@ Restore damage dealt as HP.[NL]
 DragonFang:[NL]
 1.5x damage.[NL]
 (Skill% activation)[X]
+
+## MSG_SKILL_Inori
+Inori:[NL]
+Unit may not die if attacked[NL]
+to 0 HP (luck%)[X]
