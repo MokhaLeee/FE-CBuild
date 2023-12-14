@@ -76,10 +76,8 @@ static void StatScreenNewCallBack(ProcPtr proc)
 static void StatScreen_InitDisplayScrollingBG(void)
 {
     StartMuralBackground(NULL, (void *)VRAM + 0xB000, -1);
-#if 0
     Decompress(Img_StatScreenScrollBG, (void *)0x0600B000);
     ApplyPalettes(Pal_StatScreenScrollBG, 0xE, 2);
-#endif
 }
 
 

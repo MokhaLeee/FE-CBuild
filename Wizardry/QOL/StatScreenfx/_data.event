@@ -21,6 +21,14 @@ ALIGN 4
 Img_StatScreenPageStatusBg:
     #incbin "Gfx/Img_StatScreenPageStatusBg.4bpp.lz"
 
+ALIGN 4
+Pal_StatScreenScrollBG:
+    #incbin "Gfx/Img_StatScreenBG3.gbapal"
+
+ALIGN 4
+Img_StatScreenScrollBG:
+    #incbin "Gfx/Img_StatScreenBG3.4bpp.lz"
+
 /*
     ALIGN 4
     Img_StatScreenRedUI:
@@ -29,12 +37,4 @@ Img_StatScreenPageStatusBg:
     ALIGN 4
     Pal_StatScreenRedUI:
         #incbin "Gfx/Img_StatScreenUiRed.gbapal"
-
-    ALIGN 4
-    Pal_StatScreenScrollBG:
-        #incbin "Gfx/Img_StatScreenBG2.gbapal"
-
-    ALIGN 4
-    Img_StatScreenScrollBG:
-        #incbin "Gfx/Img_StatScreenBG2.4bpp.lz"
 */
