@@ -6,34 +6,49 @@
 #include "include/macros.event"
 #include "include/Definitions.event"
 
-ORG FreeSpace
+/**
+ * Magic
+ * "MOKHA BUILD CHAX"
+ */
+ORG FreeSpaceMagic
+    BYTE $4D $4F $4B $48 $41 $20 $42 $55 $49 $4C $44 $20 $43 $48 $41 $58
+ASSERT (FreeSpaceMagic + FreeSpaceMagicSize - CURRENTOFFSET)
 
-    /* Include before tools helper */
-    #include "Texts/Texts.event"
+/**
+ * Repoint pointers
+ */
+ORG FreeSpaceReloc
+    #include "Reloc/Reloc.event"
+MESSAGE Reloc size (CURRENTOFFSET - FreeSpaceReloc) max FreeSpaceRelocSize
+ASSERT (FreeSpaceReloc + FreeSpaceRelocSize - CURRENTOFFSET)
 
+/**
+ * Tool helpers should installed after repointing
+ */
+#include "Tools/Tool Helpers.txt"
+#include "Extensions/Hack Installation.txt"
+
+/**
+ * Wizardry
+ */
+ORG FreeSpaceWizardry
     #include "Wizardry/Wizardry.event"
-    #include "Contants/Contants.event"
-    #include "GameData/GameData.event"
+    #include "Texts/Texts.event"
+MESSAGE Wizardry size (CURRENTOFFSET - FreeSpaceWizardry) max FreeSpaceWizardrySize
+ASSERT (FreeSpaceWizardry + FreeSpaceWizardrySize - CURRENTOFFSET)
 
-MESSAGE Main size (CURRENTOFFSET - FreeSpace) max FreeSpaceSize
-ASSERT (FreeSpace + FreeSpaceSize - CURRENTOFFSET)
-
-/* Install Fonts */
+/**
+ * Install Fonts
+ */
 ORG FreeSpaceFont
-
     #include "Fonts/Fonts.event"
-
 MESSAGE Fonts size (CURRENTOFFSET - FreeSpaceFont) max FreeSpaceFontSize
 ASSERT (FreeSpaceFont + FreeSpaceFontSize - CURRENTOFFSET)
 
-ORG FreeSpaceMagic
-
-    /* "MOKHA BUILD CHAX" */
-    BYTE $4D $4F $4B $48 $41 $20 $42 $55 $49 $4C $44 $20 $43 $48 $41 $58
-
-/* Install Events */
-ORG FreeSpaceEvent
-
+ORG FreeSpaceAlloc
     #include "Events/Events.event"
+    #include "Contants/Contants.event"
+    #include "GameData/GameData.event"
+MESSAGE Allocated space end at CURRENTOFFSET
 
 // #include "debug.event"

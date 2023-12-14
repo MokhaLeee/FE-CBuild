@@ -165,6 +165,13 @@ enum SkillIndex {
     SID_VoidCurse,
     SID_Aptitude,
 
+    /* Legendary skill */
+    SID_LEGEND_1,
+    SID_LEGEND_2,
+    SID_LEGEND_3,
+    SID_LEGEND_4,
+    SID_LEGEND_5,
+
     /* Combat-art skill */
     SID_COMBAT_Grounder,
     SID_COMBAT_BaneOfMonsters,

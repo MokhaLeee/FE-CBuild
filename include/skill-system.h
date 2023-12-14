@@ -106,13 +106,16 @@ int AddSkill(struct Unit * unit, const u8 sid);
 void TryAddSkillLvup(struct Unit * unit, int level);
 void TryAddSkillPromotion(struct Unit * unit, int jid);
 
-/* MiscSkillEffects */
+/**
+ * MiscSkillEffects
+ */
 u8 DanceCommandUsabilityRework(const struct MenuItemDef * def, int number);
 u8 StealCommandUsabilityRework(const struct MenuItemDef * def, int number);
 u8 SupplyUsabilityRework(const struct MenuItemDef * def, int number);
 u8 PickCommandUsabilityRework(const struct MenuItemDef * def, int number);
 u8 SummonCommandUsabilityRework(const struct MenuItemDef * def, int number);
 
+/* lucky 7 */
 enum skill_lucky_seven_idx {
     LUCKY7_POW = 0,
     LUCKY7_MAG,
@@ -123,3 +126,7 @@ enum skill_lucky_seven_idx {
     LUCKY7_RES,
     LUCKY7_MOV,
 };
+
+/* Legendary skill */
+extern u8 const * const gpLegendSkillPool;
+bool LegendSkillTester(struct Unit * unit);

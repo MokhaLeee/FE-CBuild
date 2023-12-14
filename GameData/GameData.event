@@ -13,6 +13,7 @@
 #include "SkillSys/SkillInfo.lyn.event"
 #include "SkillSys/PreLoadConfig.lyn.event"
 #include "SkillSys/RomTable.lyn.event"
+#include "SkillSys/LegendSkill.lyn.event"
 
 #include "BattleSys/WeaponTriangle.lyn.event"
 
