@@ -2,9 +2,6 @@
 #define CONTANTS_INSTALLED
 
 ALIGN 4
-#include "Banim/Banim.event"
-
-ALIGN 4
 #include "Sprite/Sprite.event"
 
 ALIGN 4
@@ -21,8 +18,5 @@ ALIGN 4
 
 ALIGN 4
 #include "Misc/Misc.event"
-
-ALIGN 4
-#include "Sounds/Sounds.event"
 
 #endif

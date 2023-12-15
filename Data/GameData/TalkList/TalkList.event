@@ -1,0 +1,9 @@
+PUSH
+    ORG $846AC
+    POIN gBattleTalkListRe
+
+    ORG $8472C
+    POIN gDefeatTalkListRe
+POP
+
+#include "Source/TalkList.lyn.event"

@@ -14,6 +14,10 @@
 
 // Song id definitions
 
+#define SONG_WindAcrossThePlain 0x09
+#define SONG_Attack 0x19
+#define SONG_Defense 0x1A
+#define SONG_EnemiesAppear 0x13
 #define SONG_ChapterOpen 0x91
 
 #endif // SOUND_DEFINITIONS

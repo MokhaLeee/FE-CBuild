@@ -2,8 +2,14 @@
 
 PUSH
     ORG 0x59A2E0
-    PROC_CALL_ROUTINE(BmMain_StartPhaseRe)
+    PROC_JUMP(ProcScr_BmMain_StartPhaseHook)
 POP
+
+ALIGN 4
+ProcScr_BmMain_StartPhaseHook:
+    PROC_CALL_ROUTINE(BmMain_StartPhaseRe)
+    PROC_YEILD
+    PROC_JUMP(0x59A2E8)
 
 ALIGN 4
 gPhaseSwitchHooks:

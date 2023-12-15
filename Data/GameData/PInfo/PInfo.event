@@ -1,0 +1,12 @@
+#define ORG_PInfo(pid) "ORG (CharacterTable + 0x34 * pid)"
+
+PUSH
+    ORG_PInfo(CHAR_CHAX_Lyn)
+    #include "Source/Lyn.lyn.event"
+
+    ORG_PInfo(CHAR_CHAX_PrologueBoss)
+    #include "Source/Batta.lyn.event"
+
+    ORG_PInfo(0x8E)
+    #include "Source/Cutthroat_8E.lyn.event"
+POP

@@ -1,0 +1,7 @@
+#define ChapterDataEntry 0x8B0890
+#define ORG_ChapterData(ch) "ORG (ChapterDataEntry + 0x94 * ch)"
+
+PUSH
+    ORG_ChapterData(0)
+    #include "Source/PrologueData.lyn.event"
+POP

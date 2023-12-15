@@ -1,15 +1,5 @@
 ALIGN 4
-Recruit_F_Anims:
-SwordAnim(_T0_RecruitF_Sword)
-LanceAnim(_T0_RecruitF_Lance)
-MagicAnim(_T0_RecruitF_Magic)
-StaffAnim(_T0_RecruitF_Staff)
-UnarmedAnim(RecruitUnarmedAnimID)
-EndAnim
-
-ALIGN 4
-Fighter_M_Anims:
-AxeAnim(Fighter_M_Axe)
-HandAxeAnim(Fighter_M_Handaxe)
-UnarmedAnim(Fighter_M_Unarmed)
+LynLord_Anims:
+SwordAnim(LynLord_Sword)
+UnarmedAnim(LynLord_Item)
 EndAnim

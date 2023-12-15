@@ -1,0 +1,15 @@
+ALIGN 4
+Img_FE7_Plain_352418:
+    #incbin "data/FE7_Plain_352418.4bpp.lz"
+
+ALIGN 4
+Pal_FE7_Plain_352418:
+    #incbin "data/FE7_Plain_352418.gbapal"
+
+ALIGN 4
+FE7_3_mapchip_config:
+    #incbin "data/FE7_3.mapchip_config.lz"
+
+EventPointerTable(1, Img_FE7_Plain_352418)
+EventPointerTable(2, Pal_FE7_Plain_352418)
+EventPointerTable(3, FE7_3_mapchip_config)

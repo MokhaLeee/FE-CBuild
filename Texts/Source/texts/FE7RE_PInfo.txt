@@ -1,0 +1,13 @@
+## MSG_PINFO_LynName
+Lyn[X]
+
+## MSG_PINFO_LynDesc
+A young girl from the Lorca[NL]
+tribe. Stouthearted and kind.[X]
+
+## MSG_PINFO_BattaName
+Batta[X]
+
+## MSG_PINFO_BattaDesc
+A Ganelon bandit. Called[NL]
+the Beast for his savagery.[X]

@@ -52,5 +52,5 @@ PUSH
     ENDA
 
     ORG $09E00
-    SHORT $4770
+    // SHORT $4770
 POP

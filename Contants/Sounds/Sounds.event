@@ -3,5 +3,9 @@
 
 #include "SoundDefinitions.event"
 #include "Songs/Fe7ChapterOpen/Fe7ChapterOpen.event"
+#include "Songs/FE7WindAcrossThePlains/FE7WindAcrossThePlains.event"
+#include "Songs/FE7EnemiesAppear/FE7EnemiesAppear.event"
+#include "Songs/Fe7Attack/Fe7Attack.event"
+#include "Songs/Fe7Defense/Fe7Defense.event"
 
 #endif // SOUNDS

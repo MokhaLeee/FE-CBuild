@@ -19,3 +19,5 @@ NewDifficultyButtons:
 ALIGN 4
 NewTitleScroll:
 #incbin "Source/TitleScroll.4bpp.lz"
+
+#include "TileSets/TileSets.event"

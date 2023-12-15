@@ -1,0 +1,42 @@
+
+EventPointerTable(7, MyPrologue)
+#include "PrologueEvent.lyn.event"
+
+ALIGN 32
+MyPrologue:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno Dunno Dunno
+POIN Tutorial
+POIN TrapData TrapData
+POIN UnitDef_Ally UnitDef_Ally
+POIN $0 $0 $0 $0 $0 $0
+POIN EventScr_BegniningScene EventScr_EndingScene
+
+ALIGN 32
+CharacterBasedEvents:
+    END_MAIN
+
+TurnBasedEvents:
+    END_MAIN
+
+LocationBasedEvents:
+    Seize(3, 2)
+    END_MAIN
+
+Dunno:
+    WORD $00
+    END_MAIN
+
+Tutorial:
+    WORD $00
+    END_MAIN
+
+MiscBasedEvents:
+    CauseGameOverIfLordDies
+    END_MAIN
+
+TrapData:
+    ENDTRAP

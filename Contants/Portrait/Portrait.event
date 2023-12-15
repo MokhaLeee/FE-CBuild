@@ -9,8 +9,6 @@ ALIGN 4
 #include "Hacks/PortraitHeight.lyn.event"
 
 HighPortraitFidLut:
-    BYTE Mug_Lysi Mug_Dimi
-
     BYTE 0
 
 #endif

@@ -1,0 +1,9 @@
+#define ORG_JInfo(pid) "ORG (ClassTable + 0x54 * pid)"
+
+PUSH
+    ORG_JInfo(CLASS_CHAX_LYN_T1)
+    #include "Source/LynLord.lyn.event"
+
+    ORG_JInfo(Brigand)
+    #include "Source/Brigand.lyn.event"
+POP

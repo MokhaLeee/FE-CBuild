@@ -27,3 +27,13 @@ extern const u16 Pal_StatScreenMuAreaBg[];
 extern const u16 Sprite_StatScreenMuAreaBackground[];
 extern const u8  Img_StatScreenScrollBG[];
 extern const u16 Pal_StatScreenScrollBG[];
+
+extern const u8 Img_StatScreenUI[];
+extern const u16 Pal_StatScreenUI[];
+extern const u8 Img_StatScreenUIRed[];
+extern const u16 Pal_StatScreenUIRed[];
+extern const u8 Img_StatScreenRedUI[];
+extern const u16 Pal_StatScreenRedUI[];
+
+extern const u16 * sUiFramePaletteLookup[];
+extern const u16 * sStatBarPaletteLookup[];

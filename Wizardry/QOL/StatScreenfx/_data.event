@@ -10,6 +10,14 @@ Pal_StatScreenUI:
     #incbin "Gfx/Img_StatScreenUI.gbapal"
 
 ALIGN 4
+Img_StatScreenUIRed:
+    #incbin "Gfx/Img_StatScreenUiRed.4bpp.lz"
+
+ALIGN 4
+Pal_StatScreenUIRed:
+    #incbin "Gfx/Img_StatScreenUiRed.gbapal"
+
+ALIGN 4
 Img_StatScreenMuAreaBg:
     #incbin "Gfx/Img_StatScreenMuAreaBg.4bpp.lz"
 
@@ -28,13 +36,3 @@ Pal_StatScreenScrollBG:
 ALIGN 4
 Img_StatScreenScrollBG:
     #incbin "Gfx/Img_StatScreenBG3.4bpp.lz"
-
-/*
-    ALIGN 4
-    Img_StatScreenRedUI:
-        #incbin "Gfx/Img_StatScreenUiRed.4bpp.lz"
-
-    ALIGN 4
-    Pal_StatScreenRedUI:
-        #incbin "Gfx/Img_StatScreenUiRed.gbapal"
-*/

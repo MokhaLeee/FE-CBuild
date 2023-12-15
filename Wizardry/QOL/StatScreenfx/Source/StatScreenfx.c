@@ -16,20 +16,23 @@
 #include "statscreenfx.h"
 
 extern const u8 Tsa_StatScreenBg1Left[];
-extern const u8 Img_StatScreenUI[];
-extern const u16 Pal_StatScreenUI[];
-extern const u8 Img_StatScreenRedUI[];
-extern const u16 Pal_StatScreenRedUI[];
 
 static void LoadStatScreenUiFrame(void)
 {
-#if 1
-    Decompress(Img_StatScreenUI, BG_CHAR_ADDR(0));
-    ApplyPalette(Pal_StatScreenUI, BGPAL_WINDOW_FRAME);
-#else
-    Decompress(Img_StatScreenRedUI, BG_CHAR_ADDR(0));
-    ApplyPalette(Pal_StatScreenRedUI, BGPAL_WINDOW_FRAME);
-#endif
+    if (UNIT_FACTION(gStatScreen.unit) != FACTION_RED)
+    {
+        Decompress(Img_StatScreenUI, BG_CHAR_ADDR(0));
+        ApplyPalette(Pal_StatScreenUI, BGPAL_WINDOW_FRAME);
+        ApplyPalette(sUiFramePaletteLookup[0], STATSCREEN_BGPAL_3);
+        ApplyPalette(sStatBarPaletteLookup[0], STATSCREEN_BGPAL_6);
+    }
+    else
+    {
+        Decompress(Img_StatScreenUIRed, BG_CHAR_ADDR(0));
+        ApplyPalette(Pal_StatScreenUIRed, BGPAL_WINDOW_FRAME);
+        ApplyPalette(sUiFramePaletteLookup[1], STATSCREEN_BGPAL_3);
+        ApplyPalette(sStatBarPaletteLookup[1], STATSCREEN_BGPAL_6);
+    }
 }
 
 static void LoadStatScreenMuAreaBackGround(void)

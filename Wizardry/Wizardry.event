@@ -42,5 +42,6 @@ ALIGN 4
 
 #include "Mokha/MapAnims/MapAnims.event"
 #include "Mokha/MiscSkillEffects/MiscSkillEffects.event"
+#include "Mokha/NewGameTactician/NewGameTactician.event"
 
 #include "External/ExternalPatches.event"

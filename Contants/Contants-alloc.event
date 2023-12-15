@@ -1,0 +1,6 @@
+// This part of data is set at +0x01000000
+ALIGN 4
+#include "Banim/Banim.event"
+
+ALIGN 4
+#include "Sounds/Sounds.event"

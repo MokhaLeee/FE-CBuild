@@ -123,10 +123,14 @@ STATIC_DECLAR void UpdateHpDrainForEkrGauge(struct Anim * anim)
  */
 void Banim_C01(struct Anim * anim)
 {
-    if (gEkrDebugUnk3 == 1)
+    if (C01_BLOCKING_PRE_BATTLE(anim))
+    {
         anim->pScrCurrent = anim->pScrStart;
-    else if (!(anim->state3 & ANIM_BIT3_0004))
+    }
+    else if (!C01_BLOCKING_IN_BATTLE(anim))
+    {
         anim->pScrCurrent = anim->pScrCurrent + 1;
+    }
     else if (anim->state3 & ANIM_BIT3_HIT_EFFECT_APPLIED)
     {
         if (CheckEkrHitDone() == true)
@@ -135,7 +139,7 @@ void Banim_C01(struct Anim * anim)
             UpdateHpDrainForEkrGauge(anim);
 #endif
             anim->state3 &= ~(ANIM_BIT3_TAKE_BACK_ENABLE |
-                                ANIM_BIT3_0004 |
+                                ANIM_BIT3_C01_BLOCKING_IN_BATTLE |
                                 ANIM_BIT3_HIT_EFFECT_APPLIED);
 
             anim->pScrCurrent = anim->pScrCurrent + 1;

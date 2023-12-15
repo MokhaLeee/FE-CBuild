@@ -25,6 +25,7 @@ ASSERT (FreeSpaceReloc + FreeSpaceRelocSize - CURRENTOFFSET)
 /**
  * Tool helpers should installed after repointing
  */
+#include EAstdlib.event
 #include "Tools/Tool Helpers.txt"
 #include "Extensions/Hack Installation.txt"
 
@@ -33,7 +34,7 @@ ASSERT (FreeSpaceReloc + FreeSpaceRelocSize - CURRENTOFFSET)
  */
 ORG FreeSpaceWizardry
     #include "Wizardry/Wizardry.event"
-    #include "GameData/GameData.event"
+    #include "Data/Data.event"
     #include "Texts/Texts.event"
     #include "Contants/Contants.event"
 MESSAGE FreeSpace_Wizardry_ end at (CURRENTOFFSET) max (FreeSpaceWizardry + FreeSpaceWizardrySize)
@@ -49,6 +50,7 @@ ASSERT (FreeSpaceFont + FreeSpaceFontSize - CURRENTOFFSET)
 
 ORG FreeSpaceAlloc
     #include "Events/Events.event"
+    #include "Contants/Contants-alloc.event"
 MESSAGE FreeSpace_Allocated end at CURRENTOFFSET
 
 // #include "debug.event"

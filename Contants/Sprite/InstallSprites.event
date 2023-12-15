@@ -1,11 +1,10 @@
-StandingMapSprite(JourneymanStandingMapSpriteID, MapSprite16x32, Alm_std)
-MovingMapSprite(Journeyman_1, 0x81E173C, Alm_mov)
-
-// Alm
-ALIGN 4
-Alm_std:
-	#incbin "Source/Alm_std.4bpp.lz"
+StandingMapSprite(0x1, MapSprite16x16, MapSprite_LynLord)
+MovingMapSprite(CLASS_CHAX_LYN_T1, 0x81C46CC, Mu_LynLord)
 
 ALIGN 4
-Alm_mov:
-	#incbin "Source/Alm_mov.4bpp.lz"
+MapSprite_LynLord:
+	#incbin "Source/MapSprite_LynLord.4bpp.lz"
+
+ALIGN 4
+Mu_LynLord:
+	#incbin "Source/Mu_LynLord.4bpp.lz"

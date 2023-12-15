@@ -9,7 +9,7 @@ Each unit can use no more than 10 skills in battle map as below:
 ---
 ## 1. ROM table
 
-ROM table can be configured in [./GameData/SkillSys/RomTable.c](../GameData/SkillSys/RomTable.c).
+ROM table can be configured in [./Data/SkillSys/RomTable.c](../Data/SkillSys/RomTable.c).
 
 ---
 ## 2. RAM table API
@@ -41,7 +41,7 @@ Every time you `AddSkill` to unit, he may learn that skill permanently. That is 
 
 The most important purpose of the modern C-SkillSys is to allow players to load and unload skills in prep-screen. To do this, each character is given a list to store the skills they have learned. This list is saved to SRAM, and may be used during prep-skill list screen.
 
-Character may learn 10 skills when they level-up to lv 5/10/15/20..., 5 from class and 5 from character himself. You may edit on [./GameData/SkillSys/PreLoadConfig.c](../GameData/SkillSys/PreLoadConfig.c) to configure character/class to learn which skills.
+Character may learn 10 skills when they level-up to lv 5/10/15/20..., 5 from class and 5 from character himself. You may edit on [./Data/SkillSys/PreLoadConfig.c](../Data/SkillSys/PreLoadConfig.c) to configure character/class to learn which skills.
 
 However, the above rules introduce the following problems. Consider such a case:
 
