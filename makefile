@@ -71,11 +71,12 @@ COMPRESS          := $(EA_DIR)/Tools/compress$(EXE)
 LYN               := $(EA_DIR)/Tools/lyn$(EXE) -longcalls
 EA_DEP            := $(EA_DIR)/ea-dep$(EXE)
 
-PORTRAIT_PROCESS  := $(PYTHON3) $(TOOL_DIR)/FE-PyTools/portrait-process.py
 TEXT_PROCESS      := $(PYTHON3) $(TOOL_DIR)/FE-PyTools/text-process-classic.py
 C2EA              := $(PYTHON3) $(TOOL_DIR)/FE-PyTools/NMM2CSV/c2ea.py
 TMX2EA            := $(PYTHON3) $(TOOL_DIR)/FE-PyTools/TMX2EA/tmx2ea.py
 GRIT              := $(DEVKITPRO)/tools/bin/grit$(EXE)
+
+PORTRAIT_PROCESS  := $(PYTHON3) $(TOOL_DIR)/scripts/portrait-process-mokha.py
 
 # ========
 # = Main =
@@ -85,7 +86,7 @@ all:
 	@$(MAKE) pre_build
 	@$(MAKE) chax
 
-pre_build: text font gfx
+pre_build: text font gfx portrait
 chax: $(FE8_CHX)
 
 $(FE8_CHX): $(MAIN) $(FE8_GBA) $(FE8_SYM) $(shell $(EA_DEP) $(MAIN) -I $(EA_DIR) --add-missings)
@@ -250,18 +251,21 @@ CLEAN_FILES += $(EFX_SCR_DEPS) $(EFX_TARGET)
 PORTRAIT_DIR       := $(PWD)/Contants/Portrait
 PORTRAIT_LIST      := $(PORTRAIT_DIR)/PortraitList.txt
 PORTRAIT_INSTALLER := $(PORTRAIT_DIR)/PortraitInstaller.event
+PORTRAIT_HEADER    := $(PORTRAIT_DIR)/PortraitDef.h
+
+portrait: $(PORTRAIT_INSTALLER)
 
 PORTRAIT_DEPS := $(shell $(PORTRAIT_PROCESS) $(PORTRAIT_LIST) --list-files)
 
-$(PORTRAIT_INSTALLER): $(PORTRAIT_LIST) $(PORTRAIT_DEPS)
+$(PORTRAIT_INSTALLER) $(PORTRAIT_HEADER): $(PORTRAIT_LIST) $(PORTRAIT_DEPS)
 	@echo "[GEN]	$@"
-	@$(PORTRAIT_PROCESS) $< --output $@
+	@$(PORTRAIT_PROCESS) $< --installer $(PORTRAIT_INSTALLER) --definition $(PORTRAIT_HEADER)
 
 %_mug.dmp %_palette.dmp %_frames.dmp %_minimug.dmp: %.png
 	@echo "[GEN]	$@"
 	@$(PORTRAITFORMATTER) $<
 
-CLEAN_FILES += $(PORTRAIT_DEPS) $(PORTRAIT_INSTALLER)
+CLEAN_FILES += $(PORTRAIT_DEPS) $(PORTRAIT_INSTALLER) $(PORTRAIT_HEADER)
 
 # ==========
 # = Tables =

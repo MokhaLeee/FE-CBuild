@@ -8,9 +8,3 @@
 #include "DecideOnDangerMap/DecideOnDangerMap.event"
 #include "MeleeAndMagicFix_ItemFix20220721/MeleeAndMagicFix_ItemFix20220721.event"
 #include "drumfix/drumfix.event"
-
-/*
- * This is too large
- *
- * #include "AllInstrumentEA/AllInstrument.event"
- */

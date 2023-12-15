@@ -285,8 +285,7 @@ STATIC_DECLAR void ChapterIntroFE6_BeginMotifFadeIn(struct Proc * proc)
     SetBlendTargetA(0, 0, 1, 0, 0);
     SetBlendTargetB(0, 0, 0, 1, 0);
 
-    // PlaySoundEffect(0x90);
-    PlaySoundEffect(0x316);
+    PlaySoundEffect(0x90);
 }
 
 STATIC_DECLAR void ChapterIntroFE6_LoopMotifFadeIn(struct Proc * proc)
@@ -307,7 +306,7 @@ STATIC_DECLAR void ChapterIntroFE6_BeginHOpenText(struct Proc * proc)
     proc->unk4C = 0;
 
     SetDispEnable(1, 1, 1, 1, 1);
-    // PlaySoundEffect(0x91);
+    PlaySoundEffect(0x91);
 }
 
 STATIC_DECLAR void ChapterIntroFE6_LoopHOpenText(struct Proc * proc)

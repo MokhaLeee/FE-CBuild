@@ -20,9 +20,9 @@ ALIGN 4
 #include "Gfx/Gfx.event"
 
 ALIGN 4
-// #include "Sounds/Sounds.event"
+#include "Misc/Misc.event"
 
 ALIGN 4
-#include "Misc/Misc.event"
+#include "Sounds/Sounds.event"
 
 #endif
