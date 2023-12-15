@@ -35,6 +35,7 @@ ORG FreeSpaceWizardry
     #include "Wizardry/Wizardry.event"
     #include "GameData/GameData.event"
     #include "Texts/Texts.event"
+    #include "Contants/Contants.event"
 MESSAGE FreeSpace_Wizardry_ end at (CURRENTOFFSET) max (FreeSpaceWizardry + FreeSpaceWizardrySize)
 ASSERT (FreeSpaceWizardry + FreeSpaceWizardrySize - CURRENTOFFSET)
 
@@ -48,7 +49,6 @@ ASSERT (FreeSpaceFont + FreeSpaceFontSize - CURRENTOFFSET)
 
 ORG FreeSpaceAlloc
     #include "Events/Events.event"
-    #include "Contants/Contants.event"
 MESSAGE FreeSpace_Allocated end at CURRENTOFFSET
 
 // #include "debug.event"
