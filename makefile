@@ -289,9 +289,9 @@ CLEAN_FILES += $(CSV_SOURCES:.csv=.csv.event)
 TMXS := $(shell find -type f -name '*.tmx')
 CLEAN_FILES += $(TMXS:.tmx=.event) $(TMXS:.tmx=_data.dmp)
 
-# ===============
-# = GFX  =
-# ===============
+# =======
+# = GFX =
+# =======
 
 GFX_DIR     := $(PWD)/Contants/Gfx
 GFX_SOURCES := $(shell find $(GFX_DIR)/Sources -type f -name '*.png')
@@ -305,6 +305,15 @@ $(GFX_HEADER): $(GFX_SOURCES)
 
 CLEAN_BUILD += $(GFX_DIR)
 CLEAN_FILES += $(GFX_HEADER)
+
+# ==========
+# = Sounds =
+# ==========
+
+SOUND_DIR := $(PWD)/Contants/Sounds
+SOUND_ASM_SOURCE := $(shell find $(SOUND_DIR)/Songs -type f -name '*.s')
+
+CLEAN_FILES += $(SOUND_ASM_SOURCE:.s=.o) $(SOUND_ASM_SOURCE:.s=.lyn.event)
 
 # ==============
 # = MAKE CLEAN =
