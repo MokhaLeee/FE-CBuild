@@ -6,3 +6,4 @@
 
 typedef const struct HelpBoxInfo _DECL_INFO;
 extern _DECL_INFO * const RTextPageUnit, * const RTextPageSkill;
+extern _DECL_INFO * const RTextPageSupport;

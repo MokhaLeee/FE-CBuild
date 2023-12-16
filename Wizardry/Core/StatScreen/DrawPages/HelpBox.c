@@ -26,8 +26,23 @@ void StartStatScreenHelp(int pageid, struct Proc * proc)
             gStatScreen.help = RTextPageSkill;
             break;
 
+        case 3:
+            gStatScreen.help = RTextPageSupport;
+            break;
         } // switch (pageid)
     }
 
     StartMovingHelpBox(gStatScreen.help, proc);
+}
+
+/* LynJump */
+void DisplayPage(int pageid)
+{
+    typedef void(* func_type)(void);
+    extern const func_type gStatScreenDrawPages[];
+
+    CpuFastFill(0, gUiTmScratchA, sizeof(gUiTmScratchA));
+    CpuFastFill(0, gUiTmScratchC, sizeof(gUiTmScratchC));
+
+    gStatScreenDrawPages[pageid]();
 }

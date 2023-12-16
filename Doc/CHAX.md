@@ -19,3 +19,7 @@ Suppose you want a 4 Byte RAM space (`u8 NewAlloc4Bytes[4]`), you need to do as 
 4. Declare such variable in your own C file, `extern u8 NewAlloc4Bytes[4];`
 
 CHAX may auto detect on overflow error on game-init.
+
+# Support
+
+For now, unit support progress is located in BWL table, and the vanilla support table is used to save skills. If unit does not have BWL, (aka, unit character index > 0x45), we may directly use the pre-load supports, which means its support level may not develop in game playing.

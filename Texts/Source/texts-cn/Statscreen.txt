@@ -33,3 +33,6 @@
 
 ## MSG_MSS_BWL_LOSE
 败[X]
+
+## MSG_MSS_SupportBonus
+补正[X]

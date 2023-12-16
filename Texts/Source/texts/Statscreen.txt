@@ -33,3 +33,6 @@ W[X]
 
 ## MSG_MSS_BWL_LOSE
 L[X]
+
+## MSG_MSS_SupportBonus
+Bonus[X]

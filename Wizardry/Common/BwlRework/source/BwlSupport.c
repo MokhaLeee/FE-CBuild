@@ -66,21 +66,35 @@ s8 ActionSupport(ProcPtr proc)
 /* LynJump! */
 int GetUnitSupportLevel(struct Unit * unit, int num)
 {
-    u8 * supp = GetUnitBwlSupports(UNIT_CHAR_ID(unit));
+    int supportExp;
+    u8 * supp;
+
+    if (!UNIT_IS_VALID(unit))
+        return SUPPORT_LEVEL_NONE;
+
+    supp = GetUnitBwlSupports(UNIT_CHAR_ID(unit));
 
     if (supp)
     {
-        int supportExp = unit->supports[num];
-
-        if (supportExp > 240)
-            return SUPPORT_LEVEL_A;
-
-        if (supportExp > 160)
-            return SUPPORT_LEVEL_B;
-
-        if (supportExp > 80)
-            return SUPPORT_LEVEL_C;
+        supportExp = unit->supports[num];
     }
+    else
+    {
+        /**
+         * for none-BWL characters,
+         * directly judge on its rom data
+         */
+        supportExp = unit->pCharacterData->pSupportData->supportExpBase[num];
+    }
+
+    if (supportExp > 240)
+        return SUPPORT_LEVEL_A;
+
+    if (supportExp > 160)
+        return SUPPORT_LEVEL_B;
+
+    if (supportExp > 80)
+        return SUPPORT_LEVEL_C;
 
     return SUPPORT_LEVEL_NONE;
 }

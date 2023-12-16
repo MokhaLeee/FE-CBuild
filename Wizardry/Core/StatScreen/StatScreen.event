@@ -4,10 +4,22 @@
 #include "DrawPages/Utils.lyn.event"
 #include "DrawPages/DrawPage1.lyn.event"
 #include "DrawPages/DrawPage3.lyn.event"
+#include "DrawPages/DrawPage4.lyn.event"
 #include "DrawPages/HelpBox.lyn.event"
 #include "DrawPages/HelpBoxPage1.lyn.event"
 #include "DrawPages/HelpBoxPage3.lyn.event"
+#include "DrawPages/HelpBoxPage4.event"
 #include "DrawPages/LynJump.event"
+
+#include "DrawMorePage/DrawMorePage.event"
+
+ALIGN 4
+gStatScreenDrawPages:
+    POIN 0x08087185
+    POIN 0x08087485
+    POIN 0x0808784D
+    POIN DrawPage4Rework
+    WORD 0
 
 /* Text colors */
 ALIGN 4
@@ -18,15 +30,5 @@ ExpandedTextPals:
 ALIGN 4
 Page2SubWindow:
     #incbin "Data/Page2SubWindow.tsa.lz"
-
-/* Upper name objs */
-ALIGN 4
-Gfx_StatScreenObj:
-    #incbin "Data/Gfx_StatScreenObj.4bpp.lz"
-
-PUSH
-    ORG $088650
-    POIN Gfx_StatScreenObj
-POP
 
 #endif /* STATSCREEN_INSTALLED */
