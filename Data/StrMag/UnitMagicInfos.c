@@ -13,6 +13,10 @@ const struct UnitMagicInfo gMagicPInfos[0x100] = {
         .base = 0,
         .growth = 40,
     },
+    [CHAR_CHAX_Mark] = {
+        .base = 5,
+        .growth = 75,
+    }
 };
 
 FEB_IDENTIFIER(gMagicPInfos);
@@ -23,6 +27,11 @@ const struct UnitMagicInfo gMagicJInfos[0x100] = {
         .growth = 40,
         .cap = 20,
         .bonus = 0,
+    },
+    [CLASS_CHAX_Mark_T1] = {
+        .base = 4,
+        .growth = 60,
+        .cap = 27,
     },
 };
 

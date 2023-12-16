@@ -80,11 +80,16 @@ u8 SupplyUsabilityRework(const struct MenuItemDef * def, int number)
 
     int i;
 
+#if 0
     if (!HasConvoyAccess())
         return MENU_NOTSHOWN;
+#endif
 
     if (UNIT_CLASS_ID(gActiveUnit) == CLASS_PHANTOM)
         return MENU_NOTSHOWN;
+
+    if (SkillTester(gActiveUnit, SID_Supply))
+        return MENU_ENABLED;
 
     for (i = 0; i < 4; i++)
     {

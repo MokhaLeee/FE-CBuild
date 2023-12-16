@@ -1,0 +1,4 @@
+# Battle anims
+
+Solum
+Autonima

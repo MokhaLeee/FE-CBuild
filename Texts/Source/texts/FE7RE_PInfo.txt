@@ -11,3 +11,9 @@ Batta[X]
 ## MSG_PINFO_BattaDesc
 A Ganelon bandit. Called[NL]
 the Beast for his savagery.[X]
+
+## MSG_PINFO_MarkName
+Mark[X]
+
+## MSG_PINFO_MarkDesc
+Traveller with mystery.[X]

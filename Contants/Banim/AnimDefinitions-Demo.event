@@ -1,2 +1,5 @@
+#define Mark_Sword 0x01
+#define Mark_Unarmed 0x02
+
 #define LynLord_Sword 0x03
 #define LynLord_Item 0x04

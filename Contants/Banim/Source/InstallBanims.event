@@ -1,2 +1,4 @@
 #include "LynLord/lyn_sword/LynLord_Sword.banim.event"
 #include "LynLord/lyn_item/LynLord_Item.banim.event"
+#include "Mark/Sword/Mark_Sword.banim.event"
+#include "Mark/Unarmed/Mark_Unarmed.banim.event"

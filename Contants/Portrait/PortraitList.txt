@@ -1,3 +1,4 @@
 #                       Index MouthX MouthY EyesX EyesY IndexDefinition
 "Source/Lyn.png"        0x02  2      6      3     4     Mug_Lyn
-"Source/Batta.png"      0x30  2      5      3     5     Mug_Batta
+"Source/Mark.png"       0x03  3      5      3     3     Mug_Mark
+"Source/Batta.png"      0x30  2      5      3     3     Mug_Batta

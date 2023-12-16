@@ -9,6 +9,7 @@
 #include "constants/chax-classes.h"
 
 const u8 gConstSkillPTable[0x100][2] = {
+    [CLASS_CHAX_Mark_T1] = {SID_Supply},
     [CHAR_CHAX_PrologueBoss] = {SID_Vantage},
 };
 

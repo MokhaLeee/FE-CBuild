@@ -24,11 +24,19 @@ static const struct REDA REDA_Lyn[] = {
     { 0 },
 };
 
+static const struct REDA REDA_Mark[] = {
+    {
+        .x = 14,
+        .y = 7,
+    },
+    { 0 },
+};
+
 const struct UnitDefinition UnitDef_Ally[] = {
     {
         .charIndex = CHAR_CHAX_Lyn,
         .classIndex = CLASS_CHAX_LYN_T1,
-        .autolevel = true,
+        .autolevel = false,
         .allegiance = FACTION_ID_BLUE,
         .level = 1,
         .xPosition = 14,
@@ -40,6 +48,25 @@ const struct UnitDefinition UnitDef_Ally[] = {
             ITEM_SWORD_SHAMSIR,
             ITEM_VULNERARY,
             ITEM_ELIXIR
+        },
+    },
+    { 0 }
+};
+
+const struct UnitDefinition UnitDef_AllyMark[] = {
+    {
+        .charIndex = CHAR_CHAX_Mark,
+        .classIndex = CLASS_CHAX_Mark_T1,
+        .autolevel = false,
+        .allegiance = FACTION_ID_BLUE,
+        .level = 1,
+        .xPosition = 14,
+        .yPosition = 9,
+        .redaCount = 1,
+        .redas = REDA_Mark,
+        .items = {
+            ITEM_SWORD_IRON,
+            ITEM_VULNERARY,
         },
     },
     { 0 }
@@ -141,6 +168,9 @@ const EventListScr EventScr_BegniningScene[] = {
     CURE
 
     LOAD1(1, UnitDef_Ally)
+
+    STAL(10)
+    LOAD1(1, UnitDef_AllyMark)
     ENUN
 
     NoFade

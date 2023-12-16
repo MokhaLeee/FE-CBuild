@@ -8,8 +8,6 @@
 #include "constants/texts.h"
 #include "constants/chax-classes.h"
 
-extern const struct BattleAnimDef LynLord_Anims[];
-
 const struct ClassData JInfo_Baigand = {
     .nameTextId = 0x2DE,
     .descTextId = 0x329,

@@ -3,3 +3,9 @@ LynLord_Anims:
 SwordAnim(LynLord_Sword)
 UnarmedAnim(LynLord_Item)
 EndAnim
+
+ALIGN 4
+Mark_Anims:
+SwordAnim(Mark_Sword)
+UnarmedAnim(Mark_Unarmed)
+EndAnim
