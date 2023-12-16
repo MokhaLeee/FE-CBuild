@@ -65,6 +65,7 @@ struct EmsPackedSusUnit {
                 } ally;
 
                 struct {
+                    u8 skill;
                     u8 ai1;
                     u8 ai2;
                     u8 ai1_cur;

@@ -1,4 +1,5 @@
-// This part of data is set at +0x01000000
+// This part of data is located at 0x01000000
+
 ALIGN 4
 #include "Banim/Banim.event"
 

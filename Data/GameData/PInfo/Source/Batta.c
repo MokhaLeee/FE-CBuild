@@ -10,6 +10,8 @@
 #include "constants/chax-characters.h"
 #include "constants/chax-classes.h"
 
+extern const struct SupportData SupportData_Batta;
+
 const struct CharacterData PInfo_Batta = {
     .nameTextId = MSG_PINFO_BattaName,
     .descTextId = MSG_PINFO_BattaDesc,
@@ -48,6 +50,6 @@ const struct CharacterData PInfo_Batta = {
     .growthLck = 50,
 
     .attributes = CA_BOSS,
-    .pSupportData = NULL,
+    .pSupportData = &SupportData_Batta,
     .visit_group = 7,
 };

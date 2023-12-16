@@ -173,6 +173,7 @@ static void NewPackSuspandUnit(struct Unit * src, struct EmsPackedSusUnit * dst)
     }
     else
     {
+        dst->pad.ai.skill = src->supports[0];
         dst->pad.ai.ai1 = src->ai1;
         dst->pad.ai.ai1_cur = src->ai1data;
         dst->pad.ai.ai2 = src->ai2;
@@ -228,6 +229,7 @@ static void NewUnpackSuspandUnit(struct EmsPackedSusUnit * src, struct Unit * ds
     }
     else
     {
+        dst->supports[0] = src->pad.ai.skill;
         dst->ai1 = src->pad.ai.ai1;
         dst->ai1data = src->pad.ai.ai1_cur;
         dst->ai2 = src->pad.ai.ai2;

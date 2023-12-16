@@ -1,5 +1,7 @@
 #define ORG_PInfo(pid) "ORG (CharacterTable + 0x34 * pid)"
 
+#include "Source/_common.lyn.event"
+
 PUSH
     ORG_PInfo(CHAR_CHAX_Lyn)
     #include "Source/Lyn.lyn.event"
