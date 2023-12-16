@@ -5,6 +5,7 @@
 #include "common-chax.h"
 #include "skill-system.h"
 #include "efx-skill.h"
+#include "combat-art.h"
 #include "battle-system.h"
 
 bool CheckBattleHitOverflow(void)
@@ -16,6 +17,7 @@ bool CheckBattleHitOverflow(void)
 void ClearBattleHits(void)
 {
     CpuFastFill16(0, gBattleHitArrayRe, sizeof(gBattleHitArrayRe));
+    InitEfxCombatArtRoundData();
     InitEfxSkillRoundData();
     gBattleHitIterator = gBattleHitArrayRe;
 }

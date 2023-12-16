@@ -35,21 +35,25 @@ const struct WeaponTriangleConf gWeaponTriangleConfs[] = {
 
 const struct WeaponTriangleItemConf gWeaponTriangleItemConf[0x100] = {
     [ITEM_SWORD_LANCEREAVER] = {
+        .valid = true,
         .wtype = ITYPE_LANCE,
         .battle_status.atk = 3,
         .battle_status.avo = 15,
     },
     [ITEM_LANCE_AXEREAVER] = {
+        .valid = true,
         .wtype = ITYPE_AXE,
         .battle_status.atk = 3,
         .battle_status.def = 3,
     },
     [ITEM_AXE_SWORDREAVER] = {
+        .valid = true,
         .wtype = ITYPE_SWORD,
         .battle_status.atk = 3,
         .battle_status.hit = 10,
     },
     [ITEM_AXE_SWORDSLAYER] = {
+        .valid = true,
         .wtype = ITYPE_SWORD,
         .battle_status.atk = 3,
         .battle_status.hit = 15,

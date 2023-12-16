@@ -119,6 +119,7 @@ void DrawHelpBoxCombatArtBkselStats(void);
 extern const struct SkillAnimInfo gEfxCombatArtAnimInfos[0x100];
 extern struct SkillAnimInfo const * const gpEfxCombatArtAnimInfos;
 
+void InitEfxCombatArtRoundData(void);
 int GetEfxCombatArtIndex(const u8 cid);
 int GetEfxCombatArtPriority(const u8 cid);
 int GetEfxCombatArtSfx(const u8 cid);

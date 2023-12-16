@@ -33,5 +33,19 @@ const struct DefeatTalkEnt gDefeatTalkListRe[] = {
         .flag = EVFLAG_DEFEAT_BOSS,
         .msg = MSG_EvtCh0_BoosDefeat
     },
+    {
+        .pid = CHAR_CHAX_Lyn,
+        .route = 0xFF,
+        .chapter = 0xFF,
+        .flag = EVFLAG_GAMEOVER,
+        .msg = MSG_Lyn_DeathQuote
+    },
+    {
+        .pid = CHAR_CHAX_Mark,
+        .route = 0xFF,
+        .chapter = 0xFF,
+        .flag = EVFLAG_GAMEOVER,
+        .msg = MSG_Mark_DeathQuote
+    },
     { .pid = -1 },
 };

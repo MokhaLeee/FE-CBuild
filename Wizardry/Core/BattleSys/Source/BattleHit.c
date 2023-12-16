@@ -58,7 +58,7 @@ void BattleGenerateHitAttributes(struct BattleUnit * attacker, struct BattleUnit
     }
 
     /* Register combat-art hitted */
-    if (attacker == &gBattleActor)
+    if (!!(gBattleStats.config & BATTLE_CONFIG_REAL) && attacker == &gBattleActor && COMBART_VALID(GetCombatArtInForce(&gBattleActor.unit)))
         RegisterCombatArtHitted();
 
     attack = gBattleStats.attack;

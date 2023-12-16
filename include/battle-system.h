@@ -27,9 +27,9 @@ struct WeaponTriangleConf {
 extern struct WeaponTriangleConf const * const gpWeaponTriangleConfs;
 
 struct WeaponTriangleItemConf {
-    s8 wtype;
+    s8 valid, wtype;
     struct {
-        s8 atk, def, hit, avo, crit, silencer, dodge;
+        s8 atk, def, hit, avo, crit, silencer;
     } battle_status;
 };
 

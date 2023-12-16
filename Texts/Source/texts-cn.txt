@@ -65,4 +65,5 @@ W.I.P.[X]
 
 #include texts-cn/FE7RE_JInfo.txt
 #include texts-cn/FE7RE_PInfo.txt
+#include texts/FE7RE_Quotes.txt
 #include texts-cn/FE7RE_Chapter0.txt

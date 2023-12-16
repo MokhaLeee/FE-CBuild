@@ -26,6 +26,11 @@ u8 StartBattleForecastHelpBox(ProcPtr parent, struct SelectTarget * target)
     if (proc->needContentUpdate != 0)
         return 0;
 
+#if CHAX
+    if (!COMBART_VALID(GetCombatArtInForce(gActiveUnit)))
+        return 0;
+#endif
+
     if (proc->side < 0)
         x = 0;
     else
