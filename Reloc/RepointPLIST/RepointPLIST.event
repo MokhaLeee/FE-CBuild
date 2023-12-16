@@ -1,0 +1,6 @@
+ALIGN 4
+SplitedChapterAsset_Events:
+    #incbin "bin/EventPointerList.bin"
+
+SplitedChapterAsset_TileChanges:
+    #incbin "bin/TileChanges.bin"

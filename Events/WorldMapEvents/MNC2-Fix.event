@@ -1,0 +1,16 @@
+/**
+ * Dump form FEB patch:
+ *    Skip World Map Fix (Disable Skirmishes & World Map)
+ *
+ * Not quite sure how it works
+ */
+PUSH
+    ORG 0xBD070
+    BYTE 0xB8 0xE0
+
+    ORG 0x897B2
+    BYTE 0 0 0 0
+
+    ORG 0x897C4
+    BYTE 0x0E 0x20 0x20 0x56
+POP

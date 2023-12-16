@@ -16,15 +16,15 @@
 #include "constants/chax-characters.h"
 #include "constants/chax-classes.h"
 
-extern const struct REDA REDA_Ch1_Lyn[];
-extern const struct REDA REDA_Ch1_Mark[];
-extern const struct REDA REDA_Ch1_Sain[];
-extern const struct REDA REDA_Ch1_Kent[];
-extern const struct REDA REDA_Ch1_Enemy1[];
-extern const struct REDA REDA_Ch1_Enemy2[];
-extern const struct REDA REDA_Ch1_Enemy3[];
-extern const struct REDA REDA_Ch1_Enemy4[];
-extern const struct REDA REDA_Ch1_Enemy5[];
+static const struct REDA REDA_Ch1_Lyn[]  = { { .x = 2, .y = 8 }, { 0 } };
+static const struct REDA REDA_Ch1_Mark[] = { { .x = 1, .y = 9 }, { 0 } };
+static const struct REDA REDA_Ch1_Sain[] = { { .x = 0, .y = 7 }, { 0 } };
+static const struct REDA REDA_Ch1_Kent[] = { { .x = 0, .y = 5 }, { 0 } };
+static const struct REDA REDA_Ch1_Enemy1[]  = { { .x = 4,  .y = 6 }, { 0 } };
+static const struct REDA REDA_Ch1_Enemy2[]  = { { .x = 12, .y = 1 }, { 0 } };
+static const struct REDA REDA_Ch1_Enemy3[]  = { { .x = 9,  .y = 9 }, { 0 } };
+static const struct REDA REDA_Ch1_Enemy4[]  = { { .x = 13, .y = 5 }, { 0 } };
+static const struct REDA REDA_Ch1_Enemy5[]  = { { .x = 1,  .y = 1 }, { 0 } };
 
 const struct UnitDefinition UnitDef_Ch1_Ally[] = {
     {
@@ -142,6 +142,48 @@ static const struct UnitDefinition UnitDef_Enemy[] = {
         .autolevel = true,
         .allegiance = FACTION_ID_RED,
         .level = 3,
+        .xPosition = 7,
+        .yPosition = 3,
+        .redaCount = 1,
+        .redas = REDA_Ch1_Enemy1,
+        .items = {ITEM_AXE_IRON},
+        .ai = {0, 3, 9, 0}
+    },
+    {
+        .charIndex = 0x8E,
+        .classIndex = CLASS_BRIGAND,
+        .leaderCharIndex = CHAR_CHAX_Ch1Boss,
+        .autolevel = true,
+        .allegiance = FACTION_ID_RED,
+        .level = 3,
+        .xPosition = 13,
+        .yPosition = 1,
+        .redaCount = 1,
+        .redas = REDA_Ch1_Enemy2,
+        .items = {ITEM_AXE_IRON},
+        .ai = {0, 3, 9, 0}
+    },
+    {
+        .charIndex = 0x8E,
+        .classIndex = CLASS_BRIGAND,
+        .leaderCharIndex = CHAR_CHAX_Ch1Boss,
+        .autolevel = true,
+        .allegiance = FACTION_ID_RED,
+        .level = 3,
+        .xPosition = 11,
+        .yPosition = 6,
+        .redaCount = 1,
+        .redas = REDA_Ch1_Enemy3,
+        .items = {ITEM_AXE_IRON},
+        .ai = {0, 3, 9, 0}
+    },
+    {
+        .charIndex = 0x8E,
+        .classIndex = CLASS_BRIGAND,
+        .leaderCharIndex = CHAR_CHAX_Ch1Boss,
+        .autolevel = true,
+        .allegiance = FACTION_ID_RED,
+        .level = 3,
         .xPosition = 11,
         .yPosition = 6,
         .redaCount = 1,
@@ -202,58 +244,11 @@ static const struct UnitDefinition UnitDef_Enemy[] = {
     { 0 }
 };
 
-static const struct UnitDefinition UnitDef_Enemy2[] = {
-    {
-        .charIndex = 0x8E,
-        .classIndex = CLASS_BRIGAND,
-        .leaderCharIndex = CHAR_CHAX_Ch1Boss,
-        .autolevel = true,
-        .allegiance = FACTION_ID_RED,
-        .level = 3,
-        .xPosition = 7,
-        .yPosition = 3,
-        .redaCount = 1,
-        .redas = REDA_Ch1_Enemy1,
-        .items = {ITEM_AXE_IRON},
-        .ai = {0, 3, 9, 0}
-    },
-    {
-        .charIndex = 0x8E,
-        .classIndex = CLASS_BRIGAND,
-        .leaderCharIndex = CHAR_CHAX_Ch1Boss,
-        .autolevel = true,
-        .allegiance = FACTION_ID_RED,
-        .level = 3,
-        .xPosition = 13,
-        .yPosition = 1,
-        .redaCount = 1,
-        .redas = REDA_Ch1_Enemy2,
-        .items = {ITEM_AXE_IRON},
-        .ai = {0, 3, 9, 0}
-    },
-    {
-        .charIndex = 0x8E,
-        .classIndex = CLASS_BRIGAND,
-        .leaderCharIndex = CHAR_CHAX_Ch1Boss,
-        .autolevel = true,
-        .allegiance = FACTION_ID_RED,
-        .level = 3,
-        .xPosition = 11,
-        .yPosition = 6,
-        .redaCount = 1,
-        .redas = REDA_Ch1_Enemy3,
-        .items = {ITEM_AXE_IRON},
-        .ai = {0, 3, 9, 0}
-    },
-    {0}
-};
-
 const EventListScr EventScr_BegniningScene[] = {
     LOAD2(1, UnitDef_Ch1_Ally)
     ENUN
 
     LOAD1(1, UnitDef_Enemy)
-    LOAD1(1, UnitDef_Enemy2)
     ENUN
 
     LOAD1(1, UnitDef_AllySain)
@@ -264,7 +259,7 @@ const EventListScr EventScr_BegniningScene[] = {
 };
 
 const EventListScr EventScr_EndingScene[] = {
-    MNCH(0x2)
+    MNC2(0x2)
     ENDA
 };
 

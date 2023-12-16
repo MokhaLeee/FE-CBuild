@@ -1,6 +1,4 @@
 ALIGN 4
-#include "RepointText/RepointText.event"
-
 MESSAGE ___RELOC___ CURRENTOFFSET
 
 gpSkillInfos:

@@ -1,6 +1,5 @@
 EventPointerTable(0xA, ThisChapter)
 #include "Ch1.lyn.event"
-#include "READs.lyn.event"
 
 ALIGN 32
 ThisChapter:

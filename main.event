@@ -23,16 +23,14 @@ MESSAGE FreeSpace__Reloc___ end at (CURRENTOFFSET) max (FreeSpaceReloc + FreeSpa
 ASSERT (FreeSpaceReloc + FreeSpaceRelocSize - CURRENTOFFSET)
 
 /**
- * Tool helpers should installed after repointing
- */
-#include EAstdlib.event
-#include "Tools/Tool Helpers.txt"
-#include "Extensions/Hack Installation.txt"
-
-/**
  * Wizardry
  */
 ORG FreeSpaceWizardry
+    #include "Reloc/Wizardry-Reloc.event"
+
+    /* Tool helpers should installed after repointing */
+    #include "Tools/Tool Helpers.txt"
+
     #include "Wizardry/Wizardry.event"
     #include "Data/Data.event"
     #include "Texts/Texts.event"

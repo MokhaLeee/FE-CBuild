@@ -6,13 +6,13 @@
 /* FreeSpace definitions */
 #define FreeSpaceMagic 0xB2A604
 #define FreeSpaceReloc 0xB2A620
-#define FreeSpaceWizardry 0xB2EE20
+#define FreeSpaceWizardry 0xB2AE20
 #define FreeSpaceFont 0xEFB2E0
 #define FreeSpaceAlloc 0x1000000
 
 #define FreeSpaceMagicSize 0x1C
-#define FreeSpaceRelocSize 0x4800
-#define FreeSpaceWizardrySize 0xD11E0
+#define FreeSpaceRelocSize 0x400
+#define FreeSpaceWizardrySize 0xD55E0
 #define FreeSpaceFontSize 0xE4D20
 
 /* Acturally unused */
