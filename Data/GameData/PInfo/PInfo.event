@@ -9,6 +9,9 @@ PUSH
     ORG_PInfo(CHAR_CHAX_Mark)
     #include "Source/Mark.lyn.event"
 
+    ORG_PInfo(CHAR_CHAX_Kent)
+    #include "Source/Kent.lyn.event"
+
     ORG_PInfo(CHAR_CHAX_PrologueBoss)
     #include "Source/Batta.lyn.event"
 

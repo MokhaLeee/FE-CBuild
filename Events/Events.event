@@ -21,4 +21,9 @@ ALIGN 4
     #include "EventsScr/Prologue/Prologue.event"
 }
 
+{
+    ALIGN 4
+    #include "EventsScr/Ch1/Ch1.event"
+}
+
 #endif /* EVENTS_INSTALLED */
