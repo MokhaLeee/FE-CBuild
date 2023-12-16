@@ -1,0 +1,29 @@
+PUSH
+    ORG 0x0C5730
+    POIN Img1_Fe7TitleBG
+
+    ORG 0x0C5780
+    POIN Img2_Fe7TitleBG
+
+    ORG 0xC5788
+    POIN TSA_Fe7TitleBG
+
+    ORG 0x0C5790
+    POIN Pal_Fe7TitleBG
+POP
+
+ALIGN 4
+Img1_Fe7TitleBG:
+    #incbin "Source/Img1_Fe7TitleBG.bin"
+
+ALIGN 4
+Img2_Fe7TitleBG:
+    #incbin "Source/Img2_Fe7TitleBG.bin"
+
+ALIGN 4
+TSA_Fe7TitleBG:
+    #incbin "Source/TSA_Fe7TitleBG.bin"
+
+ALIGN 4
+Pal_Fe7TitleBG:
+    #incbin "Source/Fe7TitleBG.gbapal"

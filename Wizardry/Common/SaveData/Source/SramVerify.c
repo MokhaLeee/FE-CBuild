@@ -47,6 +47,6 @@ void EraseInvalidSaveData(void)
         WipeSkillSysSRAM();
 
         /* Yeah, restart the game! */
-        SoftReset(0);
+        // SoftReset(0);
     }
 }

@@ -13,8 +13,6 @@ void AutoSkilOpAnim(struct Proc * proc)
 /* LynJump */
 void GameControl_PostIntro(struct GameCtrlProc * proc)
 {
-    int tmp;
-
     switch (proc->nextAction) {
     case GAME_ACTION_USR_SKIPPED:
         Proc_Goto(proc, LGAMECTRL_TITLE_DIRECT);
@@ -26,19 +24,19 @@ void GameControl_PostIntro(struct GameCtrlProc * proc)
         break;
 
     case GAME_ACTION_CLASS_REEL:
-        tmp = proc->idle_status;
-        switch (tmp & 1) {
-        case 0:
-
 /* we need to remove class reel since it may cause crash on none-en langage */
 #if !CHAX
+        switch (proc->idle_status & 1) {
+        case 0:
             Proc_Goto(proc, LGAMECTRL_CLASS_REEL);
             break;
-#endif
+
         case 1:
             Proc_Goto(proc, LGAMECTRL_OP_ANIM);
             break;
+
         }
+#endif
 
         proc->idle_status++;
         break;

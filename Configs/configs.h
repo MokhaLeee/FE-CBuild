@@ -22,6 +22,6 @@
 #define ICON_SHEET_AMT 4
 
 /* If comment, CHAX may not verify on FESKILL magic work in SRAM */
-// #define CONFIG_VERIFY_SKILLSYS_SRAM
+#define CONFIG_VERIFY_SKILLSYS_SRAM
 
 #endif /* CONFIG_INSTALLED */

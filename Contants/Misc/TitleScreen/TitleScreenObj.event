@@ -1,0 +1,40 @@
+PUSH
+    ORG 0x0C546C
+    SHORT 0x2083
+
+    ORG 0x0C54F4
+    POIN Sprite_TitleScreenUpper
+
+    ORG 0x0C5808
+    POIN Img_TileScreenUpperTitle
+
+    ORG 0x0C5830
+    POIN Img_TitleSubTitleAllInOne
+
+    ORG 0x0C5838
+    POIN Pal_TileScreenTitleObjs
+POP
+
+/* Upper title */
+#include "Objfx/UpperTitleSprites.lyn.event"
+
+ALIGN 4
+Img_TileScreenUpperTitle:
+    #incbin "Objfx/TileScreenUpperTitle.4bpp.lz"
+
+ALIGN 4
+Pal_TileScreenTitleObjs:
+PAL_TitlePressStart:
+    #incbin "Objfx/TitlePressStart.gbapal"          /* obj-pal 0x0 */
+ORG PAL_TitlePressStart + 0x20; PAL_TitleSignarture:
+    #incbin "Objfx/TitleSignarture.gbapal"          /* obj-pal 0x1 */
+ORG PAL_TitleSignarture + 0x20; PAL_TileScreenUpperTitle:
+    #incbin "Objfx/TileScreenUpperTitle.gbapal"     /* obj-pal 0x2 */
+ORG PAL_TileScreenUpperTitle + 0x20; PAL_TitleSubTitleAllInOne:
+    #incbin "Objfx/TitleSubTitleAllInOne.gbapal"    /* obj-pal 0x3 */
+
+/* Signature */
+
+/* Press start */
+Img_TitleSubTitleAllInOne:
+    #incbin "Objfx/TitleSubTitleAllInOne.4bpp.lz"

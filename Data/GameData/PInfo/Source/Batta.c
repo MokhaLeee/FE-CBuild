@@ -5,6 +5,7 @@
 #include "constants/classes.h"
 
 #include "common-chax.h"
+#include "_common.h"
 #include "constants/texts.h"
 #include "constants/portraits.h"
 #include "constants/chax-characters.h"
@@ -50,6 +51,6 @@ const struct CharacterData PInfo_Batta = {
     .growthLck = 50,
 
     .attributes = CA_BOSS,
-    .pSupportData = &SupportData_Batta,
+    .pSupportData = SupportData_EnemyBosses1,
     .visit_group = 7,
 };

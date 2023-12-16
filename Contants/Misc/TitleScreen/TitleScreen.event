@@ -1,0 +1,13 @@
+PUSH
+    ORG $AC188
+    // POIN NewDifficultyButtons
+POP
+
+ALIGN 4
+NewDifficultyButtons:
+#incbin "Source/difficulty.4bpp.lz"
+
+ALIGN 4
+#include "TitleScreenBG.event"
+#include "TitleScreenSword.event"
+#include "TitleScreenObj.event"

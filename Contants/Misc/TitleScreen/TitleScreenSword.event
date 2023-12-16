@@ -1,0 +1,32 @@
+ALIGN 4
+Img_TitleSwordAxe:
+    #incbin "Source/Fe7TitleSwordAxe.img.bin"
+
+ALIGN 4
+Tsa_TitleSwordAxe:
+    #incbin "Source/Fe7TitleSwordAxe.map.bin"
+
+ALIGN 4
+Pal_TitleSwordAxe:
+    #incbin "Source/Fe7TitleSwordAxe.pal.bin"
+
+PUSH
+    ORG 0x0C57E4
+    POIN Img_TitleSwordAxe
+
+    ORG 0x0C57EC
+    POIN Tsa_TitleSwordAxe
+
+    ORG 0x0C57F4
+    POIN Pal_TitleSwordAxe
+
+    ORG 0x0C62C0
+    POIN Pal_TitleSwordAxe
+
+    /* Fix load image */
+    ORG 0x0C57E8
+    WORD 0x6004C00
+
+    ORG 0x0C57F8
+    WORD (0xF000 + (0x4C00 / 0x20))
+POP
