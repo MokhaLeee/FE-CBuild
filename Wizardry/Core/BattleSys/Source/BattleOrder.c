@@ -66,7 +66,7 @@ bool CheckCanTwiceAttackOrder(struct BattleUnit * actor, struct BattleUnit * tar
 
     if (&gBattleActor == actor && COMBART_VALID(cid))
     {
-        if (gCombatArtInfos[cid].double_attack)
+        if (gpCombatArtInfos[cid].double_attack)
             return true;
 
         return false;
@@ -132,6 +132,10 @@ STATIC_DECLAR bool CheckVantageOrder(void)
     struct Unit * target = GetUnit(gBattleTarget.unit.index);
 
     gBattleTemporaryFlag.order_vantage = false;
+
+    /* Combat art will not allow vantage */
+    if (COMBART_VALID(GetCombatArtInForce(&gBattleActor.unit)))
+        return false;
 
     if (SkillTester(target, SID_Vantage))
     {

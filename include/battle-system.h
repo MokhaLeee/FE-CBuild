@@ -34,6 +34,7 @@ struct WeaponTriangleItemConf {
 };
 
 extern const struct WeaponTriangleItemConf gWeaponTriangleItemConf[0x100];
+extern struct WeaponTriangleItemConf const * const gpWeaponTriangleItemConf;
 
 /* Battle hit expansion */
 #define NEW_BATTLE_HIT_MAX 20 /* This should align to gAnimRoundData */

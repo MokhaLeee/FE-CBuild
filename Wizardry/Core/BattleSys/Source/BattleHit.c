@@ -258,8 +258,8 @@ void BattleGenerateHitEffects(struct BattleUnit * attacker, struct BattleUnit * 
         if (attacker == &gBattleActor)
         {
             int cid = GetCombatArtInForce(&attacker->unit);
-            if (COMBART_VALID(cid) && gCombatArtInfos[cid].cost > 0)
-                cost = gCombatArtInfos[cid].cost;
+            if (COMBART_VALID(cid) && gpCombatArtInfos[cid].cost > 0)
+                cost = gpCombatArtInfos[cid].cost;
         }
 
         while (cost-- > 0)

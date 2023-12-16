@@ -17,7 +17,7 @@ int _GetUnitMov(struct Unit * unit)
         status = (*it)(status, unit);
 
     /* Some special effects */
-    if (gDebuffInfos[GetUnitStatusIndex(unit)].cannot_move)
+    if (gpDebuffInfos[GetUnitStatusIndex(unit)].cannot_move)
         status = 0;
 
     return status;

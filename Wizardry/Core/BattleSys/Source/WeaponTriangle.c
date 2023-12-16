@@ -12,7 +12,7 @@ void PreBattleCalcWeaponTriangle(struct BattleUnit * attacker, struct BattleUnit
 {
     struct Unit * unit = GetUnit(attacker->unit.index);
     const struct WeaponTriangleConf * it;
-    const struct WeaponTriangleItemConf * item_conf = &gWeaponTriangleItemConf[ITEM_INDEX(attacker->weaponBefore)];
+    const struct WeaponTriangleItemConf * item_conf = &gpWeaponTriangleItemConf[ITEM_INDEX(attacker->weaponBefore)];
 
     if (item_conf->wtype == defender->weaponType)
     {

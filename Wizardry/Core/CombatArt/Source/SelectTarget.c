@@ -39,7 +39,7 @@ STATIC_DECLAR int GetNextCombatArtIndexInTargetSelLeft(int old)
         if (new < 0)
             return 0;
 
-        if (wtype == gCombatArtInfos[list->cid[new]].wtype)
+        if (wtype == gpCombatArtInfos[list->cid[new]].wtype)
             break;
     }
 
@@ -58,7 +58,7 @@ STATIC_DECLAR int GetNextCombatArtIndexInTargetSelRight(int old)
         if (new >= list->amt)
             return 0;
 
-        if (wtype == gCombatArtInfos[list->cid[new]].wtype)
+        if (wtype == gpCombatArtInfos[list->cid[new]].wtype)
             break;
     }
     Debugf("wtype %d, old %d, new %d", wtype, old, new);

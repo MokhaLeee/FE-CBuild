@@ -35,7 +35,7 @@ void StatusDecayDisplay_Display(struct UnknownBMUSAilmentProc * proc)
 
     SetUnitStatus(unit, 0);
 
-    if (gDebuffInfos[status].type == STATUS_INFO_TYPE_DEBUFF)
+    if (gpDebuffInfos[status].type == STATUS_INFO_TYPE_DEBUFF)
         StartStatusHealEffect(GetUnit(target->uid), proc);
 }
 
@@ -93,7 +93,7 @@ void TickActiveFactionTurn(void)
         {
             struct Unit * unit = GetUnit(i);
 
-            if (gDebuffInfos[GetUnitStatusIndex(unit)].type != STATUS_INFO_TYPE_BUFF)
+            if (gpDebuffInfos[GetUnitStatusIndex(unit)].type != STATUS_INFO_TYPE_BUFF)
                 continue;
 
             DEC_STATUS(unit);
@@ -104,7 +104,7 @@ void TickActiveFactionTurn(void)
         {
             struct Unit * unit = GetUnit(i);
 
-            if (gDebuffInfos[GetUnitStatusIndex(unit)].type != STATUS_INFO_TYPE_DEBUFF)
+            if (gpDebuffInfos[GetUnitStatusIndex(unit)].type != STATUS_INFO_TYPE_DEBUFF)
                 continue;
 
             DEC_STATUS(unit);
@@ -117,7 +117,7 @@ void TickActiveFactionTurn(void)
         {
             struct Unit * unit = GetUnit(i);
 
-            if (gDebuffInfos[GetUnitStatusIndex(unit)].type != STATUS_INFO_TYPE_BUFF)
+            if (gpDebuffInfos[GetUnitStatusIndex(unit)].type != STATUS_INFO_TYPE_BUFF)
                 continue;
 
             DEC_STATUS(unit);
@@ -128,7 +128,7 @@ void TickActiveFactionTurn(void)
         {
             struct Unit * unit = GetUnit(i);
 
-            if (gDebuffInfos[GetUnitStatusIndex(unit)].type != STATUS_INFO_TYPE_DEBUFF)
+            if (gpDebuffInfos[GetUnitStatusIndex(unit)].type != STATUS_INFO_TYPE_DEBUFF)
                 continue;
 
             DEC_STATUS(unit);
@@ -139,7 +139,7 @@ void TickActiveFactionTurn(void)
         {
             struct Unit * unit = GetUnit(i);
 
-            if (gDebuffInfos[GetUnitStatusIndex(unit)].type != STATUS_INFO_TYPE_DEBUFF)
+            if (gpDebuffInfos[GetUnitStatusIndex(unit)].type != STATUS_INFO_TYPE_DEBUFF)
                 continue;
 
             DEC_STATUS(unit);
@@ -152,7 +152,7 @@ void TickActiveFactionTurn(void)
         {
             struct Unit * unit = GetUnit(i);
 
-            if (gDebuffInfos[GetUnitStatusIndex(unit)].type != STATUS_INFO_TYPE_BUFF)
+            if (gpDebuffInfos[GetUnitStatusIndex(unit)].type != STATUS_INFO_TYPE_BUFF)
                 continue;
 
             DEC_STATUS(unit);

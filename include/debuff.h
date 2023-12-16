@@ -55,6 +55,7 @@ struct DebuffInfo {
 };
 
 extern const struct DebuffInfo gDebuffInfos[NEW_UNIT_STATUS_MAX];
+extern struct DebuffInfo const * const gpDebuffInfos;
 
 int GetUnitStatusIndex(struct Unit * unit);
 int GetUnitStatusDuration(struct Unit * unit);

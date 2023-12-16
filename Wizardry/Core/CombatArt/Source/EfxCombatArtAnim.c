@@ -10,7 +10,7 @@ extern u8 sEfxCombatArtRoundData[NEW_BATTLE_HIT_MAX];
 int GetEfxCombatArtIndex(const u8 cid)
 {
     if (COMBART_VALID(cid))
-        return gEfxCombatArtAnimInfos[cid].aid;
+        return gpEfxCombatArtAnimInfos[cid].aid;
 
     LogPrintf("%s: Try get invalid CombatArt info: %#X", __func__, cid);
     return 0;
@@ -19,7 +19,7 @@ int GetEfxCombatArtIndex(const u8 cid)
 int GetEfxCombatArtPriority(const u8 cid)
 {
     if (COMBART_VALID(cid))
-        return gEfxCombatArtAnimInfos[cid].priority;
+        return gpEfxCombatArtAnimInfos[cid].priority;
 
     LogPrintf("%s: Try get invalid CombatArt info: %#X", __func__, cid);
     return 0;
@@ -28,7 +28,7 @@ int GetEfxCombatArtPriority(const u8 cid)
 int GetEfxCombatArtSfx(const u8 cid)
 {
     if (COMBART_VALID(cid))
-        return gEfxCombatArtAnimInfos[cid].sfx;
+        return gpEfxCombatArtAnimInfos[cid].sfx;
 
     LogPrintf("%s: Try get invalid CombatArt info: %#X", __func__, cid);
     return 0;

@@ -75,7 +75,7 @@ void EfxStatusUnitMain(struct ProcEfxStatusUnit * proc)
         proc->debuf_bak = proc->debuff;
     }
 
-    info = gDebuffInfos + proc->debuff;
+    info = &gpDebuffInfos[proc->debuff];
 
     if (info->efx_config.r || info->efx_config.g || info->efx_config.b)
     {

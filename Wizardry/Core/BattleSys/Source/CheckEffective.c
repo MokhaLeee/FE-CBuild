@@ -69,7 +69,7 @@ bool IsUnitEffectiveAgainst(struct Unit * actor, struct Unit * target)
         int cid = GetCombatArtInForce(actor);
         if (COMBART_VALID(cid))
         {
-            const struct CombatArtInfo * info = gCombatArtInfos + cid;
+            const struct CombatArtInfo * info = &gpCombatArtInfos[cid];
             if (info->effective_all)
                 return true;
 

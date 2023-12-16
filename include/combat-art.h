@@ -40,18 +40,19 @@ struct CombatArtInfo {
 };
 
 extern const struct CombatArtInfo gCombatArtInfos[0x100];
+extern struct CombatArtInfo const * const gpCombatArtInfos;
 
 static inline u16 GetCombatArtName(u8 cid)
 {
-    return gCombatArtInfos[cid].name;
+    return gpCombatArtInfos[cid].name;
 }
 
 static inline u16 GetCombatArtDesc(u8 cid)
 {
-    if (0 == gCombatArtInfos[cid].desc)
-        return gCombatArtInfos[cid].name;
+    if (0 == gpCombatArtInfos[cid].desc)
+        return gpCombatArtInfos[cid].name;
 
-    return gCombatArtInfos[cid].desc;
+    return gpCombatArtInfos[cid].desc;
 }
 
 /* Combat-art status */
@@ -99,6 +100,12 @@ extern const struct CombatArtRomTable gCombatArtDefaultTable;
 extern const u8 gCombatArtWeaponTable[0x100];
 extern const u8 gCombatArtSkillTable[0x100];
 
+extern struct CombatArtRomTable const * const gpCombatArtRomPTable;
+extern struct CombatArtRomTable const * const gpCombatArtRomJTable;
+extern struct CombatArtRomTable const * const gpCombatArtDefaultTable;
+extern u8 const * const gpCombatArtWeaponTable;
+extern u8 const * const gpCombatArtSkillTable;
+
 /* TargetSel & BKSEL */
 ProcPtr NewTargetSelectionRework(const struct SelectInfo * selectInfo);
 bool CombatArtSelectTargetExist(void);
@@ -110,6 +117,7 @@ void DrawHelpBoxCombatArtBkselStats(void);
 
 /* EfxSkill */
 extern const struct SkillAnimInfo gEfxCombatArtAnimInfos[0x100];
+extern struct SkillAnimInfo const * const gpEfxCombatArtAnimInfos;
 
 int GetEfxCombatArtIndex(const u8 cid);
 int GetEfxCombatArtPriority(const u8 cid);

@@ -18,7 +18,7 @@ void PreBattleCalcDebuffs(struct BattleUnit * bu, struct BattleUnit * defender)
 {
     struct Unit * unit = GetUnit(bu->unit.index);
     int debuff = GetUnitStatusIndex(unit);
-    const struct DebuffInfo * info = gDebuffInfos + debuff;
+    const struct DebuffInfo * info = &gpDebuffInfos[debuff];
 
     bu->battleAttack       += info->battle_status.atk;
     bu->battleDefense      += info->battle_status.def;
@@ -32,40 +32,40 @@ void PreBattleCalcDebuffs(struct BattleUnit * bu, struct BattleUnit * defender)
 /* Unit status getter */
 int PowGetterDebuff(int status, struct Unit * unit)
 {
-    return status + gDebuffInfos[GetUnitStatusIndex(unit)].unit_status.pow;
+    return status + gpDebuffInfos[GetUnitStatusIndex(unit)].unit_status.pow;
 }
 
 int MagGetterDebuff(int status, struct Unit * unit)
 {
-    return status + gDebuffInfos[GetUnitStatusIndex(unit)].unit_status.mag;
+    return status + gpDebuffInfos[GetUnitStatusIndex(unit)].unit_status.mag;
 }
 
 int SklGetterDebuff(int status, struct Unit * unit)
 {
-    return status + gDebuffInfos[GetUnitStatusIndex(unit)].unit_status.skl;
+    return status + gpDebuffInfos[GetUnitStatusIndex(unit)].unit_status.skl;
 }
 
 int SpdGetterDebuff(int status, struct Unit * unit)
 {
-    return status + gDebuffInfos[GetUnitStatusIndex(unit)].unit_status.spd;
+    return status + gpDebuffInfos[GetUnitStatusIndex(unit)].unit_status.spd;
 }
 
 int DefGetterDebuff(int status, struct Unit * unit)
 {
-    return status + gDebuffInfos[GetUnitStatusIndex(unit)].unit_status.def;
+    return status + gpDebuffInfos[GetUnitStatusIndex(unit)].unit_status.def;
 }
 
 int ResGetterDebuff(int status, struct Unit * unit)
 {
-    return status + gDebuffInfos[GetUnitStatusIndex(unit)].unit_status.res;
+    return status + gpDebuffInfos[GetUnitStatusIndex(unit)].unit_status.res;
 }
 
 int LckGetterDebuff(int status, struct Unit * unit)
 {
-    return status + gDebuffInfos[GetUnitStatusIndex(unit)].unit_status.lck;
+    return status + gpDebuffInfos[GetUnitStatusIndex(unit)].unit_status.lck;
 }
 
 int MovGetterDebuff(int status, struct Unit * unit)
 {
-    return status + gDebuffInfos[GetUnitStatusIndex(unit)].unit_status.mov;
+    return status + gpDebuffInfos[GetUnitStatusIndex(unit)].unit_status.mov;
 }

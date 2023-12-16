@@ -155,7 +155,7 @@ void SetBattleUnitWeapon(struct BattleUnit * bu, int slot)
     cid = GetCombatArtInForce(&bu->unit);
     if (COMBART_VALID(cid))
     {
-        const struct CombatArtInfo * info = gCombatArtInfos + cid;
+        const struct CombatArtInfo * info = &gpCombatArtInfos[cid];
 
         if (info->magic_attack)
             bu->weaponAttributes |= IA_MAGICDAMAGE | IA_MAGIC;

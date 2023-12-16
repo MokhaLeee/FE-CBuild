@@ -57,7 +57,7 @@ void PutUnitStatusIcon(struct Unit * unit)
     int status = GetUnitStatusIndex(unit);
     if (status != 0)
     {
-        const struct DebuffInfo * info = gDebuffInfos + status;
+        const struct DebuffInfo * info = &gpDebuffInfos[status];
         if (info->on_draw)
             info->on_draw(unit);
         else

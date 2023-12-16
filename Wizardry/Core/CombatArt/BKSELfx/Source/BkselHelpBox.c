@@ -65,7 +65,7 @@ void DrawHelpBoxCombatArtBkselLabels(void)
 void DrawHelpBoxCombatArtBkselStats(void)
 {
     int cid = GetCombatArtInForce(gActiveUnit);
-    const struct CombatArtInfo * info = gCombatArtInfos + cid;
+    const struct CombatArtInfo * info = &gpCombatArtInfos[cid];
 
     Text_InsertDrawNumberOrBlank(&gUnknown_0203E794.text[0], 0x20, TEXT_COLOR_456F, info->battle_status.atk);
     Text_InsertDrawNumberOrBlank(&gUnknown_0203E794.text[0], 0x50, TEXT_COLOR_456F, info->cost);

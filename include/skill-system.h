@@ -23,6 +23,8 @@ struct SkillInfo {
 };
 
 extern const struct SkillInfo gSkillInfos[0x100];
+extern struct SkillInfo const * const gpSkillInfos;
+
 const u8 * GetSkillIcon(const u8 sid);
 u16 GetSkillDescMsg(const u8 sid);
 char * GetSkillDescStr(const u8 sid);
@@ -68,6 +70,9 @@ extern const struct SkillPreloadPConf gSkillPreloadPData[0x100];
 extern const u8 gConstSkillPTable[0x100][2];
 extern const u8 gConstSkillJTable[0x100][2];
 
+extern u8 const * const gpConstSkillPTable;
+extern u8 const * const gpConstSkillJTable;
+
 struct SkillAnimInfo {
     u8 aid;
     u8 priority;
@@ -82,6 +87,7 @@ enum SkillAnimPriorityConfig {
 };
 
 extern const struct SkillAnimInfo gSkillAnimInfos[0x100];
+extern struct SkillAnimInfo const * const gpSkillAnimInfos;
 
 int GetEfxSkillIndex(const u8 sid);
 int GetEfxSkillPriority(const u8 sid);
@@ -89,6 +95,7 @@ int GetEfxSkillSfx(const u8 sid);
 
 /* Efx skill */
 extern struct EfxAnimConf const * const gEfxSkillAnims[0x100];
+extern struct EfxAnimConf const * const * const gpEfxSkillAnims;
 const struct EfxAnimConf * GetEfxSkillConf(const u8 aid);
 
 /* Miscs */

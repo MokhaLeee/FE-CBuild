@@ -19,7 +19,7 @@ bool CanUnitPlayCombatArt(struct Unit * unit, u16 item)
     struct CombatArtList * list = GetCombatArtList(unit, wtype);
 
     for (i = 0; i < list->amt; i++)
-        if (gCombatArtInfos[list->cid[i]].wtype == wtype)
+        if (gpCombatArtInfos[list->cid[i]].wtype == wtype)
             return true;
 
     return false;
@@ -34,10 +34,10 @@ u8 GetBestRangeBonusCid(struct Unit * unit, u16 item)
 
     for (i = 0; i < list->amt; i++)
     {
-        if (gCombatArtInfos[list->cid[i]].wtype != wtype)
+        if (gpCombatArtInfos[list->cid[i]].wtype != wtype)
             continue;
 
-        if (gCombatArtInfos[list->cid[i]].range_bonus > gCombatArtInfos[ret].range_bonus)
+        if (gpCombatArtInfos[list->cid[i]].range_bonus > gpCombatArtInfos[ret].range_bonus)
             ret = list->cid[i];
     }
     return ret;
@@ -55,7 +55,7 @@ const u8 * GetCombatArtIcon(const u8 cid)
 
     if (COMBART_VALID(cid))
     {
-        const struct CombatArtInfo * info = gCombatArtInfos + cid;
+        const struct CombatArtInfo * info = &gpCombatArtInfos[cid];
         if (info->icon)
             return info->icon;
 
@@ -77,7 +77,7 @@ int WeaponRangeGetterCombatArt(int range, struct Unit * unit, u16 item)
 
     if (COMBART_VALID(cid))
     {
-        const struct CombatArtInfo * info = gCombatArtInfos + cid;
+        const struct CombatArtInfo * info = &gpCombatArtInfos[cid];
         if (GetItemType(item) == info->wtype)
             range += info->range_bonus;
     }
@@ -94,7 +94,7 @@ void PreBattleCalcCombatArt(struct BattleUnit * bu, struct BattleUnit * defender
     if (!COMBART_VALID(cid))
         return;
 
-    info = gCombatArtInfos + cid;
+    info = &gpCombatArtInfos[cid];
     unit = GetUnit(bu->unit.index);
 
     bu->battleAttack       += info->battle_status.atk;

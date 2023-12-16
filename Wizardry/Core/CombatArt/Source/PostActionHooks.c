@@ -22,7 +22,7 @@ STATIC_DECLAR void ExecCombatArtEffectAnim(ProcPtr proc)
     u8 cid = GetCombatArtInForce(unit);
     const struct CombatArtInfo * info;
 
-    info = gCombatArtInfos + cid;
+    info = &gpCombatArtInfos[cid];
 
     BmMapFill(gBmMapMovement, -1);
     BmMapFill(gBmMapRange, 0);
@@ -74,7 +74,7 @@ bool PostActionCombatArtEffect(ProcPtr parent)
     if (!COMBART_VALID(cid) || !IsCombatArtHitted())
         return false;
 
-    info = gCombatArtInfos + cid;
+    info = &gpCombatArtInfos[cid];
 
     if (!info->debuff_gravity &&
         !info->debuff_def &&

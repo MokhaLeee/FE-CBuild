@@ -23,7 +23,7 @@ void SetUnitStatus(struct Unit * unit, int status)
     }
     else
     {
-        int duration = gDebuffInfos[status].duration;
+        int duration = gpDebuffInfos[status].duration;
         if (duration == 0)
             duration = 3;
 
@@ -51,7 +51,7 @@ void SetUnitStatusExt(struct Unit * unit, int status, int duration)
 /* LynJump */
 char * GetUnitStatusName(struct Unit * unit)
 {
-    int msg = gDebuffInfos[GetUnitStatusIndex(unit)].name;
+    int msg = gpDebuffInfos[GetUnitStatusIndex(unit)].name;
 
     if (msg == 0)
         msg = 0x52B; /* --[X] */
@@ -63,7 +63,7 @@ char * GetUnitStatusName(struct Unit * unit)
 char * GetUnitRescueName(struct Unit * unit)
 {
     if (!unit->rescue)
-        return GetStringFromIndex(gDebuffInfos[UNIT_STATUS_NONE].name);
+        return GetStringFromIndex(gpDebuffInfos[UNIT_STATUS_NONE].name);
 
     return GetStringFromIndex(GetUnit(unit->rescue)->pCharacterData->nameTextId);
 }
@@ -72,7 +72,7 @@ char * GetUnitRescueName(struct Unit * unit)
 void HbPopulate_SSStatus(struct HelpBoxProc * proc)
 {
 	u8 index = GetUnitStatusIndex(gStatScreen.unit);
-	proc->mid = gDebuffInfos[index].desc;
+	proc->mid = gpDebuffInfos[index].desc;
 }
 
 /* LynJump */
@@ -84,7 +84,7 @@ void MMB_DrawStatusText(s16 * buffer, struct Unit * unit)
     if (!unit)
         return;
 
-    img = gDebuffInfos[GetUnitStatusIndex(unit)].img;
+    img = gpDebuffInfos[GetUnitStatusIndex(unit)].img;
 
     if (img)
     {

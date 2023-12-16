@@ -6,16 +6,16 @@
 
 static bool SkillTesterROM(struct Unit * unit, const u8 sid)
 {
-    if (gConstSkillPTable[UNIT_CHAR_ID(unit)][0] == sid)
+    if (gpConstSkillPTable[2 * UNIT_CHAR_ID(unit) + 0] == sid)
         return true;
 
-    if (gConstSkillPTable[UNIT_CHAR_ID(unit)][1] == sid)
+    if (gpConstSkillPTable[2 * UNIT_CHAR_ID(unit) + 1] == sid)
         return true;
 
-    if (gConstSkillJTable[UNIT_CLASS_ID(unit)][0] == sid)
+    if (gpConstSkillJTable[2 * UNIT_CLASS_ID(unit) + 0] == sid)
         return true;
 
-    if (gConstSkillJTable[UNIT_CLASS_ID(unit)][1] == sid)
+    if (gpConstSkillJTable[2 * UNIT_CLASS_ID(unit) + 1] == sid)
         return true;
 
     return false;
@@ -65,5 +65,3 @@ bool SkillTesterFast(struct Unit * unit, const u8 sid)
     }
     return false;
 }
-
-bool (* const SkillTester)(struct Unit *, const u8) = SkillTesterFast;

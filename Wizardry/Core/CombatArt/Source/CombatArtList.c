@@ -24,14 +24,14 @@ STATIC_DECLAR void CalcCombatArtListExt(struct Unit * unit, u8 wtype)
     /* Skill table */
     for (i = 1; i < 0xFF; i++)
     {
-        cid = gCombatArtSkillTable[i];
+        cid = gpCombatArtSkillTable[i];
         if (COMBART_VALID(cid))
             if (SkillTester(unit, i))
                 tmp_list[cid] = true;
     }
 
     /* Weapon table */
-    cid = gCombatArtWeaponTable[item_index];
+    cid = gpCombatArtWeaponTable[item_index];
     if (COMBART_VALID(cid))
         tmp_list[cid] = true;
 
@@ -40,60 +40,60 @@ STATIC_DECLAR void CalcCombatArtListExt(struct Unit * unit, u8 wtype)
     {
         if (unit->ranks[ITYPE_SWORD] >= i)
         {
-            cid = gCombatArtDefaultTable.cid_sword[i];
+            cid = gpCombatArtDefaultTable->cid_sword[i];
             if (COMBART_VALID(cid))
                 tmp_list[cid] = true;
 
-            cid = gCombatArtRomPTable[pid].cid_sword[i];
+            cid = gpCombatArtRomPTable[pid].cid_sword[i];
             if (COMBART_VALID(cid))
                 tmp_list[cid] = true;
 
-            cid = gCombatArtRomJTable[jid].cid_sword[i];
+            cid = gpCombatArtRomJTable[jid].cid_sword[i];
             if (COMBART_VALID(cid))
                 tmp_list[cid] = true;
         }
 
         if (unit->ranks[ITYPE_LANCE] >= i)
         {
-            cid = gCombatArtDefaultTable.cid_lance[i];
+            cid = gpCombatArtDefaultTable->cid_lance[i];
             if (COMBART_VALID(cid))
                 tmp_list[cid] = true;
 
-            cid = gCombatArtRomPTable[pid].cid_lance[i];
+            cid = gpCombatArtRomPTable[pid].cid_lance[i];
             if (COMBART_VALID(cid))
                 tmp_list[cid] = true;
 
-            cid = gCombatArtRomJTable[jid].cid_lance[i];
+            cid = gpCombatArtRomJTable[jid].cid_lance[i];
             if (COMBART_VALID(cid))
                 tmp_list[cid] = true;
         }
 
         if (unit->ranks[ITYPE_AXE] >= i)
         {
-            cid = gCombatArtDefaultTable.cid_axe[i];
+            cid = gpCombatArtDefaultTable->cid_axe[i];
             if (COMBART_VALID(cid))
                 tmp_list[cid] = true;
 
-            cid = gCombatArtRomPTable[pid].cid_axe[i];
+            cid = gpCombatArtRomPTable[pid].cid_axe[i];
             if (COMBART_VALID(cid))
                 tmp_list[cid] = true;
 
-            cid = gCombatArtRomJTable[jid].cid_axe[i];
+            cid = gpCombatArtRomJTable[jid].cid_axe[i];
             if (COMBART_VALID(cid))
                 tmp_list[cid] = true;
         }
 
         if (unit->ranks[ITYPE_BOW] >= i)
         {
-            cid = gCombatArtDefaultTable.cid_bow[i];
+            cid = gpCombatArtDefaultTable->cid_bow[i];
             if (COMBART_VALID(cid))
                 tmp_list[cid] = true;
 
-            cid = gCombatArtRomPTable[pid].cid_bow[i];
+            cid = gpCombatArtRomPTable[pid].cid_bow[i];
             if (COMBART_VALID(cid))
                 tmp_list[cid] = true;
 
-            cid = gCombatArtRomJTable[jid].cid_bow[i];
+            cid = gpCombatArtRomJTable[jid].cid_bow[i];
             if (COMBART_VALID(cid))
                 tmp_list[cid] = true;
         }
@@ -105,7 +105,7 @@ STATIC_DECLAR void CalcCombatArtListExt(struct Unit * unit, u8 wtype)
         if (tmp_list[i] == 0)
             continue;
 
-        if (wtype != 0xFF && gCombatArtInfos[i].wtype != wtype)
+        if (wtype != 0xFF && gpCombatArtInfos[i].wtype != wtype)
             continue;
 
         sCombatArtList.cid[sCombatArtList.amt++] = i;
