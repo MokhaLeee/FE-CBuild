@@ -1,6 +1,8 @@
 StandingMapSprite(0x1, MapSprite16x16, MapSprite_LynLord)
 MovingMapSprite(CLASS_CHAX_LYN_T1, 0x81C46CC, Mu_LynLord)
-MovingMapSprite(CLASS_CHAX_Mark_T1, 0x8203368, 0x8202D5C)
+
+StandingMapSprite(0x64, MapSprite16x16, MapSprite_Traveler)
+MovingMapSprite(CLASS_CHAX_Mark_T1, 0x81C46CC, Mu_Traveler)
 
 ALIGN 4
 MapSprite_LynLord:
@@ -9,3 +11,11 @@ MapSprite_LynLord:
 ALIGN 4
 Mu_LynLord:
 	#incbin "Source/Mu_LynLord.4bpp.lz"
+
+ALIGN 4
+MapSprite_Traveler:
+	#incbin "Source/MapSprite_Traveler.4bpp.lz"
+
+ALIGN 4
+Mu_Traveler:
+	#incbin "Source/Mu_Traveler.4bpp.lz"

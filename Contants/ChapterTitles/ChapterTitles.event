@@ -2,6 +2,27 @@
 #define InjectChapterTitleGfx(chapter, pGfx) "PUSH; ORG ChapterTitleGfxTable + 12 * chapter; POIN pGfx; WORD 0 0;POP; "
 
 InjectChapterTitleGfx(0, Ch0Title)
+InjectChapterTitleGfx(1, Ch1Title)
+InjectChapterTitleGfx(2, Ch2Title)
+InjectChapterTitleGfx(3, Ch3Title)
+InjectChapterTitleGfx(4, Ch4Title)
 
+ALIGN 4
 Ch0Title:
-	#incbin "Source/Ch0Title.4bpp.lz"
+	#incbin "Source/title_ch0.4bpp.lz"
+
+ALIGN 4
+Ch1Title:
+	#incbin "Source/title_ch1.4bpp.lz"
+
+ALIGN 4
+Ch2Title:
+	#incbin "Source/title_ch2.4bpp.lz"
+
+ALIGN 4
+Ch3Title:
+	#incbin "Source/title_ch3.4bpp.lz"
+
+ALIGN 4
+Ch4Title:
+	#incbin "Source/title_ch4.4bpp.lz"
