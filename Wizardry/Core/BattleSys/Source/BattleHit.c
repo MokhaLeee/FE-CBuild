@@ -51,6 +51,8 @@ void BattleGenerateHitAttributes(struct BattleUnit * attacker, struct BattleUnit
 
     struct Unit * unit = GetUnit(attacker->unit.index);
 
+    gBattleStats.damage = 0;
+
     if (!BattleRoll2RN(gBattleStats.hitRate, TRUE))
     {
         gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_MISS;
