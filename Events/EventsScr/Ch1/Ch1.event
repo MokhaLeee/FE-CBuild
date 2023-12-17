@@ -1,4 +1,4 @@
-EventPointerTable(0xA, ThisChapter)
+NewEventPointerTable_Event(CHDATA_L1_EVENT_Ch1, ThisChapter)
 #include "Ch1.lyn.event"
 
 ALIGN 32

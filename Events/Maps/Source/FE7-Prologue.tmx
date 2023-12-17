@@ -8,10 +8,10 @@
    <property name="Anims1" value="AssetWaterAnims"/>
    <property name="ChapterID" value="ChPrologueId"/>
    <property name="Main" value=""/>
-   <property name="MapID" value="4"/>
-   <property name="ObjectType" value="1"/>
-   <property name="PaletteID" value="2"/>
-   <property name="TileConfig" value="3"/>
+   <property name="MapID" value="CHDATA_L2_MAP_Prologue"/>
+   <property name="ObjectType" value="CHDATA_L3_ASSET1_OBJ"/>
+   <property name="PaletteID" value="CHDATA_L3_ASSET1_PAL"/>
+   <property name="TileConfig" value="CHDATA_L6_ASSET1_CONF"/>
   </properties>
   <data>
   <tile gid="685"/>

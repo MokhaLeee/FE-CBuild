@@ -17,6 +17,9 @@ ALIGN 4
 #include "Gfx/Gfx.event"
 
 ALIGN 4
-#include "Misc/Misc.event"
+#include "TitleScreen/TitleScreen.event"
+
+ALIGN 4
+#include "TileSets/TileSets.event"
 
 #endif

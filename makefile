@@ -24,6 +24,8 @@ HACK_DIRS += $(GAMEDATA_DIR) $(TEXT_DIR) $(EVENT_DIR)
 # There are too many conponets in $(FONT_DIR) so we cannot consider it as normal hack dirs
 # HACK_DIRS += $(FONT_DIR)
 
+include Contants/contants.mk
+
 CACHE_DIR := $(PWD)/.cache_dir
 $(shell mkdir -p $(CACHE_DIR) > /dev/null)
 
@@ -76,7 +78,7 @@ EA_DEP            := $(EA_DIR)/ea-dep$(EXE)
 
 TEXT_PROCESS      := $(PYTHON3) $(TOOL_DIR)/FE-PyTools/text-process-classic.py
 C2EA              := $(PYTHON3) $(TOOL_DIR)/FE-PyTools/NMM2CSV/c2ea.py
-TMX2EA            := $(PYTHON3) $(TOOL_DIR)/FE-PyTools/TMX2EA/tmx2ea.py
+TMX2EA            := $(PYTHON3) $(TOOL_DIR)/scripts/tmx2ea-mokha.py
 GRIT              := $(DEVKITPRO)/tools/bin/grit$(EXE)
 
 PORTRAIT_PROCESS  := $(PYTHON3) $(TOOL_DIR)/scripts/portrait-process-mokha.py

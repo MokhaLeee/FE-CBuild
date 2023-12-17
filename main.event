@@ -26,7 +26,7 @@ ASSERT (FreeSpaceReloc + FreeSpaceRelocSize - CURRENTOFFSET)
  * Wizardry
  */
 ORG FreeSpaceWizardry
-    #include "Reloc/Wizardry-Reloc.event"
+    #include "Reloc/Reloc-Wizardry.event"
 
     /* Tool helpers should installed after repointing */
     #include "Tools/Tool Helpers.txt"

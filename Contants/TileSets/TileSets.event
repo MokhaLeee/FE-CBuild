@@ -1,0 +1,39 @@
+#ifndef EA_STDLIB_EVENT
+    ERROR Need EAstdlib installed!
+#endif
+
+#ifndef MAP_PLIST_SPLITED
+    ERROR need Repoint MAP PLIST!
+#endif
+
+ALIGN 4
+Img_FE7_Plain_352418:
+    #incbin "asset1/FE7_Plain_352418.4bpp.lz"
+
+ALIGN 4
+Pal_FE7_Plain_352418:
+    #incbin "asset1/FE7_Plain_352418.gbapal"
+
+ALIGN 4
+FE7_3_mapchip_config:
+    #incbin "asset1/FE7_3.mapchip_config.lz"
+
+NewEventPointerTable_ObjPal(CHDATA_L3_ASSET1_OBJ, Img_FE7_Plain_352418)
+NewEventPointerTable_ObjPal(CHDATA_L3_ASSET1_PAL, Pal_FE7_Plain_352418)
+NewEventPointerTable_TileConfig(CHDATA_L6_ASSET1_CONF, FE7_3_mapchip_config)
+
+ALIGN 4
+Img_FE7_Tile2:
+    #incbin "asset2/FE7_Tile2.4bpp.lz"
+
+ALIGN 4
+Pal_FE7_Tile2:
+    #incbin "asset2/FE7_Tile2.gbapal"
+
+ALIGN 4
+FE7_tile2_mapchip_config:
+    #incbin "asset2/FE7_tile2.mapchip_config.lz"
+
+NewEventPointerTable_ObjPal(CHDATA_L3_ASSET2_OBJ, Img_FE7_Tile2)
+NewEventPointerTable_ObjPal(CHDATA_L3_ASSET2_PAL, Pal_FE7_Tile2)
+NewEventPointerTable_TileConfig(CHDATA_L6_ASSET2_CONF, FE7_tile2_mapchip_config)

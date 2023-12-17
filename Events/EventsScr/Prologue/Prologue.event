@@ -1,4 +1,4 @@
-EventPointerTable(7, MyPrologue)
+NewEventPointerTable_Event(CHDATA_L1_EVENT_Prologue, MyPrologue)
 #include "PrologueEvent.lyn.event"
 
 ALIGN 32
