@@ -46,3 +46,7 @@ ALIGN 4
 #include "Mokha/NewGameTactician/NewGameTactician.event"
 
 #include "External/ExternalPatches.event"
+
+#ifdef CONFIG_USE_DEBUG
+    #include "debug.event"
+#endif

@@ -15,12 +15,10 @@ EXT_REF    := $(CONFIG_DIR)/usr-defined.ref.s
 WIZARDRY_DIR := $(PWD)/Wizardry
 CONTANTS_DIR := $(PWD)/Contants
 GAMEDATA_DIR := $(PWD)/Data
-TEXT_DIR     := $(PWD)/Texts
 FONT_DIR     := $(PWD)/Fonts
-EVENT_DIR    := $(PWD)/Events
+TEXT_DIR     := $(CONTANTS_DIR)/Texts
 
-HACK_DIRS := $(CONFIG_DIR) $(WIZARDRY_DIR) $(CONTANTS_DIR)
-HACK_DIRS += $(GAMEDATA_DIR) $(TEXT_DIR) $(EVENT_DIR)
+HACK_DIRS := $(CONFIG_DIR) $(WIZARDRY_DIR) $(CONTANTS_DIR) $(GAMEDATA_DIR)
 # There are too many conponets in $(FONT_DIR) so we cannot consider it as normal hack dirs
 # HACK_DIRS += $(FONT_DIR)
 

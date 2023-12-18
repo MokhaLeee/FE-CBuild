@@ -4,16 +4,14 @@
 #include "../config-debug.h"
 
 /* FreeSpace definitions */
-#define FreeSpaceMagic 0xB2A604
-#define FreeSpaceReloc 0xB2A620
-#define FreeSpaceWizardry 0xB2AE20
+#define FreeSpaceMain 0xB2A604
 #define FreeSpaceFont 0xEFB2E0
 #define FreeSpaceAlloc 0x1000000
 
-#define FreeSpaceMagicSize 0x1C
-#define FreeSpaceRelocSize 0x400
-#define FreeSpaceWizardrySize 0xD55E0
+#define FreeSpaceMainSize 0xD5DFC
 #define FreeSpaceFontSize 0xE4D20
+
+#define FreeSpaceRelocSize 0x400
 
 /* Acturally unused */
 #define FreeSpace FreeSpaceAlloc

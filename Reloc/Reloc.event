@@ -1,5 +1,5 @@
 ALIGN 4
-MESSAGE ___RELOC___ CURRENTOFFSET
+RelocEntry:
 
 gpSkillInfos:
     POIN gSkillInfos
@@ -63,3 +63,12 @@ gpMagicPInfos:
 
 gpMagicJInfos:
     POIN gMagicJInfos
+
+MESSAGE ____RELOC___ RelocEntry to (CURRENTOFFSET) max (RelocEntry + FreeSpaceRelocSize)
+ASSERT (RelocEntry + FreeSpaceRelocSize - CURRENTOFFSET)
+
+/* Some free space is alloced at the tail of current */
+
+ORG RelocEntry + FreeSpaceRelocSize
+#include "RepointText/RepointText.event"
+#include "RepointMapPList/RepointMapPList.event"
