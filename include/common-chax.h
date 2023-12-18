@@ -31,7 +31,7 @@
 #define IS_ROM_DATA(ptr)     ((((u32)(ptr)) & 0xFF000001) == 0x08000000)
 #define IS_ANTI_HUFFMAN(ptr) ((((u32)(ptr)) & 0xFF000001) == 0x88000000)
 
-#define IS_UNIT_PTR(unit)    (UNIT_IS_VALID((unit)) && IS_ROM_DATA((unit)->pCharacterData) && IS_ROM_DATA((unit)->pClassData))
+#define IS_UNIT_PTR(unit)    (UNIT_IS_VALID((unit)) /* && IS_ROM_DATA((unit)->pCharacterData) && IS_ROM_DATA((unit)->pClassData) */)
 
 /* Common lib */
 bool IsPositionValid(s8 x, s8 y);
