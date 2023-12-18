@@ -10,3 +10,4 @@
 "Source/Portrait_Sain.png"          0x09  2      5      3     3     Mug_Sain
 "Source/Portrait_Serra.png"         0x0A  2      6      3     4     Mug_Serra
 "Source/Portrait_Wil.png"           0x0B  2      5      3     3     Mug_Wil
+"Source/Protrait_Glass.png"         0x31  2      5      3     3     Mug_Glass

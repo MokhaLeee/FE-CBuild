@@ -24,14 +24,14 @@ Img_TileScreenUpperTitle:
 
 ALIGN 4
 Pal_TileScreenTitleObjs:
-PAL_TitlePressStart:
-    #incbin "Objfx/TitlePressStart.gbapal"          /* obj-pal 0x0 */
-ORG PAL_TitlePressStart + 0x20; PAL_TitleSignarture:
-    #incbin "Objfx/TitleSignarture.gbapal"          /* obj-pal 0x1 */
-ORG PAL_TitleSignarture + 0x20; PAL_TileScreenUpperTitle:
-    #incbin "Objfx/TileScreenUpperTitle.gbapal"     /* obj-pal 0x2 */
-ORG PAL_TileScreenUpperTitle + 0x20; PAL_TitleSubTitleAllInOne:
-    #incbin "Objfx/TitleSubTitleAllInOne.gbapal"    /* obj-pal 0x3 */
+{
+    Entry:
+    ORG Entry + 0x00; #incbin "Objfx/TitlePressStart.gbapal"        /* obj-pal 0x0 */
+    ORG Entry + 0x20; #incbin "Objfx/TitleSignarture.gbapal"        /* obj-pal 0x1 */
+    ORG Entry + 0x40; #incbin "Objfx/TileScreenUpperTitle.gbapal"   /* obj-pal 0x2 */
+    ORG Entry + 0x60; #incbin "Objfx/TitleSubTitleAllInOne.gbapal"  /* obj-pal 0x3 */
+    ORG Entry + 0x80
+}
 
 /* Signature */
 

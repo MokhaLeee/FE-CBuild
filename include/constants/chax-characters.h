@@ -8,7 +8,8 @@
 #define CHAR_CHAX_Wil 0x05
 #define CHAR_CHAX_Florina 0x06
 
-#define CHAR_CHAX_PrologueBoss 0x68
-#define CHAR_CHAX_Ch1Boss 0x67
+#define CHAR_CHAX_PrologueBoss 0x67
+#define CHAR_CHAX_Ch1Boss 0x68
+#define CHAR_CHAX_Ch2Boss 0x69
 
 #endif

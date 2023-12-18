@@ -1,0 +1,44 @@
+NewEventPointerTable_Event(CHDATA_L1_EVENT_Ch2, ThisEvent)
+#include "Ch2.lyn.event"
+
+ALIGN 32
+ThisEvent:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno Dunno Dunno
+POIN Tutorial
+POIN TrapData TrapData
+POIN UnitDef_Ch2_Ally UnitDef_Ch2_Ally
+POIN $0 $0 $0 $0 $0 $0
+POIN EventScr_BegniningScene EventScr_EndingScene
+
+ALIGN 32
+CharacterBasedEvents:
+    END_MAIN
+
+TurnBasedEvents:
+    END_MAIN
+
+LocationBasedEvents:
+    Seize(11, 1)
+    END_MAIN
+
+Dunno:
+    WORD $00
+    END_MAIN
+
+Tutorial:
+    WORD $00
+    END_MAIN
+
+MiscBasedEvents:
+    AREA 0x7 LOCA_GiveKey [2, 8] [2, 8]
+    AREA 0x7 LOCA_GiveLance [13, 0] [13, 0]
+    DefeatAll(EventScr_EndingScene)
+    CauseGameOverIfLordDies
+    END_MAIN
+
+TrapData:
+    ENDTRAP

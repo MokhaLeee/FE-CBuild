@@ -5,6 +5,7 @@
 #include "constants/classes.h"
 
 #include "common-chax.h"
+#include "_common.h"
 #include "constants/texts.h"
 #include "constants/portraits.h"
 
@@ -47,6 +48,6 @@ const struct CharacterData PInfo_Cutthroat_8E = {
     .growthLck = 25,
 
     .attributes = 0,
-    .pSupportData = NULL,
+    .pSupportData = SupportData_EnemyBosses1,
     .visit_group = 0,
 };

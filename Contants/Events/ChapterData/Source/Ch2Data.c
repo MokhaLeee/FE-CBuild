@@ -1,0 +1,146 @@
+#include "global.h"
+#include "chapterdata.h"
+
+#include "constants/chax-chapter-assets.h"
+
+const struct ROMChapterData chapter_asset_ch3 = {
+    /* Chapter 1 */
+    .internalName = NULL,
+    .map = {
+        .obj1Id = CHDATA_L3_ASSET3_OBJ,
+        .obj2Id = 0,
+        .paletteId = CHDATA_L3_ASSET3_PAL,
+        .tileConfigId = CHDATA_L6_ASSET3_CONF,
+        .mainLayerId = CHDATA_L2_MAP_Ch2,
+        .objAnimId = 0,
+        .paletteAnimId = 0,
+        .changeLayerId = CHDATA_L5_MAPCHG_Ch2a,
+    },
+    .initialFogLevel = 0,
+    .hasPrepScreen = FALSE,
+    .chapTitleId = 1,
+    .chapTitleIdInHectorStory = 0,
+    .initialPosX = 1,
+    .initialPosY = 0,
+    .initialWeather = WEATHER_FINE,
+    .battleTileSet = 0,
+    .easyModeLevelMalus = 0,
+    .difficultModeLevelBonus = 1,
+    .normalModeLevelMalus = 0,
+    .mapBgmIds = {
+        [MAP_BGM_BLUE] = 9,
+        [MAP_BGM_RED] = 19,
+        [MAP_BGM_GREEN] = 19,
+        [MAP_BGM_BLUE_HECTOR] = 9,
+        [MAP_BGM_RED_HECTOR] = 19,
+        [MAP_BGM_GREEN_HECTOR] = 19,
+        [MAP_BGM_BLUE_GREEN_ALT] = 9,
+        [MAP_BGM_RED_ALT] = 65535,
+        [MAP_BGM_PROLOGUE_LYN] = 11,
+        [MAP_BGM_PROLOGUE] = 65535,
+        [MAP_BGM_PROLOGUE_HECTOR] = 65535,
+    },
+    .mapCrackedWallHeath = 50,
+    .turnsForTacticsRankAInEliwoodStory = {
+        [0] = 5,
+        [1] = 5,
+    },
+    .turnsForTacticsRankAInHectorStory = {
+        [0] = 5,
+        [1] = 5,
+    },
+    .turnsForTacticsRankBInEliwoodStory = {
+        [0] = 6,
+        [1] = 6,
+    },
+    .turnsForTacticsRankBInHectorStory = {
+        [0] = 6,
+        [1] = 6,
+    },
+    .turnsForTacticsRankCInEliwoodStory = {
+        [0] = 7,
+        [1] = 7,
+    },
+    .turnsForTacticsRankCInHectorStory = {
+        [0] = 7,
+        [1] = 7,
+    },
+    .turnsForTacticsRankDInEliwoodStory = {
+        [0] = 8,
+        [1] = 8,
+    },
+    .turnsForTacticsRankDInHectorStory = {
+        [0] = 8,
+        [1] = 8,
+    },
+    .unk3D = 0,
+    .gainedExpForExpRankAInEliwoodStory = {
+        [0] = 100,
+        [1] = 100,
+    },
+    .gainedExpForExpRankAInHectorStory = {
+        [0] = 100,
+        [1] = 100,
+    },
+    .gainedExpForExpRankBInEliwoodStory = {
+        [0] = 80,
+        [1] = 80,
+    },
+    .gainedExpForExpRankBInHectorStory = {
+        [0] = 80,
+        [1] = 80,
+    },
+    .gainedExpForExpRankCInEliwoodStory = {
+        [0] = 60,
+        [1] = 60,
+    },
+    .gainedExpForExpRankCInHectorStory = {
+        [0] = 60,
+        [1] = 60,
+    },
+    .gainedExpForExpRankDInEliwoodStory = {
+        [0] = 40,
+        [1] = 40,
+    },
+    .gainedExpForExpRankDInHectorStory = {
+        [0] = 40,
+        [1] = 40,
+    },
+    .unk5E = 0,
+    .goldForFundsRankInEliwoodStory = {
+        [0] = 1060,
+        [1] = 1060,
+    },
+    .goldForFundsRankInHectorStory = {
+        [0] = 1060,
+        [1] = 1060,
+    },
+    .chapTitleTextId = 353,
+    .chapTitleTextIdInHectorStory = 353,
+    .mapEventDataId = CHDATA_L1_EVENT_Ch2,
+    .gmapEventId = 2,
+    .divinationTextIdBeginning = 0,
+    .divinationTextIdInEliwoodStory = 0,
+    .divinationTextIdInHectorStory = 0,
+    .divinationTextIdEnding = 0,
+    .divinationPortrait = 0,
+    .divinationFee = 0,
+    .prepScreenNumber = 2,
+    .prepScreenNumberInHectorStory = 0,
+    .merchantPosX = 255,
+    .merchantPosXInHectorStory = 255,
+    .merchantPosY = 0,
+    .merchantPosYInHectorStory = 0,
+    .victorySongEnemyThreshold = 1,
+    .fadeToBlack = FALSE,
+    .statusObjectiveTextId = 419,
+    .goalWindowTextId = 415,
+    .goalWindowDataType = GOAL_TYPE_SEIZE,
+    .goalWindowEndTurnNumber = 0,
+    .protectCharacterIndex = 0,
+    .destPosX = 255,
+    .destPosY = 0,
+    .unk91 = 24,
+    .unk92 = 0,
+    .unk93 = 0,
+};

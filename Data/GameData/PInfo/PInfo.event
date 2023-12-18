@@ -17,4 +17,7 @@ PUSH
 
     ORG_PInfo(0x8E)
     #include "Source/Cutthroat_8E.lyn.event"
+
+    ORG_PInfo(CHAR_CHAX_Ch2Boss)
+    #include "Source/Glass.lyn.event"
 POP

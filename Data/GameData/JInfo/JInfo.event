@@ -10,6 +10,9 @@ PUSH
     ORG_JInfo(Cavalier)
     #include "Source/05_Cavalier.lyn.event"
 
+    ORG_JInfo(Mercenary)
+    #include "Source/Mercenary.lyn.event"
+
     ORG_JInfo(PegasusKnight)
     #include "Source/Pegasus.lyn.event"
 

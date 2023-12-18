@@ -37,3 +37,27 @@ FE7_tile2_mapchip_config:
 NewEventPointerTable_ObjPal(CHDATA_L3_ASSET2_OBJ, Img_FE7_Tile2)
 NewEventPointerTable_ObjPal(CHDATA_L3_ASSET2_PAL, Pal_FE7_Tile2)
 NewEventPointerTable_TileConfig(CHDATA_L6_ASSET2_CONF, FE7_tile2_mapchip_config)
+
+ALIGN 4
+Img_FE7_Tile3:
+    #incbin "asset3/fe7_asset3.4bpp.lz"
+
+ALIGN 4
+Pal_FE7_Tile3:
+{
+    Entry:
+    ORG Entry + 0x00; #incbin "asset3/fe7_asset3_pal0.gbapal"
+    ORG Entry + 0x20; #incbin "asset3/fe7_asset3_pal1.gbapal"
+    ORG Entry + 0x40; #incbin "asset3/fe7_asset3_pal2.gbapal"
+    ORG Entry + 0x60; #incbin "asset3/fe7_asset3_pal3.gbapal"
+    ORG Entry + 0x80; #incbin "asset3/fe7_asset3_pal4.gbapal"
+    ORG Entry + 0xA0
+}
+
+ALIGN 4
+FE7_tile3_mapchip_config:
+    #incbin "asset3/fe7_asset3.mapchip_config.lz"
+
+NewEventPointerTable_ObjPal(CHDATA_L3_ASSET3_OBJ, Img_FE7_Tile3)
+NewEventPointerTable_ObjPal(CHDATA_L3_ASSET3_PAL, Pal_FE7_Tile3)
+NewEventPointerTable_TileConfig(CHDATA_L6_ASSET3_CONF, FE7_tile3_mapchip_config)

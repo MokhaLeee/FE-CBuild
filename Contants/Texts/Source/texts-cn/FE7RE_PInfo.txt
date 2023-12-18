@@ -52,3 +52,10 @@ Dorcas[X]
 ## MSG_PINFO_DorcasDesc
 A man from a small village in[NL]
 Bern. Fights for his wife.[X]
+
+## MSG_PINFO_GlassName
+Glass[X]
+
+## MSG_PINFO_GlassDesc
+A Sacaen swordsman with[NL]
+a greedy heart.[X]

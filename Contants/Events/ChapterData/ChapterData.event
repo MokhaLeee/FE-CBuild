@@ -7,4 +7,7 @@ PUSH
 
     ORG_ChapterData(1)
     #include "Source/Ch1Data.lyn.event"
+
+    ORG_ChapterData(2)
+    #include "Source/Ch2Data.lyn.event"
 POP

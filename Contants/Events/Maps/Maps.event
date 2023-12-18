@@ -1,3 +1,14 @@
 ALIGN 4
-#include "Source/FE7-Prologue.event"
-#include "Source/FE7-Ch1.event"
+{
+    #include "Source/FE7-Prologue.event"
+}
+{
+    #include "Source/FE7-Ch1.event"
+}
+{
+    #define map_changes CHDATA_L5_MAPCHG_Ch2a
+
+    #include "Source/FE7-Ch2.event"
+
+    #undef map_changes
+}

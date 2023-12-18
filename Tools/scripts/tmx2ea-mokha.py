@@ -230,9 +230,11 @@ def genHeaderLines():
 
     yield '#ifdef MAP_PLIST_SPLITED\n'
     yield '    #define SetChapterData(ChapterID,ObjectType1,ObjectType2,PaletteID,TileConfig,MapID,MapPointer,Anims1,Anims2,MapChanges) "PUSH; ORG ChapterDataTable+(ChapterID*ChapterDataTableEntSize)+4; BYTE ObjectType1 ObjectType2 PaletteID TileConfig MapID Anims1 Anims2 MapChanges; NewEventPointerTable_Maps(MapID,MapPointer); POP"\n'
+    yield '    #define EventPointerTable_MapChg(id,offset) "NewEventPointerTable_TileChange(id, offset)"\n'
     yield '#endif\n'
     yield '#ifndef MAP_PLIST_SPLITED\n'
     yield '    #define SetChapterData(ChapterID,ObjectType1,ObjectType2,PaletteID,TileConfig,MapID,MapPointer,Anims1,Anims2,MapChanges) "PUSH; ORG ChapterDataTable+(ChapterID*ChapterDataTableEntSize)+4; BYTE ObjectType1 ObjectType2 PaletteID TileConfig MapID Anims1 Anims2 MapChanges; EventPointerTable(MapID,MapPointer); POP"\n'
+    yield '    #define EventPointerTable_MapChg(id,offset) "EventPointerTable(id, offset)"\n'
     yield '#endif /* MAP_PLIST_SPLITED */\n\n'
 
     yield "#endif // TMX2EA\n\n"
@@ -320,7 +322,7 @@ def process(tmxFilename, eventFilename, dmpFilename, boolAddHeader):
 
             f.write('  TileMapEnd\n')
 
-            f.write("\nEventPointerTable({}, MapChangesData)\n".format(
+            f.write("\nEventPointerTable_MapChg({}, MapChangesData)\n".format(
                 feMap.properties[KEY_PROPERTY_MAPCID]))
 
         f.write('\n}\n')

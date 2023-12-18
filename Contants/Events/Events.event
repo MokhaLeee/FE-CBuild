@@ -6,6 +6,7 @@
 #endif
 
 #include "CommonEvents.event"
+#include "ChapterData/ChapterData.event"
 
 PUSH
     /* Tactician name screen */
@@ -25,10 +26,13 @@ ALIGN 4
     ALIGN 4
     #include "EventsScr/Prologue/Prologue.event"
 }
-
 {
     ALIGN 4
     #include "EventsScr/Ch1/Ch1.event"
+}
+{
+    ALIGN 4
+    #include "EventsScr/Ch2/Ch2.event"
 }
 
 #endif /* EVENTS_INSTALLED */
