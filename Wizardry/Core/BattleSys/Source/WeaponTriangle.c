@@ -29,6 +29,26 @@ void PreBattleCalcWeaponTriangle(struct BattleUnit * attacker, struct BattleUnit
         defender->wTriangleHitBonus = -1;
         defender->wTriangleDmgBonus = -1;
     }
+    else
+    {
+        /* vanilla */
+        const struct WeaponTriangleRule * it;
+        for (it = sWeaponTriangleRules; it->attackerWeaponType >= 0; ++it)
+        {
+            if ((attacker->weaponType == it->attackerWeaponType) && (defender->weaponType == it->defenderWeaponType))
+            {
+                attacker->battleAttack  += it->atkBonus;
+                attacker->battleHitRate += it->hitBonus;
+
+                /* Just for UI */
+                attacker->wTriangleHitBonus = +1;
+                attacker->wTriangleDmgBonus = +1;
+                defender->wTriangleHitBonus = -1;
+                defender->wTriangleDmgBonus = -1;
+                break;
+            }
+        }
+    }
 
     for (it = gpWeaponTriangleConfs; it->wtype_a != it->wtype_b; it++)
     {

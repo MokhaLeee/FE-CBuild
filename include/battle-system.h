@@ -99,3 +99,12 @@ static inline int GetItemFormSlot(struct Unit * unit, int slot)
         return 0;
     }
 }
+
+/* port form vanilla */
+struct WeaponTriangleRule {
+    s8 attackerWeaponType;
+    s8 defenderWeaponType;
+    s8 hitBonus;
+    s8 atkBonus;
+};
+extern const struct WeaponTriangleRule sWeaponTriangleRules[];
