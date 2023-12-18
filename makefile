@@ -325,11 +325,10 @@ CLEAN_FILES += $(SOUND_ASM_SOURCE:.s=.o) $(SOUND_ASM_SOURCE:.s=.lyn.event)
 # ==============
 
 clean:
-	@for i in $(CLEAN_BUILD); do if test -e $$i/makefile ; then $(MAKE) -f $$i/makefile clean || { exit 1;} fi; done;
 	rm -f $(CLEAN_FILES)
 	rm -rf $(CLEAN_DIRS)
-	@echo "All cleaned .."
 
-clean_wizardry:
-	rm -f $(CLEAN_FILES)
-	rm -rf $(CLEAN_DIRS)
+clean_all:
+	@for i in $(CLEAN_BUILD); do if test -e $$i/makefile ; then $(MAKE) -f $$i/makefile clean || { exit 1;} fi; done;
+	$(MAKE) clean
+	@echo "All cleaned .."

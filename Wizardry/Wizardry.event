@@ -22,7 +22,6 @@ ALIGN 4
 #include "Common/ChapterInitHook/ChapterInitHook.event"
 #include "Common/BattleUnitHook/BattleUnitHook.event"
 #include "Common/StrMagSplit/StrMagSplit.event"
-#include "Common/UnitStatusGetter/UnitStatusGetter.event"
 #include "Common/SaveData/SaveData.event"
 #include "Common/LoadUnitHook/LoadUnitHook.event"
 #include "Common/Lvup/Lvup.event"
@@ -30,6 +29,7 @@ ALIGN 4
 #include "Common/PhaseSwitchHook/PhaseSwitchHook.event"
 
 #include "Core/SkillSys/SkillSys.event"
+#include "Core/UnitStatusGetter/UnitStatusGetter.event"
 #include "Core/BattleSys/BattleSys.event"
 #include "Core/StatScreen/StatScreen.event"
 #include "Core/HpBar/HpBar.event"
