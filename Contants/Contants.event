@@ -2,9 +2,6 @@
 #define CONTANTS_INSTALLED
 
 ALIGN 4
-#include "Texts/Texts.event"
-
-ALIGN 4
 #include "Sprite/Sprite.event"
 
 ALIGN 4
@@ -24,5 +21,8 @@ ALIGN 4
 
 ALIGN 4
 #include "TileSets/TileSets.event"
+
+ALIGN 4
+#include "Texts/Texts.event"
 
 #endif

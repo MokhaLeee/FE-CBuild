@@ -18,6 +18,9 @@ extern struct SkillList sSkillLists[SKILL_LIST_AMT];
 STATIC_DECLAR void GenerateSkillListExt(struct Unit * unit, struct SkillList * list)
 {
     int i;
+
+    memset(list, 0, sizeof(*list));
+
     for (i = 1; i < MAX_SKILL_NUM; i++)
     {
         if (SkillTesterBasic(unit, i) == true)
@@ -64,9 +67,9 @@ struct SkillList * GetUnitSkillList(struct Unit * unit)
     if (!list)
     {
         if (unit->index == gBattleActor.unit.index)
-            list = &sSkillLists[2];
+            list = &sSkillLists[SKILL_LIST_AMT - 2];
         else if (unit->index == gBattleTarget.unit.index)
-            list = &sSkillLists[3];
+            list = &sSkillLists[SKILL_LIST_AMT - 1];
         else
         {
             list = &sSkillLists[sSkillListNext];
