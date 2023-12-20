@@ -1,11 +1,6 @@
 #ifndef SOUND_DEFINITIONS
 #define SOUND_DEFINITIONS
 
-#ifndef SongTableOffset
-    #define SongTableOffset 0x224470
-    #define SongTable(index,SongPointer,Group) "PUSH; ORG SongTableOffset+(8*index); POIN SongPointer; SHORT Group Group; POP"
-#endif
-
 // Song group definitions (constants)
 
 #define SG_BATTLE_MUSIC 0
@@ -19,5 +14,7 @@
 #define SONG_Defense 0x1A
 #define SONG_EnemiesAppear 0x13
 #define SONG_ChapterOpen 0x91
+#define SONG_TitleScreen 0x43
+#define SONG_BoosBattle 0x1B
 
 #endif // SOUND_DEFINITIONS

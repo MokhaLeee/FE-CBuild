@@ -7,6 +7,7 @@
 #include "constants/chax-chapter-assets.h"
 #include "constants/portraits.h"
 #include "constants/texts.h"
+#include "constants/sounds.h"
 #include "constants/Definitions/Chapters.event"
 
 #endif

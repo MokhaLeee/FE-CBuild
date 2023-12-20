@@ -1,11 +1,24 @@
 #ifndef SOUNDS
 #define SOUNDS
 
-#include "SoundDefinitions.event"
+#include "ExternalHack/drumfix/drumfix.event"
+#include "ExternalHack/m4a_hq_mixer/SoundMixer.txt"
+#include "ExternalHack/16_tracks_12_sounds_patch/16_tracks_12_sounds_patch.event"
+#include "ExternalHack/SOUND_NIMAP2/SOUND_NIMAP2.event"
+
+// #include "SoundDefinitions.event"
+
+#ifndef SongTableOffset
+    #define SongTableOffset 0x224470
+    #define SongTable(index,SongPointer,Group) "PUSH; ORG SongTableOffset+(8*index); POIN SongPointer; SHORT Group Group; POP"
+#endif
+
 #include "Songs/Fe7ChapterOpen/Fe7ChapterOpen.event"
 #include "Songs/FE7WindAcrossThePlains/FE7WindAcrossThePlains.event"
 #include "Songs/FE7EnemiesAppear/FE7EnemiesAppear.event"
 #include "Songs/Fe7Attack/Fe7Attack.event"
 #include "Songs/Fe7Defense/Fe7Defense.event"
+#include "Songs/FE16TheApexOfTheWorldMrGreen3339/FE16TheApexOfTheWorldMrGreen3339.event"
+#include "Songs/FE7BossBattle/FE7BossBattle.event"
 
 #endif // SOUNDS
