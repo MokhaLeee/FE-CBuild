@@ -1,0 +1,134 @@
+PUSH
+
+	ORG $4E130
+	POIN MenuStyleGraphicsTable
+	ORG $4E1B4
+	POIN MenuStyleGraphicsTable
+	ORG $4E0D0
+	POIN MenuStylePaletteTable
+	ORG $CEF08
+	POIN MenuTilesPalette
+
+	ORG $A1D448 //Palette of Glowy UI bar that goes underneath currently highlighted item
+	#incbin "A1D448_glowy.pal"
+	
+	ORG $5B6470
+	MenuStyleGraphicsTable:
+	POIN MenuTilesGraphics
+	POIN MenuTilesGraphics
+	POIN MenuTilesGraphics
+	POIN MenuTilesGraphics
+    
+    ORG $95E38
+    POIN MenuTilesPalette+0x20
+    ORG $95E3C
+    POIN PrepScreenMainTSA
+    ORG $95EB8
+    POIN PrepScreenMainTSA
+    ORG $9617C
+    POIN PrepScreenMainTSA
+    
+	ORG $9A8D8
+	POIN MenuTilesExtraForPrepScreen
+
+	ORG $9C7FC
+	POIN MenuTilesExtraForItemUse
+    
+    //Gold display in shops
+    ORG $B4E70
+    POIN GoldDisplayBoxGfx
+    ORG $B4E80
+    POIN MenuTilesPalette
+
+    //Give/Take menu popup thingy
+	ORG $98CB4
+	POIN SupplyMenuBox
+    ORG $98CBC
+    POIN MenuTilesPalette+0x60
+    
+    ORG $A173EC
+    #incbin "AllySelectBox1.bgtsa"
+    
+    ORG $D7F92
+    #incbin "AllySelectBox2.bgtsa"
+    
+    ORG $9AD934 //196 bytes compressed
+    #incbin "shopmini.bgtsa.4bpp.lz"
+    
+    ORG $A079B4 //228 bytes compressed
+    #incbin "configmenu.bgtsa.4bpp.lz"
+    
+    ORG $A1B7C8 //238 bytes compressed
+    #incbin "prepscreenunit.bgtsa.4bpp.lz"
+    
+    ORG $A1BCC0 //64 bytes compressed
+    #incbin "supplyminibox.bgtsa.4bpp.lz"
+    
+    ORG $A1C8B4 //0x4b4 bytes raw
+    #incbin "unitlist.bgtsa"
+    
+    ORG $A2C4C8 //224 bytes uncomp
+    #incbin "soundroom_controls.bgtsa"
+    ORG $A2E4C4 //293 bytes compressed
+    #incbin "chapterstatus.bgtsa.4bpp.lz"
+    ORG $A98BF8 //258 bytes compressed
+    #incbin "wmstatus.bgtsa.4bpp.lz"
+    ORG $A98EAC //132 bytes uncomp
+    #incbin "wm_location_label.bgtsa"
+    ORG $A98F30 //236 bytes uncomp
+    #incbin "wm_location_current.bgtsa"
+    ORG $B176CC //242 bytes compressed
+    #incbin "guidemenu.bgtsa.4bpp.lz"
+POP
+
+//replaces 85B6BB4
+ALIGN 4
+MenuStylePaletteTable:
+POIN MenuTilesPalette      //replaces 8a1738c
+POIN MenuTilesPalette+0x20
+POIN MenuTilesPalette+0x40
+POIN MenuTilesPalette+0x60
+POIN MenuTilesPalette+0x80
+POIN MenuTilesPalette+0xA0
+POIN MenuTilesPalette+0xC0
+POIN MenuTilesPalette+0xE0
+
+ALIGN 4
+MenuTilesExtraForItemUse: //A1BAB8
+#incbin "MenuTilesPrepScreenItems.4bpp.lz"
+
+ALIGN 4
+MenuTilesExtraForPrepScreen: //A1B730
+#incbin "MenuTilesPrepScreen.4bpp.lz"
+
+ALIGN 4
+GoldDisplayBoxGfx: //9ad9f8
+#incbin "GoldDisplayBox.4bpp.lz"
+
+ALIGN 4
+SupplyMenuBox: //A1D7DC
+#incbin "A1D7DC.4bpp.lz"
+
+ALIGN 4
+MenuTilesGraphics: //5B65C0
+#incbin "MenuTilesMaster.4bpp.lz"
+
+ALIGN 4
+MenuTilesPalette:
+#incbin "MenuTilesMaster.pal"
+
+//edited TSA:
+//9AD934 shop mini (compressed header)
+//A1B9EC supply menu main (compressed header)
+//A1BCC0 supply menu mini (compressed header)
+//A1C8B4 unit list menu
+//A2C4C8 sound room controls
+//A2C5A8 sound room song list
+//A2E4C4 chapter status TSA (compressed header)
+//A98EAC world map MMB 1
+//A98F30 world map MMB 2
+//A98BF8 wm status menu
+
+//A1B698, 152 bytes compressed
+PrepScreenMainTSA:
+#incbin "prepscreenmain.bgtsa.4bpp.lz"

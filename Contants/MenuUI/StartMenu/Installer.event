@@ -1,0 +1,41 @@
+PUSH
+	ORG $AF7D0
+	POIN NewMainMenuGfx
+	ORG $8e088
+	POIN NewMainMenuGfx
+	
+	ORG $A8F34
+	POIN NewExtraMenuGfx
+	ORG $A9A60
+	POIN NewExtraMenuGfx
+	ORG $AA010
+	POIN NewExtraMenuGfx
+	ORG $AA450
+	POIN NewExtraMenuGfx
+
+	//Main Menu bg
+	  ORG $a21658
+	  #incbin "mainmenu-new.4bpp.lz"
+	  ORG $a25dcc
+	  #incbin "mainmenu-new.pal"
+	//Remove fog
+	  ORG $a26380
+	  #incbin "no_fog_comp.tsa.bin.lz"
+POP
+
+ALIGN 4
+NewMainMenuGfx:
+#ifdef LANGUAGE_ES
+	#incbin "a2d23c_ES.4bpp.lz"
+#else
+	#incbin "a2d23c.4bpp.lz"
+#endif
+
+NewExtraMenuGfx:
+#ifdef LANGUAGE_ES
+	#incbin "ExtraMenuString_08A2812C_ES.4bpp.lz"
+#else
+	#incbin "ExtraMenuString_08A2812C.4bpp.lz"
+#endif
+
+#include "SaveFile/Installer.event"

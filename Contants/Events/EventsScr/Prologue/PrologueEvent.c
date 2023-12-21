@@ -173,6 +173,8 @@ const EventListScr EventScr_BegniningScene[] = {
     LOAD1(1, UnitDef_AllyMark)
     ENUN
 
+    // _EvtAutoCmdLen2(0x3E),
+
     NoFade
     ENDA
 };

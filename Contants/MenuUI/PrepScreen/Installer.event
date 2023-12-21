@@ -1,0 +1,49 @@
+PUSH
+	//Prep screen stuff
+	ORG $95c78
+	POIN PrepScreenChapterNumber
+	
+	ORG $98468
+	POIN PrepManageItemsGfx
+
+	//"Preparations" graphic at top
+	ORG $95E20
+	POIN PrepScreenTitleGraphic
+	
+	//Button labels at bottom
+	ORG $9A8EC
+	POIN PrepScreenButtonLabels
+	ORG $95E28
+	POIN PrepScreenButtonLabels
+	
+	//Button labels at bottom on map
+	ORG $3356C
+	POIN PrepScreenMapButtonLabels
+	ORG $8D898
+	POIN PrepScreenMapButtonLabels
+	
+	ORG $95EB4
+	WORD $02023546
+	ORG $95E6A
+	SHORT $34E4
+
+POP
+
+ALIGN 4
+PrepManageItemsGfx:
+#incbin "prepitems_A1B1FC.4bpp.lz"
+
+ALIGN 4
+PrepScreenChapterNumber:
+#incbin "chapter_number_of_prep_08A1AC88.4bpp.lz"
+
+ALIGN 4
+PrepScreenTitleGraphic:
+#incbin "preptitle_A1A4C8.4bpp.lz"
+
+ALIGN 4
+PrepScreenButtonLabels:
+#incbin "buttons_08A1D510.4bpp.lz"
+
+PrepScreenMapButtonLabels:
+#incbin "buttons_A199C8.4bpp.lz"
