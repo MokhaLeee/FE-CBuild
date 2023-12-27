@@ -10,6 +10,7 @@
 #include "statscreen.h"
 #include "icon.h"
 #include "sysutil.h"
+#include "helpbox.h"
 
 #include "common-chax.h"
 #include "skill-system.h"

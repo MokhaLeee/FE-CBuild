@@ -13,22 +13,22 @@ void MoveLimitView_OnLoop(struct MoveLimitViewProc * proc)
 {
     int frame = (GetGameClock() / 2) & 31;
 
-    if (proc->unk_4A & MOVLIMITV_MMAP_BLUE)
+    if (proc->flags & MOVLIMITV_MMAP_BLUE)
         CopyToPaletteBuffer(gPalBlueRangeSquare + frame, 0x82, 0x20);
 
-    if (proc->unk_4A & MOVLIMITV_RMAP_RED)
+    if (proc->flags & MOVLIMITV_RMAP_RED)
         CopyToPaletteBuffer(gPalRedRangeSquare + frame, 0xA2, 0x20);
 
-    if (proc->unk_4A & MOVLIMITV_RMAP_GREEN)
+    if (proc->flags & MOVLIMITV_RMAP_GREEN)
         CopyToPaletteBuffer(gPalGreenRangeSquare + frame, 0xA2, 0x20);
 
-    if (proc->unk_4A & MOVLIMITV_RMAP_BLUE)
+    if (proc->flags & MOVLIMITV_RMAP_BLUE)
         CopyToPaletteBuffer(gPalBlueRangeSquare + frame, 0xA2, 0x20);
 
     /* New */
-    if (proc->unk_4A & MOVLIMITV_MMAP_RED)
+    if (proc->flags & MOVLIMITV_MMAP_RED)
         CopyToPaletteBuffer(gPalRedRangeSquare + frame, 0x82, 0x20);
 
-    if (proc->unk_4A & MOVLIMITV_MMAP_GREEN)
+    if (proc->flags & MOVLIMITV_MMAP_GREEN)
         CopyToPaletteBuffer(gPalGreenRangeSquare + frame, 0x82, 0x20);
 }

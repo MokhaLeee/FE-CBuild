@@ -1,6 +1,7 @@
 #include "global.h"
 #include "fontgrp.h"
 #include "statscreen.h"
+#include "helpbox.h"
 
 #include "common-chax.h"
 #include "stat-screen.h"

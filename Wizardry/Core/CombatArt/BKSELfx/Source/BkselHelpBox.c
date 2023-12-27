@@ -3,6 +3,7 @@
 #include "bksel.h"
 #include "hardware.h"
 #include "statscreen.h"
+#include "helpbox.h"
 
 #include "common-chax.h"
 #include "stat-screen.h"
@@ -58,13 +59,13 @@ u8 StartBattleForecastHelpBox(ProcPtr parent, struct SelectTarget * target)
 
 void DrawHelpBoxCombatArtBkselLabels(void)
 {
-    Text_InsertDrawString(&gUnknown_0203E794.text[0], 0x00, TEXT_COLOR_47CF, GetStringFromIndex(0x503)); // "Mt"
-    Text_InsertDrawString(&gUnknown_0203E794.text[0], 0x30, TEXT_COLOR_47CF, GetStringFromIndex(MSG_COMBATART_BKSEL_HB_Cost));
-    Text_InsertDrawString(&gUnknown_0203E794.text[0], 0x60, TEXT_COLOR_47CF, GetStringFromIndex(0x4F5)); // "avo"
+    Text_InsertDrawString(&gHelpBoxSt.text[0], 0x00, TEXT_COLOR_47CF, GetStringFromIndex(0x503)); // "Mt"
+    Text_InsertDrawString(&gHelpBoxSt.text[0], 0x30, TEXT_COLOR_47CF, GetStringFromIndex(MSG_COMBATART_BKSEL_HB_Cost));
+    Text_InsertDrawString(&gHelpBoxSt.text[0], 0x60, TEXT_COLOR_47CF, GetStringFromIndex(0x4F5)); // "avo"
 
-    Text_InsertDrawString(&gUnknown_0203E794.text[1], 0x00, TEXT_COLOR_47CF, GetStringFromIndex(0x4F4)); // "hit"
-    Text_InsertDrawString(&gUnknown_0203E794.text[1], 0x30, TEXT_COLOR_47CF, GetStringFromIndex(0x501)); // "crit"
-    Text_InsertDrawString(&gUnknown_0203E794.text[1], 0x60, TEXT_COLOR_47CF, GetStringFromIndex(0x51E)); // "dodge"
+    Text_InsertDrawString(&gHelpBoxSt.text[1], 0x00, TEXT_COLOR_47CF, GetStringFromIndex(0x4F4)); // "hit"
+    Text_InsertDrawString(&gHelpBoxSt.text[1], 0x30, TEXT_COLOR_47CF, GetStringFromIndex(0x501)); // "crit"
+    Text_InsertDrawString(&gHelpBoxSt.text[1], 0x60, TEXT_COLOR_47CF, GetStringFromIndex(0x51E)); // "dodge"
 }
 
 void DrawHelpBoxCombatArtBkselStats(void)
@@ -72,11 +73,11 @@ void DrawHelpBoxCombatArtBkselStats(void)
     int cid = GetCombatArtInForce(gActiveUnit);
     const struct CombatArtInfo * info = &gpCombatArtInfos[cid];
 
-    Text_InsertDrawNumberOrBlank(&gUnknown_0203E794.text[0], 0x20, TEXT_COLOR_456F, info->battle_status.atk);
-    Text_InsertDrawNumberOrBlank(&gUnknown_0203E794.text[0], 0x50, TEXT_COLOR_456F, info->cost);
-    Text_InsertDrawNumberOrBlank(&gUnknown_0203E794.text[0], 0x80, TEXT_COLOR_456F, info->battle_status.avo);
+    Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[0], 0x20, TEXT_COLOR_456F, info->battle_status.atk);
+    Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[0], 0x50, TEXT_COLOR_456F, info->cost);
+    Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[0], 0x80, TEXT_COLOR_456F, info->battle_status.avo);
 
-    Text_InsertDrawNumberOrBlank(&gUnknown_0203E794.text[1], 0x20, TEXT_COLOR_456F, info->battle_status.hit);
-    Text_InsertDrawNumberOrBlank(&gUnknown_0203E794.text[1], 0x50, TEXT_COLOR_456F, info->battle_status.crit);
-    Text_InsertDrawNumberOrBlank(&gUnknown_0203E794.text[1], 0x80, TEXT_COLOR_456F, info->battle_status.dodge);
+    Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[1], 0x20, TEXT_COLOR_456F, info->battle_status.hit);
+    Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[1], 0x50, TEXT_COLOR_456F, info->battle_status.crit);
+    Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[1], 0x80, TEXT_COLOR_456F, info->battle_status.dodge);
 }

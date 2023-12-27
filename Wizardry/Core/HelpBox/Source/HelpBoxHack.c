@@ -3,6 +3,7 @@
 #include "statscreen.h"
 #include "soundwrapper.h"
 #include "bmitem.h"
+#include "helpbox.h"
 
 #include "common-chax.h"
 #include "help-box.h"
@@ -47,7 +48,7 @@ STATIC_DECLAR void sub_808A200_vanilla(const struct HelpBoxInfo * info)
     ClearHelpBoxText();
     StartHelpBoxTextInit(proc->item, proc->mid);
 
-    gUnknown_0203E7E4 = info;
+    gpHelpBoxCurrentInfo = info;
 }
 
 /* LynJump */
@@ -62,7 +63,7 @@ void sub_8089F58(struct HelpBox8A01650Proc * proc)
 {
     int item = proc->unk_58;
 
-    SetTextFont(&gUnknown_0203E794.font);
+    SetTextFont(&gHelpBoxSt.font);
     SetTextFontGlyphs(0);
 
     if (sHelpBoxType == 0)
@@ -107,7 +108,7 @@ void sub_8089F58(struct HelpBox8A01650Proc * proc)
 void sub_8089FCC(struct HelpBox8A01650Proc * proc)
 {
     int item = proc->unk_58;
-    SetTextFont(&gUnknown_0203E794.font);
+    SetTextFont(&gHelpBoxSt.font);
 
     if (sHelpBoxType == 0)
     {
