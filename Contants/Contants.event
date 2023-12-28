@@ -23,7 +23,7 @@ ALIGN 4
 #include "TileSets/TileSets.event"
 
 ALIGN 4
-#include "MenuUI/MenuUI.event"
+// #include "MenuUI/MenuUI.event"
 
 ALIGN 4
 #include "Texts/Texts.event"
