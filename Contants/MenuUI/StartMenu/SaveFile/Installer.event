@@ -91,11 +91,7 @@ POP
 
 ALIGN 4
 NewSaveMenu:
-#ifdef LANGUAGE_ES
-	#incbin "savemenu-A26A74_ES.4bpp.lz"
-#else
 	#incbin "savemenu-A26A74.4bpp.lz"
-#endif
 
 ALIGN 4
 ColumnGfx:

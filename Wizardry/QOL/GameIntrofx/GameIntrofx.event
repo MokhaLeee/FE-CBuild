@@ -12,6 +12,10 @@ PUSH
     ORG $AA71C8
     PROC_CALL_ROUTINE(AutoSkilOpAnim)
     PROC_END
+
+    // TitleScreen may not fade in/out
+    ORG $C635A
+    SHORT 0
 POP
 
 #endif /* GAME_INTROFX_INSTALLED */

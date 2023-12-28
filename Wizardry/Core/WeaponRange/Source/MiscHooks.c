@@ -170,7 +170,7 @@ void DisplayUnitEffectRange(struct Unit * unit)
 
         switch (GetUnitWeaponUsabilityBits(gActiveUnit)) {
         case (UNIT_USEBIT_STAFF | UNIT_USEBIT_WEAPON):
-            if (gBmSt.unk3E & 1)
+            if (gBmSt.swapActionRangeCount & 1)
             {
                 GenerateUnitCompleteStaffRange(gActiveUnit);
                 movelimitv_flag = MOVLIMITV_MMAP_BLUE | MOVLIMITV_RMAP_GREEN;
