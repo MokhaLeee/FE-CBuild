@@ -365,12 +365,12 @@ bool BattleGenerateHit(struct BattleUnit * attacker, struct BattleUnit * defende
         }
 #endif
 
-        if (gBattleTarget.unit.curHP == 0)
+        if (defender->unit.curHP == 0)
         {
 #if CHAX
             gBattleActorGlobalFlag.enimy_defeated = true;
 
-            if (CheckBattleSkillActivte(&gBattleActor, &gBattleTarget, SID_Galeforce, GetUnitSkill(GetUnit(gBattleActor.unit.index))))
+            if (attacker == &gBattleActor && CheckBattleSkillActivte(&gBattleActor, &gBattleTarget, SID_Galeforce, GetUnitSkill(GetUnit(gBattleActor.unit.index))))
                 gBattleActorGlobalFlag.skill_activated_galeforce = true;
 #endif
             gBattleHitIterator->info |= BATTLE_HIT_INFO_KILLS_TARGET;
