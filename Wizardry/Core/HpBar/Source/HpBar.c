@@ -18,7 +18,7 @@ void PutUnitHpBar(struct Unit * unit)
     int iy = unit->yPos * 16 - gBmSt.camera.y;
     int index;
 
-    const int vram_offsets[] = {
+    static const int vram_offsets[] = {
                0xE80, 0xE40,
         0xAC0, 0xA80, 0xA40,
         0x6C0, 0x680, 0x640,
