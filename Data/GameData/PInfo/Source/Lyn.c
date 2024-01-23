@@ -4,6 +4,7 @@
 #include "bmreliance.h"
 
 #include "common-chax.h"
+#include "_common.h"
 #include "constants/texts.h"
 #include "constants/portraits.h"
 #include "constants/chax-characters.h"
@@ -47,6 +48,6 @@ const struct CharacterData PInfo_Lyn = {
     .growthLck = 85,
 
     .attributes = CA_FEMALE,
-    .pSupportData = &gSupportData[0],
+    .pSupportData = SupportData_all_zero,
     .visit_group = 7,
 };

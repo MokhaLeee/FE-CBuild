@@ -4,6 +4,7 @@
 #include "bmreliance.h"
 
 #include "common-chax.h"
+#include "_common.h"
 #include "constants/texts.h"
 #include "constants/portraits.h"
 #include "constants/chax-characters.h"
@@ -47,6 +48,6 @@ const struct CharacterData PInfo_Mark = {
     .growthLck = 90,
 
     .attributes = 0,
-    .pSupportData = &gSupportData[0],
+    .pSupportData = SupportData_all_zero,
     .visit_group = 7,
 };
