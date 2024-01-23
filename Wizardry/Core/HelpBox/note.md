@@ -7,7 +7,7 @@ sub_8089F58
 
 其利用 proc->item 获得 item-attribute, 并据此产生 HB_EXTINFO_NONE
 
-struct HelpBox8A01650Proc：
+struct ProcHelpBoxIntro：
     + 58: proc->item 序号
     + 5C: MSG ()
     + 64: 行数, 通过 sub_8089F58 配置

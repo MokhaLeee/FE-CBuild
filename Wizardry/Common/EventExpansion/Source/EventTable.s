@@ -2,21 +2,73 @@
 
 	.global gEventLoCmdTableRe
 gEventLoCmdTableRe:
-    .4byte Event00_NULL, Event01_End, Event02_EvBitAndIdMod, Event03_CheckEvBitOrId
-    .4byte Event04_CheckRandom, Event05_SetSlot, Event06_SlotOperation, Event07_SlotQueueOperations
-    .4byte Event08_Label, Event09_Goto, Event0A_Call, Event0B_EnqueueCall
-    .4byte Event0C_Branch, Event0D_AsmCall, Event0E_STAL, Event0F_
-    .4byte Event10_ModifyEvBit, Event11_SetIgnoredKeys, Event12_StartBGM, Event12_BgmFadeIn
-    .4byte Event14_, Event15_BgmVolume, Event16_, Event17_Fade
-    .4byte Event18_, Event19_Checks, Event1A_TEXTSTART, Event1B_TEXTSHOW
-    .4byte Event1C_TEXTCONT, Event1D_TEXTEND, Event1E_, Event1F_
-    .4byte Event20_, Event21_TextBg, Event22_ClearScreen, Event23_DisaleMapDisp
-    .4byte Event24_EnableMapDisp, Event25_ChangeMap, Event26_CameraControl, Event27_MapChange
-    .4byte Event28_ChangeWeather, Event29_SetFogVision, Event2A_MoveToChapter, Event2B_ConfigLoadUnit
-    .4byte Event2C_LoadUnits, Event2D_GetPid, Event2E_CheckAt, Event2F_MoveUnit
-    .4byte Event30_ENUN, Event31_DisplayEffectRange, Event32_SpawnSingleUnit, Event33_CheckUnitVarious
-    .4byte Event34_MessWithUnitState, Event35_UnitClassChanging, Event36_CheckInArea, Event37_GiveItem
-    .4byte Event38_ChangeActiveUnit, Event39_ChangeAiScript, Event3A_DisplayPopup, Event3B_DisplayCursor
-    .4byte Event3C_MoveCursor, Event3D_MenuOverride, Event3E_PrepScreenCall, Event3F_ScriptBattle
-    .4byte Event40_, Event41_Warp, Event42_, Event43_
-    .4byte Event44_BreakingSacredStone, Event45_
+	.word	Event00_NULL
+	.word	Event01_End
+	.word	Event02_EvBitAndIdMod
+	.word	Event03_CheckEvBitOrId
+	.word	Event04_CheckRandom
+	.word	Event05_SetSlot
+	.word	Event06_SlotOperation
+	.word	Event07_SlotQueueOperations
+	.word	Event08_Label
+	.word	Event09_Goto
+	.word	Event0A_Call
+	.word	Event0B_EnqueueCall
+	.word	Event0C_Branch
+	.word	Event0D_AsmCall
+	.word	Event0E_STAL
+	.word	Event0F_CounterOps
+	.word	Event10_ModifyEvBit
+	.word	Event11_SetIgnoredKeys
+	.word	Event12_StartBGM
+	.word	Event13_BgmFadeIn
+	.word	Event14_BgmOverideRestore
+	.word	Event15_BgmVolume
+	.word	Event16_
+	.word	Event17_Fade
+	.word	Event18_ColorFade
+	.word	Event19_Checks
+	.word	Event1A_TEXTSTART
+	.word	Event1B_TEXTSHOW
+	.word	Event1C_TEXTCONT
+	.word	Event1D_TEXTEND
+	.word	Event1E_
+	.word	Event1F_
+	.word	Event20_
+	.word	Event21_TextBg
+	.word	Event22_ClearScreen
+	.word	Event23_DisaleMapDisp
+	.word	Event24_EnableMapDisp
+	.word	Event25_ChangeMap
+	.word	Event26_CameraControl
+	.word	Event27_MapChange
+	.word	Event28_ChangeWeather
+	.word	Event29_SetFogVision
+	.word	Event2A_MoveToChapter
+	.word	Event2B_ConfigLoadUnit
+	.word	Event2C_LoadUnits
+	.word	Event2D_ChangeSpritePal
+	.word	Event2E_CheckAt
+	.word	Event2F_MoveUnit
+	.word	Event30_ENUN
+	.word	Event31_DisplayEffectRange
+	.word	Event32_SpawnSingleUnit
+	.word	Event33_CheckUnitVarious
+	.word	Event34_MessWithUnitState
+	.word	Event35_UnitClassChanging
+	.word	Event36_CheckInArea
+	.word	Event37_GiveItem
+	.word	Event38_ChangeActiveUnit
+	.word	Event39_ChangeAiScript
+	.word	Event3A_DisplayPopup
+	.word	Event3B_DisplayCursor
+	.word	Event3C_MoveCursor
+	.word	Event3D_MenuOverride
+	.word	Event3E_PrepScreenCall
+	.word	Event3F_ScriptBattle
+	.word	Event40_PromoteUnit
+	.word	Event41_Warp
+	.word	Event42_EarthQuake
+	.word	Event43_SummonUnit
+	.word	Event44_BreakingSacredStone
+	.word	Event45_GlowingCross

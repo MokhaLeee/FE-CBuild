@@ -14,11 +14,7 @@ extern int sHelpBoxType;
 
 /* From decomp */
 
-extern struct ProcCmd gUnknown_08A01678[];
-void sub_808A43C(struct HelpBoxProc *, int, int);
-void sub_808A444(struct HelpBoxProc *);
-void sub_808A384(struct HelpBoxProc * proc, int w, int h);
-void sub_808A3C4(struct HelpBoxProc * proc, int x, int y);
+extern struct ProcCmd ProcScr_Helpbox_bug_08A01678[];
 int DrawHelpBoxWeaponLabels(int item);
 void DrawHelpBoxWeaponStats(int item);
 int DrawHelpBoxStaffLabels(int item);

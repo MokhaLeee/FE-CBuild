@@ -14,15 +14,15 @@ STATIC_DECLAR void sub_808A200_vanilla(const struct HelpBoxInfo * info)
     int wTextBox;
     int hTextBox;
 
-    struct HelpBoxProc * proc = Proc_Find(gUnknown_08A01678);
+    struct HelpBoxProc * proc = Proc_Find(ProcScr_Helpbox_bug_08A01678);
 
     if (!proc)
     {
-        proc = Proc_Start(gUnknown_08A01678, PROC_TREE_3);
+        proc = Proc_Start(ProcScr_Helpbox_bug_08A01678, PROC_TREE_3);
 
         PlaySoundEffect(0x70);
         sub_808A43C(proc, info->xDisplay, info->yDisplay);
-        sub_808A444(proc);
+        SetHelpBoxDefaultRect(proc);
     }
     else
     {
@@ -59,9 +59,9 @@ void sub_808A200(const struct HelpBoxInfo * info)
 }
 
 /* LynJump */
-void sub_8089F58(struct HelpBox8A01650Proc * proc)
+void HelpBoxSetupstringLines(struct ProcHelpBoxIntro * proc)
 {
-    int item = proc->unk_58;
+    int item = proc->item;
 
     SetTextFont(&gHelpBoxSt.font);
     SetTextFontGlyphs(0);
@@ -70,23 +70,23 @@ void sub_8089F58(struct HelpBox8A01650Proc * proc)
     {
         /* Vanilla */
         switch (GetHelpBoxItemInfoKind(item)) {
-        case 0:
-            proc->unk_64 = 0;
+        case HB_EXTINFO_NONE:
+            proc->pretext_lines = 0;
             break;
 
-        case 1:
+        case HB_EXTINFO_WEAPON:
             DrawHelpBoxWeaponLabels(item);
-            proc->unk_64 = 2;
+            proc->pretext_lines = 2;
             break;
 
-        case 2:
+        case HB_EXTINFO_STAFF:
             DrawHelpBoxStaffLabels(item);
-            proc->unk_64 = 1;
+            proc->pretext_lines = 1;
             break;
 
-        case 3:
+        case HB_EXTINFO_SAVEINFO:
             DrawHelpBoxSaveMenuLabels();
-            proc->unk_64 = 1;
+            proc->pretext_lines = 1;
             break;
         }
     }
@@ -96,7 +96,7 @@ void sub_8089F58(struct HelpBox8A01650Proc * proc)
         if (NEW_HB_COMBAT_ART_BKSEL == sHelpBoxType)
         {
             DrawHelpBoxCombatArtBkselLabels();
-            proc->unk_64 = 2;
+            proc->pretext_lines = 2;
         }
     }
 
@@ -105,20 +105,20 @@ void sub_8089F58(struct HelpBox8A01650Proc * proc)
 }
 
 /* LynJump */
-void sub_8089FCC(struct HelpBox8A01650Proc * proc)
+void HelpBoxDrawstring(struct ProcHelpBoxIntro * proc)
 {
-    int item = proc->unk_58;
+    int item = proc->item;
     SetTextFont(&gHelpBoxSt.font);
 
     if (sHelpBoxType == 0)
     {
         /* Vanilla */
         switch (GetHelpBoxItemInfoKind(item)) {
-        case 1:
+        case HB_EXTINFO_WEAPON:
             DrawHelpBoxWeaponStats(item);
             break;
 
-        case 3:
+        case HB_EXTINFO_SAVEINFO:
             DrawHelpBoxSaveMenuStats();
             break;
         }
