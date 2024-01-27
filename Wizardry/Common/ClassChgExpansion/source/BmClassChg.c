@@ -24,9 +24,6 @@
 #include "classchg-expa.h"
 
 void sub_805AE14(void *);
-bool sub_805A96C(void *);
-void sub_805A990(void *);
-
 u8 ClassChgMenuSelOnPressB(struct MenuProc * pmenu, struct MenuItemProc * pmitem);
 
 /**
@@ -504,8 +501,8 @@ void LoadBattleSpritesForBranchScreen(struct ProcPromoSel * proc)
     anim1 = gUnknown_030053A0.anim1;
     anim2 = gUnknown_030053A0.anim2;
 
-    p2 = (void *)gUnknown_0201FADC.p1;
-    c2 = (void *)gUnknown_0201FADC.p2;
+    p2 = (void *)gUnknown_0201FADC.proc14;
+    c2 = (void *)gUnknown_0201FADC.proc18;
 
     tmp = &gUnknown_030053A0;
 
