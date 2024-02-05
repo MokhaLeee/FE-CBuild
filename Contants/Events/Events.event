@@ -2,7 +2,7 @@
 #define EVENTS_INSTALLED
 
 #ifndef MAP_PLIST_SPLITED
-    ERROR need Repoint MAP PLIST!
+    ERROR need Repoint MAP PLIST
 #endif
 
 #include "CommonEvents.event"

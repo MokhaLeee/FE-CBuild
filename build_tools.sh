@@ -1,4 +1,4 @@
-cd Tools
+cd Kernel/Tools
 
 # PyTools
 git clone git@github.com:StanHash/FE-PyTools.git --recursive
@@ -12,4 +12,4 @@ cd ..
 # Lib
 git clone git@github.com:MokhaLeee/FE-CLib-Mokha.git
 
-cd ..
+cd ../..

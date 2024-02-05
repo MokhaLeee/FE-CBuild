@@ -2,30 +2,18 @@
 #include "Extensions/Hack Installation.txt"
 #include "Extensions/ProcDefinitions.txt"
 
-#include "Configs/configs.h"
-#include "include/macros.event"
+/* Configs */
+#include "Kernel/Configs/configs.h"
+#include "Kernel/include/macros.event"
 #include "include/Definitions.event"
 
-ORG FreeSpaceMain
-    /* "MOKHA BUILD CHAX" */
-    BYTE $4D $4F $4B $48 $41 $20 $42 $55 $49 $4C $44 $20 $43 $48 $41 $58
-
+ORG FreeSpace
+    /* Reloc first */
     #include "Reloc/Reloc.event"
+    #include "Reloc/Repoint.event"
 
-    /* Tool helpers should installed after repointing */
+    /* Helpers later */
     #include "Tools/Tool Helpers.txt"
 
-    #include "Wizardry/Wizardry.event"
-    #include "Data/Data.event"
+    #include "GameData/GameData.event"
     #include "Contants/Contants.event"
-MESSAGE FreeSpace___Main___ end at (CURRENTOFFSET) max (FreeSpaceMain + FreeSpaceMainSize)
-ASSERT (FreeSpaceMain + FreeSpaceMainSize - CURRENTOFFSET)
-
-ORG FreeSpaceFont
-    #include "Fonts/Fonts.event"
-MESSAGE FreeSpace__Fonts___ end at (CURRENTOFFSET) max (FreeSpaceFont + FreeSpaceFontSize)
-ASSERT (FreeSpaceFont + FreeSpaceFontSize - CURRENTOFFSET)
-
-ORG FreeSpaceAlloc
-    #include "Contants/Contants-alloc.event"
-MESSAGE FreeSpace__Alloc___ end at CURRENTOFFSET

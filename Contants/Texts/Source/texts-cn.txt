@@ -20,46 +20,11 @@
 #include VanillaStringsCN/_067A_Menu.txt
 #include VanillaStringsCN/_06F5_ClassDesp.txt
 
-#0xD4C MSG_FreeSpaceIndentifier
+#0xF00 MSG_FreeSpaceIndentifier
 .[X]
 
 ## MSG_WIP
 W.I.P.[X]
-
-## MSG_ItemName_DustVial
-魔法粉尘[X]
-
-## MSG_ItemDesc_DustVial
-使用后有魔力 + 2[X]
-
-## MSG_ItemUseDesc_DustVial
-魔力提升.[X]
-
-#include texts-cn/Statscreen.txt
-#include texts-cn/PrepScreen.txt
-#include texts-cn/Debuff.txt
-#include texts-cn/Skills_StatusGetter.txt
-#include texts-cn/Skills_BattleStatus.txt
-#include texts-cn/Skills_WeaponTriangle.txt
-#include texts-cn/Skills_Lvup.txt
-#include texts-cn/Skills_BattleAct.txt
-#include texts-cn/Skills_BattleOrder.txt
-#include texts-cn/Skills_BattleEffective.txt
-#include texts-cn/Skills_Blow.txt
-#include texts-cn/Skills_Stance.txt
-#include texts-cn/Skills_WeaponRange.txt
-#include texts-cn/Skills_PostAction.txt
-#include texts-cn/Skills_PrePhase.txt
-#include texts-cn/Skills_RangeDebuff.txt
-#include texts-cn/Skills_AI.txt
-#include texts-cn/Skills_Menu.txt
-#include texts-cn/Skills_Legend.txt
-#include texts-cn/Skills_CombatArt.txt
-#include texts-cn/CombatArt.txt
-#include texts-cn/CombatArt_Sword.txt
-#include texts-cn/CombatArt_Axe.txt
-#include texts-cn/CombatArt_Lance.txt
-#include texts-cn/CombatArt_Bow.txt
 
 #include texts-cn/misc.txt
 

@@ -2,30 +2,30 @@
 #define CONTANTS_INSTALLED
 
 ALIGN 4
+#include "Events/Events.event"
+
+ALIGN 4
+#include "Texts/Texts.event"
+
+ALIGN 4
+#include "Banim/Banim.event"
+
+ALIGN 4
+#include "Sounds/Sounds.event"
+
+ALIGN 4
 #include "Sprite/Sprite.event"
 
 ALIGN 4
 #include "ChapterTitles/ChapterTitles.event"
 
 ALIGN 4
-#include "EfxAnim/EfxAnim.event"
-
-ALIGN 4
 #include "Portrait/Portrait.event"
-
-ALIGN 4
-#include "Gfx/Gfx.event"
 
 ALIGN 4
 #include "TitleScreen/TitleScreen.event"
 
 ALIGN 4
 #include "TileSets/TileSets.event"
-
-ALIGN 4
-// #include "MenuUI/MenuUI.event"
-
-ALIGN 4
-#include "Texts/Texts.event"
 
 #endif

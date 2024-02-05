@@ -7,7 +7,7 @@ A project goals to insert everything through EA by makefile & Linux. (W.I.P)
 1. Install sub-modules
 
 ```bash
-cd Tools
+cd Kernel/Tools
 git clone https://github.com/MokhaLeee/FE-CLib-Mokha.git
 git clone https://github.com/StanHash/EventAssembler.git --recursive
 git clone https://github.com/StanHash/FE-PyTools.git --recursive
@@ -43,10 +43,10 @@ export PATH=${DEVKITPRO}/tools/bin:$PATH
 
     Get into **Tools/EventAssembler** and then refer to [EA build note](https://github.com/StanHash/EventAssembler).
 
-4. Put **Fire Emblem: The Sacred Stones** clean rom named **fe8.gba** in the repository directory.
+4. Put **Fire Emblem: The Sacred Stones** clean rom named **fe8.gba** in the **./Kernel**.
 
 4. build:
 
 ```bash
-make -j
+make
 ```

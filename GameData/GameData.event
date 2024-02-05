@@ -1,0 +1,13 @@
+#ifndef GAME_DATA
+#define GAME_DATA
+
+#include "EAstdlib.event"
+#include "Vanilla/Constants.event"
+#include "Vanilla/Indices.h"
+
+#include "PInfo/PInfo.event"
+#include "JInfo/JInfo.event"
+#include "Items/Items.event"
+#include "TalkList/TalkList.event"
+
+#endif

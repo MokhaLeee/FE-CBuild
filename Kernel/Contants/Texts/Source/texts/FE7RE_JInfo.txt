@@ -1,0 +1,12 @@
+## MSG_JINFO_LynLordName
+Lord[X]
+
+## MSG_JINFO_LynLordDesc
+A noble attached to a ruling[NL]
+house. Has great potential.[X]
+
+## MSG_PINFO_MarkT1Name
+Traveller[X]
+
+## MSG_PINFO_MarkT1Desc
+Traveller with mystery.[X]

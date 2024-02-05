@@ -6,11 +6,6 @@ install-devkitpro-pacman
 *.gba
 *.sym
 
-# Tools
-Tools/EventAssembler/
-Tools/FE-PyTools/
-Tools/FE-CLib-Mokha/
-
 # Wizardry
 *.o
 *.d

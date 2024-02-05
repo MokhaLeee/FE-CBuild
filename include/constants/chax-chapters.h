@@ -1,1 +1,1 @@
-#include "../../Data/Vanilla/Indices.h"
+#include "../../GameData/Vanilla/Indices.h"

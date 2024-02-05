@@ -1,0 +1,3 @@
+#define TextTable FreeSpaceMain_TextTable
+
+#include "RepointMapPList/RepointMapPList.event"

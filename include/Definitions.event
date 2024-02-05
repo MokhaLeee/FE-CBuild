@@ -1,7 +1,10 @@
 #ifndef EVENT_CONSTANTS
 #define EVENT_CONSTANTS
 
-#include "constants/event-cmds.h"
+#include "constants/portraits.h"
+#include "constants/sounds.h"
+#include "constants/Definitions/Chapters.event"
+
 #include "constants/chax-characters.h"
 #include "constants/chax-classes.h"
 #include "constants/chax-chapter-assets.h"

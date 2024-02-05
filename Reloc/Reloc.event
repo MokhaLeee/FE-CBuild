@@ -1,74 +1,87 @@
-ALIGN 4
-RelocEntry:
+/* Copy form Kernel/Reloc/Reloc.event */
+
+ORG FreeSpaceMain_Reloc
 
 gpSkillInfos:
-    POIN gSkillInfos
+    ORG CURRENTOFFSET + 4
+    // POIN gSkillInfos
 
 SkillTester:
-    POIN SkillTesterFast
+    ORG CURRENTOFFSET + 4
+    // POIN SkillTesterFast
 
 gpConstSkillPTable:
-    POIN gConstSkillPTable
+    ORG CURRENTOFFSET + 4
+    // POIN gConstSkillPTable
 
 gpConstSkillJTable:
-    POIN gConstSkillJTable
+    ORG CURRENTOFFSET + 4
+    // POIN gConstSkillJTable
 
 gpSkillAnimInfos:
-    POIN gSkillAnimInfos
+    ORG CURRENTOFFSET + 4
+    // POIN gSkillAnimInfos
 
 gpEfxSkillAnims:
-    POIN gEfxSkillAnims
+    ORG CURRENTOFFSET + 4
+    // POIN gEfxSkillAnims
 
 gpLegendSkillPool:
-    POIN gLegendSkillPool
+    ORG CURRENTOFFSET + 4
+    // POIN gLegendSkillPool
 
 gpCombatArtInfos:
-    POIN gCombatArtInfos
+    ORG CURRENTOFFSET + 4
+    // POIN gCombatArtInfos
 
 gpCombatArtRomPTable:
-    POIN gCombatArtRomPTable
+    ORG CURRENTOFFSET + 4
+    // POIN gCombatArtRomPTable
 
 gpCombatArtRomJTable:
-    POIN gCombatArtRomJTable
+    ORG CURRENTOFFSET + 4
+    // POIN gCombatArtRomJTable
 
 gpCombatArtDefaultTable:
-    POIN gCombatArtDefaultTable
+    ORG CURRENTOFFSET + 4
+    // POIN gCombatArtDefaultTable
 
 gpCombatArtWeaponTable:
-    POIN gCombatArtWeaponTable
+    ORG CURRENTOFFSET + 4
+    // POIN gCombatArtWeaponTable
 
 gpCombatArtSkillTable:
-    POIN gCombatArtSkillTable
+    ORG CURRENTOFFSET + 4
+    // POIN gCombatArtSkillTable
 
 gpEfxCombatArtAnimInfos:
-    POIN gEfxCombatArtAnimInfos
+    ORG CURRENTOFFSET + 4
+    // POIN gEfxCombatArtAnimInfos
 
 gpWeaponTriangleConfs:
-    POIN gWeaponTriangleConfs
+    ORG CURRENTOFFSET + 4
+    // POIN gWeaponTriangleConfs
 
 gpWeaponTriangleItemConf:
-    POIN gWeaponTriangleItemConf
+    ORG CURRENTOFFSET + 4
+    // POIN gWeaponTriangleItemConf
 
 gpClassChgExpaMods:
-    POIN gClassChgExpaMods
+    ORG CURRENTOFFSET + 4
+    // POIN gClassChgExpaMods
 
 gpTraineesRe:
-    POIN gTraineesRe
+    ORG CURRENTOFFSET + 4
+    // POIN gTraineesRe
 
 gpDebuffInfos:
-    POIN gDebuffInfos
+    ORG CURRENTOFFSET + 4
+    // POIN gDebuffInfos
 
 gpMagicPInfos:
-    POIN gMagicPInfos
+    ORG CURRENTOFFSET + 4
+    // POIN gMagicPInfos
 
 gpMagicJInfos:
-    POIN gMagicJInfos
-
-MESSAGE ____RELOC___ RelocEntry to (CURRENTOFFSET) max (RelocEntry + FreeSpaceRelocSize)
-ASSERT (RelocEntry + FreeSpaceRelocSize - CURRENTOFFSET)
-
-/* Some free space is alloced at the tail of current */
-
-ORG RelocEntry + FreeSpaceRelocSize
-#include "RepointText/RepointText.event"
-#include "RepointMapPList/RepointMapPList.event"
+    ORG CURRENTOFFSET + 4
+    // POIN gMagicJInfos

@@ -16,4 +16,4 @@ all: $(ALL_TARGET_BANIM)
 	@cd $(dir $<) && $(AAA) $(notdir $<) --no-left-oam && cd $(build_dir)
 
 clean:
-	rm -f $(ALL_TARGET_BANIM)
+	@rm -f $(ALL_TARGET_BANIM)

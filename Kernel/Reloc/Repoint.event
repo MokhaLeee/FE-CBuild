@@ -1,0 +1,2 @@
+ORG FreeSpaceMain_TextTable
+#include "RepointText/RepointText.event"
