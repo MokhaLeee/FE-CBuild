@@ -1,4 +1,6 @@
 MAKEFLAGS += --no-print-directory
+CACHE_DIR := $(MK_DIR).cache_dir
+$(shell mkdir -p $(CACHE_DIR) > /dev/null)
 
 MK_PATH   := $(abspath $(lastword $(MAKEFILE_LIST)))
 MK_DIR    := $(dir $(MK_PATH))
@@ -10,21 +12,20 @@ FE8_CHX := $(MK_DIR)fe8-chax.gba
 KERNEL_DIR := $(MK_DIR)Kernel
 KERNEL_GBA := $(KERNEL_DIR)/fe8-kernel.gba
 KERNEL_SYM := $(KERNEL_DIR)/fe8-kernel.sym
+K_REF      := $(CACHE_DIR)/kernel.ref.s
 
-TOOL_DIR := $(KERNEL_DIR)/Tools
-LIB_DIR  := $(TOOL_DIR)/FE-CLib-Mokha
-FE8_REF  := $(LIB_DIR)/reference/fireemblem8.ref.o
-FE8_SYM  := $(LIB_DIR)/reference/fireemblem8.sym
+TOOL_DIR  := $(MK_DIR)Tools
+KTOOL_DIR := $(KERNEL_DIR)/Tools
+LIB_DIR   := $(KTOOL_DIR)/FE-CLib-Mokha
+FE8_REF   := $(LIB_DIR)/reference/fireemblem8.ref.o
+FE8_SYM   := $(LIB_DIR)/reference/fireemblem8.sym
 
 CONFIG_DIR := $(KERNEL_DIR)/Configs
 EXT_REF    := $(CONFIG_DIR)/usr-defined.ref.s
 
 GAMEDATA_DIR := $(MK_DIR)GameData
-CONTANTS_DIR := $(MK_DIR)/Contants
+CONTANTS_DIR := $(MK_DIR)Contants
 HACK_DIRS := $(CONFIG_DIR) $(GAMEDATA_DIR) $(CONTANTS_DIR)
-
-CACHE_DIR := $(MK_DIR).cache_dir
-$(shell mkdir -p $(CACHE_DIR) > /dev/null)
 
 CLEAN_FILES :=
 CLEAN_DIRS  := $(CACHE_DIR) $(shell find -name __pycache__)
@@ -64,7 +65,7 @@ CC      := $(PREFIX)gcc
 AS      := $(PREFIX)as
 OBJCOPY := $(PREFIX)objcopy
 
-EA_DIR            := $(TOOL_DIR)/EventAssembler
+EA_DIR            := $(KTOOL_DIR)/EventAssembler
 EA                := $(EA_DIR)/ColorzCore$(EXE)
 PARSEFILE         := $(EA_DIR)/Tools/ParseFile$(EXE)
 PORTRAITFORMATTER := $(EA_DIR)/Tools/PortraitFormatter$(EXE)
@@ -73,26 +74,24 @@ COMPRESS          := $(EA_DIR)/Tools/compress$(EXE)
 LYN               := $(EA_DIR)/Tools/lyn$(EXE) -longcalls
 EA_DEP            := $(EA_DIR)/ea-dep$(EXE)
 
-TEXT_PROCESS      := $(PYTHON3) $(TOOL_DIR)/FE-PyTools/text-process-classic.py
-C2EA              := $(PYTHON3) $(TOOL_DIR)/FE-PyTools/NMM2CSV/c2ea.py
-TMX2EA            := $(PYTHON3) $(TOOL_DIR)/scripts/tmx2ea-mokha.py
+TEXT_PROCESS      := $(PYTHON3) $(KTOOL_DIR)/FE-PyTools/text-process-classic.py
+C2EA              := $(PYTHON3) $(KTOOL_DIR)/FE-PyTools/NMM2CSV/c2ea.py
+TMX2EA            := $(PYTHON3) $(KTOOL_DIR)/scripts/tmx2ea-mokha.py
 GRIT              := $(DEVKITPRO)/tools/bin/grit$(EXE)
 
-PORTRAIT_PROCESS  := $(PYTHON3) $(TOOL_DIR)/scripts/portrait-process-mokha.py
+PORTRAIT_PROCESS  := $(PYTHON3) $(KTOOL_DIR)/scripts/portrait-process-mokha.py
+SYM2REF           := $(PYTHON3) $(TOOL_DIR)/sym-to-ref.py
 
 # ========
 # = Main =
 # ========
 
 all:
-	@$(MAKE) pre_build
+	@$(MAKE) pre_build kernel
 	@$(MAKE) chax
 
-pre_build: $(KERNEL_GBA) portrait text
+pre_build: portrait text
 chax: $(FE8_CHX)
-
-$(KERNEL_GBA) $(KERNEL_SYM):
-	$(MAKE) -f kernel.mk all
 
 $(FE8_CHX): $(MAIN) $(KERNEL_GBA) $(KERNEL_SYM) $(shell $(EA_DEP) $(MAIN) -I $(EA_DIR) --add-missings)
 	@echo "[GEN]	$@"
@@ -100,6 +99,14 @@ $(FE8_CHX): $(MAIN) $(KERNEL_GBA) $(KERNEL_SYM) $(shell $(EA_DEP) $(MAIN) -I $(E
 	@$(EA) A FE8 -werr -input:$(MAIN) -output:$(FE8_CHX) --nocash-sym || rm -f $(FE8_CHX)
 	@cat $(KERNEL_SYM) >> $(FE8_CHX:.gba=.sym)
 	@cat $(FE8_SYM) >> $(FE8_CHX:.gba=.sym)
+
+$(KERNEL_GBA): kernel
+
+kernel:
+	$(MAKE) -f kernel.mk all
+
+$(K_REF): $(KERNEL_SYM)
+	$(SYM2REF) $< > $@
 
 # ============
 # = Wizardry =
@@ -115,7 +122,7 @@ ASFLAGS := $(ARCH) $(INC_FLAG)
 CDEPFLAGS = -MMD -MT "$*.o" -MT "$*.asm" -MF "$(CACHE_DIR)/$(notdir $*).d" -MP
 SDEPFLAGS = --MD "$(CACHE_DIR)/$(notdir $*).d"
 
-LYN_REF := $(EXT_REF:.s=.o) $(FE8_REF)
+LYN_REF := $(EXT_REF:.s=.o) $(K_REF:.s=.o)
 
 %.lyn.event: %.o $(LYN_REF)
 	@echo "[LYN]	$@"

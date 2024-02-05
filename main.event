@@ -7,13 +7,14 @@
 #include "Kernel/include/macros.event"
 #include "include/Definitions.event"
 
+/* Reloc first */
+#include "Reloc/_Reloc.event"
+#include "Reloc/_Repoint.event"
+
+/* Helpers later */
+#include "Tools/Tool Helpers.txt"
+
 ORG FreeSpace
-    /* Reloc first */
-    #include "Reloc/Reloc.event"
     #include "Reloc/Repoint.event"
-
-    /* Helpers later */
-    #include "Tools/Tool Helpers.txt"
-
     #include "GameData/GameData.event"
     #include "Contants/Contants.event"

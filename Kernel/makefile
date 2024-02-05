@@ -11,6 +11,7 @@ FE8_GBA := $(MK_DIR)/fe8.gba
 TOOL_DIR := $(MK_DIR)/Tools
 LIB_DIR  := $(TOOL_DIR)/FE-CLib-Mokha
 FE8_REF  := $(LIB_DIR)/reference/fireemblem8.ref.o
+FE8_SYM  := $(LIB_DIR)/reference/fireemblem8.sym
 
 CONFIG_DIR := $(MK_DIR)/Configs
 EXT_REF    := $(CONFIG_DIR)/usr-defined.ref.s
@@ -93,6 +94,7 @@ $(FE8_CHX): $(MAIN) $(FE8_GBA) $(FE8_SYM) $(shell $(EA_DEP) $(MAIN) -I $(EA_DIR)
 	@echo "[GEN]	$@"
 	@cp -f $(FE8_GBA) $(FE8_CHX)
 	@$(EA) A FE8 -werr -input:$(MAIN) -output:$(FE8_CHX) --nocash-sym || rm -f $(FE8_CHX)
+	@cat $(FE8_SYM) >> $(FE8_CHX:.gba=.sym)
 
 CLEAN_FILES += $(FE8_CHX)  $(FE8_CHX:.gba=.sym)
 
@@ -257,8 +259,8 @@ CLEAN_FILES += $(GFX_HEADER)
 # ==============
 
 clean_basic:
-	rm -f $(CLEAN_FILES)
-	rm -rf $(CLEAN_DIRS)
+	@rm -f $(CLEAN_FILES)
+	@rm -rf $(CLEAN_DIRS)
 
 clean:
 	@for i in $(CLEAN_BUILD); do if test -e $$i/makefile ; then $(MAKE) -f $$i/makefile clean || { exit 1;} fi; done;

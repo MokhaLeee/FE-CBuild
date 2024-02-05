@@ -28,6 +28,4 @@ ALIGN 4
 NoTutorialList:
 	WORD 0
 
-#include "_common/_common.lyn.event"
-
 #endif // COMMON_EVENTS

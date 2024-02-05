@@ -60,10 +60,3 @@ W.I.P.[X]
 #include texts-cn/CombatArt_Axe.txt
 #include texts-cn/CombatArt_Lance.txt
 #include texts-cn/CombatArt_Bow.txt
-
-#include texts-cn/misc.txt
-
-#include texts-cn/FE7RE_JInfo.txt
-#include texts-cn/FE7RE_PInfo.txt
-#include texts/FE7RE_Quotes.txt
-#include texts-cn/FE7RE_Chapter0.txt

@@ -28,9 +28,3 @@ POP
 
 /* Auto generated */
 #include "TextInstaller.event"
-
-PUSH
-	/* Set tactician name to gPlaySt::play_name with anti-huffman flag */
-	ORG TextTable + MSG_TacticianName * 4
-	WORD 0x0202BD10 | 0x80000000
-POP

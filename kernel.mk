@@ -5,7 +5,7 @@ pre_build:
 	@$(MAKE) -C Kernel $@
 
 clean:
-	@$(MAKE) -C Kernel $@
+	@$(MAKE) -C Kernel $@ > /dev/null
 
 clean_basic:
-	@$(MAKE) -C Kernel $@
+	@$(MAKE) -C Kernel $@ > /dev/null

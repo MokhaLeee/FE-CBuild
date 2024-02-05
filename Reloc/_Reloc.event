@@ -1,0 +1,91 @@
+/**
+ * Copy form:
+ *
+ * Kernel/Reloc/Reloc.event
+ */
+
+ORG FreeSpaceMain_Reloc
+
+gpSkillInfos:
+    ORG CURRENTOFFSET + 4
+    // POIN gSkillInfos
+
+SkillTester:
+    ORG CURRENTOFFSET + 4
+    // POIN SkillTesterFast
+
+gpConstSkillPTable:
+    ORG CURRENTOFFSET + 4
+    // POIN gConstSkillPTable
+
+gpConstSkillJTable:
+    ORG CURRENTOFFSET + 4
+    // POIN gConstSkillJTable
+
+gpSkillAnimInfos:
+    ORG CURRENTOFFSET + 4
+    // POIN gSkillAnimInfos
+
+gpEfxSkillAnims:
+    ORG CURRENTOFFSET + 4
+    // POIN gEfxSkillAnims
+
+gpLegendSkillPool:
+    ORG CURRENTOFFSET + 4
+    // POIN gLegendSkillPool
+
+gpCombatArtInfos:
+    ORG CURRENTOFFSET + 4
+    // POIN gCombatArtInfos
+
+gpCombatArtRomPTable:
+    ORG CURRENTOFFSET + 4
+    // POIN gCombatArtRomPTable
+
+gpCombatArtRomJTable:
+    ORG CURRENTOFFSET + 4
+    // POIN gCombatArtRomJTable
+
+gpCombatArtDefaultTable:
+    ORG CURRENTOFFSET + 4
+    // POIN gCombatArtDefaultTable
+
+gpCombatArtWeaponTable:
+    ORG CURRENTOFFSET + 4
+    // POIN gCombatArtWeaponTable
+
+gpCombatArtSkillTable:
+    ORG CURRENTOFFSET + 4
+    // POIN gCombatArtSkillTable
+
+gpEfxCombatArtAnimInfos:
+    ORG CURRENTOFFSET + 4
+    // POIN gEfxCombatArtAnimInfos
+
+gpWeaponTriangleConfs:
+    ORG CURRENTOFFSET + 4
+    // POIN gWeaponTriangleConfs
+
+gpWeaponTriangleItemConf:
+    ORG CURRENTOFFSET + 4
+    // POIN gWeaponTriangleItemConf
+
+gpClassChgExpaMods:
+    ORG CURRENTOFFSET + 4
+    // POIN gClassChgExpaMods
+
+gpTraineesRe:
+    ORG CURRENTOFFSET + 4
+    // POIN gTraineesRe
+
+gpDebuffInfos:
+    ORG CURRENTOFFSET + 4
+    // POIN gDebuffInfos
+
+gpMagicPInfos:
+    ORG CURRENTOFFSET + 4
+    // POIN gMagicPInfos
+
+gpMagicJInfos:
+    ORG CURRENTOFFSET + 4
+    // POIN gMagicJInfos

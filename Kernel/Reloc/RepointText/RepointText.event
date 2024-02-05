@@ -6,22 +6,9 @@
 #endif
 
 #define TextTable NewTextTable // define to not conflict with Tool Helpers
-#define MaxTextEntries 0x1000
+#define MaxTextEntries 0x1300
 
 #define AnitiHuff(ptr) "0x88000000 | ptr"
-
-ALIGN 4
-NullStr:
-    BYTE 0x20 0x0 0x0 0x0
-
-PUSH
-    // Overwritten by anti-huffman
-    // ORG 0xa26c
-    // POIN TextTable
-
-    ORG 0xa2a0
-        POIN TextTable
-POP
 
 ALIGN 4
 TextTable:
@@ -285,4 +272,17 @@ TextTable:
 PUSH
     ORG TextTable
         #incbin "NewTextTable.bin"
+POP
+
+ALIGN 4
+NullStr:
+    BYTE 0x20 0x0 0x0 0x0
+
+PUSH
+    // Overwritten by anti-huffman
+    // ORG 0xa26c
+    // POIN TextTable
+
+    ORG 0xa2a0
+        POIN TextTable
 POP

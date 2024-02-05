@@ -45,9 +45,3 @@ Raises magic.[X]
 #include texts/CombatArt_Axe.txt
 #include texts/CombatArt_Lance.txt
 #include texts/CombatArt_Bow.txt
-
-#include texts/misc.txt
-#include texts/FE7RE_JInfo.txt
-#include texts/FE7RE_PInfo.txt
-#include texts/FE7RE_Quotes.txt
-#include texts/FE7RE_Chapter0.txt
