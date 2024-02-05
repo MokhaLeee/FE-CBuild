@@ -265,4 +265,4 @@ clean_basic:
 clean:
 	@for i in $(CLEAN_BUILD); do if test -e $$i/makefile ; then $(MAKE) -f $$i/makefile clean || { exit 1;} fi; done;
 	$(MAKE) clean_basic
-	@echo "All cleaned .."
+	@echo "Kernel cleaned .."
