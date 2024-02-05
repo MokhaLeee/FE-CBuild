@@ -14,11 +14,13 @@ KERNEL_GBA := $(KERNEL_DIR)/fe8-kernel.gba
 KERNEL_SYM := $(KERNEL_DIR)/fe8-kernel.sym
 K_REF      := $(CACHE_DIR)/kernel.ref.s
 
-TOOL_DIR  := $(MK_DIR)Tools
+TOOL_DIR   := $(MK_DIR)Tools
 KTOOL_DIR := $(KERNEL_DIR)/Tools
 LIB_DIR   := $(KTOOL_DIR)/FE-CLib-Mokha
 FE8_REF   := $(LIB_DIR)/reference/fireemblem8.ref.o
 FE8_SYM   := $(LIB_DIR)/reference/fireemblem8.sym
+
+KERNEL_MK  := $(TOOL_DIR)/Scripts/kernel.mk
 
 CONFIG_DIR := $(KERNEL_DIR)/Configs
 EXT_REF    := $(CONFIG_DIR)/usr-defined.ref.s
@@ -80,7 +82,7 @@ TMX2EA            := $(PYTHON3) $(KTOOL_DIR)/scripts/tmx2ea-mokha.py
 GRIT              := $(DEVKITPRO)/tools/bin/grit$(EXE)
 
 PORTRAIT_PROCESS  := $(PYTHON3) $(KTOOL_DIR)/scripts/portrait-process-mokha.py
-SYM2REF           := $(PYTHON3) $(TOOL_DIR)/sym-to-ref.py
+SYM2REF           := $(PYTHON3) $(TOOL_DIR)/Scripts/sym-to-ref.py
 
 # ========
 # = Main =
@@ -103,7 +105,7 @@ $(FE8_CHX): $(MAIN) $(KERNEL_GBA) $(KERNEL_SYM) $(shell $(EA_DEP) $(MAIN) -I $(E
 $(KERNEL_GBA): kernel
 
 kernel:
-	$(MAKE) -f kernel.mk all
+	$(MAKE) -f $(KERNEL_MK) all
 
 $(K_REF): $(KERNEL_SYM)
 	$(SYM2REF) $< > $@
@@ -274,7 +276,7 @@ CLEAN_FILES += $(CSV_SOURCES:.csv=.csv.event)
 # ==============
 
 clean_basic:
-	@$(MAKE) -f kernel.mk $@ > /dev/null
+	@$(MAKE) -f $(KERNEL_MK) $@ > /dev/null
 	@rm -f $(CLEAN_FILES)
 	@rm -rf $(CLEAN_DIRS)
 	@echo "Cleaned .."
@@ -282,5 +284,5 @@ clean_basic:
 clean:
 	@for i in $(CLEAN_BUILD); do if test -e $$i/makefile ; then $(MAKE) -f $$i/makefile clean || { exit 1;} fi; done;
 	@$(MAKE) clean_basic > /dev/null
-	@$(MAKE) -f kernel.mk $@ > /dev/null
+	@$(MAKE) -f $(KERNEL_MK) $@ > /dev/null
 	@echo "All cleaned .."
