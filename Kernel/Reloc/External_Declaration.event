@@ -5,71 +5,71 @@
  */
 
 // Repoints for Tools helpers
-#define TextTable FreeSpaceMain_TextTable
+#define TextTable FreeSpaceKernel_TextTable
 
 // Relocs
 
-ORG FreeSpaceMain_Reloc
+ORG FreeSpaceKernel_Reloc
 
 gpSkillInfos:
-    ORG CURRENTOFFSET + 4 // POIN gSkillInfos
+    ORG CURRENTOFFSET + 4
 
 SkillTester:
-    ORG CURRENTOFFSET + 4 // POIN SkillTesterFast
+    ORG CURRENTOFFSET + 4
 
 gpConstSkillPTable:
-    ORG CURRENTOFFSET + 4 // POIN gConstSkillPTable
+    ORG CURRENTOFFSET + 4
 
 gpConstSkillJTable:
-    ORG CURRENTOFFSET + 4 // POIN gConstSkillJTable
+    ORG CURRENTOFFSET + 4
 
 gpSkillAnimInfos:
-    ORG CURRENTOFFSET + 4 // POIN gSkillAnimInfos
+    ORG CURRENTOFFSET + 4
 
 gpEfxSkillAnims:
-    ORG CURRENTOFFSET + 4 // POIN gEfxSkillAnims
+    ORG CURRENTOFFSET + 4
 
 gpLegendSkillPool:
-    ORG CURRENTOFFSET + 4 // POIN gLegendSkillPool
+    ORG CURRENTOFFSET + 4
 
 gpCombatArtInfos:
-    ORG CURRENTOFFSET + 4 // POIN gCombatArtInfos
+    ORG CURRENTOFFSET + 4
 
 gpCombatArtRomPTable:
-    ORG CURRENTOFFSET + 4 // POIN gCombatArtRomPTable
+    ORG CURRENTOFFSET + 4
 
 gpCombatArtRomJTable:
-    ORG CURRENTOFFSET + 4 // POIN gCombatArtRomJTable
+    ORG CURRENTOFFSET + 4
 
 gpCombatArtDefaultTable:
-    ORG CURRENTOFFSET + 4 // POIN gCombatArtDefaultTable
+    ORG CURRENTOFFSET + 4
 
 gpCombatArtWeaponTable:
-    ORG CURRENTOFFSET + 4 // POIN gCombatArtWeaponTable
+    ORG CURRENTOFFSET + 4
 
 gpCombatArtSkillTable:
-    ORG CURRENTOFFSET + 4 // POIN gCombatArtSkillTable
+    ORG CURRENTOFFSET + 4
 
 gpEfxCombatArtAnimInfos:
-    ORG CURRENTOFFSET + 4 // POIN gEfxCombatArtAnimInfos
+    ORG CURRENTOFFSET + 4
 
 gpWeaponTriangleConfs:
-    ORG CURRENTOFFSET + 4 // POIN gWeaponTriangleConfs
+    ORG CURRENTOFFSET + 4
 
 gpWeaponTriangleItemConf:
-    ORG CURRENTOFFSET + 4 // POIN gWeaponTriangleItemConf
+    ORG CURRENTOFFSET + 4
 
 gpClassChgExpaMods:
-    ORG CURRENTOFFSET + 4 // POIN gClassChgExpaMods
+    ORG CURRENTOFFSET + 4
 
 gpTraineesRe:
-    ORG CURRENTOFFSET + 4 // POIN gTraineesRe
+    ORG CURRENTOFFSET + 4
 
 gpDebuffInfos:
-    ORG CURRENTOFFSET + 4 // POIN gDebuffInfos
+    ORG CURRENTOFFSET + 4
 
 gpMagicPInfos:
-    ORG CURRENTOFFSET + 4 // POIN gMagicPInfos
+    ORG CURRENTOFFSET + 4
 
 gpMagicJInfos:
-    ORG CURRENTOFFSET + 4 // POIN gMagicJInfos
+    ORG CURRENTOFFSET + 4

@@ -6,21 +6,27 @@
 #include "include/macros.event"
 #include "include/Definitions.event"
 
-ORG FreeSpaceMain
+ORG FreeSpaceKernel
     /* "MOKHA BUILD CHAX" */
     BYTE $4D $4F $4B $48 $41 $20 $42 $55 $49 $4C $44 $20 $43 $48 $41 $58
 
+ORG FreeSpaceKernel_Reloc
     #include "Reloc/Reloc.event"
+ASSERT (FreeSpaceKernel_Reloc + FreeSpaceRelocSize - CURRENTOFFSET)
+
+ORG FreeSpaceKernel_TextTable
     #include "Reloc/Repoint.event"
 
-    /* Tool helpers should installed after repointing */
+    /* <!>
+     * Tool helpers should installed after repointing
+     */
     #include "Tools/Tool Helpers.txt"
 
     #include "Wizardry/Wizardry.event"
     #include "Data/Data.event"
     #include "Contants/Contants.event"
-MESSAGE FreeSpace___Main___ end at (CURRENTOFFSET) max (FreeSpaceMain + FreeSpaceMainSize)
-ASSERT (FreeSpaceMain + FreeSpaceMainSize - CURRENTOFFSET)
+MESSAGE FreeSpace___Main___ end at (CURRENTOFFSET) max (FreeSpaceKernel + FreeSpaceKernelSize)
+ASSERT (FreeSpaceKernel + FreeSpaceKernelSize - CURRENTOFFSET)
 
 ORG FreeSpaceFont
     #include "Fonts/Fonts.event"

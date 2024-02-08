@@ -88,11 +88,11 @@ SYM2REF           := $(PYTHON3) $(TOOL_DIR)/Scripts/sym-to-ref.py
 # = Main =
 # ========
 
-all:
-	@$(MAKE) pre_build kernel
+all: kernel
+	@$(MAKE) pre_build
 	@$(MAKE) chax
 
-pre_build: portrait text kpre_build
+pre_build: portrait text
 chax: $(FE8_CHX)
 
 $(FE8_CHX): $(MAIN) $(KERNEL_GBA) $(KERNEL_SYM) $(shell $(EA_DEP) $(MAIN) -I $(EA_DIR) --add-missings)
