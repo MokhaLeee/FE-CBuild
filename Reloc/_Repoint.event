@@ -1,7 +1,0 @@
-/**
- * Copy form:
- *
- * Kernel/Reloc/Repoint.event
- */
-
-#define TextTable FreeSpaceMain_TextTable

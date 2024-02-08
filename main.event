@@ -8,8 +8,7 @@
 #include "include/Definitions.event"
 
 /* Reloc first */
-#include "Reloc/_Reloc.event"
-#include "Reloc/_Repoint.event"
+#include "Kernel/Reloc/External_Declaration.event"
 
 /* Helpers later */
 #include "Tools/Tool Helpers.txt"

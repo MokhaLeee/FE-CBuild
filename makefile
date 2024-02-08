@@ -92,7 +92,7 @@ all:
 	@$(MAKE) pre_build kernel
 	@$(MAKE) chax
 
-pre_build: portrait text
+pre_build: portrait text kpre_build
 chax: $(FE8_CHX)
 
 $(FE8_CHX): $(MAIN) $(KERNEL_GBA) $(KERNEL_SYM) $(shell $(EA_DEP) $(MAIN) -I $(EA_DIR) --add-missings)
@@ -105,7 +105,10 @@ $(FE8_CHX): $(MAIN) $(KERNEL_GBA) $(KERNEL_SYM) $(shell $(EA_DEP) $(MAIN) -I $(E
 $(KERNEL_GBA): kernel
 
 kernel:
-	$(MAKE) -f $(KERNEL_MK) all
+	@$(MAKE) -f $(KERNEL_MK) all
+
+kpre_build:
+	@$(MAKE) -f $(KERNEL_MK) pre_build
 
 $(K_REF): $(KERNEL_SYM)
 	$(SYM2REF) $< > $@
