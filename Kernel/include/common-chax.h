@@ -1,8 +1,6 @@
 #pragma once
 
-#include "global.h"
-#include "bmunit.h"
-#include "bmmap.h"
+#include "gbafe.h"
 
 #include "../Configs/configs.h"
 #include "debug-kit.h"

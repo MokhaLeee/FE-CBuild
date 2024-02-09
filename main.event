@@ -10,10 +10,11 @@
 /* Reloc first */
 #include "Kernel/Reloc/External_Declaration.event"
 
-/* Helpers later */
-#include "Tools/Tool Helpers.txt"
-
 ORG FreeSpace
     #include "Reloc/Repoint.event"
+
+    /* Helpers after Reloc */
+    #include "Tools/Tool Helpers.txt"
+
     #include "GameData/GameData.event"
     #include "Contants/Contants.event"

@@ -120,7 +120,7 @@ void EfxStatusUnitMain(struct ProcEfxStatusUnit * proc)
             break;
 
         default:
-            EfxStatusUnitSomePalModify(proc->anim, proc->red, proc->green, proc->blue);
+            EfxStatusUnitFlashing(proc->anim, proc->red, proc->green, proc->blue);
             break;
         }
 
