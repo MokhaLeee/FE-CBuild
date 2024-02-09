@@ -1,0 +1,17 @@
+{
+    ALIGN 4
+    this_img:
+        #incbin "FE7_Tile2.4bpp.lz"
+
+    ALIGN 4
+    this_pal:
+        #incbin "FE7_Tile2.gbapal"
+
+    ALIGN 4
+    this_map:
+        #incbin "FE7_tile2.mapchip_config.lz"
+
+    NewEventPointerTable_ObjPal(CHDATA_L3_ASSET2_OBJ, this_img)
+    NewEventPointerTable_ObjPal(CHDATA_L3_ASSET2_PAL, this_pal)
+    NewEventPointerTable_TileConfig(CHDATA_L6_ASSET2_CONF, this_map)
+}

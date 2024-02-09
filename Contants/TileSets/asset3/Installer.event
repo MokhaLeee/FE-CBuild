@@ -1,0 +1,25 @@
+{
+    ALIGN 4
+    this_img:
+        #incbin "fe7_asset3.4bpp.lz"
+
+    ALIGN 4
+    this_pal:
+    {
+        Entry:
+        ORG Entry + 0x00; #incbin "fe7_asset3_pal0.gbapal"
+        ORG Entry + 0x20; #incbin "fe7_asset3_pal1.gbapal"
+        ORG Entry + 0x40; #incbin "fe7_asset3_pal2.gbapal"
+        ORG Entry + 0x60; #incbin "fe7_asset3_pal3.gbapal"
+        ORG Entry + 0x80; #incbin "fe7_asset3_pal4.gbapal"
+        ORG Entry + 0xA0
+    }
+
+    ALIGN 4
+    this_map:
+        #incbin "fe7_asset3.mapchip_config.lz"
+
+    NewEventPointerTable_ObjPal(CHDATA_L3_ASSET3_OBJ, this_img)
+    NewEventPointerTable_ObjPal(CHDATA_L3_ASSET3_PAL, this_pal)
+    NewEventPointerTable_TileConfig(CHDATA_L6_ASSET3_CONF, this_map)
+}
