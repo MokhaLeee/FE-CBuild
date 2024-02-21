@@ -228,7 +228,7 @@ STATIC_DECLAR void ChapterIntroFE6_Init(struct Proc * proc)
 
     MaybeResetSomePal();
     sub_80017B4(BGPAL_CHAPTERINTRO_0, 2, 0x40, -1);
-    CALLARM_MaybeScreenFadeIn();
+    CALLARM_ColorFadeTick();
 
     EnablePaletteSync();
 
@@ -349,7 +349,7 @@ STATIC_DECLAR void ChapterIntroFE6_Begin_0801E1A0(struct Proc * proc)
 
 STATIC_DECLAR void ChapterIntroFE6_Loop_0801E1F8(struct Proc * proc)
 {
-    CALLARM_MaybeScreenFadeIn();
+    CALLARM_ColorFadeTick();
     EnablePaletteSync();
 
     proc->unk4C--;
@@ -370,7 +370,7 @@ STATIC_DECLAR void ChapterIntroFE6_Loop_0801E244(struct Proc * proc)
 {
     if ((GetGameClock() % 4) == 0)
     {
-        CALLARM_MaybeScreenFadeIn();
+        CALLARM_ColorFadeTick();
         EnablePaletteSync();
 
         proc->unk4C--;
@@ -435,7 +435,7 @@ STATIC_DECLAR void ChapterIntroFE6_BeginFadeOut(struct Proc * proc)
 
 STATIC_DECLAR void ChapterIntroFE6_LoopFadeOut(struct Proc * proc)
 {
-    CALLARM_MaybeScreenFadeIn();
+    CALLARM_ColorFadeTick();
     EnablePaletteSync();
 
     proc->unk4C--;
