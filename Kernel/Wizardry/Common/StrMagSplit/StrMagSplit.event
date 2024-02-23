@@ -17,8 +17,11 @@
 #endif
 
 PUSH
-ORG ($5926F4 + ICON_ITEM_MAG_BOOSTER * 0x80)
-    #incbin "Data/SpiritDust.4bpp"
+    ORG ($5926F4 + ICON_ITEM_MAG_BOOSTER * 0x80)
+        #incbin "Data/SpiritDust.4bpp"
+
+    ORG 0x809B10 + ITEM_MAG_BOOSTER * 0x24 + 0xC
+    POIN ItemStatBonusesMagBooster
 POP
 
 /* Boost bonus */

@@ -46,4 +46,7 @@
 /* If comment, CHAX may not verify on FESKILL magic work in SRAM */
 #define CONFIG_VERIFY_SKILLSYS_SRAM
 
+/* If uncomment, use zh-cn language */
+#define CONFIG_LANG_CHINESE
+
 #endif /* CONFIG_INSTALLED */

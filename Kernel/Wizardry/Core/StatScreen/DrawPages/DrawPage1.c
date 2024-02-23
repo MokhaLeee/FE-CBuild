@@ -419,7 +419,7 @@ STATIC_DECLAR void DrawPage1Affin(void)
     struct Unit * unit = gStatScreen.unit;
     int affin = unit->pCharacterData->affinity;
 
-    const int msg[] = {
+    const int cn_msg[] = {
         [UNIT_AFFIN_FIRE]    = MSG_MSS_AFFIN_FIRE,
         [UNIT_AFFIN_THUNDER] = MSG_MSS_AFFIN_THUNDER,
         [UNIT_AFFIN_WIND]    = MSG_MSS_AFFIN_WIND,
@@ -436,12 +436,14 @@ STATIC_DECLAR void DrawPage1Affin(void)
             GetUnitAffinityIcon(unit),
             TILEREF(0, STATSCREEN_BGPAL_EXTICONS));
 
+#ifdef CONFIG_LANG_CHINESE
         PutDrawText(
             &gStatScreen.text[STATSCREEN_TEXT_ITEM1],
             gUiTmScratchA + TILEMAP_INDEX(0xE, 0x7),
             TEXT_COLOR_SYSTEM_GOLD,
             0, 0,
-            GetStringFromIndex(msg[affin]));
+            GetStringFromIndex(cn_msg[affin]));
+#endif
     }
     else
     {
