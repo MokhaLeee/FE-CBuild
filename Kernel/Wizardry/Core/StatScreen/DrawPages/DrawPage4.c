@@ -39,7 +39,7 @@ STATIC_DECLAR void DrawPage4SupportBonus(void)
         gUiTmScratchA + TILEMAP_INDEX(0x1, 0x5),
         TEXT_COLOR_SYSTEM_GOLD,
         0, 0,
-        GetStringFromIndex(0x51C)); // Def
+        GetStringFromIndex(0x4EF)); // Def
 
     PutDrawText(
         &gStatScreen.text[5],

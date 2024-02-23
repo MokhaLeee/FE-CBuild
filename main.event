@@ -12,6 +12,7 @@
 
 ORG FreeSpace
     #include "Reloc/Repoint.event"
+    #include "EngineHacks/EngineHacks.event"
 
     /* Helpers after Reloc */
     #include "Tools/Tool Helpers.txt"

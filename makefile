@@ -27,7 +27,8 @@ EXT_REF    := $(CONFIG_DIR)/usr-defined.ref.s
 
 GAMEDATA_DIR := $(MK_DIR)GameData
 CONTANTS_DIR := $(MK_DIR)Contants
-HACK_DIRS := $(CONFIG_DIR) $(GAMEDATA_DIR) $(CONTANTS_DIR)
+WIZARDRY_DIR := $(MK_DIR)EngineHacks
+HACK_DIRS := $(GAMEDATA_DIR) $(CONTANTS_DIR) $(WIZARDRY_DIR)
 
 CLEAN_FILES :=
 CLEAN_DIRS  := $(CACHE_DIR) $(shell find -name __pycache__)
@@ -111,7 +112,8 @@ kpre_build:
 	@$(MAKE) -f $(KERNEL_MK) pre_build
 
 $(K_REF): $(KERNEL_SYM)
-	$(SYM2REF) $< > $@
+	@echo "[GEN]	$@"
+	@$(SYM2REF) $< > $@
 
 # ============
 # = Wizardry =
@@ -279,7 +281,7 @@ CLEAN_FILES += $(CSV_SOURCES:.csv=.csv.event)
 # ==============
 
 clean_basic:
-	@$(MAKE) -f $(KERNEL_MK) $@ > /dev/null
+#	@$(MAKE) -f $(KERNEL_MK) $@ > /dev/null
 	@rm -f $(CLEAN_FILES)
 	@rm -rf $(CLEAN_DIRS)
 	@echo "Cleaned .."
