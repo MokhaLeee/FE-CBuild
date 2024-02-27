@@ -419,6 +419,7 @@ STATIC_DECLAR void DrawPage1Affin(void)
     struct Unit * unit = gStatScreen.unit;
     int affin = unit->pCharacterData->affinity;
 
+#ifdef CONFIG_LANG_CHINESE
     const int cn_msg[] = {
         [UNIT_AFFIN_FIRE]    = MSG_MSS_AFFIN_FIRE,
         [UNIT_AFFIN_THUNDER] = MSG_MSS_AFFIN_THUNDER,
@@ -428,6 +429,7 @@ STATIC_DECLAR void DrawPage1Affin(void)
         [UNIT_AFFIN_LIGHT]   = MSG_MSS_AFFIN_LIGHT,
         [UNIT_AFFIN_ANIMA]   = MSG_MSS_AFFIN_ANIMA,
     };
+#endif
 
     if (affin)
     {

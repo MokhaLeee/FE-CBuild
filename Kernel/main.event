@@ -11,9 +11,7 @@ ORG FreeSpaceKernel
     BYTE $4D $4F $4B $48 $41 $20 $42 $55 $49 $4C $44 $20 $43 $48 $41 $58
 
 ORG FreeSpaceKernel_Reloc
-#ifdef CONFIG_LANG_CHINESE
     #include "Reloc/Reloc.event"
-#endif
 ASSERT (FreeSpaceKernel_Reloc + FreeSpaceRelocSize - CURRENTOFFSET)
 
 ORG FreeSpaceKernel_TextTable
@@ -30,7 +28,9 @@ ORG FreeSpaceKernel_TextTable
 MESSAGE FreeSpace___Main___ end at (CURRENTOFFSET) max (FreeSpaceKernel + FreeSpaceKernelSize)
 ASSERT (FreeSpaceKernel + FreeSpaceKernelSize - CURRENTOFFSET)
 
-ORG FreeSpaceFont
-    #include "Fonts/Fonts.event"
-MESSAGE FreeSpace__Fonts___ end at (CURRENTOFFSET) max (FreeSpaceFont + FreeSpaceFontSize)
-ASSERT (FreeSpaceFont + FreeSpaceFontSize - CURRENTOFFSET)
+#ifdef CONFIG_LANG_CHINESE
+    ORG FreeSpaceFont
+        #include "Fonts/Fonts.event"
+    MESSAGE FreeSpace__Fonts___ end at (CURRENTOFFSET) max (FreeSpaceFont + FreeSpaceFontSize)
+    ASSERT (FreeSpaceFont + FreeSpaceFontSize - CURRENTOFFSET)
+#endif
