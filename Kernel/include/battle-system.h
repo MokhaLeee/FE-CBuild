@@ -49,6 +49,11 @@ static inline int GetBattleHitRound(struct BattleHit * hit)
     return hit - gBattleHitArrayRe;
 }
 
+struct ExternalBattleHitArray {
+    u8 _pad_[4];
+};
+extern struct ExternalBattleHitArray gExternalBattleHitArray[NEW_BATTLE_HIT_MAX];
+
 /* Flags in .data section */
 extern struct {
     u32 order_vantage : 1;

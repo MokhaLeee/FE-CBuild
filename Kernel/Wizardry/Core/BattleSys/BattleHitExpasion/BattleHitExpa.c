@@ -19,5 +19,6 @@ void ClearBattleHits(void)
     CpuFastFill16(0, gBattleHitArrayRe, sizeof(gBattleHitArrayRe));
     InitEfxCombatArtRoundData();
     InitEfxSkillRoundData();
+    ClearBattleGlobalFlags();
     gBattleHitIterator = gBattleHitArrayRe;
 }
