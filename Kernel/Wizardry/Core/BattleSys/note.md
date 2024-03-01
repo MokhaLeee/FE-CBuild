@@ -34,7 +34,7 @@ ActionCombat
 │       │               │   └── BattleCheckPetrify
 │       │               └── BattleGenerateHitEffects
 │       ├── BattleUnitTargetCheckCanCounter
-│       ├── BattleUnitTargetSetEquippedWeapon
+│       ├── BattleUnitTargetSetEquippedWeapon: mainly setup for banim UI, if unit has no weapon, give a weapon to show.
 │       └── BattleApplyExpGains
 │           ├── GetBattleUnitExpGain
 │           └── CheckBattleUnitLevelUp

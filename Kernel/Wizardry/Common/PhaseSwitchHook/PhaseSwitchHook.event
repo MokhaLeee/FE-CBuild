@@ -1,17 +1,8 @@
 #include "Source/PhaseSwitchHook.lyn.event"
-
-PUSH
-    ORG 0x59A2E0
-    PROC_JUMP(ProcScr_BmMain_StartPhaseHook)
-POP
+#include "Source/LynJump.event"
 
 ALIGN 4
-ProcScr_BmMain_StartPhaseHook:
-    PROC_CALL_ROUTINE(BmMain_StartPhaseRe)
-    PROC_YEILD
-    PROC_JUMP(0x59A2E8)
-
-ALIGN 4
+/* void (*)(void) */
 gPhaseSwitchHooks:
     POIN PhaseSwitchUpdateLengendSkillStatus
     WORD 0

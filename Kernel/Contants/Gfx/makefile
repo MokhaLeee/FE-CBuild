@@ -10,7 +10,7 @@ ALL_SOURCES := $(shell find $(SOURCE_DIR)/ -type f -name '*.png')
 GFX_HEADER    ?= $(mkfile_dir)GfxDefs.h
 GFX_INSTALLER ?= $(mkfile_dir)GfxInstaller.event
 
-$(GFX_INSTALLER): $(ALL_SOURCES)
+$(GFX_HEADER): $(ALL_SOURCES)
 	@echo "[GEN]	$@"
 	@cd $(dir $(mkfile_dir)..) && $(GFX_GENERATOR) $(GFX_HEADER) $(GFX_INSTALLER) && cd $(build_dir)
 
