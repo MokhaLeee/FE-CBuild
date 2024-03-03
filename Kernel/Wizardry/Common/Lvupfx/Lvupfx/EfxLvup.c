@@ -34,15 +34,15 @@ STATIC_DECLAR const struct EfxLvupInfo NewEfxLvupInfos[] = {
 STATIC_DECLAR void EkrLvup_InitStatusTextVanilla(struct ProcEkrLevelup * proc)
 {
     int i;
-    struct Text * th, * th_base = gTextEkrlvupValue;
+    struct Text * th, * th_base = gBanimText + EKRLVUP_STAT_MAX;
 
     for (i = 0; i < EKRLVUP_STAT_MAX; i++)
     {
-        InitText(&gTextEkrlvupValue[i], 2);
-        Text_SetCursor(&gTextEkrlvupValue[i], 8);
-        Text_SetColor(&gTextEkrlvupValue[i], TEXT_COLOR_SYSTEM_BLUE);
-        Text_DrawNumber(&gTextEkrlvupValue[i], gEkrLvupBaseStatus[i]);
-        PutText(&gTextEkrlvupValue[i], gBG2TilemapBuffer + 3 + sEfxLvupPartsPos[i]);
+        InitText(&th_base[i], 2);
+        Text_SetCursor(&th_base[i], 8);
+        Text_SetColor(&th_base[i], TEXT_COLOR_SYSTEM_BLUE);
+        Text_DrawNumber(&th_base[i], gEkrLvupBaseStatus[i]);
+        PutText(&th_base[i], gBG2TilemapBuffer + 3 + sEfxLvupPartsPos[i]);
     }
 
     /* class */
@@ -134,17 +134,17 @@ void EkrLvup_InitStatusText(struct ProcEkrLevelup * proc)
         gEkrLvupPostStatus[7] = bunit->unit.res;
     }
 
-    InitTextFont(&gSomeFontStruct, BG_CHR_ADDR(0x146), 0x146, 0);
+    InitTextFont(&gBanimFont, BG_CHR_ADDR(0x146), 0x146, 0);
 
     for (i = 0; i < EKRLVUP_STAT_MAX; i++)
     {
         const char * str = GetStringFromIndex(NewEfxLvupInfos[i].msg);
 
-        InitText(&gTextEkrlvupMsg[i], 3);
-        Text_SetCursor(&gTextEkrlvupMsg[i], 0);
-        Text_SetColor(&gTextEkrlvupMsg[i], TEXT_COLOR_SYSTEM_GOLD);
-        Text_DrawString(&gTextEkrlvupMsg[i], str);
-        PutText(&gTextEkrlvupMsg[i], gBG2TilemapBuffer + sEfxLvupPartsPos[i]);
+        InitText(&gBanimText[i], 3);
+        Text_SetCursor(&gBanimText[i], 0);
+        Text_SetColor(&gBanimText[i], TEXT_COLOR_SYSTEM_GOLD);
+        Text_DrawString(&gBanimText[i], str);
+        PutText(&gBanimText[i], gBG2TilemapBuffer + sEfxLvupPartsPos[i]);
     }
 
     EkrLvup_InitStatusTextVanilla(proc);

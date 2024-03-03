@@ -109,10 +109,10 @@ STATIC_DECLAR void UpdateHpDrainForEkrGauge(struct Anim * anim)
          * HpBar offset may also change during HP-Darin anim
          * such as StartSpellAnimNosferatu()
          */
-        if (GetEfxHp(gEfxPairHpBufOffset[pos] * 2 + pos) != real_hp)
+        if (GetEfxHp(gEfxHpLutOff[pos] * 2 + pos) != real_hp)
         {
-            gEfxPairHpBufOffset[pos] = gEfxPairHpBufOffset[pos] + 1;
-            gEkrGaugeHp[pos] = GetEfxHp(gEfxPairHpBufOffset[pos] * 2 + pos);
+            gEfxHpLutOff[pos] = gEfxHpLutOff[pos] + 1;
+            gEkrGaugeHp[pos] = GetEfxHp(gEfxHpLutOff[pos] * 2 + pos);
         }
     }
 }
