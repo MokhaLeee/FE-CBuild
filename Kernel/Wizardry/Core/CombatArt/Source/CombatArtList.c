@@ -19,7 +19,7 @@ STATIC_DECLAR void CalcCombatArtListExt(struct Unit * unit, u8 wtype)
     u8 jid = UNIT_CLASS_ID(unit);
     u8 * tmp_list = gGenericBuffer;
 
-    CpuFastFill16(0, tmp_list, 0x100);
+    CpuFill16(0, tmp_list, 0x100);
 
     /* Skill table */
     for (i = 1; i < 0xFF; i++)
@@ -127,5 +127,5 @@ struct CombatArtList * GetCombatArtList(struct Unit * unit, u8 wtype)
 
 void ResetCombatArtList(void)
 {
-    CpuFastFill16(0, &sCombatArtList, sizeof(sCombatArtList));
+    CpuFill16(0, &sCombatArtList, sizeof(sCombatArtList));
 }

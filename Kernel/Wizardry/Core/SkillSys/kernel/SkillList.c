@@ -94,7 +94,7 @@ struct SkillList * GetUnitSkillList(struct Unit * unit)
 
 void ResetSkillLists(void)
 {
-    CpuFastFill16(0, sSkillLists, sizeof(sSkillLists));
+    CpuFill16(0, sSkillLists, sizeof(sSkillLists));
 }
 
 void DisableUnitSkills(struct Unit * unit)

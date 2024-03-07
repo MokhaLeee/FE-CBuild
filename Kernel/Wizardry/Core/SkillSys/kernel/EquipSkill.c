@@ -10,8 +10,8 @@ extern struct PrepEquipSkillList sPrepEquipSkillList;
 
 void ResetPrepEquipSkillList(void)
 {
-    CpuFill16(0, sPrepEquipSkillListExt, 0x100);
-    CpuFill16(0, &sPrepEquipSkillList,   sizeof(sPrepEquipSkillList));
+    CpuFastFill16(0, sPrepEquipSkillListExt, 0x100);
+    CpuFastFill16(0, &sPrepEquipSkillList,   sizeof(sPrepEquipSkillList));
 }
 
 STATIC_DECLAR void RegisterToPrepEquipSkillListExt(const u8 sid)

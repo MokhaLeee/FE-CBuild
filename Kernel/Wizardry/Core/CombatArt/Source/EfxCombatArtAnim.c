@@ -9,7 +9,7 @@ extern u8 sEfxCombatArtRoundData[NEW_BATTLE_HIT_MAX];
 
 void InitEfxCombatArtRoundData(void)
 {
-    CpuFastFill16(0, sEfxCombatArtRoundData, sizeof(sEfxCombatArtRoundData));
+    CpuFill16(0, sEfxCombatArtRoundData, sizeof(sEfxCombatArtRoundData));
 }
 
 int GetEfxCombatArtIndex(const u8 cid)

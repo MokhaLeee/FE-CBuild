@@ -44,7 +44,7 @@ bool IsCombatArtHitted(void)
 
 void ResetCombatArtStatus(void)
 {
-    CpuFastFill16(0, &gCombatArtStatus, sizeof(gCombatArtStatus));
+    CpuFill16(0, &gCombatArtStatus, sizeof(gCombatArtStatus));
 }
 
 void SaveCombatArtStatus(u8 * dst, const u32 size)

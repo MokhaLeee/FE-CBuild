@@ -16,7 +16,7 @@ extern struct EfxSkillRoundData sEfxSkillRoundData[NEW_BATTLE_HIT_MAX];
 /* This function should be placed at: ClearBattleHits() */
 void InitEfxSkillRoundData(void)
 {
-    CpuFastFill16(0, sEfxSkillRoundData, sizeof(sEfxSkillRoundData));
+    CpuFill16(0, sEfxSkillRoundData, sizeof(sEfxSkillRoundData));
 }
 
 void RegisterActorEfxSkill(int round, const u8 sid)

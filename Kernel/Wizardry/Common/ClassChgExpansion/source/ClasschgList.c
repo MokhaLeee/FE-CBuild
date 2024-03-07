@@ -9,7 +9,7 @@ static int RearrangeJidBuffer(u8 * in, int len_in, u8 * out, int len_out)
     int i, amt = 0;
     u8 jid, tmp_list[0x100];
 
-    CpuFastFill16(0, tmp_list, sizeof(tmp_list));
+    CpuFill16(0, tmp_list, sizeof(tmp_list));
 
     /* Re-arrange jid list to remove the same node */
     for (i = 0; i < len_in; i++)

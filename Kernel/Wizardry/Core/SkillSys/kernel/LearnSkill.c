@@ -19,7 +19,7 @@ void * const Identifier_sLearnedSkillPLists = sLearnedSkillPLists;
 /* GameInitHook */
 void ResetUnitLearnedSkillLists(void)
 {
-    CpuFastFill16(0, sLearnedSkillPLists, sizeof(sLearnedSkillPLists));
+    CpuFill16(0, sLearnedSkillPLists, sizeof(sLearnedSkillPLists));
 }
 
 /* SaveData */

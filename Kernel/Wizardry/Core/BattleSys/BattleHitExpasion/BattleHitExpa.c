@@ -16,7 +16,7 @@ bool CheckBattleHitOverflow(void)
 /* LynJump */
 void ClearBattleHits(void)
 {
-    CpuFastFill16(0, gBattleHitArrayRe, sizeof(gBattleHitArrayRe));
+    CpuFill16(0, gBattleHitArrayRe, sizeof(gBattleHitArrayRe));
     InitEfxCombatArtRoundData();
     InitEfxSkillRoundData();
     ClearBattleGlobalFlags();

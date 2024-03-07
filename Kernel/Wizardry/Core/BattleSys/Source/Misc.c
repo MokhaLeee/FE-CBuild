@@ -5,6 +5,6 @@
 
 void ClearBattleGlobalFlags(void)
 {
-    CpuFastFill16(0, &gBattleActorGlobalFlag, sizeof(gBattleActorGlobalFlag));
-    CpuFastFill16(0, &gBattleTargetGlobalFlag, sizeof(gBattleTargetGlobalFlag));
+    CpuFill16(0, &gBattleActorGlobalFlag, sizeof(gBattleActorGlobalFlag));
+    CpuFill16(0, &gBattleTargetGlobalFlag, sizeof(gBattleTargetGlobalFlag));
 }
