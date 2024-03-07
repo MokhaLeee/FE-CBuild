@@ -3,6 +3,7 @@
 #include "event.h"
 
 #include "common-chax.h"
+#include "chax-glb.h"
 #include "skill-system.h"
 
 enum EventSkillSubOps {

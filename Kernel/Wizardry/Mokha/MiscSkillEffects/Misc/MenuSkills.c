@@ -11,6 +11,7 @@
 
 #include "common-chax.h"
 #include "skill-system.h"
+#include "chax-glb.h"
 #include "constants/skills.h"
 
 u8 DanceCommandUsabilityRework(const struct MenuItemDef * def, int number)

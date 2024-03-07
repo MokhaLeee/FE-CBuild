@@ -12,6 +12,7 @@ ALIGN 4
 #include "Common/ClassChgExpansion/ClassChgExpansion.event"
 #include "Common/CommonLib/map.lyn.event"
 #include "Common/CommonLib/math.lyn.event"
+#include "Common/CommonLib/banim.lyn.event"
 #include "Common/CommonLib/list-verify.lyn.event"
 #include "Common/RN/RandNumberC.lyn.event"
 #include "Common/MoveLimitViewHack/MoveLimitViewHack.lyn.event"
@@ -44,6 +45,7 @@ ALIGN 4
 
 #include "Mokha/MapAnims/MapAnims.event"
 #include "Mokha/MiscSkillEffects/MiscSkillEffects.event"
+#include "Mokha/ComboAttack/ComboAttack.event"
 
 #include "External/ExternalPatches.event"
 

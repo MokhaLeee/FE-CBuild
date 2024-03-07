@@ -3,6 +3,7 @@
 
 #include "common-chax.h"
 #include "bwl.h"
+#include "chax-glb.h"
 #include "skill-system.h"
 #include "constants/skills.h"
 

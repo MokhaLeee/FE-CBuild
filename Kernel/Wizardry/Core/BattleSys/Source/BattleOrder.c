@@ -10,6 +10,7 @@
 #include "efx-skill.h"
 #include "battle-system.h"
 #include "combat-art.h"
+#include "combo-attack.h"
 #include "constants/skills.h"
 
 enum {
@@ -152,6 +153,9 @@ STATIC_DECLAR bool CheckVantageOrder(void)
 void BattleUnwind(void)
 {
     int i, ret;
+#ifdef CONFIG_USE_COMBO_ATTACK
+    bool combo_atk_done = false;
+#endif
     u8 round_mask = 0;
     const u8 * config;
 
@@ -192,6 +196,20 @@ void BattleUnwind(void)
 
         if (ACT_ATTACK == config[i])
         {
+#ifdef CONFIG_USE_COMBO_ATTACK
+            /* Combo-attack first */
+            if (!combo_atk_done)
+            {
+                combo_atk_done = true;
+                ret = BattleComboGenerateHits();
+                if (ret)
+                    break;
+
+                /* Reload battle-hit */
+                old = gBattleHitIterator;
+                Printf("Combo end at round round %d", GetBattleHitRound(old));
+            }
+#endif
             ret = BattleGenerateRoundHits(&gBattleActor, &gBattleTarget);
             actor_count++;
         }

@@ -7,65 +7,7 @@
 
 #include "common-chax.h"
 #include "battle-system.h"
-
-STATIC_DECLAR bool IsAttackerAnim(struct Anim * anim)
-{
-    int round = anim->nextRoundId - 1;
-    bool is_retal = !!(gBattleHitArrayRe[round].info & BATTLE_HIT_INFO_RETALIATION);
-    bool init_pos = (GetAnimPosition(anim) == gEkrInitialPosition[0]);
-
-    if (is_retal && !init_pos)
-        return true;
-
-    if (!is_retal && init_pos)
-        return true;
-
-    return false;
-}
-
-STATIC_DECLAR int GetBattleActorHpAtRound(int round)
-{
-    int i, ret = 0;
-
-    if (round > NEW_BATTLE_HIT_MAX)
-        round = NEW_BATTLE_HIT_MAX;
-
-    ret = GetUnitCurrentHp(GetUnit(gBattleActor.unit.index));
-
-    for (i = 0; i < round; i++)
-    {
-        struct BattleHit * hit = &gBattleHitArrayRe[i];
-
-        if (hit->info & BATTLE_HIT_INFO_RETALIATION)
-            ret += hit->hpChange;
-
-        if (hit->info & BATTLE_HIT_INFO_END)
-            break;
-    }
-    return ret;
-}
-
-STATIC_DECLAR int GetBattleTargetHpAtRound(int round)
-{
-    int i, ret = 0;
-
-    if (round > NEW_BATTLE_HIT_MAX)
-        round = NEW_BATTLE_HIT_MAX;
-
-    ret = GetUnitCurrentHp(GetUnit(gBattleTarget.unit.index));
-
-    for (i = 0; i < round; i++)
-    {
-        struct BattleHit * hit = &gBattleHitArrayRe[i];
-
-        if (!(hit->info & BATTLE_HIT_INFO_RETALIATION))
-            ret += hit->hpChange;
-
-        if (hit->info & BATTLE_HIT_INFO_END)
-            break;
-    }
-    return ret;
-}
+#include "chax-glb.h"
 
 STATIC_DECLAR void UpdateHpDrainForEkrGauge(struct Anim * anim)
 {

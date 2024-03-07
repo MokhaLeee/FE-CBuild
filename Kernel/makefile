@@ -19,11 +19,12 @@ EXT_REF    := $(CONFIG_DIR)/usr-defined.ref.s
 WIZARDRY_DIR := $(MK_DIR)/Wizardry
 CONTANTS_DIR := $(MK_DIR)/Contants
 GAMEDATA_DIR := $(MK_DIR)/Data
-FONT_DIR     := $(MK_DIR)/Fonts
 
 HACK_DIRS := $(CONFIG_DIR) $(WIZARDRY_DIR) $(CONTANTS_DIR) $(GAMEDATA_DIR)
-# There are too many conponets in $(FONT_DIR) so we cannot consider it as normal hack dirs
-# HACK_DIRS += $(FONT_DIR)
+
+all:
+	@$(MAKE) pre_build
+	@$(MAKE) chax
 
 include Contants/contants.mk
 
@@ -83,11 +84,7 @@ GRIT              := $(DEVKITPRO)/tools/bin/grit$(EXE)
 # = Main =
 # ========
 
-all:
-	@$(MAKE) pre_build
-	@$(MAKE) chax
-
-pre_build: text font gfx efx
+PRE_BUILD ?=
 chax: $(FE8_CHX)
 
 $(FE8_CHX): $(MAIN) $(FE8_GBA) $(FE8_SYM) $(shell $(EA_DEP) $(MAIN) -I $(EA_DIR) --add-missings)
@@ -157,6 +154,7 @@ TEXT_SOURCE := $(shell find $(TEXT_DIR) -type f -name '*.txt')
 export TEXT_DEF := $(TEXT_DIR)/TextDefinitions.h
 
 text: $(TEXT_DEF)
+PRE_BUILD += text
 
 $(TEXT_DEF): $(TEXT_MAIN) $(TEXT_SOURCE)
 	@$(MAKE) -C $(TEXT_DIR)
@@ -165,24 +163,6 @@ $(TEXT_DEF): $(TEXT_MAIN) $(TEXT_SOURCE)
 	@$(MAKE) -f $(TEXT_DIR)/makefile $@
 
 CLEAN_BUILD += $(TEXT_DIR)
-
-# =========
-# = Glyph =
-# =========
-
-GLYPH_INSTALLER := $(FONT_DIR)/GlyphInstaller.event
-GLYPH_DEPS := $(FONT_DIR)/FontList.txt
-
-font: $(GLYPH_INSTALLER)
-
-$(GLYPH_INSTALLER): $(GLYPH_DEPS)
-	@$(MAKE) -C $(FONT_DIR)
-
-%_font.img.bin: %_font.png
-	@echo "[GEN]	$@"
-	@$(GRIT) $< -gB2 -p! -tw16 -th16 -ftb -fh! -o $@
-
-CLEAN_BUILD += $(FONT_DIR)
 
 # ============
 # = Spritans =
@@ -234,6 +214,7 @@ EFX_TARGET   := $(EFX_SCRIPTS:.efx.txt=.efx.event)
 -include $(EFX_SCR_DEPS)
 
 efx: $(EFX_TARGET)
+PRE_BUILD += efx
 
 CLEAN_FILES += $(EFX_SCR_DEPS) $(EFX_TARGET)
 
@@ -247,12 +228,24 @@ GFX_SOURCES := $(shell find $(GFX_DIR)/Sources -type f -name '*.png')
 export GFX_HEADER := $(GFX_DIR)/GfxDefs.h
 
 gfx: $(GFX_HEADER)
+PRE_BUILD += gfx
 
 $(GFX_HEADER): $(GFX_SOURCES)
 	@$(MAKE) -C $(GFX_DIR)
 
 CLEAN_BUILD += $(GFX_DIR)
 CLEAN_FILES += $(GFX_HEADER)
+
+# =========
+# = Glyph =
+# =========
+
+# include Fonts/fonts.mk
+
+# =============
+# = PRE-BUILD =
+# =============
+pre_build: $(PRE_BUILD)
 
 # ==============
 # = MAKE CLEAN =

@@ -420,14 +420,14 @@ STATIC_DECLAR void DrawPage1Affin(void)
     int affin = unit->pCharacterData->affinity;
 
 #ifdef CONFIG_LANG_CHINESE
-    const int cn_msg[] = {
-        [UNIT_AFFIN_FIRE]    = MSG_MSS_AFFIN_FIRE,
-        [UNIT_AFFIN_THUNDER] = MSG_MSS_AFFIN_THUNDER,
-        [UNIT_AFFIN_WIND]    = MSG_MSS_AFFIN_WIND,
-        [UNIT_AFFIN_ICE]     = MSG_MSS_AFFIN_ICE,
-        [UNIT_AFFIN_DARK]    = MSG_MSS_AFFIN_DARK,
-        [UNIT_AFFIN_LIGHT]   = MSG_MSS_AFFIN_LIGHT,
-        [UNIT_AFFIN_ANIMA]   = MSG_MSS_AFFIN_ANIMA,
+    const char * cn_affin[] = {
+        [UNIT_AFFIN_FIRE]    = "炎",
+        [UNIT_AFFIN_THUNDER] = "雷",
+        [UNIT_AFFIN_WIND]    = "風",
+        [UNIT_AFFIN_ICE]     = "冰",
+        [UNIT_AFFIN_DARK]    = "闇",
+        [UNIT_AFFIN_LIGHT]   = "光",
+        [UNIT_AFFIN_ANIMA]   = "理",
     };
 #endif
 
@@ -444,7 +444,7 @@ STATIC_DECLAR void DrawPage1Affin(void)
             gUiTmScratchA + TILEMAP_INDEX(0xE, 0x7),
             TEXT_COLOR_SYSTEM_GOLD,
             0, 0,
-            GetStringFromIndex(cn_msg[affin]));
+            cn_affin[affin]);
 #endif
     }
     else

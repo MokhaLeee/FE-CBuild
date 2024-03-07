@@ -30,9 +30,3 @@
 #define IS_ANTI_HUFFMAN(ptr) ((((u32)(ptr)) & 0xFF000001) == 0x88000000)
 
 #define IS_UNIT_PTR(unit)    (UNIT_IS_VALID((unit)) /* && IS_ROM_DATA((unit)->pCharacterData) && IS_ROM_DATA((unit)->pClassData) */)
-
-/* Common lib */
-bool IsPositionValid(s8 x, s8 y);
-struct Unit * GetUnitAtPosition(s8 x, s8 y);
-u32 simple_div(u32 a, u32 b);
-u32 simple_mod(u32 a, u32 b);
